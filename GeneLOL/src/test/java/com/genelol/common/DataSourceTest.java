@@ -1,4 +1,4 @@
-package com.genelol.controller;
+package com.genelol.common;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,23 +17,21 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class DataSourceTest {
 
 	@Inject
-	private DataSource dataSource;
+	private DataSource ds;
 
 	@Test
-	public void testConnection() throws Exception {
-		System.out.println("ㅅㄷㄴ");
-		try (Connection con = dataSource.getConnection()) {
+	public void testConnection() {
+		try (Connection con = ds.getConnection()) {
 			System.out.println(con);
 			PreparedStatement pstmt = null;
 			String sql = "select * from test";
 			pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				System.out.println("asdasds");
-				System.out.println(rs.getString(1));
+				System.out.println("test : " + rs.getString(1));
 			}
 		} catch (Exception e) {
-			System.out.println(e.getStackTrace());
+			e.getStackTrace();
 		}
 	}
 }

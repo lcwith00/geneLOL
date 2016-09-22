@@ -14,10 +14,12 @@
 		<property name="username" value="sa" />
 		<property name="password" value="" />
 	</bean>
-	
+
 	<jdbc:initialize-database data-source="dataSource"
 		ignore-failures="ALL">
 		<jdbc:script location="classpath:db/create_table.sql"
+			execution="INIT" />
+		<jdbc:script location="classpath:db/db_connect.sql"
 			execution="INIT" />
 	</jdbc:initialize-database>
 
