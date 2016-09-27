@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.genelol.mapper.UserMapper">
+
+	<insert id="insertUser">
+			insert into usertable (userid, username, usermail, userpassword)
+			values(userid_seq.nextval, #{userName}, #{userMail}, #{userPassword})
+	</insert>
+
+</mapper>
+
+
