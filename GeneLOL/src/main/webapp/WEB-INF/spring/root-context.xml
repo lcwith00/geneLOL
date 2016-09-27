@@ -21,13 +21,11 @@
 			execution="INIT" />
 		<jdbc:script location="classpath:db/db_connect.sql"
 			execution="INIT" />
-<<<<<<< HEAD
 		<jdbc:script location="classpath:db/db_usertable.sql"
 			execution="INIT" />
 		<jdbc:script location="classpath:db/db_boardtable.sql"
-=======
+			execution="INIT" />
 		<jdbc:script location="classpath:db/userBoardTest.sql"
->>>>>>> a6fe501965a6e6dcf4b4c7527ff9f640c9181e37
 			execution="INIT" />
 	</jdbc:initialize-database>
 

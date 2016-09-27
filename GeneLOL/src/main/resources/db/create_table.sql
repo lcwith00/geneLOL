@@ -50,11 +50,4 @@ create table commenttable(
 );
 create sequence comment_no_seq
 increment by 1
-<<<<<<< HEAD
 start with 1;
-=======
-start with 1;
-
-select * 
-from boardtable;
->>>>>>> a6fe501965a6e6dcf4b4c7527ff9f640c9181e37
