@@ -5,9 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.genelol.mapper.UserMapper">
 
-	<insert id="insertUser">
+	<insert id="insertUser" parameterType="user">
+		<![CDATA[
 			insert into usertable (userid, username, usermail, userpassword)
 			values(userid_seq.nextval, #{userName}, #{userMail}, #{userPassword})
+		]]>
 	</insert>
 
 </mapper>

@@ -2,9 +2,9 @@ create table usertable(
   userid number primary key,
   username varchar2(100) not null unique,
   usermail varchar2(500) not null unique,
-  iscertificate varchar2(10) not null,
+  iscertificate varchar2(10) default 'false' not null,
   userpassword varchar2(20) not null,
-  usertype varchar2(10) not null,
+  usertype varchar2(10) default 'member' not null,
   joindate date default sysdate not null
 );
 

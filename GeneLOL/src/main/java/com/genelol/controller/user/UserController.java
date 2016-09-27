@@ -19,8 +19,8 @@ public class UserController {
 
 	@Inject
 	private UserService userService;
-	
-	@RequestMapping(value = "/", method = {RequestMethod.POST})
+
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public void insertUser(UserVO userVO, RedirectAttributes rttr) throws Exception {
 		logger.info("insert user..........");
 		logger.info(userVO.toString());
