@@ -21,6 +21,10 @@
 			execution="INIT" />
 		<jdbc:script location="classpath:db/db_connect.sql"
 			execution="INIT" />
+		<jdbc:script location="classpath:db/db_usertable.sql"
+			execution="INIT" />
+		<jdbc:script location="classpath:db/db_boardtable.sql"
+			execution="INIT" />
 	</jdbc:initialize-database>
 
 	<!-- mybatis setting -->

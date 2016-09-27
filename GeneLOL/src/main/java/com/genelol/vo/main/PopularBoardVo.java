@@ -5,16 +5,16 @@ import java.util.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class PopularBoardVo {
-	
-	private Integer board_no;
-	private String id;
-	private Integer userid;
-	private String board_title;
-	private String board_content;
-	private MultipartFile board_file;
-	private Integer board_count;
-	private Integer board_recomm;
-	private Date board_date;
+
+	private Integer board_no; // 글 번호
+	private String board_id; // 게시판 구분
+	private Integer userid; // 작성자
+	private String board_title; // 글 제목
+	private String board_content; // 글 내용 
+	private MultipartFile board_file; // 첨부 파일
+	private Integer board_count; // 조회 수
+	private Integer board_recomm; // 좋아요 수
+	private Date board_date; // 작성일자 
 
 	public Integer getBoard_no() {
 		return board_no;
@@ -24,12 +24,12 @@ public class PopularBoardVo {
 		this.board_no = board_no;
 	}
 
-	public String getId() {
-		return id;
+	public String getBoard_id() {
+		return board_id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setBoard_id(String board_id) {
+		this.board_id = board_id;
 	}
 
 	public Integer getUserid() {
@@ -90,9 +90,10 @@ public class PopularBoardVo {
 
 	@Override
 	public String toString() {
-		return "PopularBoardVo [board_no=" + board_no + ", id=" + id + ", userid=" + userid + ", board_title="
-				+ board_title + ", board_content=" + board_content + ", board_count=" + board_count + ", board_recomm="
-				+ board_recomm + ", board_date=" + board_date + "]";
+		return "PopularBoardVo [board_no=" + board_no + ", board_id=" + board_id + ", userid=" + userid
+				+ ", board_title=" + board_title + ", board_content=" + board_content + ", board_file=" + board_file
+				+ ", board_count=" + board_count + ", board_recomm=" + board_recomm + ", board_date=" + board_date
+				+ "]";
 	}
 
 }

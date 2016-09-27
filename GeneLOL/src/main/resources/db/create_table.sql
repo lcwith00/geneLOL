@@ -21,7 +21,7 @@ create table boardtable(
   board_count number default 0 not null,
   board_recomm number default 0 not null,
   board_date date default sysdate not null,
-  constraint 'userid' foreign key (userid)
+  constraint "userid" foreign key (userid)
   references usertable(userid)  
 );
 create sequence board_no_seq
@@ -47,4 +47,3 @@ create table commenttable(
 create sequence comment_no_seq
 increment by 1
 start with 1;
-

@@ -1,4 +1,4 @@
-package com.genelol.common;
+package com.genelol.test.common;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
