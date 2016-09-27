@@ -1,4 +1,6 @@
-package com.genelol.common;
+package com.genelol.test.common;
+
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withServerError;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,10 +9,13 @@ import java.sql.ResultSet;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
+import org.h2.table.Column;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.genelol.vo.userboard.UserVideoBoardVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/*.xml" })
@@ -34,4 +39,7 @@ public class DataSourceTest {
 			e.getStackTrace();
 		}
 	}
+
+	
+
 }

@@ -7,6 +7,7 @@ create table usertable(
   usertype varchar2(10) default 'member' not null,
   joindate date default sysdate not null
 );
+
 create sequence userid_seq
 increment by 1
 start with 1;
@@ -21,9 +22,12 @@ create table boardtable(
   board_count number default 0 not null,
   board_recomm number default 0 not null,
   board_date date default sysdate not null,
-  constraint 'userid' foreign key (userid)
+  constraint "userid" foreign key (userid)
   references usertable(userid)  
 );
+
+
+
 create sequence board_no_seq
 increment by 1
 start with 1;
@@ -47,4 +51,3 @@ create table commenttable(
 create sequence comment_no_seq
 increment by 1
 start with 1;
-

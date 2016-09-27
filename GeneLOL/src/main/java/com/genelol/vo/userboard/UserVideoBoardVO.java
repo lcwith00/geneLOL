@@ -1,28 +1,17 @@
-package com.genelol.vo.main;
+package com.genelol.vo.userboard;
 
 import java.util.Date;
 
-import org.springframework.web.multipart.MultipartFile;
-
-public class PopularBoardVo {
-
+public class UserVideoBoardVO {
+	private String board_id; // 게시판구분
 	private Integer board_no; // 글 번호
-	private String board_id; // 게시판 구분
 	private Integer userid; // 작성자
 	private String board_title; // 글 제목
-	private String board_content; // 글 내용 
-	private MultipartFile board_file; // 첨부 파일
-	private Integer board_count; // 조회 수
+	private String board_content; // 글 내용
+	private String board_file; // 첨부파일
+	private Integer board_count; // 조회수
 	private Integer board_recomm; // 좋아요 수
-	private Date board_date; // 작성일자 
-
-	public Integer getBoard_no() {
-		return board_no;
-	}
-
-	public void setBoard_no(Integer board_no) {
-		this.board_no = board_no;
-	}
+	private Date board_date; // 작성일자
 
 	public String getBoard_id() {
 		return board_id;
@@ -30,6 +19,14 @@ public class PopularBoardVo {
 
 	public void setBoard_id(String board_id) {
 		this.board_id = board_id;
+	}
+
+	public Integer getBoard_no() {
+		return board_no;
+	}
+
+	public void setBoard_no(Integer board_no) {
+		this.board_no = board_no;
 	}
 
 	public Integer getUserid() {
@@ -56,6 +53,14 @@ public class PopularBoardVo {
 		this.board_content = board_content;
 	}
 
+	public String getBoard_file() {
+		return board_file;
+	}
+
+	public void setBoard_file(String board_file) {
+		this.board_file = board_file;
+	}
+
 	public Integer getBoard_count() {
 		return board_count;
 	}
@@ -80,17 +85,9 @@ public class PopularBoardVo {
 		this.board_date = board_date;
 	}
 
-	public MultipartFile getBoard_file() {
-		return board_file;
-	}
-
-	public void setBoard_file(MultipartFile board_file) {
-		this.board_file = board_file;
-	}
-
 	@Override
 	public String toString() {
-		return "PopularBoardVo [board_no=" + board_no + ", board_id=" + board_id + ", userid=" + userid
+		return "UserVideoBoardVO [board_id=" + board_id + ", board_no=" + board_no + ", userid=" + userid
 				+ ", board_title=" + board_title + ", board_content=" + board_content + ", board_file=" + board_file
 				+ ", board_count=" + board_count + ", board_recomm=" + board_recomm + ", board_date=" + board_date
 				+ "]";

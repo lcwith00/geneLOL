@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.genelol.dao.main.MainMapper">
+
+	<select id="todayPopularBoardList" resultType="popularBoard">
+		select *
+		from
+		boardtable
+		where board_date >= sysdate-1 and board_count >=10
+		order by
+		board_count desc,board_recomm desc, board_date
+	</select>
+
+	<select id="remainPopularBoardList" resultType="popularBoard"
+		parameterType="int">
+		select *
+		from boardtable
+		where sysdate-1 >= board_date and
+		#{rows}>=rownum
+		order by board_recomm desc,board_count desc, board_date
+	</select>
+
+</mapper>
