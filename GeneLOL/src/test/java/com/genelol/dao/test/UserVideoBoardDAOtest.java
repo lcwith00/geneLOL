@@ -10,9 +10,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.genelol.dao.userboard.UserVideoBoardDao;
 import com.genelol.vo.userboard.UserVideoBoardVO;
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-
-import oracle.net.aso.d;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/*.xml" })

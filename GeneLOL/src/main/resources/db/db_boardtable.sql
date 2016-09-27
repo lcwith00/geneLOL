@@ -30,3 +30,6 @@ insert into boardtable(board_id,board_no,userid,board_title,board_content,board_
 values('info',board_no_seq.nextval,'1','test title22','test content',sysdate,2,20);
 insert into boardtable(board_id,board_no,userid,board_title,board_content,board_date,board_recomm,board_count)
 values('info',board_no_seq.nextval,'1','test title333','test content',sysdate,31,4);
+
+insert into boardtable(board_id, board_no, userid, board_title, board_content, board_file, board_count, board_recomm)
+values ('2',1,1,'되돌아온허디 매드무비','내용물','file',13,9);
