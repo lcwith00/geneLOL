@@ -82,8 +82,8 @@ footer {
 						<i class="dropdown icon"></i>게시판 관리
 					</div>
 					<div class="active content">
-						<a target="list" href="/admin/memberManagement/videoBoard.jsp">-동영상 게시판</a></br> <a
-							target="list" href="informationBoard.jsp">-정보 게시판</a>
+						<a target="list" href="/admin/memberManagement/videoBoard.jsp">-동영상
+							게시판</a></br> <a target="list" href="informationBoard.jsp">-정보 게시판</a>
 					</div>
 					<div class="title">
 						<i class="dropdown icon"></i> 통계
