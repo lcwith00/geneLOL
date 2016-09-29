@@ -43,11 +43,7 @@
 			</div>
 			<a href="#" class="item">동영상</a> <a href="#" class="item">정보</a>
 			<div class="ui right item">
-<<<<<<< HEAD
 				<div class="ui inverted button">로그인</div>
-=======
-				<a href="#" class="ui inverted button" id="login">로그인</a>
->>>>>>> fc631cc13633b8b30f5b03231daf14d3938fa7e3
 			</div>
 		</div>
 	</div>
