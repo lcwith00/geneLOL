@@ -11,23 +11,6 @@
 	href="resources/semantic-ui/semantic.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="resources/semantic-ui/semantic.min.js"></script>
-<style type="text/css">
-body {
-	background-color: #DADADA;
-}
-
-body>.grid {
-	height: 100%;
-}
-
-.image {
-	margin-top: -100px;
-}
-
-.column {
-	max-width: 450px;
-}
-</style>
 <script>
 	$(document).ready(function() {
 		$('.menu .item').tab();
