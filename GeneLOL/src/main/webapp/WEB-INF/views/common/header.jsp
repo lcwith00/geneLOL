@@ -4,6 +4,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#login').click(function() {
+			$('.ui.modal').modal('show');
+		});
+	});
+</script>
+<style type="text/css">
+.ui.modal {
+	width: 40% !important;
+	margin-left: -20% !important;
+}
+</style>
 <title>header</title>
 </head>
 <body>
@@ -21,9 +36,12 @@
 			</div>
 			<a href="#" class="item">동영상</a> <a href="#" class="item">정보</a>
 			<div class="ui right item">
-				<a href="#" class="ui inverted button">로그인</a>
+				<a href="#" class="ui inverted button" id="login">로그인</a>
 			</div>
 		</div>
+	</div>
+	<div class="ui modal">
+		<%@ include file="signup.jsp"%>
 	</div>
 </body>
 </html>

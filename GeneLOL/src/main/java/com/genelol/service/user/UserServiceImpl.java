@@ -17,9 +17,12 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public void registUser(UserVO userVO) throws Exception {
-
 		userDAO.insertUser(userVO);
+	}
 
+	@Override
+	public int checkUserName(String userName) throws Exception {
+		return userDAO.checkUserName(userName);
 	}
 
 }
