@@ -14,9 +14,9 @@
 	});
 </script>
 <style type="text/css">
-.ui.modal {
-	width: 40% !important;
-	margin-left: -20% !important;
+#signup_modal {
+	width: 30% !important;
+	margin-left: -15% !important;
 }
 </style>
 <title>header</title>
@@ -47,7 +47,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="ui modal">
+	<div class="ui modal" id="signup_modal">
 		<%@ include file="signup.jsp"%>
 	</div>
 </body>
