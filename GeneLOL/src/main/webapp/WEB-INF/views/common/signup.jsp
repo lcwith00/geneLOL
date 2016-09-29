@@ -12,19 +12,15 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="resources/semantic-ui/semantic.min.js"></script>
 <style type="text/css">
-body {
+#modal_body {
 	background-color: #DADADA;
 }
 
-body>.grid {
+#modal_body>.grid {
 	height: 100%;
 }
 
-.image {
-	margin-top: -100px;
-}
-
-.column {
+#modal_column {
 	max-width: 450px;
 }
 </style>
@@ -74,41 +70,55 @@ body>.grid {
 			}
 		});
 
-		$("#insert").click(function() {
-			$.ajax({
-				type : "POST",
-				url : "/idcheck.do",
-				data : {
-					userName : $('#userName').val()
-				},
-				dataType: "json",
-				success : function(data) {
-					if ($.trim(data) == 'YES') {
-						var str = document.getElementById('insertUserForm');
-						str.submit();
-					} else {
-						alert('사용이 불가능한 ID입니다.');
-					}
-				}
-			});
-		});
 	});
+
+	$("#insert").click(function() {
+		var str = document.getElementById('insertUserForm');
+		str.submit();
+	});
+
+	function chkMbId() {
+		$.ajax({
+			url : "/idcheck.do",
+			type : "post",
+			data : {
+				userName : $("#userName").val()
+			},
+			dataType : "json",
+			success : function(data) {
+
+				$(
+						"<div style='text-align:center;'>" + data.resultMsg
+								+ "</div>").dialog({
+					modal : true,
+					resizable : false,
+					buttons : [ {
+						text : "확인",
+						click : function() {
+							$(this).dialog("close");
+						}
+					} ]
+				});
+				$(".ui-dialog-titlebar").hide();
+
+				if (data.result == "success") {
+
+				} else {
+
+				}
+			}
+		});
+	}
 </script>
-<style type="text/css">
-.lastpassClearHidden::-ms-clear {
-	display: none;
-}
-</style>
 </head>
-<body>
+<body id="modal_body">
 	<div class="ui top attached tabular menu" style="max-width: 450px">
 		<a class="item active" data-tab="signin"> 로그인 </a> <a class="item"
 			data-tab="signup"> 회원가입 </a>
 	</div>
 	<div class="ui bottom attached tab segment active" data-tab="signin">
 		<div class="ui middle aligned center aligned grid">
-			<div class="column">
-
+			<div class="column" id="modal_column">
 				<form class="ui large form">
 					<div class="ui stacked segment">
 						<div class="field">
