@@ -33,34 +33,66 @@ body>.grid {
 		$('.menu .item').tab();
 		$('.ui.form').form({
 			fields : {
-				email : {
-					identifier : 'email',
+				userName : {
+					identifier : 'userName',
 					rules : [ {
 						type : 'empty',
-						prompt : 'Please enter your e-mail'
+						prompt : 'ID를 입력해주세요.'
 					}, {
-						type : 'email',
-						prompt : 'Please enter a valid e-mail'
+						type : 'regExp[/^[a-z0-9_-]{4,16}$/]',
+						prompt : 'ID는 4-16자의 알파벳 소문자/숫자로 입력해주세요.'
 					} ]
 				},
-				password : {
-					identifier : 'password',
+				userMail : {
+					identifier : 'userMail',
 					rules : [ {
 						type : 'empty',
-						prompt : 'Please enter your password'
+						prompt : '이메일 주소를 입력해주세요.'
+					}, {
+						type : 'email',
+						prompt : '유효하지 않은 이메일입니다.'
+					} ]
+				},
+				userPassword : {
+					identifier : 'userPassword',
+					rules : [ {
+						type : 'empty',
+						prompt : '비밀번호를 입력해주세요.'
 					}, {
 						type : 'length[6]',
-						prompt : 'Your password must be at least 6 characters'
+						prompt : '비밀번호는 최소 6자리 이상 입력해주세요.'
+					} ]
+				},
+				acceptTerms : {
+					identifier : 'acceptTerms',
+					rules : [ {
+						type : 'checked',
+						prompt : '약관을 읽고 동의해주세요.'
 					} ]
 				}
+
 			}
 		});
+
+		$("#insert").click(function() {
+			$.ajax({
+				type : "POST",
+				url : "/idcheck.do",
+				data : {
+					userName : $('#userName').val()
+				},
+				dataType: "json",
+				success : function(data) {
+					if ($.trim(data) == 'YES') {
+						var str = document.getElementById('insertUserForm');
+						str.submit();
+					} else {
+						alert('사용이 불가능한 ID입니다.');
+					}
+				}
+			});
+		});
 	});
-	
-	function insert() {
-		var str = document.getElementById('insertUserForm');
-		str.submit();
-	}
 </script>
 <style type="text/css">
 .lastpassClearHidden::-ms-clear {
@@ -70,10 +102,10 @@ body>.grid {
 </head>
 <body>
 	<div class="ui top attached tabular menu" style="max-width: 450px">
-		<a class="item" data-tab="signin"> 로그인 </a> <a class="item active"
+		<a class="item active" data-tab="signin"> 로그인 </a> <a class="item"
 			data-tab="signup"> 회원가입 </a>
 	</div>
-	<div class="ui bottom attached tab segment" data-tab="signin">
+	<div class="ui bottom attached tab segment active" data-tab="signin">
 		<div class="ui middle aligned center aligned grid">
 			<div class="column">
 
@@ -93,18 +125,20 @@ body>.grid {
 						</div>
 						<div class="ui fluid large teal submit button">로그인</div>
 					</div>
-
+					<p>
+						<a href="#">비밀번호를 잊으셨나요?</a>
+					</p>
 					<div class="ui error message"></div>
 
 				</form>
 			</div>
 		</div>
 	</div>
-	<div class="ui bottom attached tab segment active" data-tab="signup">
+	<div class="ui bottom attached tab segment" data-tab="signup">
 		<div class="ui middle aligned center aligned grid">
 			<div class="column">
 
-				<form class="ui large form">
+				<form class="ui large form" id="insertUserForm" method="post">
 					<div class="ui stacked segment">
 						<div class="field">
 							<div class="ui left icon input">
@@ -124,11 +158,13 @@ body>.grid {
 									name="userPassword" placeholder="password">
 							</div>
 						</div>
-						<div>
-							<input type="checkbox" id="accept-terms"> 
-							<label for="accept-terms"><a href="#0">약관</a>을 모두 읽고 동의합니다.</label>
+						<div class="field">
+							<div class="ui checkbox">
+								<input name="acceptTerms" type="checkbox"> <label><a
+									href="#0">약관</a>을 모두 읽고 동의합니다.</label>
+							</div>
 						</div>
-						<div class="ui fluid large teal submit button">회원가입</div>
+						<div class="ui fluid large teal submit button" id="insert">회원가입</div>
 					</div>
 
 					<div class="ui error message"></div>

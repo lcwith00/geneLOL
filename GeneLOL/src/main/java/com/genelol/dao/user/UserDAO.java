@@ -6,4 +6,5 @@ public interface UserDAO {
 
 	void insertUser(UserVO userVO);
 	
+	public int checkUserName(String userName);
 }
