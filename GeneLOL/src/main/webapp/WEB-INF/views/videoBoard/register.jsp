@@ -8,7 +8,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-
 <link rel="stylesheet" type="text/css"
 	href="../resources/semantic-ui/semantic.min.css">
 <script src="../resources/semantic-ui/semantic.min.js"></script>
@@ -37,11 +36,11 @@
 		<button class="ui purple basic button">Etc</button>
 		<div class="field">
 			<label>VideoLink</label> <input type="text" name="board_content"
-				placeholder="Video Link" id="board_content" name="">
+				placeholder="Video Link" id="board_content" value="http://">
 		</div>
 		<div class="field">
 			<label>VideoTitle</label> <input type="text" name="board_title"
-				placeholder="Video Title" id="board_title">
+				 id="board_title">
 		</div>
 		<div class="field">
 			<label>UserID</label> <input type="text" name="userID"

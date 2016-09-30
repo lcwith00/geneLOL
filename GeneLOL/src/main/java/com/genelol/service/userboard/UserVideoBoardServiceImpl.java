@@ -16,9 +16,11 @@ public class UserVideoBoardServiceImpl implements UserVideoBoardService {
 	private UserVideoBoardDao dao;
 
 	@Override
-	public List<UserVideoBoardVO> userVideoBoardList(UserVideoBoardVO uvbvo) throws Exception {
+	public List<UserVideoBoardVO> userVideoBoardList() throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		List<UserVideoBoardVO> videoList = null;
+		videoList = dao.userVideoBoardList();
+		return videoList;
 	}
 
 	@Override

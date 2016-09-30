@@ -2,7 +2,6 @@ package com.genelol.dao.userboard;
 
 import java.util.List;
 
-import com.genelol.vo.board.BoardVO;
 import com.genelol.vo.userboard.UserVideoBoardVO;
 
 public interface UserVideoBoardDao {
@@ -11,8 +10,9 @@ public interface UserVideoBoardDao {
 
 	public void videoInsert(UserVideoBoardVO uvbvo) throws Exception; // 동영상올리기
 
-	public UserVideoBoardVO videoRead(Integer board_no) throws Exception; // test 용
-																		// 읽기
+	public UserVideoBoardVO videoRead(Integer board_no) throws Exception; // test
+																			// 용
+																			// 읽기
 
 	public void videoUpdate(UserVideoBoardVO uvbvo) throws Exception;// 수정하기
 
@@ -20,6 +20,5 @@ public interface UserVideoBoardDao {
 
 	public UserVideoBoardVO videoBoardDetail(UserVideoBoardVO uvbvo) throws Exception; // 동영상
 	// 상세보기
-
 
 }

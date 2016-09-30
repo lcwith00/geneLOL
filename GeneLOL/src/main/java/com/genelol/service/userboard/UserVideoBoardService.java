@@ -6,7 +6,7 @@ import com.genelol.vo.userboard.UserVideoBoardVO;
 
 public interface UserVideoBoardService {
 
-	public List<UserVideoBoardVO> userVideoBoardList(UserVideoBoardVO uvbvo) throws Exception; // 동영상
+	public List<UserVideoBoardVO> userVideoBoardList() throws Exception; // 동영상
 	// 목록보기
 
 	public void videoRegist(UserVideoBoardVO uvbvo) throws Exception; // 동영상올리기
