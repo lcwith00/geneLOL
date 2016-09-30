@@ -30,7 +30,7 @@
 </head>
 <body>
 	<div class="ui top inverted menu">
-		<div class="ui container">
+		<div class="ui container"> 
 			<a href="#" class="header item"> <img class="logo"
 				src="resources/images/logo.png">&nbsp&nbspGeneLoL
 			</a> <a href="#" class="item">랭킹</a>

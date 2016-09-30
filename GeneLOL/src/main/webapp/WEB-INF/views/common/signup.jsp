@@ -112,75 +112,77 @@
 	}
 </script>
 </head>
-<body id="modal_body">
-	<div class="ui top attached tabular menu" style="max-width: 450px">
-		<a class="item active" data-tab="signin"> 로그인 </a> <a class="item"
-			data-tab="signup"> 회원가입 </a>
-	</div>
-	<div class="ui bottom attached tab segment active" data-tab="signin">
-		<div class="ui middle aligned center aligned grid">
-			<div class="column" id="modal_column">
-				<form class="ui large form">
-					<div class="ui stacked segment">
-						<div class="field">
-							<div class="ui left icon input">
-								<i class="user icon"></i> <input type="text" name="userMail"
-									placeholder="Email">
+<body>
+	<div id="modal_body">
+		<div class="ui top attached tabular menu" style="max-width: 450px">
+			<a class="item active" data-tab="signin"> 로그인 </a> <a class="item"
+				data-tab="signup"> 회원가입 </a>
+		</div>
+		<div class="ui bottom attached tab segment active" data-tab="signin">
+			<div class="ui middle aligned center aligned grid">
+				<div class="column" id="modal_column">
+					<form class="ui large form">
+						<div class="ui stacked segment">
+							<div class="field">
+								<div class="ui left icon input">
+									<i class="user icon"></i> <input type="text" name="userMail"
+										placeholder="Email">
+								</div>
 							</div>
-						</div>
-						<div class="field">
-							<div class="ui left icon input">
-								<i class="lock icon"></i> <input type="password"
-									name="userPassword" placeholder="password">
+							<div class="field">
+								<div class="ui left icon input">
+									<i class="lock icon"></i> <input type="password"
+										name="userPassword" placeholder="password">
+								</div>
 							</div>
+							<div class="ui fluid large teal submit button">로그인</div>
 						</div>
-						<div class="ui fluid large teal submit button">로그인</div>
-					</div>
-					<p>
-						<a href="#">비밀번호를 잊으셨나요?</a>
-					</p>
-					<div class="ui error message"></div>
+						<p>
+							<a href="#">비밀번호를 잊으셨나요?</a>
+						</p>
+						<div class="ui error message"></div>
 
-				</form>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="ui bottom attached tab segment" data-tab="signup">
-		<div class="ui middle aligned center aligned grid">
-			<div class="column">
+		<div class="ui bottom attached tab segment" data-tab="signup">
+			<div class="ui middle aligned center aligned grid">
+				<div class="column">
 
-				<form class="ui large form" id="insertUserForm" method="post">
-					<div class="ui stacked segment">
-						<div class="field">
-							<div class="ui left icon input">
-								<i class="user icon"></i> <input type="text" name="userName"
-									placeholder="ID">
+					<form class="ui large form" id="insertUserForm" method="post">
+						<div class="ui stacked segment">
+							<div class="field">
+								<div class="ui left icon input">
+									<i class="user icon"></i> <input type="text" name="userName"
+										placeholder="ID">
+								</div>
 							</div>
-						</div>
-						<div class="field">
-							<div class="ui left icon input">
-								<i class="user icon"></i> <input type="text" name="userMail"
-									placeholder="Email">
+							<div class="field">
+								<div class="ui left icon input">
+									<i class="user icon"></i> <input type="text" name="userMail"
+										placeholder="Email">
+								</div>
 							</div>
-						</div>
-						<div class="field">
-							<div class="ui left icon input">
-								<i class="lock icon"></i> <input type="password"
-									name="userPassword" placeholder="password">
+							<div class="field">
+								<div class="ui left icon input">
+									<i class="lock icon"></i> <input type="password"
+										name="userPassword" placeholder="password">
+								</div>
 							</div>
-						</div>
-						<div class="field">
-							<div class="ui checkbox">
-								<input name="acceptTerms" type="checkbox"> <label><a
-									href="#0">약관</a>을 모두 읽고 동의합니다.</label>
+							<div class="field">
+								<div class="ui checkbox">
+									<input name="acceptTerms" type="checkbox"> <label><a
+										href="#0">약관</a>을 모두 읽고 동의합니다.</label>
+								</div>
 							</div>
+							<div class="ui fluid large teal submit button" id="insert">회원가입</div>
 						</div>
-						<div class="ui fluid large teal submit button" id="insert">회원가입</div>
-					</div>
 
-					<div class="ui error message"></div>
+						<div class="ui error message"></div>
 
-				</form>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
