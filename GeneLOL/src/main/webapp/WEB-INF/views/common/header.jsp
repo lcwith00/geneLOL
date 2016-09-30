@@ -4,10 +4,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#login').click(function() {
+			$('.ui.modal').modal('show');
+		});
+	});
+</script>
+<style type="text/css">
+#signup_modal {
+	width: 30% !important;
+	margin-left: -15% !important;
+}
+</style>
 <title>header</title>
+<style type="text/css">
+.ui.top.inverted.menu {
+	min-width: 600px;
+	overflow-x: scroll !important;
+	margin-top: 0 !important;
+}
+</style>
 </head>
 <body>
-	<div class="ui fixed inverted menu">
+	<div class="ui top inverted menu">
 		<div class="ui container">
 			<a href="#" class="header item"> <img class="logo"
 				src="resources/images/logo.png">&nbsp&nbspGeneLoL
@@ -21,9 +43,12 @@
 			</div>
 			<a href="#" class="item">동영상</a> <a href="#" class="item">정보</a>
 			<div class="ui right item">
-				<a href="#" class="ui inverted button">로그인</a>
+				<div class="ui inverted button" id="login">로그인</div>
 			</div>
 		</div>
+	</div>
+	<div class="ui modal" id="signup_modal">
+		<%@ include file="signup.jsp"%>
 	</div>
 </body>
 </html>

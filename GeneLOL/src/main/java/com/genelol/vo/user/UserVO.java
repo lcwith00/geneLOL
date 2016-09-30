@@ -10,7 +10,6 @@ public class UserVO {
 	private String userType; // 유저 타입
 	private String joinDate; // 가입일자
 
-	
 	public Integer getUserID() {
 		return userID;
 	}
@@ -66,4 +65,12 @@ public class UserVO {
 	public void setJoinDate(String joinDate) {
 		this.joinDate = joinDate;
 	}
+
+	@Override
+	public String toString() {
+		return "UserVO [userID=" + userID + ", userName=" + userName + ", userMail=" + userMail + ", isCertificate="
+				+ isCertificate + ", userPassword=" + userPassword + ", userType=" + userType + ", joinDate=" + joinDate
+				+ "]";
+	}
+
 }

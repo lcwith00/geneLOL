@@ -6,4 +6,5 @@ public interface UserService {
 
 	public void registUser(UserVO userVO) throws Exception;
 	
+	public int checkUserName(String userName) throws Exception;
 }
