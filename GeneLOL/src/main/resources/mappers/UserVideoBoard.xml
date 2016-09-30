@@ -4,8 +4,18 @@
 
 <mapper namespace="com.genelol.dao.userboard.UserVideoBoardMapper">
 
+	<select id="videoList" parameterType="userVideoBoard"
+		resultType="com.genelol.vo.userboard.UserVideoBoardVO">
+		select
+		board_id, board_no, userid, board_tite,
+		board_content, board_file,
+		board_count, board_recomm, board_date
+		from
+		boardtable
+	</select>
 
 	<!-- 동영상등록 -->
+
 	<insert id="videoInsert" parameterType="userVideoBoard">
 		<selectKey keyProperty="board_no" resultType="Integer"
 			order="BEFORE">
@@ -17,7 +27,7 @@
 		board_title,board_content
 		<if test="board_file != null and board_file !=''">,board_file</if>
 		)
-		values(#{board_id},#{userid},#{board_no},#{board_title},#{board_content}
+		values( 'video',#{board_no},#{userid},#{board_title},#{board_content}
 		<if test="board_file != null and board_file !=''">,#{board_file}</if>
 		)
 	</insert>
