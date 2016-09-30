@@ -9,16 +9,23 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="resources/semantic-ui/semantic.min.css">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="resources/semantic-ui/semantic.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		$('#a').click(function() {
+			$('#list').load('adminVideoBoard.jsp');
+		});
+		$('#b').click(function() {
+			$('#list').load('informationBoard.jsp');
+		});
 		$('.ui.accordion').accordion();
-	})
-	$(document).ready(function() {
 		$('.menu .item').tab();
-	})
+
+	});
 </script>
+
 <style>
 header {
 	width: 100%;
@@ -34,10 +41,9 @@ header {
 	margin-left: 10%;
 }
 
-.list {
+#list {
 	width: 60%;
 	min-height: 600px;
-	background-color: green;
 	float: right;
 	margin-right: 10%;
 }
@@ -49,23 +55,6 @@ footer {
 	min-height: 80px;
 	background-color: red;
 }
-
-.another {
-	background-clip: border-box;
-	box-sizing: border-box;
-	color: rgba(0, 0, 0, 0.870588);
-	display: block;
-	font-size: 14px;
-	line-height: 19.999px;
-	background-color: white;
-	background-origin: padding-box;
-	border-top-color: rgba(0, 0, 0, 0.952941);
-	border-top-width: 0px;
-	padding-bottom: 10.5px;
-	padding-left: 14px;
-	padding-right: 14px;
-	padding-top: 10.5px;
-}
 </style>
 </head>
 <body>
@@ -73,8 +62,8 @@ footer {
 	<h1>header</h1>
 	</header>
 	<form>
-		<div class="header"></div>
-		<div class="content">
+		<div class="nav"></div>
+		<div class="contents">
 			<!-- side menu -->
 			<div class="aside">
 				<div class="ui styled accordion">
@@ -82,8 +71,12 @@ footer {
 						<i class="dropdown icon"></i>게시판 관리
 					</div>
 					<div class="active content">
-						<a target="list" href="/admin/memberManagement/videoBoard.jsp">-동영상 게시판</a></br> <a
-							target="list" href="informationBoard.jsp">-정보 게시판</a>
+						<ul>
+							<li><a href='#' id="a"><span>-동영상 게시판</span></a></li>
+							<li><a href='#' id="b"><span>-정보 게시판</span></a></li>
+						</ul>
+						<a target="list" href="/admin/memberManagement/videoBoard.jsp">-동영상
+							게시판</a></br> <a target="list" href="informationBoard.jsp">-정보 게시판</a>
 					</div>
 					<div class="title">
 						<i class="dropdown icon"></i> 통계
@@ -106,28 +99,26 @@ footer {
 				</div>
 			</div>
 			<!-- content -->
-			<div class="list">
-				<iframe name="list" src="/admin/memberManagement/videoBoard.jsp">
-					<div class="ui top attached tabular menu">
-						<a class="item active" data-tab="first">전체글 보기</a> <a class="item"
-							data-tab="second">전체 댓글 보기</a> <a class="item" data-tab="third">공지글
-							관리</a>
-						<div class="right menu">
-							<div class="item">
-								<div class="ui transparent icon input">
-									<input type="text" placeholder="Search users..."> <i
-										class="search link icon"></i>
-								</div>
+			<div id="list">
+				<!-- <div class="ui top attached tabular menu">
+					<a class="item active" data-tab="first">전체글 보기</a> <a class="item"
+						data-tab="second">전체 댓글 보기</a> <a class="item" data-tab="third">공지글
+						관리</a>
+					<div class="right menu">
+						<div class="item">
+							<div class="ui transparent icon input">
+								<input type="text" placeholder="Search users..."> <i
+									class="search link icon"></i>
 							</div>
 						</div>
 					</div>
-					<div class="ui bottom attached tab segment active" data-tab="first">
-						First</div>
-					<div class="ui bottom attached tab segment" data-tab="second">
-						Second</div>
-					<div class="ui bottom attached tab segment" data-tab="third">
-						Third</div>
-				</iframe>
+				</div>
+				<div class="ui bottom attached tab segment active" data-tab="first">
+					First</div>
+				<div class="ui bottom attached tab segment" data-tab="second">
+					Second</div>
+				<div class="ui bottom attached tab segment" data-tab="third">
+					Third</div> -->
 			</div>
 		</div>
 	</form>
