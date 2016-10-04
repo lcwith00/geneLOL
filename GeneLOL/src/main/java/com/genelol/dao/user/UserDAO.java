@@ -6,5 +6,7 @@ public interface UserDAO {
 
 	void insertUser(UserVO userVO);
 	
-	public int checkUserName(String userName);
+	public Integer checkUserName(String userName);
+	
+	public Integer checkUserMail(String userMail);
 }

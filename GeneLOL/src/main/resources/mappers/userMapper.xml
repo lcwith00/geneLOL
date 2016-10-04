@@ -6,9 +6,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.genelol.mapper.UserMapper">
 
 	<select id="checkUserName" resultType="int">
-		select count(*)
-		from usertable
-		where username = #{userName}
+		<![CDATA[
+			select count(*)
+			from usertable
+			where username = #{userName}
+		]]>
+	</select>
+	
+	<select id="checkUserMail" resultType="int">
+		<![CDATA[
+			select count(*)
+			from usertable
+			where usermail = #{userMail}
+		]]>
 	</select>
 
 	<insert id="insertUser" parameterType="user">
@@ -17,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			values(userid_seq.nextval, #{userName}, #{userMail}, #{userPassword})
 		]]>
 	</insert>
-	
+
 </mapper>
 
 

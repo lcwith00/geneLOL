@@ -1,4 +1,3 @@
-
 package com.genelol.dao.user;
 
 import javax.inject.Inject;
@@ -22,7 +21,12 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public int checkUserName(String userName) {
+	public Integer checkUserName(String userName) {
 		return session.selectOne(namespace + ".checkUserName", userName);
+	}
+
+	@Override
+	public Integer checkUserMail(String userMail) {
+		return session.selectOne(namespace + ".checkUserMail", userMail);
 	}
 }
