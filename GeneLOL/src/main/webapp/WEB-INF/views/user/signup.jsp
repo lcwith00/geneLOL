@@ -121,12 +121,12 @@
 		<div class="ui bottom attached tab segment active" data-tab="signin">
 			<div class="ui middle aligned center aligned grid">
 				<div class="column" id="modal_column">
-					<form class="ui large form">
+					<form class="ui large form" method="post">
 						<div class="ui stacked segment">
 							<div class="field">
 								<div class="ui left icon input">
 									<i class="user icon"></i> <input type="text" name="userMail"
-										placeholder="Email">
+										placeholder="ID or Email">
 								</div>
 							</div>
 							<div class="field">
@@ -141,7 +141,6 @@
 							<a href="#">비밀번호를 잊으셨나요?</a>
 						</p>
 						<div class="ui error message"></div>
-
 					</form>
 				</div>
 			</div>
