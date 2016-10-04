@@ -52,7 +52,11 @@ public class UserVideoBoardServiceImpl implements UserVideoBoardService {
 	@Override
 	public UserVideoBoardVO videoBoardDetail(UserVideoBoardVO uvbvo) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+
+		UserVideoBoardVO videoDetail = null;
+		videoDetail = dao.videoBoardDetail(uvbvo);
+
+		return videoDetail;
 	}
 
 }

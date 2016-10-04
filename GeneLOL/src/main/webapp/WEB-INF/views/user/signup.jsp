@@ -36,8 +36,8 @@
 						type : 'empty',
 						prompt : 'ID를 입력해주세요.'
 					}, {
-						type : 'regExp[/^[a-z0-9_-]{4,16}$/]',
-						prompt : 'ID는 4-16자의 알파벳 소문자/숫자로 입력해주세요.'
+						type : 'regExp[/^[a-z]{1}[a-z0-9]{3,15}$/]',
+						prompt : 'ID는 알파벳 소문자로 시작하는 4-16자의 알파벳 소문자/숫자로 입력해주세요.'
 					} ]
 				},
 				userMail : {
@@ -71,52 +71,106 @@
 			}
 		});
 
-	});
-
-	$("#insert").click(function() {
-		var str = document.getElementById('insertUserForm');
-		str.submit();
-	});
-
-	function chkMbId() {
-		$.ajax({
-			url : "/idcheck.do",
-			type : "post",
-			data : {
-				userName : $("#userName").val()
-			},
-			dataType : "json",
-			success : function(data) {
-
-				$(
-						"<div style='text-align:center;'>" + data.resultMsg
-								+ "</div>").dialog({
-					modal : true,
-					resizable : false,
-					buttons : [ {
-						text : "확인",
-						click : function() {
-							$(this).dialog("close");
-						}
-					} ]
-				});
-				$(".ui-dialog-titlebar").hide();
-
-				if (data.result == "success") {
-
-				} else {
-
+		$('#userName').focusout(function() {
+			$.ajax({
+				url : "/user/idcheck",
+				type : "post",
+				data : {
+					userName : $("#userName").val()
+				},
+				dataType : "json",
+				success : function(data) {
+					if (data.result == "success") {
+						$('#duplicatedID').val("Y");
+					} else {
+						$('#duplicatedID').val("N");
+					}
 				}
-			}
+			});
 		});
+
+		$('#userMail').focusout(function() {
+			$.ajax({
+				url : "/user/mailcheck",
+				type : "post",
+				data : {
+					userMail : $("#userMail").val()
+				},
+				dataType : "json",
+				success : function(data) {
+					if (data.result == "success") {
+						$('#duplicatedMail').val("Y");
+					} else {
+						$('#duplicatedMail').val("N");
+					}
+				}
+			});
+		});
+	});
+
+	function insertUser() {
+
+		var idRegExp = /^[a-z]{1}[a-z0-9]{3,15}$/;
+		var idText = $("#userName").val();
+		var id = document.getElementById('userName');
+		var mailRegExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		var mailText = $("#userMail").val();
+		var mail = document.getElementById('userMail');
+		var password = document.getElementById('userPassword');
+
+		if (id.value == "" || id.value == null) {
+			alert("1")
+			return false;
+		}
+
+		if (!idRegExp.test($("input[name='userName']").val())) {
+			alert("2")
+			return false;
+		}
+
+		if (mail.value == "" || mail.value == null) {
+			alert("3")
+			return false;
+		}
+
+		/* if (mail == '' || !mailRegExp.test($("input[name='userMail']").val())) {
+			alert("4")
+			return false;
+		} */
+
+		if (password.value == "" || password.value == null
+				|| password.value.length < 6) {
+			return false;
+		}
+
+		if ($("input:checkbox[id='acceptTerms']").is(':checked') == false) {
+			return false;
+		}
+
+		if ($('#duplicatedID').val() == "N") {
+			alert($('#userName').val() + "은 이미 사용중인 ID입니다.")
+			return false;
+		}
+
+		if ($('#duplicatedMail').val() == "N") {
+			alert($('#userMail').val() + "은 이미 사용중인 이메일입니다.")
+			return false;
+		}
+
+		else {
+			alert("가입이 완료되었습니다. 다시 로그인해주세요.")
+			var insert = document.getElementById('insertUserForm');
+			insert.submit();
+		}
 	}
 </script>
 </head>
+
 <body>
 	<div id="modal_body">
 		<div class="ui top attached tabular menu" style="max-width: 450px">
-			<a class="item active" data-tab="signin"> 로그인 </a> <a class="item"
-				data-tab="signup"> 회원가입 </a>
+			<a class="item active" data-tab="signin">로그인</a> <a class="item"
+				data-tab="signup">회원가입</a>
 		</div>
 		<div class="ui bottom attached tab segment active" data-tab="signin">
 			<div class="ui middle aligned center aligned grid">
@@ -126,21 +180,45 @@
 							<div class="field">
 								<div class="ui left icon input">
 									<i class="user icon"></i> <input type="text" name="userMail"
-										placeholder="ID or Email">
+										placeholder="Email">
+
 								</div>
+								<div class="field">
+									<div class="ui left icon input">
+										<i class="lock icon"></i> <input type="password"
+											name="userPassword" placeholder="password">
+									</div>
+								</div>
+								<div class="ui fluid large teal submit button">로그인</div>
 							</div>
+							<p>
+								<a href="#">비밀번호를 잊으셨나요?</a>
+							</p>
+							<div class="ui error message"></div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="ui bottom attached tab segment" data-tab="reset-password">
+			<div class="ui middle aligned center aligned grid">
+				<div class="column">
+					<form class="ui large form" id="reset-password" method="post">
+						<div class="ui stacked segment">
+							<div class="field">비밀번호 초기화</div>
 							<div class="field">
 								<div class="ui left icon input">
-									<i class="lock icon"></i> <input type="password"
-										name="userPassword" placeholder="password">
+									<i class="user icon"></i> <input type="text" name="userMail"
+										placeholder="Email">
 								</div>
 							</div>
-							<div class="ui fluid large teal submit button">로그인</div>
+							<div class="ui fluid large teal button" id="send-mail">메일발송</div>
+							<div class="ui fluid large teal button" id="back">돌아가기</div>
 						</div>
-						<p>
-							<a href="#">비밀번호를 잊으셨나요?</a>
-						</p>
+
 						<div class="ui error message"></div>
+
 					</form>
 				</div>
 			</div>
@@ -148,38 +226,44 @@
 		<div class="ui bottom attached tab segment" data-tab="signup">
 			<div class="ui middle aligned center aligned grid">
 				<div class="column">
-
-					<form class="ui large form" id="insertUserForm" method="post">
+					<form class="ui large form" id="insertUserForm" method="post"
+						action="/user/signup" onsubmit="return insertUser()">
+						<div class="field">
+							<input type="hidden" id="duplicatedID" name="duplicatedID"
+								value="Y"> <input type="hidden" id="duplicatedMail"
+								name="duplicatedMail" value="Y">
+						</div>
 						<div class="ui stacked segment">
-							<div class="field">
-								<div class="ui left icon input">
+							<div class="field" id="divUserName">
+								<div class="ui left icon input" id="inputUserName">
 									<i class="user icon"></i> <input type="text" name="userName"
-										placeholder="ID">
+										id="userName" placeholder="ID">
 								</div>
 							</div>
 							<div class="field">
 								<div class="ui left icon input">
 									<i class="user icon"></i> <input type="text" name="userMail"
-										placeholder="Email">
+										id="userMail" placeholder="Email">
 								</div>
 							</div>
 							<div class="field">
 								<div class="ui left icon input">
 									<i class="lock icon"></i> <input type="password"
-										name="userPassword" placeholder="password">
+										id="userPassword" name="userPassword" placeholder="password">
 								</div>
 							</div>
 							<div class="field">
 								<div class="ui checkbox">
-									<input name="acceptTerms" type="checkbox"> <label><a
-										href="#0">약관</a>을 모두 읽고 동의합니다.</label>
+									<input name="acceptTerms" type="checkbox" id="acceptTerms">
+									<label><a href="#0">약관</a>을 모두 읽고 동의합니다.</label>
 								</div>
 							</div>
-							<div class="ui fluid large teal submit button" id="insert">회원가입</div>
+							<div class="field">
+								<div class="ui fluid large teal submit button" id="insertButton">회원가입</div>
+							</div>
 						</div>
 
-						<div class="ui error message"></div>
-
+						<div class="ui error message" id="error"></div>
 					</form>
 				</div>
 			</div>

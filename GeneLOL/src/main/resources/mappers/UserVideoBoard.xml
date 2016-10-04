@@ -27,7 +27,8 @@
 		board_title,board_content
 		<if test="board_file != null and board_file !=''">,board_file</if>
 		)
-		values( 'video',#{board_no},#{userid},#{board_title},#{board_content}
+		values(
+		#{board_id},#{board_no},#{userid},#{board_title},#{board_content}
 		<if test="board_file != null and board_file !=''">,#{board_file}</if>
 		)
 	</insert>
@@ -56,7 +57,7 @@
 	</delete>
 
 	<!--동영상 게시물 기본 조회 -->
-	<select id="userVideoBoardList" parameterType="UserVideoBoard"
+	<select id="userVideoBoardList" parameterType="userVideoBoard"
 		resultType="com.genelol.vo.userboard.UserVideoBoardVO">
 		<![CDATA[
 		
@@ -66,5 +67,5 @@
 		]]>
 	</select>
 
-
+	
 </mapper>
