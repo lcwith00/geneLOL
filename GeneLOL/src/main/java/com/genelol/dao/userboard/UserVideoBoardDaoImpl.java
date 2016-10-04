@@ -33,7 +33,7 @@ public class UserVideoBoardDaoImpl implements UserVideoBoardDao {
 	@Override
 	public UserVideoBoardVO videoBoardDetail(UserVideoBoardVO uvbvo) {
 		// TODO Auto-generated method stub
-		return null;
+		return (UserVideoBoardVO) session.selectOne(namespace = ".videoDetail", uvbvo);
 	}
 
 	@Override

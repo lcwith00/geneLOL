@@ -82,6 +82,18 @@ header, footer {
 	height: 90%;
 	padding-right: 1em;
 }
+
+.ui.segment.listitems {
+	padding: 10px 10px !important;
+}
+
+.ui.middle.aligned.two.column.centered.grid.listitem {
+	padding: -10px -10px !important;
+}
+
+.four.wide.column.thumbnail {
+	padding: 10px 10px !important;
+}
 </style>
 </head>
 <body>
@@ -108,9 +120,9 @@ header, footer {
 		<section class="ui center aligned container">
 			<div class="ui segments">
 				<c:forEach var="board" items="${popularBoardVoList}">
-					<div class="ui segment">
-						<div class="ui middle aligned two column centered grid">
-							<div class="four wide column">
+					<div class="ui segment listitems">
+						<div class="ui middle aligned two column centered grid listitem">
+							<div class="four wide column thumbnail">
 								<a href="http://google.com"> <img class="ui small image"
 									src="/resources/images/empty_thumbnail.png">
 								</a>

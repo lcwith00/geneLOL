@@ -11,6 +11,7 @@
 	href="resources/semantic-ui/semantic.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="resources/semantic-ui/semantic.min.js"></script>
+
 <style type="text/css">
 #modal_body {
 	background-color: #DADADA;
@@ -87,7 +88,7 @@
 				}
 			});
 		});
-		
+
 		$('#userMail').focusout(function() {
 			$.ajax({
 				url : "/user/mailcheck",
@@ -150,7 +151,7 @@
 			alert($('#userName').val() + "은 이미 사용중인 ID입니다.")
 			return false;
 		}
-		
+
 		if ($('#duplicatedMail').val() == "N") {
 			alert($('#userMail').val() + "은 이미 사용중인 이메일입니다.")
 			return false;
@@ -177,24 +178,24 @@
 							<div class="ui left icon input">
 								<i class="user icon"></i> <input type="text" name="userMail"
 									placeholder="Email">
-							</div>
-						</div>
-						<div class="field">
-							<div class="ui left icon input">
-								<i class="lock icon"></i> <input type="password"
-									name="userPassword" placeholder="password">
-							</div>
-						</div>
-						<div class="ui fluid large teal submit button">로그인</div>
-					</div>
-					<p>
-						<a href="#">비밀번호를 잊으셨나요?</a>
-					</p>
-					<div class="ui error message"></div>
 
+							</div>
+							<div class="field">
+								<div class="ui left icon input">
+									<i class="lock icon"></i> <input type="password"
+										name="userPassword" placeholder="password">
+								</div>
+							</div>
+							<div class="ui fluid large teal submit button">로그인</div>
+						</div>
+						<p>
+							<a href="#">비밀번호를 잊으셨나요?</a>
+						</p>
+						<div class="ui error message"></div>
 				</form>
 			</div>
 		</div>
+	</div>
 	</div>
 	<div class="ui bottom attached tab segment" data-tab="reset-password">
 		<div class="ui middle aligned center aligned grid">
@@ -221,11 +222,12 @@
 	<div class="ui bottom attached tab segment" data-tab="signup">
 		<div class="ui middle aligned center aligned grid">
 			<div class="column">
-				<form class="ui large form" id="insertUserForm" method="post" action="/user/signup"
-					onsubmit="return insertUser()">
+				<form class="ui large form" id="insertUserForm" method="post"
+					action="/user/signup" onsubmit="return insertUser()">
 					<div class="field">
-						<input type="hidden" id="duplicatedID" name="duplicatedID" value="Y">
-						<input type="hidden" id="duplicatedMail" name="duplicatedMail" value="Y">
+						<input type="hidden" id="duplicatedID" name="duplicatedID"
+							value="Y"> <input type="hidden" id="duplicatedMail"
+							name="duplicatedMail" value="Y">
 					</div>
 					<div class="ui stacked segment">
 						<div class="field" id="divUserName">
@@ -251,6 +253,7 @@
 								<input name="acceptTerms" type="checkbox" id="acceptTerms">
 								<label><a href="#0">약관</a>을 모두 읽고 동의합니다.</label>
 							</div>
+							<div class="ui fluid large teal submit button" id="insert">회원가입</div>
 						</div>
 						<div class="field">
 							<div class="ui fluid large teal submit button" id="insertButton">회원가입</div>
@@ -258,10 +261,10 @@
 					</div>
 
 					<div class="ui error message" id="error"></div>
-
 				</form>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

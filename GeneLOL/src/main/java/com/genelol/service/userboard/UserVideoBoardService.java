@@ -11,7 +11,7 @@ public interface UserVideoBoardService {
 
 	public void videoRegist(UserVideoBoardVO uvbvo) throws Exception; // 동영상올리기
 
-	public UserVideoBoardVO read(Integer board_no) throws Exception; //동영상 읽기
+	public UserVideoBoardVO read(Integer board_no) throws Exception; // 동영상 읽기
 
 	public void videoModify(UserVideoBoardVO uvbvo) throws Exception;// 수정하기
 
@@ -20,5 +20,4 @@ public interface UserVideoBoardService {
 	public UserVideoBoardVO videoBoardDetail(UserVideoBoardVO uvbvo) throws Exception; // 동영상
 	// 상세보기
 
-	
 }
