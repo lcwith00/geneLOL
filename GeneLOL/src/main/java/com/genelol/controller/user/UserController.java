@@ -26,11 +26,12 @@ public class UserController {
 	private UserService userService;
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public void insertUser(UserVO userVO, RedirectAttributes rttr) throws Exception {
+	public String insertUser(UserVO userVO, RedirectAttributes rttr) throws Exception {
 		logger.info("insert user..........");
 		logger.info(userVO.toString());
 
 		userService.registUser(userVO);
+		return "redirect:/";
 	}
 
 	@RequestMapping("/idcheck")

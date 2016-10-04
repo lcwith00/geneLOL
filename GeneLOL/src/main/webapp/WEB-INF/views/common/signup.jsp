@@ -158,6 +158,7 @@
 		}
 
 		else {
+			alert("가입이 완료되었습니다. 다시 로그인해주세요.")
 			var insert = document.getElementById('insertUserForm');
 			insert.submit();
 		}
@@ -253,7 +254,6 @@
 								<input name="acceptTerms" type="checkbox" id="acceptTerms">
 								<label><a href="#0">약관</a>을 모두 읽고 동의합니다.</label>
 							</div>
-							<div class="ui fluid large teal submit button" id="insert">회원가입</div>
 						</div>
 						<div class="field">
 							<div class="ui fluid large teal submit button" id="insertButton">회원가입</div>
