@@ -23,7 +23,6 @@
 <style type="text/css">
 .ui.top.inverted.menu {
 	min-width: 600px;
-	overflow-x: scroll !important;
 	margin-top: 0 !important;
 }
 </style>

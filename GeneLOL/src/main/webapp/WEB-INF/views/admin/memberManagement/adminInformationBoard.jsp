@@ -4,19 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원 목록</title>
+<title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
-	href="resources/semantic-ui/semantic.min.css">
+	href="../../resources/semantic-ui/semantic.min.css">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="resources/semantic-ui/semantic.min.js"></script>
+<script src="../../resources/semantic-ui/semantic.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.ui.accordion').accordion();
 		$('.menu .item').tab();
 	});
 </script>
-
 <style>
 header {
 	width: 100%;
@@ -33,7 +32,7 @@ header {
 
 #list {
 	width: 60%;
-	min-height: 644px;
+	min-height: 600px;
 	float: right;
 	margin-right: 10%;
 }
@@ -47,27 +46,27 @@ footer {
 	width: 100%;
 	height: 50px;
 }
-
-.input {
-background-color: white;
-}
 </style>
 </head>
 <body>
-	<header><%@ include file="../../common/header.jsp"%>
+	<header>
+	<%@ include file="../../common/header.jsp"%>
 	</header>
+	<div class="nav"></div>
 	<div class="contents">
 		<!-- side menu -->
 		<div class="aside">
 			<div class="ui styled accordion">
-				<div class="title">
+				<div class="active title">
 					<i class="dropdown icon"></i>게시판 관리
 				</div>
-				<div class="content">
+				<div class="active content">
 					<ul>
-						<li><a href="/adminVideoBoard"> <span>동영상 게시판</span>
+						<li><a id="a" href="/adminVideoBoard"> <span>동영상
+									게시판</span>
 						</a></li>
-						<li><a href="/adminInformationBoard"><span>정보 게시판</span></a></li>
+						<li><a id="b" href="/adminInformationBoard"><span>정보
+									게시판</span></a></li>
 					</ul>
 				</div>
 				<div class="title">
@@ -79,14 +78,16 @@ background-color: white;
 						</a></li>
 					</ul>
 				</div>
-				<div class="active title">
+				<div class="title">
 					<i class="dropdown icon"></i> 회원 관리
 				</div>
-				<div class="active content">
+				<div class="content">
 					<ul>
-						<li><a href="/memberListManagement"> <span>회원 목록</span>
+						<li><a href="/memberListManagement"> <span>회원
+									목록</span>
 						</a></li>
-						<li><a href="/secessionListManagement"><span>탈퇴 목록</span></a></li>
+						<li><a href="/secessionListManagement"><span>탈퇴
+									목록</span></a></li>
 					</ul>
 				</div>
 				<div class="title">
@@ -103,7 +104,8 @@ background-color: white;
 		<!-- list -->
 		<div id="list">
 			<div class="ui top attached tabular menu">
-				<a class="item active" data-tab="first">회원 목록</a>
+				<a class="item active" data-tab="first">전체글 보기</a> <a class="item"
+					data-tab="second">전체 댓글 보기</a>
 				<div class="right menu">
 					<div class="item">
 						<div class="ui transparent icon input">
@@ -114,9 +116,14 @@ background-color: white;
 				</div>
 			</div>
 			<div class="ui bottom attached tab segment active" data-tab="first">
-				목록.....</div>
+				First</div>
+			<div class="ui bottom attached tab segment" data-tab="second">
+				Second</div>
 		</div>
 	</div>
-	<footer><%@ include file="../../common/footer.jsp"%></footer>
+
+	<footer>
+	<%@ include file="../../common/footer.jsp"%>
+	</footer>
 </body>
 </html>
