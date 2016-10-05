@@ -24,6 +24,22 @@
 #modal_column {
 	max-width: 450px;
 }
+
+#resetUI {
+}
+
+#reset-button {
+}
+
+#send-mail {
+	width: 45% !important;
+	float: left !important;
+}
+
+#back {
+	width: 45% !important;
+	float: right !important;
+}
 </style>
 <script>
 	$(document).ready(function() {
@@ -163,14 +179,29 @@
 			insert.submit();
 		}
 	}
+	
+	function reset(){
+		$('#reset-passwordTab').addClass('active');
+		$('#signin').removeClass('active');
+		$('#signinTab').removeClass('active');
+	}
+	
+	function resetBack(){
+		var element = document.getElementById("reset-password");
+		element.style.visibility = "hidden";
+		$('#signin').addClass('active');
+		$('#signinTab').addClass('active');
+		$('#reset-password').removeClass('active');
+		$('#reset-passwordTab').removeClass('active');
+	}
 </script>
 </head>
 <body id="modal_body">
 	<div class="ui top attached tabular menu" style="max-width: 450px">
-		<a class="item active" data-tab="signin">로그인</a> <a class="item"
-			data-tab="signup">회원가입</a>
+		<a class="item active" id="signin" data-tab="signin">로그인</a> <a class="item"
+			data-tab="signup">회원가입</a> <a class="item" data-tab="reset-password" id="reset-password" style="visibility: hidden">비밀번호 초기화</a>
 	</div>
-	<div class="ui bottom attached tab segment active" data-tab="signin">
+	<div class="ui bottom attached tab segment active" data-tab="signin" id="signinTab">
 		<div class="ui middle aligned center aligned grid">
 			<div class="column" id="modal_column">
 				<form class="ui large form" method="post">
@@ -190,7 +221,7 @@
 							<div class="ui fluid large teal submit button">로그인</div>
 						</div>
 						<p>
-							<a href="#">비밀번호를 잊으셨나요?</a>
+							<a href="javascript:void(0);" onclick="reset();" id="reset">비밀번호를 잊으셨나요?</a>
 						</p>
 						<div class="ui error message"></div>
 				</form>
@@ -198,24 +229,25 @@
 		</div>
 	</div>
 	</div>
-	<div class="ui bottom attached tab segment" data-tab="reset-password">
+	<div class="ui bottom attached tab segment" data-tab="reset-password" id="reset-passwordTab">
 		<div class="ui middle aligned center aligned grid">
 			<div class="column">
 				<form class="ui large form" id="reset-password" method="post">
-					<div class="ui stacked segment">
+					<div class="ui stacked segment" id="resetUI">
 						<div class="field">비밀번호 초기화</div>
 						<div class="field">
 							<div class="ui left icon input">
 								<i class="user icon"></i> <input type="text" name="userMail"
 									placeholder="Email">
 							</div>
+							<p></p>
 						</div>
-						<div class="ui fluid large teal button" id="send-mail">메일발송</div>
-						<div class="ui fluid large teal button" id="back">돌아가기</div>
+						<div class="field" id="reset-button">
+							<div class="ui fluid large teal button" id="send-mail">메일발송</div>
+							<div class="ui fluid large teal button" id="back"><a href="javascript:void(0);" onclick="resetBack();" id="resetBack">돌아가기</a></div>
+						</div>
 					</div>
-
 					<div class="ui error message"></div>
-
 				</form>
 			</div>
 		</div>
@@ -252,7 +284,8 @@
 						<div class="field">
 							<div class="ui checkbox">
 								<input name="acceptTerms" type="checkbox" id="acceptTerms">
-								<label><a href="#0">약관</a>을 모두 읽고 동의합니다.</label>
+								<label><a href="/agreement" target="_blank">약관</a>을 모두
+									읽고 동의합니다.</label>
 							</div>
 						</div>
 						<div class="field">
