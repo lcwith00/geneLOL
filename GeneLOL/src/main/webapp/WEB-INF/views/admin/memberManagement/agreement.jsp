@@ -62,7 +62,7 @@ footer {
 			<div class="TermsLayout">
 				<div class="Content">
 					<ul>
-						<li>본 약관은 2014년 7월 25일부터 적용됩니다.</li>
+						<li>본 약관은 2016년 10월 20일부터 적용됩니다.</li>
 					</ul>
 
 					<hr />
@@ -70,8 +70,8 @@ footer {
 					<h2>목적</h2>
 
 					<p>
-						이 약관은 <span class='company'>'OP.GG'</span>(이하 "회사")에서 제공하는 <span
-							class='company'>'OP.GG'</span> 및 <span class='company'>'OP.GG'</span>에서
+						이 약관은 <span class='company'>'GeneLoL'</span>(이하 "회사")에서 제공하는 <span
+							class='company'>'GeneLoL'</span> 및 <span class='company'>'GeneLoL'</span>에서
 						제공하는 제반 서비스(이하 "서비스")에 접속과 사용자에 의해서 업로드 및 다운로드 되어 표시되는 모든 정보, 텍스트,
 						이미지 및 기타 자료를 이용하는 이용자(이하 "회원")와 서비스 이용에 관한 권리 및 의무와 책임사항, 기타 필요한
 						사항을 규정하는 것을 목적으로 합니다.
@@ -102,8 +102,8 @@ footer {
 					<ol>
 						<li><p>
 								서비스: 개인용 컴퓨터 (PC), TV, 휴대형 단말기, 전기통신설비 등 포함 각종 유무선 장치와 같이 구현되는
-								단말기와 상관없이 회원이 이용할 수 있는 <span class='company'>'OP.GG'</span> 및 <span
-									class='company'>'OP.GG'</span> 관련 제반 서비스를 의미합니다.
+								단말기와 상관없이 회원이 이용할 수 있는 <span class='company'>'GeneLoL'</span> 및 <span
+									class='company'>'GeneLoL'</span> 관련 제반 서비스를 의미합니다.
 							</p></li>
 						<li><p>회원: 회사와 서비스 이용계약을 체결하고 회사가 제공하는 서비스를 이용하는 모든 사용자를
 								의미합니다.</p></li>
@@ -235,7 +235,7 @@ footer {
 								보이도록 표시하는 방법으로 통지합니다. 다만, 회사가 사전에 통지할 수 없는 부득이한 사유가 있는 경우 사후에
 								통지할 수 있습니다.</p></li>
 						<li><p>
-								회사는 회원과 별도로 서면 계약을 체결하여 <span class='company'>'OP.GG'</span> 서비스
+								회사는 회원과 별도로 서면 계약을 체결하여 <span class='company'>'GeneLoL'</span> 서비스
 								및 제반 서비스의 브랜드 특성을 이용할 수 있는 명시적인 권리를 부여하지 아니하는 한, 회원에게 회사 또는 서비스의
 								상호, 상표, 서비스표, 로고, 도메인 네임 및 기타 식별력 있는 브랜드 특성을 이용할 수 있는 권리를 부여하지
 								않습니다.
@@ -245,7 +245,7 @@ footer {
 						<li><p>전항에 의해서 제공되는 서비스가 변경 및 중단될 경우 무료로 제공되는 서비스에 대해서는
 								회원에게 별도로 보상하지 않습니다.</p></li>
 						<li><p>
-								회사는 회원이 연동한 '내 소환사명'에 대한 소환사 정보를 <span class='company'>'OP.GG'</span>
+								회사는 회원이 연동한 '내 소환사명'에 대한 소환사 정보를 <span class='company'>'GeneLoL'</span>
 								서비스 및 제반 서비스에 이용ㆍ제공 할 수 있습니다.
 							</p></li>
 					</ol>
