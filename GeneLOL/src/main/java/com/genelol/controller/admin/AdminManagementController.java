@@ -20,30 +20,28 @@ public class AdminManagementController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
+	@RequestMapping(value = "/adminpage", method = RequestMethod.GET)
+	public String adminPage(Locale locale, Model model) {
+		return "admin/memberManagement/adminPage";
+	}
+
 	@RequestMapping(value = "/memberListManagement", method = RequestMethod.GET)
 	public String memberListManagement(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-
 		return "admin/memberManagement/memberListManagement";
 	}
-	
+
 	@RequestMapping(value = "/adminVideoBoard", method = RequestMethod.GET)
 	public String adminVideoBoard(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-
 		return "admin/memberManagement/adminVideoBoard";
 	}
 
 	@RequestMapping(value = "/adminInformationBoard", method = RequestMethod.GET)
 	public String adminInformationBoard(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-
 		return "admin/memberManagement/adminInformationBoard";
 	}
+
 	@RequestMapping(value = "/secessionListManagement", method = RequestMethod.GET)
 	public String secssionListManagement(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-
 		return "admin/memberManagement/secessionListManagement";
 	}
 }
