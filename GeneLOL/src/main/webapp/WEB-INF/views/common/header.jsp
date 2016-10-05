@@ -9,14 +9,16 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#login').click(function() {
-			$('.ui.modal').modal('show');
+			$('#signup_modal').modal('show');
 		});
 	});
 </script>
 <style type="text/css">
 #signup_modal {
-	width: 30% !important;
 	margin-left: -15% !important;
+	margin-right: 0% !important;
+	max-width: 307px;
+	min-width: 307px;
 }
 </style>
 <title>header</title>
