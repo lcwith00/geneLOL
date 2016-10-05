@@ -25,10 +25,6 @@ public class MainController {
 
 		List<PopularBoardVo> popularBoardVoList = mainService.popularBoardList();
 
-		for (PopularBoardVo popularBoardVo : popularBoardVoList) {
-			logger.info(popularBoardVo.toString());
-		}
-
 		model.addAttribute("popularBoardVoList", popularBoardVoList);
 
 		return "home";

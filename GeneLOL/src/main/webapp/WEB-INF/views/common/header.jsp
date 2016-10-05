@@ -30,11 +30,11 @@
 <body>
 	<div class="ui top inverted menu">
 		<div class="ui container">
-			<a href="#" class="header item"> <img class="logo"
-				src="resources/images/logo.png">&nbsp&nbspGeneLoL
+			<a href="http://localhost:8080/" class="header item"> <img
+				class="logo" src="resources/images/logo.png">&nbsp&nbspGeneLoL
 			</a> <a href="#" class="item">랭킹</a>
 			<div class="ui simple dropdown item">
-				<span class="text">통계</span>
+				<span class="text">통계</span> <i class="dropdown icon"></i>
 				<div class="menu">
 					<div class="item">챔피언 별</div>
 					<div class="item">티어 별</div>
@@ -43,11 +43,19 @@
 			<a href="#" class="item">동영상</a> <a href="#" class="item">정보</a>
 			<div class="ui right item">
 				<div class="ui inverted button" id="login">로그인</div>
+				<%-- <c:choose>
+					<c:when test="">
+						
+					</c:when>
+					<c:otherwise>
+						<div class="ui inverted button" id="login">로그인</div>
+					</c:otherwise>
+				</c:choose> --%>
 			</div>
 		</div>
 	</div>
 	<div class="ui modal" id="signup_modal">
-		<%@ include file="signup.jsp"%>
+		<%@ include file="../user/signup.jsp"%>
 	</div>
 </body>
 </html>

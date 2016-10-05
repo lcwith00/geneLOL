@@ -1,4 +1,4 @@
-package com.genelol.dao.test;
+package com.genelol.test.dao;
 
 import javax.inject.Inject;
 

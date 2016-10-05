@@ -1,7 +1,6 @@
 package com.genelol.service.user;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,7 +10,7 @@ import com.genelol.vo.user.UserVO;
 @Service
 public class UserServiceImpl implements UserService {
 
-	@Inject
+	@Autowired
 	private UserDAO userDAO;
 
 	@Transactional
@@ -21,8 +20,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int checkUserName(String userName) throws Exception {
+	public Integer checkUserName(String userName) throws Exception {
 		return userDAO.checkUserName(userName);
+	}
+
+	@Override
+	public UserVO login(UserVO userVO) throws Exception {
+		return userDAO.getUserByUID(userVO);
+	}
+
+	@Override
+	public Integer checkUserMail(String userMail) throws Exception {
+		return userDAO.checkUserMail(userMail);
 	}
 
 }
