@@ -26,9 +26,11 @@
 }
 
 #resetUI {
+	
 }
 
 #reset-button {
+	
 }
 
 #send-mail {
@@ -179,14 +181,14 @@
 			insert.submit();
 		}
 	}
-	
-	function reset(){
+
+	function reset() {
 		$('#reset-passwordTab').addClass('active');
 		$('#signin').removeClass('active');
 		$('#signinTab').removeClass('active');
 	}
-	
-	function resetBack(){
+
+	function resetBack() {
 		var element = document.getElementById("reset-password");
 		element.style.visibility = "hidden";
 		$('#signin').addClass('active');
@@ -198,10 +200,13 @@
 </head>
 <body id="modal_body">
 	<div class="ui top attached tabular menu" style="max-width: 450px">
-		<a class="item active" id="signin" data-tab="signin">로그인</a> <a class="item"
-			data-tab="signup">회원가입</a> <a class="item" data-tab="reset-password" id="reset-password" style="visibility: hidden">비밀번호 초기화</a>
+		<a class="item active" id="signin" data-tab="signin">로그인</a> <a
+			class="item" data-tab="signup">회원가입</a> <a class="item"
+			data-tab="reset-password" id="reset-password"
+			style="visibility: hidden">비밀번호 초기화</a>
 	</div>
-	<div class="ui bottom attached tab segment active" data-tab="signin" id="signinTab">
+	<div class="ui bottom attached tab segment active" data-tab="signin"
+		id="signinTab">
 		<div class="ui middle aligned center aligned grid">
 			<div class="column" id="modal_column">
 				<form class="ui large form" method="post">
@@ -210,7 +215,6 @@
 							<div class="ui left icon input">
 								<i class="user icon"></i> <input type="text" name="userMail"
 									placeholder="Email">
-
 							</div>
 							<div class="field">
 								<div class="ui left icon input">
@@ -221,7 +225,8 @@
 							<div class="ui fluid large teal submit button">로그인</div>
 						</div>
 						<p>
-							<a href="javascript:void(0);" onclick="reset();" id="reset">비밀번호를 잊으셨나요?</a>
+							<a href="javascript:void(0);" onclick="reset();" id="reset">비밀번호를
+								잊으셨나요?</a>
 						</p>
 						<div class="ui error message"></div>
 				</form>
@@ -229,7 +234,8 @@
 		</div>
 	</div>
 	</div>
-	<div class="ui bottom attached tab segment" data-tab="reset-password" id="reset-passwordTab">
+	<div class="ui bottom attached tab segment" data-tab="reset-password"
+		id="reset-passwordTab">
 		<div class="ui middle aligned center aligned grid">
 			<div class="column">
 				<form class="ui large form" id="reset-password" method="post">
@@ -244,7 +250,10 @@
 						</div>
 						<div class="field" id="reset-button">
 							<div class="ui fluid large teal button" id="send-mail">메일발송</div>
-							<div class="ui fluid large teal button" id="back"><a href="javascript:void(0);" onclick="resetBack();" id="resetBack">돌아가기</a></div>
+							<div class="ui fluid large teal button" id="back">
+								<a href="javascript:void(0);" onclick="resetBack();"
+									id="resetBack">돌아가기</a>
+							</div>
 						</div>
 					</div>
 					<div class="ui error message"></div>

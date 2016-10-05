@@ -17,7 +17,6 @@
 		$("#userVideoBoardForm").click(function() {
 			location.href = "/videoBoard/videoWriteForm.do";
 		});
-		$('.ui.pointing.dropdown').dropdown();
 	});
 </script>
 <style type="text/css">

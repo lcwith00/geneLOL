@@ -25,6 +25,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public UserVO login(UserVO userVO) throws Exception {
+		return userDAO.getUserByUID(userVO);
+	}
+
+	@Override
 	public Integer checkUserMail(String userMail) throws Exception {
 		return userDAO.checkUserMail(userMail);
 	}

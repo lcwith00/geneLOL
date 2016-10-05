@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			where username = #{userName}
 		]]>
 	</select>
-	
+
 	<select id="checkUserMail" resultType="int">
 		<![CDATA[
 			select count(*)
@@ -27,6 +27,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			values(userid_seq.nextval, #{userName}, #{userMail}, #{userPassword})
 		]]>
 	</insert>
+
+	<select id="login" parameterType="user" resultType="user">
+		select *
+		from
+		usertable
+		where username =#{userName} or usermail =#{userMail}
+	</select>
 
 </mapper>
 

@@ -26,6 +26,12 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
+	public UserVO getUserByUID(UserVO userVO) {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace + ".login", userVO);
+	}
+
+	@Override
 	public Integer checkUserMail(String userMail) {
 		return session.selectOne(namespace + ".checkUserMail", userMail);
 	}
