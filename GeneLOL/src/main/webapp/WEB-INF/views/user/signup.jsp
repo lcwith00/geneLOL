@@ -175,7 +175,7 @@
 		<div class="ui bottom attached tab segment active" data-tab="signin">
 			<div class="ui middle aligned center aligned grid">
 				<div class="column" id="modal_column">
-					<form class="ui large form" method="post">
+					<form class="ui large form" method="post" action="/user/login">
 						<div class="ui stacked segment">
 							<div class="field">
 								<div class="ui left icon input">

@@ -42,14 +42,15 @@
 			</div>
 			<a href="#" class="item">동영상</a> <a href="#" class="item">정보</a>
 			<div class="ui right item">
-				<c:choose>
+				<div class="ui inverted button" id="login">로그인</div>
+				<%-- <c:choose>
 					<c:when test="">
-						<div class="ui inverted button" id="login">로그인</div>
+						
 					</c:when>
 					<c:otherwise>
 						<div class="ui inverted button" id="login">로그인</div>
 					</c:otherwise>
-				</c:choose>
+				</c:choose> --%>
 			</div>
 		</div>
 	</div>

@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -98,7 +96,6 @@ public class UserController {
 	public void login(UserVO userVO, Model model, HttpSession httpSession) throws Exception {
 
 		UserVO vo = userService.login(userVO);
-
 		if (vo == null) {
 			return;
 		}

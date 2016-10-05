@@ -37,10 +37,10 @@
 			<mapping path="/user/login" />
 			<beans:ref bean="loginInterceptor" />
 		</interceptor>
-		<interceptor>
+		<!-- <interceptor>
 			<mapping path="/" />
 			<beans:ref bean="authInterceptor" />
-		</interceptor>
+		</interceptor> -->
 	</interceptors>
 
 </beans:beans>
