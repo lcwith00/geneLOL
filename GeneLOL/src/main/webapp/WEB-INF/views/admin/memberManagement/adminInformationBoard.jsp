@@ -8,6 +8,11 @@
 <link rel="stylesheet" type="text/css"
 	href="../../resources/semantic-ui/semantic.min.css">
 <script src="../../resources/semantic-ui/semantic.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.menu .item').tab();
+	});
+</script>
 <style>
 </style>
 </head>

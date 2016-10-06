@@ -1,4 +1,4 @@
-package com.genelol.controller;
+package com.genelol.controller.admin;
 
 import java.util.Locale;
 
@@ -22,7 +22,7 @@ public class AdminManagementController {
 	 */
 	@RequestMapping(value = "/adminpage", method = RequestMethod.GET)
 	public String adminPage(Locale locale, Model model) {
-		return "admin/memberManagement/adminPage";
+		return "admin/adminPage";
 	}
 
 	@RequestMapping(value = "/memberListManagement", method = RequestMethod.GET)
