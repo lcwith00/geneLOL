@@ -15,7 +15,6 @@
 	$(document).ready(function() {
 		$('#LOLbtn').click(function() {
 			$('#clickBtn').val("videoLOL");
-			alert("test");
 		});
 		$('#Funbtn').click(function() {
 			$('#clickBtn').val("videoFun");
@@ -23,12 +22,10 @@
 		$('#Etcbtn').click(function() {
 			$('#clickBtn').val("videoEtc");
 		});
-		$('#Etcbtn').click(function() {
-			$('#clickBtn').val("videoEtc");
+		$('#registBtn').click(function() {
+			alert("등록완료");
 		});
-		$('#cancle').click(function() {
-			modal('hide', argumentOne, argumentTwo);
-		});
+		
 
 	});
 </script>
@@ -57,7 +54,7 @@ div #buttons {
 		<div class="ui purple basic button" id="Etcbtn">Etc</div>
 	</div>
 
-	<form class="ui form" id="registForm" method="post">
+	<form class="ui form" id="registForm" method="post" action="/video/register">
 		<input type="hidden" value="test" id="clickBtn" name="board_id">
 		<div class="field">
 			<label>VideoLink</label> <input type="text" name="board_content"
@@ -67,14 +64,8 @@ div #buttons {
 			<label>VideoTitle</label> <input type="text" name="board_title"
 				id="board_title">
 		</div>
-		<div class="field">
-			<label>UserID</label> <input type="text" name="userid"
-				placeholder="User Name" id="userID">
-		</div>
-		<div class="field">
-			<label>password</label> <input type="text" name="last-name"
-				placeholder="Password" id="passwd">
-		</div>
+		<input type="hidden" name="userid" value="1">
+	
 		<div class="field">
 			<div class="ui checkbox">
 				<input type="checkbox" tabindex="0" class="hidden"> <label>I
