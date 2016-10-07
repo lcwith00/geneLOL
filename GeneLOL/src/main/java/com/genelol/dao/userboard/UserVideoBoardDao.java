@@ -18,7 +18,7 @@ public interface UserVideoBoardDao {
 
 	public void videoDelete(Integer board_no) throws Exception; // 동영상 삭제
 
-	public UserVideoBoardVO videoBoardDetail(UserVideoBoardVO uvbvo) throws Exception; // 동영상
+	public UserVideoBoardVO videoDetail(Integer board_no) throws Exception; // 동영상
 	// 상세보기
 
 }

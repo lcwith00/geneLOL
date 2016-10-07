@@ -63,17 +63,9 @@
 		
 		SELECT *
 		FROM boardtable
-		where board_id = 'videoLOL' OR board_id = 'videoFun' OR board_id='videoEtc'
 		order by board_no desc
 		]]>
 	</select>
 
-	<select id="videoDetail" parameterType="userVideoBoard"
-		resultType="com.genelol.vo.userboard.UserVideoBoardVO">
-		select
-		board_id,board_no,userid,board_title,board_content
-		from boardtable
-		where board_no = #{board_no}
-
-	</select>
+	
 </mapper>

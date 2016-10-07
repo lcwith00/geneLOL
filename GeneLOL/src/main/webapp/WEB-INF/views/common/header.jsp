@@ -15,8 +15,10 @@
 </script>
 <style type="text/css">
 #signup_modal {
-	width: 30% !important;
 	margin-left: -15% !important;
+	margin-right: 0% !important;
+	max-width: 307px;
+	min-width: 307px;
 }
 </style>
 <title>header</title>

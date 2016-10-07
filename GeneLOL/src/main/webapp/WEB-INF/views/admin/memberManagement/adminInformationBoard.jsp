@@ -13,15 +13,16 @@
 		$('.menu .item').tab();
 	});
 </script>
+<style>
+</style>
 </head>
 <body>
 	<div class="contents">
 		<!-- list -->
-		<div id="videoBoardlist">
+		<div id="infoBoardlist">
 			<div class="ui top attached tabular menu">
 				<a class="item active" data-tab="first">전체글 보기</a> <a class="item"
-					data-tab="second">전체 댓글 보기</a> <a class="item" data-tab="third">공지글
-					관리</a>
+					data-tab="second">전체 댓글 보기</a>
 				<div class="right menu">
 					<div class="item">
 						<div class="ui transparent icon input">
@@ -35,8 +36,6 @@
 				First</div>
 			<div class="ui bottom attached tab segment" data-tab="second">
 				Second</div>
-			<div class="ui bottom attached tab segment" data-tab="third">
-				Third</div>
 		</div>
 	</div>
 </body>

@@ -1,63 +1,26 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>회원 목록</title>
 <link rel="stylesheet" type="text/css"
 	href="resources/semantic-ui/semantic.min.css">
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="resources/semantic-ui/semantic.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#a').click(function() {
-			$('#list').load('adminVideoBoard.jsp');
-		});
-		$('#b').click(function() {
-			$('#list').load('informationBoard.jsp');
-		});
-		$('.ui.accordion').accordion();
 		$('.menu .item').tab();
-
 	});
 </script>
-
 <style>
-header {
-	width: 100%;
-	height: 80px;
-	background-color: gray;
-}
-
-.aside {
-	left: 30px;
-	float: left;
-	width: 20%;
-	min-height: 400px;
-	margin-left: 10%;
-}
-
-#list {
-	width: 60%;
-	min-height: 600px;
-	float: right;
-	margin-right: 10%;
-}
-
-footer {
-	clear: both;
-	top: 700px;
-	width: 100%;
-	min-height: 80px;
-	background-color: red;
+.search .link.icon {
+	background-color: white;
 }
 </style>
 </head>
 <body>
+<<<<<<< HEAD
 	<header>
 	<h1>header</h1>
 	</header>
@@ -110,20 +73,25 @@ footer {
 								<input type="text" placeholder="Search users..."> <i
 									class="search link icon"></i>
 							</div>
+=======
+	<div class="contents">
+		<!-- list -->
+		<div id="memberList">
+			<div class="ui top attached tabular menu">
+				<a class="item active" data-tab="first">회원 목록</a>
+				<div class="right menu">
+					<div class="item">
+						<div class="ui transparent icon input">
+							<input type="text" placeholder="Search users..."> <i
+								class="search link icon"></i>
+>>>>>>> 93b9f9df894c7e5640ebfc744c14160cc3fbdce5
 						</div>
 					</div>
 				</div>
-				<div class="ui bottom attached tab segment active" data-tab="first">
-					First</div>
-				<div class="ui bottom attached tab segment" data-tab="second">
-					Second</div>
-				<div class="ui bottom attached tab segment" data-tab="third">
-					Third</div> -->
 			</div>
+			<div class="ui bottom attached tab segment active" data-tab="first">
+				목록.....</div>
 		</div>
-	</form>
-	<footer>
-	<h1>FOOTER</h1>
-	</footer>
+	</div>
 </body>
 </html>
