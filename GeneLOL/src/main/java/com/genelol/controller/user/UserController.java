@@ -63,7 +63,7 @@ public class UserController {
 
 		return resultMap;
 	}
-	
+
 	@RequestMapping("/mailcheck")
 	@ResponseBody
 	public Map<String, String> checkMail(String userMail) throws Exception {
@@ -95,10 +95,21 @@ public class UserController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public void login(UserVO userVO, Model model, HttpSession httpSession) throws Exception {
 
+		logger.info("/user/login");
+
 		UserVO vo = userService.login(userVO);
 		if (vo == null) {
 			return;
 		}
 		model.addAttribute("userVO", vo);
+	}
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(Model model, HttpSession httpSession) throws Exception {
+		logger.info("/user/logout");
+
+		httpSession.invalidate();
+
+		return "redirect:/";
 	}
 }

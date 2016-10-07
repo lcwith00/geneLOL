@@ -76,7 +76,7 @@ footer {
 							<li><a href='#' id="b"><span>-정보 게시판</span></a></li>
 						</ul>
 						<a target="list" href="/admin/memberManagement/videoBoard.jsp">-동영상
-							게시판</a></br> <a target="list" href="informationBoard.jsp">-정보 게시판</a>
+							게시판</a><br> <a target="list" href="informationBoard.jsp">-정보 게시판</a>
 					</div>
 					<div class="title">
 						<i class="dropdown icon"></i> 통계
