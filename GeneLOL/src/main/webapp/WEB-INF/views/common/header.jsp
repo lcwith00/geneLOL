@@ -47,7 +47,7 @@
 		<div class="ui container">
 			<a href="http://localhost:8080/" class="header item"> <img
 				class="logo" src="resources/images/logo.png">GeneLoL
-			</a> <a href="#" class="item">랭킹</a>
+			</a> <a href="../ranking.jsp" class="item">랭킹</a>
 			<div class="ui simple dropdown item">
 				<span class="text">통계</span> <i class="dropdown icon"></i>
 				<div class="menu">
