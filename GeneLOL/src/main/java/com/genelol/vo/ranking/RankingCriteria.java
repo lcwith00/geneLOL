@@ -1,11 +1,11 @@
 package com.genelol.vo.ranking;
 //페이지처리
-public class Criteria {
+public class RankingCriteria {
 
   private int page;
   private int perPageNum;
 
-  public Criteria() {
+  public RankingCriteria() {
     this.page = 1;
     this.perPageNum = 10;
   }

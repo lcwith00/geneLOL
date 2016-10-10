@@ -13,12 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.genelol.service.ranking.RankingService;
-import com.genelol.vo.ranking.Criteria;
-import com.genelol.vo.ranking.PageMaker;
+import com.genelol.vo.ranking.RankingCriteria;
 import com.genelol.vo.ranking.RankingVO;
 
 @Controller
-@RequestMapping("/board/*")
+@RequestMapping("/ranking/*")
 public class RankingController {
 
 	private static final Logger logger = LoggerFactory.getLogger(RankingController.class);
@@ -40,49 +39,25 @@ public class RankingController {
 	// return "redirect:/board/listAll";
 	// }
 
-	
 	@RequestMapping(value = "/ranking", method = RequestMethod.GET)
-	public void listAll(Model model) throws Exception {
+	public void rankingListAll(Model model) throws Exception {
 
 		logger.info("show all list......................");
-		model.addAttribute("list", service.listAll());
+		model.addAttribute("rankingList", service.ranking_List());
 	}
 
-	@RequestMapping(value = "/read", method = RequestMethod.GET)
+	@RequestMapping(value = "/rankingRead", method = RequestMethod.GET)
 	public void read(@RequestParam("ranking") int ranking, Model model) throws Exception {
 
-		model.addAttribute(service.read(ranking));
+		model.addAttribute(service.ranking_Read(ranking));
 	}
 
 
-	@RequestMapping(value = "/listCri", method = RequestMethod.GET)
-	public void listAll(Criteria cri, Model model) throws Exception {
+	@RequestMapping(value = "/rankingReadPage", method = RequestMethod.GET)
+	public void read(@RequestParam("ranking") int ranking, @ModelAttribute("cri") RankingCriteria cri, Model model)
+			throws Exception {
 
-		logger.info("show list Page with Criteria......................");
-
-		model.addAttribute("list", service.listCriteria(cri));
+		model.addAttribute(service.ranking_Read(ranking));
 	}
-
-	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri") Criteria cri, Model model) throws Exception {
-
-		logger.info(cri.toString());
-
-		model.addAttribute("list", service.listCriteria(cri));
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		// pageMaker.setTotalCount(131);
-
-		pageMaker.setTotalCount(service.listCountCriteria(cri));
-
-		model.addAttribute("pageMaker", pageMaker);
-	}
-
-	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
-	public void read(@RequestParam("ranking") int ranking, @ModelAttribute("cri") Criteria cri, Model model) throws Exception {
-
-		model.addAttribute(service.read(ranking));
-	}
-
 
 }

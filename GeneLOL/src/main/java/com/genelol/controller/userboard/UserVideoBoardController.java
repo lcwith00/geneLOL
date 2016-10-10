@@ -75,4 +75,21 @@ public class UserVideoBoardController {
 		return "/videoBoard/videodetail";
 
 	}
+	/*비디오list를 마이페이지로 불러올때*/
+	@RequestMapping(value = "/mypageList", method = RequestMethod.GET)
+	public String mypage(Model model) throws Exception {
+
+		List<UserVideoBoardVO> mypage = userVideoBoardService.userVideoBoardList();
+		for (UserVideoBoardVO uservideoBoardVO : mypage) {
+			logger.info(uservideoBoardVO.toString());
+
+		}
+
+		model.addAttribute("mypage", mypage);
+
+		return "/mypage/mypageList";
+
+	}
+	
+	
 }
