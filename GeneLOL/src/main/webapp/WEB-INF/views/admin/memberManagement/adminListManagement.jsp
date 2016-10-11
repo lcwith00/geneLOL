@@ -4,9 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>회원 목록</title>
 <link rel="stylesheet" type="text/css"
-<<<<<<< HEAD
 	href="resources/semantic-ui/semantic.min.css">
 <script src="resources/semantic-ui/semantic.min.js"></script>
 <script type="text/javascript">
@@ -14,25 +13,13 @@ $(document).ready(function() {
 	$('.menu .item').tab();
 });
 </script>
-=======
-	href="../../resources/semantic-ui/semantic.min.css">
-<script src="../../resources/semantic-ui/semantic.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('.menu .item').tab();
-	});
-</script>
-<style>
-</style>
->>>>>>> 0e5bea0477aedcb331dbee6c14eb6fd82b345c96
 </head>
 <body>
 	<div class="contents">
 		<!-- list -->
-		<div id="infoBoardlist">
+		<div id="adminList">
 			<div class="ui top attached tabular menu">
-				<a class="item active" data-tab="first">전체글 보기</a> <a class="item"
-					data-tab="second">전체 댓글 보기</a>
+				<a class="item active" data-tab="first">관리자 목록</a>
 				<div class="right menu">
 					<div class="item">
 						<div class="ui transparent icon input">
@@ -43,9 +30,7 @@ $(document).ready(function() {
 				</div>
 			</div>
 			<div class="ui bottom attached tab segment active" data-tab="first">
-				First</div>
-			<div class="ui bottom attached tab segment" data-tab="second">
-				Second</div>
+				목록.....</div>
 		</div>
 	</div>
 </body>

@@ -34,6 +34,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		usertable
 		where username =#{userName} or usermail =#{userMail}
 	</select>
+	
+	<!-- 회원 목록 -->
+	<select id="memberList" resultType="user">
+	<![CDATA[
+	select *
+	from usertable
+	]]>
+	</select>
+
 
 </mapper>
 

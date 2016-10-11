@@ -62,17 +62,17 @@ footer {
 			<div class="TermsLayout">
 				<div class="Content">
 					<p>
-						<span class='company'>'OP.GG'</span>은(는) 개인정보보호법에 따라 이용자의 개인정보 보호
+						<span class='company'>'GeneLoL'</span>은(는) 개인정보보호법에 따라 이용자의 개인정보 보호
 						및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.
 					</p>
 
 					<p>
-						<span class='company'>'OP.GG'</span>은(는) 회사는 개인정보처리방침을 개정하는 경우
+						<span class='company'>'GeneLoL'</span>은(는) 회사는 개인정보처리방침을 개정하는 경우
 						웹사이트 공지사항(또는 개별공지)을 통하여 공지할 것입니다.
 					</p>
 
 					<ul>
-						<li>본 방침은부터 2014년 7월 25일부터 시행됩니다.</li>
+						<li>본 방침은부터 2016년 10월 20일부터 시행됩니다.</li>
 					</ul>
 
 					<hr />
@@ -80,7 +80,7 @@ footer {
 					<h2>개인정보의 처리 목적</h2>
 
 					<p>
-						<span class='company'>'OP.GG'</span>은(는) 개인정보를 다음의 목적을 위해 처리합니다.
+						<span class='company'>'GeneLoL'</span>은(는) 개인정보를 다음의 목적을 위해 처리합니다.
 						처리한 개인정보는 다음의 목적이외의 용도로는 사용되지 않으며 이용 목적이 변경될 시에는 사전동의를 구할 예정입니다.
 					</p>
 
@@ -110,7 +110,7 @@ footer {
 
 							<ol>
 								<li><p>
-										<span class='company'>'OP.GG'</span>은(는) 법령에 따른 개인정보 보유·이용기간
+										<span class='company'>'GeneLoL'</span>은(는) 법령에 따른 개인정보 보유·이용기간
 										또는 정보주체로부터 개인정보를 수집시에 동의 받은 개인정보 보유,이용기간 내에서 개인정보를 처리, 보유합니다.
 									</p></li>
 								<li><p>각각의 개인정보 처리 및 보유 기간은 다음과 같습니다.</p>
@@ -134,7 +134,7 @@ footer {
 
 					<ol>
 						<li><p>
-								정보주체는 <span class='company'>'OP.GG'</span>에 대해 언제든지 다음 각 호의 개인정보
+								정보주체는 <span class='company'>'GeneLoL'</span>에 대해 언제든지 다음 각 호의 개인정보
 								보호 관련 권리를 행사할 수 있습니다.
 							</p>
 
@@ -154,7 +154,7 @@ footer {
 
 					<ul>
 						<li><p>
-								<span class='company'>'OP.GG'</span>은(는) 다음의 개인정보 항목을 처리하고 있습니다.
+								<span class='company'>'GeneLoL'</span>은(는) 다음의 개인정보 항목을 처리하고 있습니다.
 							</p>
 
 							<p>
@@ -169,7 +169,7 @@ footer {
 					<h2>개인정보의 파기</h2>
 
 					<p>
-						<span class='company'>'OP.GG'</span>은(는) 원칙적으로 개인정보 처리목적이 달성된 경우에는
+						<span class='company'>'GeneLoL'</span>은(는) 원칙적으로 개인정보 처리목적이 달성된 경우에는
 						지체없이 해당 개인정보를 파기합니다. 파기의 절차, 기한 및 방법은 다음과 같습니다.
 					</p>
 
@@ -192,7 +192,7 @@ footer {
 					<h2>개인정보의 안전성 확보 조치</h2>
 
 					<p>
-						<span class='company'>'OP.GG'</span>은(는) 개인정보보호법 제29조에 따라 다음과 같이
+						<span class='company'>'GeneLoL'</span>은(는) 개인정보보호법 제29조에 따라 다음과 같이
 						안전성 확보에 필요한 기술적/관리적 및 물리적 조치를 하고 있습니다.
 					</p>
 
@@ -211,7 +211,7 @@ footer {
 
 					<ul>
 						<li><p>
-								<span class='company'>'OP.GG'</span>은(는) 개인정보 처리에 관한 업무를 총괄해서
+								<span class='company'>'GeneLoL'</span>은(는) 개인정보 처리에 관한 업무를 총괄해서
 								책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 및 피해구제 등을 위하여 아래와 같이 개인정보 보호책임자를
 								지정하고 있습니다.
 							</p>

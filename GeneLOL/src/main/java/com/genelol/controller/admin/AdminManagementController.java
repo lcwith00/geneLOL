@@ -25,22 +25,27 @@ public class AdminManagementController {
 		return "admin/adminPage";
 	}
 
-	@RequestMapping(value = "/memberListManagement", method = RequestMethod.GET)
+	@RequestMapping(value = "/memberlistmanagement", method = RequestMethod.GET)
 	public String memberListManagement(Locale locale, Model model) {
 		return "admin/memberManagement/memberListManagement";
 	}
 
-	@RequestMapping(value = "/adminVideoBoard", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminvideoboard", method = RequestMethod.GET)
 	public String adminVideoBoard(Locale locale, Model model) {
 		return "admin/memberManagement/adminVideoBoard";
 	}
 
-	@RequestMapping(value = "/adminInformationBoard", method = RequestMethod.GET)
+	@RequestMapping(value = "/admininformationboard", method = RequestMethod.GET)
 	public String adminInformationBoard(Locale locale, Model model) {
 		return "admin/memberManagement/adminInformationBoard";
 	}
 
-	@RequestMapping(value = "/secessionListManagement", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminlistmanagement", method = RequestMethod.GET)
+	public String adminListManagement(Locale locale, Model model) {
+		return "admin/memberManagement/adminListManagement";
+	}
+
+	@RequestMapping(value = "/secessionlistmanagement", method = RequestMethod.GET)
 	public String secssionListManagement(Locale locale, Model model) {
 		return "admin/memberManagement/secessionListManagement";
 	}

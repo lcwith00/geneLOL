@@ -8,6 +8,8 @@
 <link rel="stylesheet" type="text/css"
 	href="resources/semantic-ui/semantic.min.css">
 <script src="resources/semantic-ui/semantic.min.js"></script>
+<<<<<<< HEAD
+=======
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.menu .item').tab();
@@ -18,6 +20,7 @@
 	background-color: white;
 }
 </style>
+>>>>>>> 0e5bea0477aedcb331dbee6c14eb6fd82b345c96
 </head>
 <body>
 <<<<<<< HEAD
@@ -90,7 +93,8 @@
 				</div>
 			</div>
 			<div class="ui bottom attached tab segment active" data-tab="first">
-				목록.....</div>
+
+			</div>
 		</div>
 	</div>
 </body>
