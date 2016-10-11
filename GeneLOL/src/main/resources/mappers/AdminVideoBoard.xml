@@ -2,7 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<<<<<<< HEAD
 <mapper namespace="com.genelol.dao.userboard.VideoBoardMapper">
+=======
+<mapper namespace="com.genelol.dao.userboard.Userxxx">
+>>>>>>> 0e5bea0477aedcb331dbee6c14eb6fd82b345c96
 
 	<select id="videoList" parameterType="userVideoBoard"
 		resultType="com.genelol.vo.userboard.UserVideoBoardVO">

@@ -5,14 +5,14 @@ import java.util.List;
 import com.genelol.vo.userboard.UserVideoBoardVO;
 
 public interface UserVideoBoardDao {
-	public List<UserVideoBoardVO> userVideoBoardList() throws Exception; // 동영상
+	public List<UserVideoBoardVO> videoList() throws Exception; // 동영상
 	// 목록보기
 
 	public void videoInsert(UserVideoBoardVO uvbvo) throws Exception; // 동영상올리기
 
-	public UserVideoBoardVO videoRead(Integer board_no) throws Exception; // test
-																			// 용
-																			// 읽기
+//	public UserVideoBoardVO videoRead(Integer board_no) throws Exception; // test
+//																			// 용
+//																			// 읽기
 
 	public void videoUpdate(UserVideoBoardVO uvbvo) throws Exception;// 수정하기
 

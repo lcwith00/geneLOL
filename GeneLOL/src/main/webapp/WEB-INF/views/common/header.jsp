@@ -55,7 +55,7 @@
 					<div class="item">티어 별</div>
 				</div>
 			</div>
-			<a href="#" class="item">동영상</a> <a href="#" class="item">정보</a>
+			<a href="http://localhost:8080/video/videoList" class="item">동영상</a> <a href="#" class="item">정보</a>
 			<c:choose>
 				<c:when test="${login.userName!=null}">
 					<div class="ui right simple dropdown item">
