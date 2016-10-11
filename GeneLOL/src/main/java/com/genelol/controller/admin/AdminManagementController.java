@@ -22,7 +22,7 @@ public class AdminManagementController {
 	 */
 	@RequestMapping(value = "/adminpage", method = RequestMethod.GET)
 	public String adminPage(Locale locale, Model model) {
-		return "admin/memberManagement/adminPage";
+		return "admin/adminPage";
 	}
 
 	@RequestMapping(value = "/memberlistmanagement", method = RequestMethod.GET)

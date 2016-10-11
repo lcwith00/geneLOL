@@ -46,6 +46,10 @@ header {
 	height: 50px;
 }
 
+#adminContents {
+	height: 100% !important;
+}
+
 #sideMenu {
 	float: left;
 	width: 20%;
@@ -71,9 +75,9 @@ header {
 </head>
 <body>
 	<header>
-		<%@ include file="../../common/header.jsp"%>
+		<%@ include file="../common/header.jsp"%>
 	</header>
-	<div class="contents">
+	<div class="contents" id="adminContents">
 		<!-- side menu -->
 		<div class="aside" id="sideMenu">
 			<div class="ui styled accordion">
@@ -126,7 +130,7 @@ header {
 	</div>
 
 	<footer id="footer">
-		<%@ include file="../../common/footer.jsp"%>
+		<%@ include file="../common/footer.jsp"%>
 	</footer>
 </body>
 </html>

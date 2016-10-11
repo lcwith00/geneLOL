@@ -7,64 +7,58 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.genelol.vo.ranking.Criteria;
-import com.genelol.vo.ranking.SearchCriteria;
+import com.genelol.vo.ranking.RankingCriteria;
+import com.genelol.vo.ranking.RankingSearchCriteria;
 import com.genelol.vo.ranking.RankingVO;
 
-
 @Repository
-public class RankingDAOImpl implements RankingDAO{
+public class RankingDAOImpl implements RankingDAO {
 
-	  @Inject
-	  private SqlSession session;
+	@Inject
+	private SqlSession session;
 
-	private static String namespace = "???.mapper.BoardMapper";
-
-
+	private static String namespace = "???.mapper.LankingMapper";
 
 	@Override
-	public RankingVO read(Integer ranking) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public List<RankingVO> listAll() throws Exception {
+	public RankingVO ranking_Read(Integer ranking) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<RankingVO> listPage(int page) throws Exception {
+	public List<RankingVO> ranking_List() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<RankingVO> listCriteria(Criteria cri) throws Exception {
+	public List<RankingVO> ranking_ListPage(int page) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int countPaging(Criteria cri) throws Exception {
+	public List<RankingVO> ranking_ListCriteria(RankingCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int countPaging(RankingCriteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public List<RankingVO> listSearch(SearchCriteria cri) throws Exception {
+	public List<RankingVO> ranking_ListSearch(RankingSearchCriteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int listSearchCount(SearchCriteria cri) throws Exception {
+	public int ranking_ListSearchCount(RankingSearchCriteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-
-	
 }

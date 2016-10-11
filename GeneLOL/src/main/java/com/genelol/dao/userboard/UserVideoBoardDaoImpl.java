@@ -19,9 +19,9 @@ public class UserVideoBoardDaoImpl implements UserVideoBoardDao {
 																						// namespace
 
 	@Override
-	public List<UserVideoBoardVO> userVideoBoardList() { // 동영상 게시판 목록
+	public List<UserVideoBoardVO> videoList() { // 동영상 게시판 목록
 		// TODO Auto-generated method stub
-		return session.selectList(namespace + ".userVideoBoardList");
+		return session.selectList(namespace + ".videoList");
 	}
 
 	@Override
@@ -31,9 +31,9 @@ public class UserVideoBoardDaoImpl implements UserVideoBoardDao {
 	}
 
 	@Override
-	public UserVideoBoardVO videoBoardDetail(UserVideoBoardVO uvbvo) {
+	public UserVideoBoardVO videoDetail(Integer board_no) {
 		// TODO Auto-generated method stub
-		return (UserVideoBoardVO) session.selectOne(namespace = ".videoDetail", uvbvo);
+		return (UserVideoBoardVO) session.selectOne(namespace + ".videoDetail", board_no);
 	}
 
 	@Override
@@ -49,11 +49,11 @@ public class UserVideoBoardDaoImpl implements UserVideoBoardDao {
 		session.update(namespace + ".videoUpdate", uvbvo);
 	}
 
-	@Override
-	public UserVideoBoardVO videoRead(Integer board_no) throws Exception {
-		// TODO Auto-generated method stub
-		return session.selectOne(namespace + ".videoRead", board_no);
-	}
+//	@Override
+//	public UserVideoBoardVO videoRead(Integer board_no) throws Exception {
+//		// TODO Auto-generated method stub
+//		return session.selectOne(namespace + ".videoRead", board_no);
+//	}
 
 	// 동영상 목록 구현
 

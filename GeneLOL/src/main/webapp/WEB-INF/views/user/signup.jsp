@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,10 +7,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-	href="resources/semantic-ui/semantic.min.css">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="resources/semantic-ui/semantic.min.js"></script>
 
 <style type="text/css">
 #modal_body {
@@ -20,6 +16,7 @@
 #modal_body>.grid {
 	height: 100% !important;
 }
+
 #send-mail {
 	width: 45% !important;
 	float: left !important;
@@ -199,7 +196,7 @@
 			id="signinTab">
 			<div class="ui middle aligned center aligned grid">
 				<div class="column" id="modal_column">
-					<form class="ui large form" method="post">
+					<form class="ui large form" method="post" action="/user/login">
 						<div class="ui stacked segment">
 							<div class="field">
 								<div class="ui left icon input">
@@ -229,8 +226,7 @@
 			<div class="ui middle aligned center aligned grid">
 				<div class="column">
 					<form class="ui large form" id="reset-password" method="post">
-						<div class="ui stacked segment">
-
+						<div class="ui stacked segment" id="resetUI">
 							<div class="field">비밀번호 초기화</div>
 							<div class="field">
 								<div class="ui left icon input">
@@ -246,6 +242,7 @@
 								</div>
 							</div>
 						</div>
+						<div class="ui error message"></div>
 					</form>
 				</div>
 			</div>

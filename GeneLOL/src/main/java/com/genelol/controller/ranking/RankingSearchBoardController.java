@@ -13,41 +13,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.genelol.service.ranking.RankingService;
-import com.genelol.vo.ranking.PageMaker;
 import com.genelol.vo.ranking.RankingVO;
-import com.genelol.vo.ranking.SearchCriteria;
+import com.genelol.vo.ranking.RankingSearchCriteria;
 
 @Controller
-@RequestMapping("/sboard/*")
-public class SearchBoardController {
+@RequestMapping("/sranking/*")
+public class RankingSearchBoardController {
 
-	private static final Logger logger = LoggerFactory.getLogger(SearchBoardController.class);
+	private static final Logger logger = LoggerFactory.getLogger(RankingSearchBoardController.class);
 
 	@Inject
 	private RankingService service;
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-
-		logger.info(cri.toString());
-
-		// model.addAttribute("list", service.listCriteria(cri));
-		model.addAttribute("list", service.listSearchCriteria(cri));
-
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-
-		// pageMaker.setTotalCount(service.listCountCriteria(cri));
-		pageMaker.setTotalCount(service.listSearchCount(cri));
-
-		model.addAttribute("pageMaker", pageMaker);
-	}
+	
 
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
-	public void read(@RequestParam("ranking") int ranking, @ModelAttribute("cri") SearchCriteria cri, Model model)
+	public void read(@RequestParam("ranking") int ranking, @ModelAttribute("cri") RankingSearchCriteria cri, Model model)
 			throws Exception {
 
-		model.addAttribute(service.read(ranking));
+		model.addAttribute(service.ranking_Read(ranking));
 	}
 	// @RequestMapping(value = "/list", method = RequestMethod.GET)
 	// public void listPage(@ModelAttribute("cri") SearchCriteria cri,

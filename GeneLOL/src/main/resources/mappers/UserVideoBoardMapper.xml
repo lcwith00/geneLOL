@@ -4,16 +4,17 @@
 
 <mapper namespace="com.genelol.dao.userboard.UserVideoBoardMapper">
 
+	<!--동영상 게시물 기본 조회 -->
 	<select id="videoList" parameterType="userVideoBoard"
 		resultType="com.genelol.vo.userboard.UserVideoBoardVO">
-		select
-		board_id, board_no, userid, board_tite,
-		board_content, board_file,
-		board_count, board_recomm, board_date
-		from
-		boardtable
+		<![CDATA[
+		
+		SELECT *
+		FROM boardtable
+		where board_id = 'videoLOL' OR board_id = 'videoFun' OR board_id='videoEtc'
+		order by board_no desc
+		]]>
 	</select>
-
 	<!-- 동영상등록 -->
 
 	<insert id="videoInsert" parameterType="userVideoBoard">
@@ -33,20 +34,13 @@
 		)
 	</insert>
 
-	<select id="videoRead" resultType="com.genelol.vo.userboard.UserVideoBoardVO"
-		parameterType="int">
-		select
-		board_id,board_no,userid,board_title,board_content
-		from boardtable
-		where board_no = #{board_no}
-	</select>
+
 
 	<update id="videoUpdate" parameterType="userVideoBoard">
 		update
 		boardtable set
 		board_title=#{board_title},
-		board_content=#{board_content},
-		board_file=#{board_file}
+		board_content=#{board_content}
 		where
 		board_no=#{board_no}
 
@@ -56,16 +50,22 @@
 		delete from boardtable where board_no = #{board_no}
 	</delete>
 
-	<!--동영상 게시물 기본 조회 -->
-	<select id="userVideoBoardList" parameterType="userVideoBoard"
+
+
+	<select id="videoDetail" parameterType="int"
 		resultType="com.genelol.vo.userboard.UserVideoBoardVO">
-		<![CDATA[
-		
-		SELECT *
-		FROM boardtable
-		order by board_no desc
-		]]>
+		select
+		board_id,board_no,userid,board_title,board_content
+		from boardtable
+		where board_no = #{board_no}
+
 	</select>
 
-	
+
+	<select id="videoRead" resultType="com.genelol.vo.userboard.UserVideoBoardVO"
+		parameterType="int"> select
+		board_id,board_no,userid,board_title,board_content
+		from boardtable
+		where board_no = #{board_no}
+	</select>
 </mapper>

@@ -1,4 +1,4 @@
-package com.genelol.test.dao;
+package com.genelol.test.uservideo;
 
 import javax.inject.Inject;
 
@@ -32,13 +32,13 @@ public class UserVideoBoardDAOtest {
 	// dao.videoInsert(videoBoard);
 	// }
 
-	// 비디오 읽기 테스트
-	@Test
-	public void testRead() throws Exception {
-
-		logger.info(dao.videoRead(1).toString());
-
-	}
+//	// 비디오 읽기 테스트
+//	@Test
+//	public void testRead() throws Exception {
+//
+//		logger.info(dao.videoRead(1).toString());
+//
+//	}
 
 	// 비디오 수정 테스트
 	@Test
