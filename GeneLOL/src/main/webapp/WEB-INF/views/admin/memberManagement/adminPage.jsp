@@ -6,39 +6,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
-	href="../../resources/semantic-ui/semantic.min.css">
+	href="resources/semantic-ui/semantic.min.css">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="../../resources/semantic-ui/semantic.min.js"></script>
+<script src="resources/semantic-ui/semantic.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.ui.accordion').accordion();
-		$('.menu .item').tab();
 	});
 
 	function loadVideoBoard() {
-		$("#list").load("adminVideoBoard");
+		$("#list").load("adminvideoboard");
 	};
 
 	function loadInfoBoard() {
-		$("#list").load("adminInformationBoard");
+		$("#list").load("admininformationboard");
 	};
 
 	function loadUserStatistics() {
-		$("#list").load("adminUserStatistics");
+		$("#list").load("adminuserstatistics");
 	};
 
 	function loadMemberList() {
-		$("#list").load("memberListManagement");
+		$("#list").load("memberlistmanagement");
 	};
 
 	function loadSecessionList() {
-		$("#list").load("secessionListManagement");
+		$("#list").load("secessionlistmanagement");
 	};
 
-	function loadadminList() {
-		$("#list").load("adminListManagement");
+	function loadAdminList() {
+		$("#list").load("adminlistmanagement");
 	};
+
 </script>
 <style>
 header {
@@ -115,7 +115,7 @@ header {
 				<div class="content">
 					<ul>
 						<li><a id="adminList" href="javascript:void(0)"
-							onclick="loadadminList()"> <span>관리자 목록</span>
+							onclick="loadAdminList()"> <span>관리자 목록</span>
 						</a></li>
 					</ul>
 				</div>

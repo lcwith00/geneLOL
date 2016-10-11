@@ -1,4 +1,4 @@
-package com.genelol.controller.admin;
+package com.genelol.controller.agreement;
 
 import java.util.Locale;
 

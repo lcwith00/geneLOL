@@ -6,8 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
-	href="../../resources/semantic-ui/semantic.min.css">
-<script src="../../resources/semantic-ui/semantic.min.js"></script>
+	href="resources/semantic-ui/semantic.min.css">
+<script src="resources/semantic-ui/semantic.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.menu .item').tab();
+});
+</script>
 </head>
 <body>
 	<div class="contents">

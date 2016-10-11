@@ -8,11 +8,6 @@
 <link rel="stylesheet" type="text/css"
 	href="resources/semantic-ui/semantic.min.css">
 <script src="resources/semantic-ui/semantic.min.js"></script>
-<style>
-.search .link.icon {
-	background-color: white;
-}
-</style>
 </head>
 <body>
 	<div class="contents">
@@ -30,7 +25,8 @@
 				</div>
 			</div>
 			<div class="ui bottom attached tab segment active" data-tab="first">
-				목록.....</div>
+
+			</div>
 		</div>
 	</div>
 </body>
