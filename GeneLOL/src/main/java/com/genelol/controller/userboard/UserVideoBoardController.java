@@ -1,7 +1,6 @@
 
 package com.genelol.controller.userboard;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -115,5 +114,4 @@ public class UserVideoBoardController {
 
 		return "redirect:" + url;
 	}
-
 }
