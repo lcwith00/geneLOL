@@ -1,6 +1,7 @@
 
 package com.genelol.controller.userboard;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,9 +10,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.genelol.service.userboard.UserVideoBoardService;
 import com.genelol.vo.userboard.UserVideoBoardVO;
@@ -36,7 +39,7 @@ public class UserVideoBoardController {
 		logger.info(UVboard.toString());
 
 		String url = "";
-
+		//
 		userVideoBoardService.videoRegist(UVboard);
 
 		url = "/video/videoList";
@@ -49,7 +52,7 @@ public class UserVideoBoardController {
 
 		logger.info("videoList 호출 성공!");
 
-		List<UserVideoBoardVO> videoList = userVideoBoardService.userVideoBoardList();
+		List<UserVideoBoardVO> videoList = userVideoBoardService.videoList();
 		for (UserVideoBoardVO uservideoBoardVO : videoList) {
 			logger.info(uservideoBoardVO.toString());
 
@@ -65,14 +68,52 @@ public class UserVideoBoardController {
 	public String videoDetail(@RequestParam("board_no") Integer board_no, Model model) throws Exception {
 
 		logger.info("videoDetail 호출성공!");
-
 		logger.info("" + board_no);
 		UserVideoBoardVO userVideoBoardVO = userVideoBoardService.videoDetail(board_no);
 		logger.info(userVideoBoardVO.toString());
 		model.addAttribute("UserVideoBoardVO", userVideoBoardService.videoDetail(board_no));
-
-		
 		return "/videoBoard/videodetail";
 
 	}
+
+	@RequestMapping(value = "/videoUpdateView", method = RequestMethod.GET)
+	public String videoUpdateGET(Integer board_no, Model model) throws Exception {
+		model.addAttribute(userVideoBoardService.videoDetail(board_no));
+		logger.info("modify get........");
+		logger.info("" + board_no);
+		model.addAttribute("UserVideoBoardVO", userVideoBoardService.videoDetail(board_no));
+		return "/videoBoard/modify";
+	}
+
+	@RequestMapping(value = "/videoUpdate", method = RequestMethod.POST)
+	public String videoUpdatePost(@ModelAttribute UserVideoBoardVO uvbvo, RedirectAttributes rttr) throws Exception {
+
+		logger.info("videoUpdate 호출 성공");
+
+		userVideoBoardService.videoModify(uvbvo);
+		logger.info("" + uvbvo);
+
+		String url = "";
+
+		rttr.addFlashAttribute("msg", "등록성공");
+
+		url = "/video/videoList";
+
+		return "redirect:" + url;
+	}
+
+	@RequestMapping(value = "/videoDelete", method = RequestMethod.POST)
+	public String videoDelete(@RequestParam("board_no") Integer board_no, RedirectAttributes rttr) throws Exception {
+
+		userVideoBoardService.videoRemove(board_no);
+
+		String url = "";
+
+		rttr.addFlashAttribute("msg", "삭제성공!");
+
+		url = "/video/videoList";
+
+		return "redirect:" + url;
+	}
+
 }

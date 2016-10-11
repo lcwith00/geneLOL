@@ -16,10 +16,10 @@ public class UserVideoBoardServiceImpl implements UserVideoBoardService {
 	private UserVideoBoardDao dao;
 
 	@Override
-	public List<UserVideoBoardVO> userVideoBoardList() throws Exception {
+	public List<UserVideoBoardVO> videoList() throws Exception {
 		// TODO Auto-generated method stub
 		List<UserVideoBoardVO> videoList = null;
-		videoList = dao.userVideoBoardList();
+		videoList = dao.videoList();
 		return videoList;
 	}
 
@@ -29,11 +29,11 @@ public class UserVideoBoardServiceImpl implements UserVideoBoardService {
 		dao.videoInsert(uvbvo);
 	}
 
-	@Override
-	public UserVideoBoardVO read(Integer board_no) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.videoRead(board_no);
-	}
+//	@Override
+//	public UserVideoBoardVO read(Integer board_no) throws Exception {
+//		// TODO Auto-generated method stub
+//		return dao.videoRead(board_no);
+//	}
 
 	@Override
 	public void videoModify(UserVideoBoardVO uvbvo) throws Exception {
