@@ -16,6 +16,7 @@
 	});
 
 	function loadVideoBoard() {
+
 		$("#list").load("adminVideoBoard")
 	}
 
@@ -118,7 +119,7 @@ header {
 				<div class="content">
 					<ul>
 						<li><a id="adminList" href="javascript:void(0)"
-							onclick="loadadminList()"> <span>관리자 목록</span>
+							onclick="loadAdminList()"> <span>관리자 목록</span>
 						</a></li>
 					</ul>
 				</div>

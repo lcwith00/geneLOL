@@ -1,5 +1,7 @@
 package com.genelol.service.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +34,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Integer checkUserMail(String userMail) throws Exception {
 		return userDAO.checkUserMail(userMail);
+	}
+	
+	//회원 목록
+	@Override
+	public List<UserVO> memberList() throws Exception {
+		return userDAO.memberList();
 	}
 
 }

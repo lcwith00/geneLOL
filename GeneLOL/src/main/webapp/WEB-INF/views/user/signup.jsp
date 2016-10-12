@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -6,7 +7,6 @@
 	href="resources/semantic-ui/semantic.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="resources/semantic-ui/semantic.min.js"></script>
-
 <style type="text/css">
 #modal_body {
 	background-color: #DADADA !important;
@@ -182,6 +182,7 @@
 		$('#reset-passwordTab').removeClass('active');
 	}
 </script>
+
 <div id="modal_body">
 	<div class="ui top attached tabular menu" style="max-width: 450px">
 		<a class="item active" id="signin" data-tab="signin">로그인</a> <a
@@ -193,50 +194,50 @@
 		id="signinTab">
 		<div class="ui middle aligned center aligned grid">
 			<div class="column" id="modal_column">
-				<form class="ui large form" method="post">
+				<form class="ui large form" method="post" action="/user/login">
 					<div class="ui stacked segment">
 						<div class="field">
 							<div class="ui left icon input">
 								<i class="user icon"></i> <input type="text" name="userMail"
 									placeholder="Email">
 							</div>
-							<div class="field">
-								<div class="ui left icon input">
-									<i class="lock icon"></i> <input type="password"
-										name="userPassword" placeholder="password">
-								</div>
-							</div>
-							<div class="ui fluid large teal submit button">로그인</div>
 						</div>
-						<p id="resetP">
-							<a href="javascript:void(0);" onclick="reset();" id="reset">비밀번호를
-								잊으셨나요?</a>
-						</p>
-						<div class="ui error message"></div>
+						<div class="field">
+							<div class="ui left icon input">
+								<i class="lock icon"></i> <input type="password"
+									name="userPassword" placeholder="password">
+							</div>
+						</div>
+						<div class="ui fluid large teal submit button">로그인</div>
 					</div>
+					<p id="resetP">
+						<a href="javascript:void(0);" onclick="reset();" id="reset">비밀번호를
+							잊으셨나요?</a>
+					</p>
+					<div class="ui error message"></div>
 				</form>
 			</div>
 		</div>
+		<<<<<<< HEAD
 	</div>
 	<div class="ui bottom attached tab segment" data-tab="reset-password"
 		id="reset-passwordTab">
 		<div class="ui middle aligned center aligned grid">
 			<div class="column">
 				<form class="ui large form" id="reset-password" method="post">
-					<div class="ui stacked segment">
-
+					<div class="ui stacked segment" id="resetUI">
 						<div class="field">비밀번호 초기화</div>
 						<div class="field">
 							<div class="ui left icon input">
 								<i class="user icon"></i> <input type="text" name="userMail"
 									placeholder="Email">
 							</div>
-						</div>
-						<div class="field" id="resetButton">
-							<div class="ui fluid teal button" id="send-mail">메일발송</div>
-							<div class="ui fluid teal button" id="back">
-								<a href="javascript:void(0);" onclick="resetBack();"
-									id="resetBack">돌아가기</a>
+							<div class="field" id="resetButton">
+								<div class="ui fluid teal button" id="send-mail">메일발송</div>
+								<div class="ui fluid teal button" id="back">
+									<a href="javascript:void(0);" onclick="resetBack();"
+										id="resetBack">돌아가기</a>
+								</div>
 							</div>
 						</div>
 					</div>

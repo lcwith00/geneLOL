@@ -13,7 +13,22 @@
 	href="../resources/semantic-ui/semantic.min.css">
 <script src="../resources/semantic-ui/semantic.min.js"></script>
 <script type="text/javascript">
-	
+	$(document).ready(function() {
+		var formObj = $("form[role='form']");
+
+		$("#btn_Modify").on("click", function() {
+			formObj.attr("action", "/video/videoUpdateView");
+			formObj.attr("method", "get");
+			formObj.submit();
+		});
+		$("#btn_Delete").on("click", function() {
+			formObj.attr("action", "/video/videoDelete");
+			formObj.attr("method", "post");
+			formObj.submit();
+		});
+		
+		
+	});
 </script>
 <style type="text/css">
 .embed-container {
@@ -40,8 +55,9 @@ div #bg {
 #writer {
 	text-align: right;
 }
-#btn_List, #btn_Modify, #btn_Delete{
-float: right;
+
+#btn_List, #btn_Modify, #btn_Delete {
+	float: right;
 }
 </style>
 

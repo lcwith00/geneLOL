@@ -1,6 +1,6 @@
 package com.genelol.vo.ranking;
 
-public class SearchCriteria extends Criteria{
+public class RankingSearchCriteria extends RankingCriteria{
 
 	private String searchType;
 	private String keyword;

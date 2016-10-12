@@ -22,8 +22,10 @@
 			$('.ui.modal.link').modal('show');
 		});
 		$('#videoRead').click(function() {
+
 			$('.ui.modal.Detail').modal('show');
-		})
+
+		});
 	});
 </script>
 <style type="text/css">
@@ -138,75 +140,80 @@ div #tab_column {
 		<div class="ui tap" data-tab="ALL" id="tap_container">
 			<p></p>
 			<p></p>
-			<!-- ===================================================== -->
-
-			<div class="ui four column doubling stackable grid container">
-				<c:forEach items="${videoList}" var="UserVideoBoardVO">
-
-					<div class="column" id="tab_column">
-						<div class="ui card">
-							<div class="content">
-								<div class="right floated meta">조회수 :
-									${UserVideoBoardVO.board_count}</div>
-								<label id="video_no">no.${UserVideoBoardVO.board_no }</label> <br>
-								<label> ${UserVideoBoardVO.board_title } </label>
+			<!-- ======================Detail=============================== -->
 
 
+			<form method="get" action="/video/videoDetail" id="sendDetail">
+				<div class="ui four column doubling stackable grid container">
+					<c:forEach items="${videoList}" var="UserVideoBoardVO">
 
-								<div class="right floated meta">
+						<div class="column" id="tab_column">
+							<div class="ui card">
+								<div class="content">
+									<div class="right floated meta">조회수 :
+										${UserVideoBoardVO.board_count}</div>
+									<label id="video_no">no.${UserVideoBoardVO.board_no }</label> <br>
+									<label> ${UserVideoBoardVO.board_title } </label>
 
-									<!-- 날짜가져오기 -->
-									<fmt:formatDate pattern="yyyy-MM-dd"
-										value="${UserVideoBoardVO.board_date}" />
+
+
+									<div class="right floated meta">
+
+										<!-- 날짜가져오기 -->
+										<fmt:formatDate pattern="yyyy-MM-dd"
+											value="${UserVideoBoardVO.board_date}" />
+
+									</div>
+								</div>
+								<div class="image" id="videoRead">
+									<a
+										href="http://localhost:8080/video/videoDetail?board_no=${UserVideoBoardVO.board_no}
+									"
+										class="ui medium image"> <input type="hidden"
+										name="board_no" value="${UserVideoBoardVO.board_no}">
+										<c:choose>
+											<c:when test="${UserVideoBoardVO.board_content.length()==28}">
+												<c:set var="videoLinkImgA"
+													value="${UserVideoBoardVO.board_content}" />
+												<c:set var="videoLinkImgB"
+													value="${fn:substring(videoLinkImgA, 17,28)}" />
+											</c:when>
+											<c:when test="${UserVideoBoardVO.board_content.length()==43}">
+												<c:set var="videoLinkImgA"
+													value="${UserVideoBoardVO.board_content}" />
+												<c:set var="videoLinkImgB"
+													value="${fn:substring(videoLinkImgA, 32,43)}" />
+											</c:when>
+											<c:otherwise>
+												<c:set var="videoLinkImgB" value="notFoundImg" />
+											</c:otherwise>
+										</c:choose> <img src="http://img.youtube.com/vi/${videoLinkImgB}/1.jpg">
+									</a>
+									<c:out value="${videoLinkImgB}"></c:out>
+
 
 								</div>
-							</div>
-							<div class="image" id="videoRead">
-								<a
-									href="http://localhost:8080/video/videoDetail?board_no=${UserVideoBoardVO.board_no}
-									"
-									class="ui medium image"> <c:choose>
-										<c:when test="${UserVideoBoardVO.board_content.length()==28}">
-											<c:set var="videoLinkImgA"
-												value="${UserVideoBoardVO.board_content}" />
-											<c:set var="videoLinkImgB"
-												value="${fn:substring(videoLinkImgA, 17,28)}" />
-										</c:when>
-										<c:when test="${UserVideoBoardVO.board_content.length()==43}">
-											<c:set var="videoLinkImgA"
-												value="${UserVideoBoardVO.board_content}" />
-											<c:set var="videoLinkImgB"
-												value="${fn:substring(videoLinkImgA, 32,43)}" />
-										</c:when>
-										<c:otherwise>
-											<c:set var="videoLinkImgB" value="notFoundImg" />
-										</c:otherwise>
-									</c:choose> <img src="http://img.youtube.com/vi/${videoLinkImgB}/1.jpg">
-								</a>
-								<c:out value="${videoLinkImgB}"></c:out>
-
-
-							</div>
-							<div class="content">
-								<span class="right floated"> <i
-									class="heart outline like icon"></i> <!-- 좋아요수 -->likes${UserVideoBoardVO.board_recomm}
-								</span> <i class="comment icon"></i>
-								<!-- 댓글수 -->
-								comments
-							</div>
-							<div class="extra content">
-								<div class="ui large transparent left icon input">작성자 :
-									${UserVideoBoardVO.userid}</div>
+								<div class="content">
+									<span class="right floated"> <i
+										class="heart outline like icon"></i> <!-- 좋아요수 -->likes${UserVideoBoardVO.board_recomm}
+									</span> <i class="comment icon"></i>
+									<!-- 댓글수 -->
+									comments
+								</div>
+								<div class="extra content">
+									<div class="ui large transparent left icon input">작성자 :
+										${UserVideoBoardVO.userid}</div>
+								</div>
 							</div>
 						</div>
+					</c:forEach>
+					<div class="ui modal Detail" id="videoRead">
+
+						<%@ include file="../videoBoard/videodetail.jsp"%>
+
 					</div>
-
-				</c:forEach>
-				<div class="ui modal Detail">
-					<%@ include file="../videoBoard/videodetail.jsp"%>
-
 				</div>
-			</div>
+			</form>
 		</div>
 		<!-- ===================================================== -->
 
