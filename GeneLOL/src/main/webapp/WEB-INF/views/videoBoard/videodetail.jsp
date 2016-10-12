@@ -13,7 +13,22 @@
 	href="../resources/semantic-ui/semantic.min.css">
 <script src="../resources/semantic-ui/semantic.min.js"></script>
 <script type="text/javascript">
-	
+	$(document).ready(function() {
+		var formObj = $("form[role='form']");
+
+		$("#btn_Modify").on("click", function() {
+			formObj.attr("action", "/video/videoUpdateView");
+			formObj.attr("method", "get");
+			formObj.submit();
+		});
+		$("#btn_Delete").on("click", function() {
+			formObj.attr("action", "/video/videoDelete");
+			formObj.attr("method", "post");
+			formObj.submit();
+		});
+		
+		
+	});
 </script>
 <style type="text/css">
 .embed-container {
@@ -40,8 +55,9 @@ div #bg {
 #writer {
 	text-align: right;
 }
-#btn_List, #btn_Modify, #btn_Delete{
-float: right;
+
+#btn_List, #btn_Modify, #btn_Delete {
+	float: right;
 }
 </style>
 
@@ -50,7 +66,7 @@ float: right;
 <body>
 
 	<form role="form" method="post" action="/video/videoDetail">
-		<input type='hidden' name='board_no'
+		<input type='hidden' name='board_no' id='board_no'
 			value="${UserVideoBoardVO.board_no }">
 	</form>
 
@@ -117,7 +133,7 @@ float: right;
 					<div class="comment"></div>
 				</div>
 				<div class="comment">
-					<a class="avatar"> <img src="/images/avatar/small/joe.jpg">
+					<a class="avatar">
 					</a>
 					<div class="content">
 						<a class="author">Joe Henderson</a>

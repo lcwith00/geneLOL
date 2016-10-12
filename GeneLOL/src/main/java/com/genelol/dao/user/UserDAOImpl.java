@@ -1,5 +1,7 @@
 package com.genelol.dao.user;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -35,4 +37,11 @@ public class UserDAOImpl implements UserDAO {
 	public Integer checkUserMail(String userMail) {
 		return session.selectOne(namespace + ".checkUserMail", userMail);
 	}
+
+	// 회원 목록
+	@Override
+	public List<UserVO> memberList() throws Exception {
+		return session.selectList(namespace + ".memberList");
+	}
+
 }

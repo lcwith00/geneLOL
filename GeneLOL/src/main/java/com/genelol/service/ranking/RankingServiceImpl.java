@@ -7,9 +7,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.genelol.dao.ranking.RankingDAO;
-import com.genelol.vo.ranking.Criteria;
 import com.genelol.vo.ranking.RankingVO;
-import com.genelol.vo.ranking.SearchCriteria;
+import com.genelol.vo.ranking.RankingSearchCriteria;
 
 @Service
 public class RankingServiceImpl implements RankingService {
@@ -19,37 +18,26 @@ public class RankingServiceImpl implements RankingService {
 
 	
 	@Override
-	public RankingVO read(Integer ranking) throws Exception {
+	public RankingVO ranking_Read(Integer ranking) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<RankingVO> listAll() throws Exception {
+	public List<RankingVO> ranking_List() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	@Override
+	public List<RankingVO> ranking_ListSearchCriteria(RankingSearchCriteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<RankingVO> listCriteria(Criteria cri) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int listCountCriteria(Criteria cri) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public List<RankingVO> listSearchCriteria(SearchCriteria cri) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int listSearchCount(SearchCriteria cri) throws Exception {
+	public int ranking_ListSearchCount(RankingSearchCriteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
