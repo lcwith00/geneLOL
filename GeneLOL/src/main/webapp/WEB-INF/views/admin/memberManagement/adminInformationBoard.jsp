@@ -6,16 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
-<<<<<<< HEAD
 	href="resources/semantic-ui/semantic.min.css">
 <script src="resources/semantic-ui/semantic.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-	$('.menu .item').tab();
-});
+	$(document).ready(function() {
+		$('.menu .item').tab();
+	});
 </script>
-=======
-	href="../../resources/semantic-ui/semantic.min.css">
 <script src="../../resources/semantic-ui/semantic.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -24,7 +21,6 @@ $(document).ready(function() {
 </script>
 <style>
 </style>
->>>>>>> 0e5bea0477aedcb331dbee6c14eb6fd82b345c96
 </head>
 <body>
 	<div class="contents">
