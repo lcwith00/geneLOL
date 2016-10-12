@@ -4,7 +4,7 @@
 
 <mapper namespace="com.genelol.dao.userboard.UserVideoBoardMapper">
 
-	<select id="videoList" parameterType="userVideoBoard"
+	<!-- <select id="videoList" parameterType="userVideoBoard"
 		resultType="com.genelol.vo.userboard.UserVideoBoardVO">
 		select
 		board_id, board_no, userid, board_tite,
@@ -14,7 +14,7 @@
 		boardtable
 	</select>
 
-	<!-- 동영상등록 -->
+	동영상등록
 
 	<insert id="videoInsert" parameterType="userVideoBoard">
 		<selectKey keyProperty="board_no" resultType="Integer"
@@ -56,7 +56,7 @@
 		delete from boardtable where board_no = #{board_no}
 	</delete>
 
-	<!--동영상 게시물 기본 조회 -->
+	동영상 게시물 기본 조회
 	<select id="userVideoBoardList" parameterType="userVideoBoard"
 		resultType="com.genelol.vo.userboard.UserVideoBoardVO">
 		<![CDATA[
@@ -75,5 +75,5 @@
 		from boardtable
 		where board_no = #{board_no}
 
-	</select>
+	</select> -->
 </mapper>

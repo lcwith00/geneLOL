@@ -40,6 +40,7 @@ header, footer {
 	padding-left: 5%;
 	padding-right: 5%;
 	padding-left: 5%;
+	min-height: 1000px;
 }
 
 #logo {
@@ -104,10 +105,10 @@ header, footer {
 			<img alt="" src="/resources/images/testlogo.png" id="logo">
 		</aside>
 		<section class="ui center aligned container">
-			<form class="ui form" method="get">
+			<form class="ui form" method="get" action="/summoner">
 				<div class="field">
 					<div class="ui icon input">
-						<input class="prompt" type="text" placeholder="소환사 명을 입력하세요.">
+						<input class="prompt" type="text" placeholder="소환사 명을 입력하세요." name="summonerName">
 						<button class="ui inverted basic button" type="submit"
 							id="submit_btn">
 							<i class="black search icon"></i>

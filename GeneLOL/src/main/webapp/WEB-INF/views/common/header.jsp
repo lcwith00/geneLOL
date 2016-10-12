@@ -43,7 +43,7 @@
 </style>
 </head>
 <body>
-	<div class="ui top inverted menu">
+	<div class="ui top fixed inverted menu">
 		<div class="ui container">
 			<a href="http://localhost:8080/" class="header item"> <img
 				class="logo" src="resources/images/logo.png">GeneLoL
@@ -74,7 +74,6 @@
 								<a href="/user/logout">Log Out</a>
 							</div>
 						</div>
-
 					</div>
 				</c:when>
 				<c:otherwise>

@@ -20,9 +20,8 @@
 </style>
 </head>
 <body>
-<<<<<<< HEAD
 	<header>
-	<h1>header</h1>
+		<h1>header</h1>
 	</header>
 	<form>
 		<div class="nav"></div>
@@ -39,7 +38,8 @@
 							<li><a href='#' id="b"><span>-정보 게시판</span></a></li>
 						</ul>
 						<a target="list" href="/admin/memberManagement/videoBoard.jsp">-동영상
-							게시판</a><br> <a target="list" href="informationBoard.jsp">-정보 게시판</a>
+							게시판</a><br> <a target="list" href="informationBoard.jsp">-정보
+							게시판</a>
 					</div>
 					<div class="title">
 						<i class="dropdown icon"></i> 통계
@@ -74,24 +74,23 @@
 									class="search link icon"></i>
 							</div>
 =======
-	<div class="contents">
-		<!-- list -->
-		<div id="memberList">
-			<div class="ui top attached tabular menu">
-				<a class="item active" data-tab="first">회원 목록</a>
-				<div class="right menu">
-					<div class="item">
-						<div class="ui transparent icon input">
-							<input type="text" placeholder="Search users..."> <i
-								class="search link icon"></i>
->>>>>>> 93b9f9df894c7e5640ebfc744c14160cc3fbdce5
+	<div class="contents">-->
+				<!-- list -->
+				<div id="memberList">
+					<div class="ui top attached tabular menu">
+						<a class="item active" data-tab="first">회원 목록</a>
+						<div class="right menu">
+							<div class="item">
+								<div class="ui transparent icon input">
+									<input type="text" placeholder="Search users..."> <i
+										class="search link icon"></i>
+								</div>
+							</div>
 						</div>
 					</div>
+					<div class="ui bottom attached tab segment active" data-tab="first">
+						목록.....</div>
 				</div>
 			</div>
-			<div class="ui bottom attached tab segment active" data-tab="first">
-				목록.....</div>
-		</div>
-	</div>
 </body>
 </html>
