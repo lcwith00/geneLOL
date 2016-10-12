@@ -17,11 +17,11 @@
 
 	function loadVideoBoard() {
 
-		$("#list").load("adminVideoBoard")
+		$("#list").load("adminvideoboard")
 	}
 
 	function loadInfoBoard() {
-		$("#list").load("adminInformationBoard");
+		$("#list").load("admininformationboard");
 	}
 
 	function loadUserStatistics() {
@@ -33,11 +33,11 @@
 	}
 
 	function loadSecessionList() {
-		$("#list").load("secessionListManagement");
+		$("#list").load("secessionlistmanagement");
 	}
 
 	function loadadminList() {
-		$("#list").load("adminListManagement");
+		$("#list").load("adminlistmanagement");
 	}
 </script>
 <style>

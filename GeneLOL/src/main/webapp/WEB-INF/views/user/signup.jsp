@@ -218,7 +218,6 @@
 				</form>
 			</div>
 		</div>
-		<<<<<<< HEAD
 	</div>
 	<div class="ui bottom attached tab segment" data-tab="reset-password"
 		id="reset-passwordTab">
