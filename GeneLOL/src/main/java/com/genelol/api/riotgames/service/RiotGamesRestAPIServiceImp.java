@@ -30,6 +30,7 @@ public class RiotGamesRestAPIServiceImp implements RiotGamesRestAPIService {
 		for (MatchReference matchReference : matchList.getMatches()) {
 			matchDetailList.add(api.getMatch(matchReference.getMatchId()));
 		}
+		
 		System.out.println(matchDetailList.size());
 		return matchDetailList;
 	}
