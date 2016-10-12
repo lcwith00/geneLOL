@@ -2,70 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.genelol.dao.userboard.Userxxx">
+<mapper namespace="com.genelol.dao.adminboard.AdminVideoBoardMapper">
 
-	<select id="videoList" parameterType="userVideoBoard"
-		resultType="com.genelol.vo.userboard.UserVideoBoardVO">
-		select
-		board_id, board_no, userid, board_tite,
-		board_content, board_file,
-		board_count, board_recomm, board_date
-		from
-		boardtable
-	</select>
-
-	<!-- 동영상등록 -->
-
-	<insert id="videoInsert" parameterType="userVideoBoard">
-		<selectKey keyProperty="board_no" resultType="Integer"
-			order="BEFORE">
-			select board_no_seq.nextval from dual
-		</selectKey>
-
-
-		insert into boardtable (board_id,board_no, userid,
-		board_title,board_content
-		<if test="board_file != null and board_file !=''">,board_file</if>
-		)
-		values(
-		#{board_id},#{board_no},#{userid},#{board_title},#{board_content}
-		<if test="board_file != null and board_file !=''">,#{board_file}</if>
-		)
-	</insert>
-
-	<select id="videoRead" resultType="com.genelol.vo.userboard.UserVideoBoardVO"
-		parameterType="int">
-		select
-		board_id,board_no,userid,board_title,board_content
-		from boardtable
-		where board_no = #{board_no}
-	</select>
-
-	<update id="videoUpdate" parameterType="userVideoBoard">
-		update
-		boardtable set
-		board_title=#{board_title},
-		board_content=#{board_content},
-		board_file=#{board_file}
-		where
-		board_no=#{board_no}
-
-	</update>
-
-	<delete id="videoDelete">
-		delete from boardtable where board_no = #{board_no}
-	</delete>
-
-	<!--동영상 게시물 기본 조회 -->
-	<select id="userVideoBoardList" parameterType="userVideoBoard"
-		resultType="com.genelol.vo.userboard.UserVideoBoardVO">
+	<select id="adminVideoBoardList" resultType="com.genelol.vo.admin.board.AdminVideoBoardVO">
 		<![CDATA[
-		
-		SELECT *
-		FROM boardtable
-		order by board_no desc
+			select b.board_id board_id, b.board_no board_no, b.userid userid, u.username username, b.board_title board_title, b.board_content board_content, b.board_file board_file, b.board_count board_count, b.board_recomm board_recomm, b.board_date board_date
+			from boardtable b, usertable u
+			where b.userid=u.userid and board_id like'video%'
+			order by b.board_no desc;
 		]]>
 	</select>
 
-	
+	<select id="videoDetail" resultType="com.genelol.vo.admin.board.AdminVideoBoardVO">
+		<![CDATA[
+			select b.board_id board_id, b.board_no board_no, b.userid userid, u.username username, b.board_title board_title, b.board_content board_content, b.board_file board_file, b.board_count board_count, b.board_recomm board_recomm, b.board_date board_date
+			from boardtable b, usertable u
+			where b.userid=u.userid and board_no = #{board_no}
+		]]>
+	</select>
 </mapper>

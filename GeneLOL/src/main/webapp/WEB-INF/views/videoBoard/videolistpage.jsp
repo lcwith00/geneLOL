@@ -212,9 +212,6 @@ div #tab_column {
 						<%@ include file="../videoBoard/videodetail.jsp"%>
 
 					</div>
-
-
-
 				</div>
 			</form>
 		</div>

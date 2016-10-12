@@ -1,10 +1,10 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Admin Page</title>
 <link rel="stylesheet" type="text/css"
 	href="resources/semantic-ui/semantic.min.css">
 <script
@@ -16,29 +16,29 @@
 	});
 
 	function loadVideoBoard() {
-		$("#list").load("adminvideoboard");
-	};
+
+		$("#list").load("adminvideoboard")
+	}
 
 	function loadInfoBoard() {
 		$("#list").load("admininformationboard");
-	};
+	}
 
 	function loadUserStatistics() {
-		$("#list").load("adminuserstatistics");
-	};
+		$("#list").load("adminUserStatistics");
+	}
 
 	function loadMemberList() {
-		$("#list").load("memberlistmanagement");
-	};
+		$("#list").load("memberListManagement");
+	}
 
 	function loadSecessionList() {
 		$("#list").load("secessionlistmanagement");
-	};
+	}
 
-	function loadAdminList() {
+	function loadadminList() {
 		$("#list").load("adminlistmanagement");
-	};
-
+	}
 </script>
 <style>
 header {
@@ -128,7 +128,6 @@ header {
 		<!-- list -->
 		<div id="list">관리자 메인이지롱</div>
 	</div>
-
 	<footer id="footer">
 		<%@ include file="../common/footer.jsp"%>
 	</footer>

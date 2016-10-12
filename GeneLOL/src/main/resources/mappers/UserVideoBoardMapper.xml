@@ -4,26 +4,11 @@
 
 <mapper namespace="com.genelol.dao.userboard.UserVideoBoardMapper">
 
-	<!--동영상 게시물 기본 조회 -->
-	<select id="videoList" parameterType="userVideoBoard"
-		resultType="com.genelol.vo.userboard.UserVideoBoardVO">
-		<![CDATA[
-		
-		SELECT *
-		FROM boardtable
-		where board_id = 'videoLOL' OR board_id = 'videoFun' OR board_id='videoEtc'
-		order by board_no desc
-		]]>
-	</select>
-	<!-- 동영상등록 -->
-
 	<insert id="videoInsert" parameterType="userVideoBoard">
 		<selectKey keyProperty="board_no" resultType="Integer"
 			order="BEFORE">
 			select board_no_seq.nextval from dual
 		</selectKey>
-
-
 		insert into boardtable (board_id,board_no, userid,
 		board_title,board_content
 		<if test="board_file != null and board_file !=''">,board_file</if>
@@ -50,7 +35,16 @@
 		delete from boardtable where board_no = #{board_no}
 	</delete>
 
-
+	<select id="userVideoBoardList" parameterType="userVideoBoard"
+		resultType="com.genelol.vo.userboard.UserVideoBoardVO">
+		<![CDATA[
+		
+		SELECT *
+		FROM boardtable
+		where board_id = 'videoLOL' OR board_id = 'videoFun' OR board_id='videoEtc'
+		order by board_no desc
+		]]>
+	</select>
 
 	<select id="videoDetail" parameterType="int"
 		resultType="com.genelol.vo.userboard.UserVideoBoardVO">
@@ -58,7 +52,6 @@
 		board_id,board_no,userid,board_title,board_content
 		from boardtable
 		where board_no = #{board_no}
-
 	</select>
 
 

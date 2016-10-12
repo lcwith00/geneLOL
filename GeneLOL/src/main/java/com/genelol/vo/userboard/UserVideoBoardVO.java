@@ -88,9 +88,9 @@ public class UserVideoBoardVO {
 	@Override
 	public String toString() {
 		return "UserVideoBoardVO [board_id=" + board_id + ", board_no=" + board_no + ", userid=" + userid
-				+ ", board_title=" + board_title + ", board_content=" + board_content + ", board_file=" + board_file
-				+ ", board_count=" + board_count + ", board_recomm=" + board_recomm + ", board_date=" + board_date
-				+ "]";
+				+ ", board_title=" + board_title + ", board_content=" + board_content
+				+ ", board_file=" + board_file + ", board_count=" + board_count + ", board_recomm=" + board_recomm
+				+ ", board_date=" + board_date + "]";
 	}
 
 }

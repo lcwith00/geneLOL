@@ -66,7 +66,7 @@ div #bg {
 <body>
 
 	<form role="form" method="post" action="/video/videoDetail">
-		<input type='hidden' name='board_no'
+		<input type='hidden' name='board_no' id='board_no'
 			value="${UserVideoBoardVO.board_no }">
 	</form>
 
@@ -133,7 +133,7 @@ div #bg {
 					<div class="comment"></div>
 				</div>
 				<div class="comment">
-					<a class="avatar"> <img src="/images/avatar/small/joe.jpg">
+					<a class="avatar">
 					</a>
 					<div class="content">
 						<a class="author">Joe Henderson</a>

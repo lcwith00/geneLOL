@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>footer</title>
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="resources/semantic-ui/semantic.min.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="resources/semantic-ui/semantic.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#adminSignIn').click(function() {
@@ -21,21 +20,17 @@
 	min-width: 307px !important;
 }
 </style>
-</head>
-<body>
-	<div class="ui inverted vertical footer segment">
-		<div class="ui center aligned container">
-			<img src="resources/images/logo.png" class="ui centered mini image">
-			<div class="ui inverted section divider"></div>
-			<div class="ui horizontal inverted small divided link list">
-				<a class="item">Contact Us</a> <a class="item">Privacy Policy</a><a
-					class="item" href="/agreement">Terms and Conditions</a> <a
-					class="item" id="adminSignIn">Admin</a>
-			</div>
+<div class="ui inverted vertical footer segment">
+	<div class="ui center aligned container">
+		<img src="resources/images/logo.png" class="ui centered mini image">
+		<div class="ui inverted section divider"></div>
+		<div class="ui horizontal inverted small divided link list">
+			<a class="item">Contact Us</a> <a class="item">Privacy Policy</a><a
+				class="item" href="/agreement">Terms and Conditions</a> <a
+				class="item" id="adminSignIn">Admin</a>
 		</div>
 	</div>
-	<div class="ui modal" id="adminSignInModal">
-		<%@ include file="../admin/adminSignIn.jsp"%>
-	</div>
-</body>
-</html>
+</div>
+<div class="ui modal" id="adminSignInModal">
+	<%@ include file="../admin/adminSignIn.jsp"%>
+</div>
