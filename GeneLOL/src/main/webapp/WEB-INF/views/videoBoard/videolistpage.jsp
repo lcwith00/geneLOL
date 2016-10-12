@@ -202,7 +202,7 @@ div #tab_column {
 					</div>
 
 				</c:forEach>
-				<div class="ui modal Detail" id="videoRead">
+				<div class="ui modal Detail">
 					<%@ include file="../videoBoard/videodetail.jsp"%>
 
 				</div>

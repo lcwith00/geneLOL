@@ -32,12 +32,12 @@ public class AdminManagementController {
 
 	@RequestMapping(value = "/adminVideoBoard", method = RequestMethod.GET)
 	public String adminVideoBoard(Locale locale, Model model) {
-		return "admin/memberManagement/adminVideoBoard";
+		return "admin/boardManagement/adminVideoBoard";
 	}
 
 	@RequestMapping(value = "/adminInformationBoard", method = RequestMethod.GET)
 	public String adminInformationBoard(Locale locale, Model model) {
-		return "admin/memberManagement/adminInformationBoard";
+		return "admin/boardManagement/adminInformationBoard";
 	}
 
 	@RequestMapping(value = "/secessionListManagement", method = RequestMethod.GET)

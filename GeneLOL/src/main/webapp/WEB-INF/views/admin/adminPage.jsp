@@ -1,43 +1,43 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Admin Page</title>
 <link rel="stylesheet" type="text/css"
-	href="../../resources/semantic-ui/semantic.min.css">
+	href="resources/semantic-ui/semantic.min.css">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="../../resources/semantic-ui/semantic.min.js"></script>
+<script src="resources/semantic-ui/semantic.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.ui.accordion').accordion();
 	});
 
 	function loadVideoBoard() {
-		$("#list").load("adminVideoBoard");
-	};
+		$("#list").load("adminVideoBoard")
+	}
 
 	function loadInfoBoard() {
 		$("#list").load("adminInformationBoard");
-	};
+	}
 
 	function loadUserStatistics() {
 		$("#list").load("adminUserStatistics");
-	};
+	}
 
 	function loadMemberList() {
 		$("#list").load("memberListManagement");
-	};
+	}
 
 	function loadSecessionList() {
 		$("#list").load("secessionListManagement");
-	};
+	}
 
 	function loadadminList() {
 		$("#list").load("adminListManagement");
-	};
+	}
 </script>
 <style>
 header {
@@ -127,7 +127,6 @@ header {
 		<!-- list -->
 		<div id="list">관리자 메인이지롱</div>
 	</div>
-
 	<footer id="footer">
 		<%@ include file="../common/footer.jsp"%>
 	</footer>

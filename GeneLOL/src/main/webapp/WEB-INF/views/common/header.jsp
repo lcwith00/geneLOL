@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css"
+	href="resources/semantic-ui/semantic.min.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="resources/semantic-ui/semantic.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#login').click(function() {
-			$('#signup_modal').modal('show');
+			$('#signup_modal').modal('show')
 		});
 	});
 </script>
@@ -28,24 +27,23 @@
 	margin-top: 0 !important;
 }
 </style>
-</head>
-<body>
-	<div class="ui top inverted menu">
-		<div class="ui container">
-			<a href="http://localhost:8080/" class="header item"> <img
-				class="logo" src="resources/images/logo.png">&nbsp&nbspGeneLoL
-			</a> <a href="#" class="item">랭킹</a>
-			<div class="ui simple dropdown item">
-				<span class="text">통계</span> <i class="dropdown icon"></i>
-				<div class="menu">
-					<div class="item">챔피언 별</div>
-					<div class="item">티어 별</div>
-				</div>
+<div class="ui top inverted menu">
+	<div class="ui container">
+		<a href="http://localhost:8080/" class="header item"> <img
+			class="logo" src="resources/images/logo.png">&nbsp;&nbsp;GeneLoL
+		</a> <a href="#" class="item">랭킹</a>
+		<div class="ui simple dropdown item">
+			<span class="text">통계</span> <i class="dropdown icon"></i>
+			<div class="menu">
+				<div class="item">챔피언 별</div>
+				<div class="item">티어 별</div>
 			</div>
-			<a href="#" class="item">동영상</a> <a href="#" class="item">정보</a>
-			<div class="ui right item">
-				<div class="ui inverted button" id="login">로그인</div>
-				<%-- <c:choose>
+		</div>
+		<a href="/video/videoList" class="item">동영상</a> <a href="#"
+			class="item">정보</a>
+		<div class="ui right item">
+			<div class="ui inverted button" id="login">로그인</div>
+			<%-- <c:choose>
 					<c:when test="">
 						
 					</c:when>
@@ -53,11 +51,9 @@
 						<div class="ui inverted button" id="login">로그인</div>
 					</c:otherwise>
 				</c:choose> --%>
-			</div>
 		</div>
 	</div>
-	<div class="ui modal" id="signup_modal">
-		<%@ include file="../user/signup.jsp"%>
-	</div>
-</body>
-</html>
+</div>
+<div class="ui modal" id="signup_modal">
+	<%@ include file="../user/signup.jsp"%>
+</div>
