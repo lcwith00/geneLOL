@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css"
 	href="resources/semantic-ui/semantic.min.css">
 <script src="resources/semantic-ui/semantic.min.js"></script>
+<script src="resources/jquery.paging.js"></script>
 <style type="text/css">
 .embed-container {
 	position: relative;
@@ -36,12 +37,36 @@ div #bg {
 #btn_List, #btn_Modify, #btn_Delete {
 	float: right;
 }
+
+#page_navi {
+	text-align: center;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.menu .item').tab();
 		listAll();
+		page();
+
 	});
+
+	function page() {
+		var url = "/videoboard/totalcount";
+		$.getJSON(url, function(data) {
+			$(data).each(function() {
+				var videoCount = this.videoCount;
+				resultCount = videoCount/10
+				resultCount = Math.ceil(resultCount);
+				$('#page_navi').paging({
+					current : 1,
+					max : resultCount,
+					onclick : function(e, page) {
+						listAll(page);
+					}
+				});
+			});
+		});
+	}
 
 	function read(str) {
 		var board_no = str;
@@ -65,9 +90,14 @@ div #bg {
 		$('#readVideo').modal('show');
 	}
 
-	function listAll() {
+	function listAll(str) {
 		$("#videoList").html("");
-		var url = "/videoboard/article";
+		var page = 1;
+		if (str > 1) {
+			page = str;
+		}
+		var start_no = (page - 1) * 10;
+		var url = "/videoboard/article/" + start_no;
 		$.getJSON(url, function(data) {
 			console.log(data.length);
 
@@ -83,6 +113,7 @@ div #bg {
 								board_count, board_recomm);
 					});
 		});
+
 	}
 
 	function addNewItem(board_no, board_title, username, board_date,
@@ -116,6 +147,7 @@ div #bg {
 				.append(board_title_div).append(username_div).append(
 						board_date_div).append(board_count_div).append(
 						board_recomm_div);
+
 		$("#videoList").append(new_div);
 	}
 </script>
@@ -145,6 +177,8 @@ div #bg {
 			<div class="two wide column">좋아요</div>
 		</div>
 		<div id="videoList"></div>
+		<br>
+		<div id="page_navi"></div>
 	</div>
 	<div class="ui bottom attached tab segment" data-tab="second">
 		Second</div>
