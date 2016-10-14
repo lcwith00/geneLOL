@@ -56,9 +56,10 @@
 					<div class="item">티어 별</div>
 				</div>
 			</div>
+			<a href="http://localhost:8080/video/videoList" class="item">동영상</a>
+			<a href="#" class="item">정보</a>
 		</div>
-		<a href="http://localhost:8080/video/videoList" class="item">동영상</a> <a
-			href="#" class="item">정보</a>
+
 		<c:choose>
 			<c:when test="${login.userName!=null}">
 				<div class="ui right simple dropdown item">
@@ -77,12 +78,6 @@
 							<a href="/user/logout">Log Out</a>
 						</div>
 					</div>
-				</c:when>
-				<c:otherwise>
-					<div class="ui right item">
-						<div class="ui inverted button" id="login">로그인</div>
-					</div>
-
 				</div>
 			</c:when>
 			<c:otherwise>
@@ -92,7 +87,7 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
-</div>
-<div class="ui modal" id="signup_modal">
-	<%@ include file="../user/signup.jsp"%>
-</div>
+	<div class="ui modal" id="signup_modal">
+		<%@ include file="../user/signup.jsp"%>
+	</div>
+</body>

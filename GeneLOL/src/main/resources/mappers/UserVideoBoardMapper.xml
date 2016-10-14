@@ -9,5 +9,4 @@
 		from boardtable
 		where board_no = #{board_no}
 	</select>
->>>>>>> bcb32f8c442fc184674e3b57694710bc4099907b:GeneLOL/src/main/resources/mappers/UserVideoBoardMapper.xml
 </mapper>
