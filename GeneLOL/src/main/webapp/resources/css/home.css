@@ -1,0 +1,60 @@
+@CHARSET "UTF-8";
+
+#contents {
+	margin-bottom: 3rem;
+	padding-left: 5%;
+	padding-right: 5%;
+	min-height: 1000px;
+}
+
+#logo {
+	width: 100%;
+	margin-top: 3rem;
+	margin-bottom: 1rem;
+}
+
+.prompt {
+	font-size: 1.3rem !important;
+}
+
+.twelve.wide.left.aligned.column {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-wrap: normal;
+	overflow: hidden;
+}
+
+.twelve.wide.left.aligned.column>a {
+	color: black;
+	font-size: 1.5rem;
+}
+
+.twelve.wide.left.aligned.column>p {
+	font-size: 0.75rem;
+	color: #707070;
+}
+
+.twelve.wide.left.aligned.column>a:HOVER {
+	color: #0E6EB8;
+}
+
+#submit_btn {
+	position: absolute;
+	top: 5%;
+	right: 1px;
+	margin-right: 0px;
+	height: 90%;
+	padding-right: 1em;
+}
+
+.ui.segment.listitems {
+	padding: 10px 10px !important;
+}
+
+.ui.middle.aligned.two.column.centered.grid.listitem {
+	padding: -10px -10px !important;
+}
+
+.four.wide.column.thumbnail {
+	padding: 10px 10px !important;
+}
