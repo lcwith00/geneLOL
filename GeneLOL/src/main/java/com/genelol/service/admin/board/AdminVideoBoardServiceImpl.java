@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.genelol.dao.admin.board.AdminVideoBoardDAO;
 import com.genelol.vo.admin.board.AdminVideoBoardVO;
+import com.genelol.vo.admin.board.PageCount;
 
 @Service
 public class AdminVideoBoardServiceImpl implements AdminVideoBoardService {
@@ -16,9 +17,9 @@ public class AdminVideoBoardServiceImpl implements AdminVideoBoardService {
 	private AdminVideoBoardDAO dao;
 
 	@Override
-	public List<AdminVideoBoardVO> adminVideoBoardList() throws Exception {
+	public List<AdminVideoBoardVO> adminVideoBoardList(Integer start_no) throws Exception {
 		List<AdminVideoBoardVO> adminVideoBoardVOList = null;
-		adminVideoBoardVOList = dao.adminVideoBoardList();
+		adminVideoBoardVOList = dao.adminVideoBoardList(start_no);
 		return adminVideoBoardVOList;
 	}
 
@@ -29,4 +30,13 @@ public class AdminVideoBoardServiceImpl implements AdminVideoBoardService {
 
 		return videoDetail;
 	}
+
+	@Override
+	public List<PageCount> videoCount() throws Exception {
+		List<PageCount> videoCount = null;
+		videoCount = dao.videoCount();
+
+		return videoCount;
+	}
+
 }

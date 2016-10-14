@@ -99,9 +99,10 @@ public class AdminVideoBoardVO {
 
 	@Override
 	public String toString() {
-		return "AdminVideoBoardVO [board_id=" + board_id + ", board_no=" + board_no + ", userid=" + userid
-				+ ", username=" + username + ", board_title=" + board_title + ", board_content=" + board_content
-				+ ", board_file=" + board_file + ", board_count=" + board_count + ", board_recomm=" + board_recomm
-				+ ", board_date=" + board_date + "]";
+		return "AdminVideoBoardVO [board_id=" + board_id + ", board_no=" + board_no + ", userid="
+				+ userid + ", username=" + username + ", board_title=" + board_title + ", board_content="
+				+ board_content + ", board_file=" + board_file + ", board_count=" + board_count + ", board_recomm="
+				+ board_recomm + ", board_date=" + board_date + "]";
 	}
+
 }
