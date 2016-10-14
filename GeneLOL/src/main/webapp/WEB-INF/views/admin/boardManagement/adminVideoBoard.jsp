@@ -41,12 +41,33 @@ div #bg {
 #page_navi {
 	text-align: center;
 }
+
+#searchSelection {
+	min-width: 7em !important;
+}
+
+#videoBoardList {
+	text-align: center;
+}
+
+#title {
+	text-align: left;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.menu .item').tab();
+		$('.ui.dropdown').dropdown();
 		listAll();
 		page();
+
+		$('searchText').live('keypress', function(e) {
+			if (e.which == 13) {
+				if ($('#selectSearch').val() == "writer") {
+
+				}
+			}
+		});
 
 	});
 
@@ -55,7 +76,26 @@ div #bg {
 		$.getJSON(url, function(data) {
 			$(data).each(function() {
 				var videoCount = this.videoCount;
-				resultCount = videoCount/10
+				resultCount = videoCount / 10
+				resultCount = Math.ceil(resultCount);
+				$('#page_navi').paging({
+					current : 1,
+					max : resultCount,
+					onclick : function(e, page) {
+						listAll(page);
+					}
+				});
+			});
+		});
+	}
+
+	function searchWriter(str) {
+		var writer = str
+		var url = "/videoboard/totalcount";
+		$.getJSON(url, function(data) {
+			$(data).each(function() {
+				var videoCount = this.videoCount;
+				resultCount = videoCount / 10
 				resultCount = Math.ceil(resultCount);
 				$('#page_navi').paging({
 					current : 1,
@@ -122,12 +162,12 @@ div #bg {
 		var new_div = $("<div class='ui seven column grid'>");
 
 		var checked_div = $("<div class='one wide column'>");
-		checked_div.html("선택");
+		checked_div.html("첵");
 
-		var board_no_div = $("<div class='one wide column'>");
+		var board_no_div = $("<div class='two wide column'>");
 		board_no_div.html(board_no);
 
-		var board_title_div = $("<div class='six wide column'>");
+		var board_title_div = $("<div class='five wide column' id='title'>");
 		board_title_div.html("<a href='javascript:void(0);' onclick='read("
 				+ board_no + ")'>" + board_title + "</a>");
 
@@ -159,18 +199,31 @@ div #bg {
 			관리</a>
 		<div class="right menu">
 			<div class="item">
-				<div class="ui transparent icon input">
-					<input type="text" placeholder="Search users..."> <i
-						class="search link icon"></i>
+				<div class="ui selection dropdown" id="searchSelection">
+					<input name="selection" type="hidden"> <i
+						class="dropdown icon"></i>
+					<div class="default text">선택</div>
+					<div class="menu" id="selectSearch">
+						<div class="item" data-value="writer">작성자</div>
+						<div class="item" data-value="subject">제목</div>
+					</div>
+				</div>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<div class="ui search">
+					<div class="ui transparent icon input">
+						<input class="prompt" type="text" placeholder="Search..."
+							id="searchText"> <i class="search icon"></i>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="ui bottom attached tab segment active" data-tab="first">
+	<div class="ui bottom attached tab segment active" data-tab="first"
+		id="videoBoardList">
 		<div class="ui seven column grid">
-			<div class="one wide column">선택</div>
-			<div class="one wide column">번호</div>
-			<div class="six wide column">제목</div>
+			<div class="one wide column">첵</div>
+			<div class="two wide column">번호</div>
+			<div class="five wide column">제목</div>
 			<div class="two wide column">작성자</div>
 			<div class="two wide column">작성일</div>
 			<div class="two wide column">조회수</div>
