@@ -2,12 +2,16 @@ package com.genelol.controller.admin;
 
 import java.util.Locale;
 
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.genelol.service.user.UserService;
 
 /**
  * Handles requests for the application home page.
@@ -16,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AdminManagementController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AdminManagementController.class);
+
+	@Inject
+	private UserService userService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -26,7 +33,9 @@ public class AdminManagementController {
 	}
 
 	@RequestMapping(value = "/memberlistmanagement", method = RequestMethod.GET)
-	public String memberListManagement(Locale locale, Model model) {
+	public String memberListManagement(Locale locale, Model model) throws Exception {
+		logger.info("show memberList...........");
+		model.addAttribute("list", userService.memberList());
 		return "admin/memberManagement/memberListManagement";
 	}
 
