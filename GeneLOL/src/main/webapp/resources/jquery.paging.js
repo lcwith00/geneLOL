@@ -11,7 +11,7 @@
 		item:'a',next:'[&gt;{5}]',prev:'[{4}&lt;]',format:'[{0}]',
 		itemClass:'paging-item',sideClass:'paging-side',className:'jquery-paging',
 		itemCurrent:'selected',length:10,max:1,current:1,append:false
-		,href:'#{0}',event:true,first:'[1&lt;&lt;]',last:'[&gt;&gt;{6}]'
+		,href:'javascript:void(0)',event:true,first:'[1&lt;&lt;]',last:'[&gt;&gt;{6}]'
 	},format=function(str){
 		var arg=arguments;
 		return str.replace(/\{(\d+)}/g,function(m,d){
@@ -25,6 +25,7 @@
 		if(a.test(op.item)) item.href=format(op.href,page);
 		if(op.event){
 			$(item).bind('click',function(e){
+				$("#videoList").html("");
 				var fired=true;
 				if($.isFunction(op.onclick)) fired=op.onclick.call(item,e,page,op);
 				if(fired==undefined||fired)
