@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.genelol.service.admin.board.AdminVideoBoardService;
+import com.genelol.service.admin.board.AdminInformationBoardService;
 import com.genelol.vo.admin.board.AdminBoardVO;
 import com.genelol.vo.admin.board.PageCount;
 import com.genelol.vo.admin.board.SearchCount;
@@ -31,40 +31,43 @@ public class AdminInformationBoardController {
 	public ResponseEntity<List<AdminBoardVO>> list(@PathVariable("start_no") Integer start_no) throws Exception {
 
 		ResponseEntity<List<AdminBoardVO>> listAll = null;
-		listAll = new ResponseEntity<>(service.adminVideoBoardList(start_no), HttpStatus.OK);
+		listAll = new ResponseEntity<>(service.adminInformationBoardList(start_no), HttpStatus.OK);
 
 		return listAll;
 	}
 
 	@RequestMapping(value = "/article/{searchtype}/{searchtext}/{start_no}", method = RequestMethod.GET)
-	public ResponseEntity<List<AdminBoardVO>> searchList(@PathVariable("searchtype") String searchtype, @PathVariable("searchtext") String searchtext, @PathVariable("start_no") Integer start_no) throws Exception {
+	public ResponseEntity<List<AdminBoardVO>> searchList(@PathVariable("searchtype") String searchtype,
+			@PathVariable("searchtext") String searchtext, @PathVariable("start_no") Integer start_no)
+			throws Exception {
 
 		ResponseEntity<List<AdminBoardVO>> listSearch = null;
 		listSearch = new ResponseEntity<>(service.searchList(searchtype, searchtext, start_no), HttpStatus.OK);
 
 		return listSearch;
 	}
-	
+
 	@RequestMapping(value = "/read/{board_no}")
 	public ResponseEntity<List<AdminBoardVO>> read(@PathVariable("board_no") Integer board_no) throws Exception {
 
 		ResponseEntity<List<AdminBoardVO>> readEntity = null;
-		readEntity = new ResponseEntity<>(service.videoDetail(board_no), HttpStatus.OK);
+		readEntity = new ResponseEntity<>(service.infoDetail(board_no), HttpStatus.OK);
 
 		return readEntity;
 	}
 
 	@RequestMapping(value = "/totalcount")
-	public ResponseEntity<List<PageCount>> videoCount() throws Exception {
+	public ResponseEntity<List<PageCount>> infoCount() throws Exception {
 
-		ResponseEntity<List<PageCount>> videoEntity = null;
-		videoEntity = new ResponseEntity<>(service.videoCount(), HttpStatus.OK);
+		ResponseEntity<List<PageCount>> infoEntity = null;
+		infoEntity = new ResponseEntity<>(service.infoCount(), HttpStatus.OK);
 
-		return videoEntity;
+		return infoEntity;
 	}
-	
+
 	@RequestMapping(value = "/searchcount/{searchtype}/{searchtext}")
-	public ResponseEntity<List<SearchCount>> searchCount(@PathVariable("searchtype") String searchtype, @PathVariable("searchtext") String searchtext) throws Exception {
+	public ResponseEntity<List<SearchCount>> searchCount(@PathVariable("searchtype") String searchtype,
+			@PathVariable("searchtext") String searchtext) throws Exception {
 
 		ResponseEntity<List<SearchCount>> searchEntity = null;
 		searchEntity = new ResponseEntity<>(service.searchCount(searchtype, searchtext), HttpStatus.OK);

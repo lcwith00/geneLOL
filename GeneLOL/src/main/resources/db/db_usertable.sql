@@ -12,3 +12,6 @@ values (userid_seq.nextval,'최승혁','needgumo@gmail.com','true','1234','회�
 
 insert into usertable(userid, username, usermail, iscertificate, userpassword, usertype)
 values (userid_seq.nextval,'SeoJM','sjm9829@gmail.com','true','123456','member');
+
+insert into usertable(userid, username, usermail, iscertificate, userpassword, usertype)
+values (userid_seq.nextval,'admin','admin@genelol.com','true','123456','admin');

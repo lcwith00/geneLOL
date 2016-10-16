@@ -119,7 +119,7 @@ div #bg {
 		var url = "/infoboard/totalcount";
 		$.getJSON(url, function(data) {
 			$(data).each(function() {
-				var infoCount = this.infoCount;
+				var infoCount = this.totalCount;
 				resultCount = infoCount / 10
 				resultCount = Math.ceil(resultCount);
 				$('#page_navi').paging({
@@ -262,12 +262,14 @@ div #bg {
 					function() {
 						var board_no = this.board_no;
 						var board_title = this.board_title;
+						var board_content = this.board_content;
 						var username = this.username;
 						var board_date = this.board_date;
 						var board_count = this.board_count;
 						var board_recomm = this.board_recomm;
 						$("#info_title").html(board_title);
 						$("#info_writer").html("작성자 : " + username);
+						$("#content").html(board_content);
 						$("#view_Cnt").html(
 								"<i class='unhide icon'></i>" + board_count);
 						$("#like").html("Like " + board_recomm);
@@ -311,103 +313,10 @@ div #bg {
 	</div>
 	<div class="ui bottom attached tab segment" data-tab="second">
 		Second</div>
-	<div class="ui bottom attached tab segment" data-tab="third">
-</div>
+	<div class="ui bottom attached tab segment" data-tab="third"></div>
 
 
-<!-- modal -->
-<div class="ui modal" id="readinfo">
-	<div class="form-group">
-		<h3 class="ui block header"></h3>
-
-		<h3 class="ui top attached header" id="info_title"></h3>
-		<div id="info_writer"></div>
-		<div class="ui attached segment" id="bg">
-
-
-			<a class="ui black label">Content</a>
-			<div class='embed-container'>
-
-				<div id="info_play">
-					<c:choose>
-						<c:when test="${UserinfoBoardVO.board_content.length()==28}">
-							<c:set var="infoLinkImgA"
-								value="${UserinfoBoardVO.board_content}" />
-							<c:set var="infoLinkImgB"
-								value="${fn:substring(infoLinkImgA, 17,28)}" />
-						</c:when>
-						<c:when test="${UserinfoBoardVO.board_content.length()==43}">
-							<c:set var="infoLinkImgA"
-								value="${UserinfoBoardVO.board_content}" />
-							<c:set var="infoLinkImgB"
-								value="${fn:substring(infoLinkImgA, 32,43)}" />
-						</c:when>
-						<c:otherwise>
-							<c:set var="infoLinkImgB" value="notFoundImg" />
-						</c:otherwise>
-					</c:choose>
-
-					<iframe src='http://www.youtube.com/embed/${infoLinkImgB}'
-						frameborder='0' allowfullscreen></iframe>
-					<c:out value="${userinfoBoardVO.board_content}"></c:out>
-					<c:out value="${infoLinkImgB}"></c:out>
-
-
-				</div>
-			</div>
-		</div>
-
-		<div class="ui labeled button" tabindex="0">
-
-			<div class="ui button">
-				<div id="view_Cnt"></div>
-			</div>
-
-			<div class="ui button">
-				<i class="heart icon"></i>
-				<p id="like"></p>
-			</div>
-
-		</div>
-		<!-- ================reply start================== -->
-		<div class="ui threaded comments">
-
-			<div>
-				<h3 class="ui dividing header">댓글</h3>
-				<div class="comment">
-					<div class="content"></div>
-					<div class="comment"></div>
-				</div>
-				<div class="comment">
-					<a class="avatar"> </a>
-					<div class="content">
-						<a class="author">Joe Henderson</a>
-						<div class="metadata">
-							<span class="date">5 days ago</span>
-						</div>
-						<div class="text">Dude, this is awesome. Thanks so much</div>
-						<div class="actions">
-							<a class="reply">Reply</a>
-						</div>
-					</div>
-				</div>
-				<form class="ui reply form">
-					<div class="field">
-						<textarea></textarea>
-					</div>
-					<div class="ui blue labeled submit icon button">
-						<i class="icon edit"></i> Add Reply
-					</div>
-				</form>
-			</div>
-			<!-- ================reply end================== -->
-		</div>
-
+	<!-- modal -->
+	<div class="ui modal" id="readinfo">
+		
 	</div>
-	<!--  /.div-body -->
-	<div class="buttons">
-		<button class="ui blue basic button" id="btn_List">List ALL</button>
-		<button class="ui yellow basic button" id="btn_Modify">MODIFY</button>
-		<button class="ui red basic button" id="btn_Delete">DELETE</button>
-	</div>
-</div>

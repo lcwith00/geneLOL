@@ -2,19 +2,19 @@ package com.genelol.vo.admin.board;
 
 public class PageCount {
 
-	private Integer videoCount;
+	private Integer totalCount;
 
-	public Integer getVideoCount() {
-		return videoCount;
+	public Integer getTotalCount() {
+		return totalCount;
 	}
 
-	public void setVideoCount(Integer videoCount) {
-		this.videoCount = videoCount;
+	public void setTotalCount(Integer totalCount) {
+		this.totalCount = totalCount;
 	}
 
 	@Override
 	public String toString() {
-		return "PageCount [videoCount=" + videoCount + "]";
+		return "PageCount [totalCount=" + totalCount + "]";
 	}
 
 }

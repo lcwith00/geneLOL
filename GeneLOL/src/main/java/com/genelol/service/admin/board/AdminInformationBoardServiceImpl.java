@@ -6,22 +6,22 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.genelol.dao.admin.board.AdminVideoBoardDAO;
+import com.genelol.dao.admin.board.AdminInformationDAO;
 import com.genelol.vo.admin.board.AdminBoardVO;
 import com.genelol.vo.admin.board.PageCount;
 import com.genelol.vo.admin.board.SearchCount;
 
 @Service
-public class AdminVideoBoardServiceImpl implements AdminVideoBoardService {
-
+public class AdminInformationBoardServiceImpl implements AdminInformationBoardService {
+	
 	@Inject
-	private AdminVideoBoardDAO dao;
+	private AdminInformationDAO dao;
 
 	@Override
-	public List<AdminBoardVO> adminVideoBoardList(Integer start_no) throws Exception {
-		List<AdminBoardVO> adminVideoBoardList = null;
-		adminVideoBoardList = dao.adminVideoBoardList(start_no);
-		return adminVideoBoardList;
+	public List<AdminBoardVO> adminInformationBoardList(Integer start_no) throws Exception {
+		List<AdminBoardVO> adminInformationBoardList = null;
+		adminInformationBoardList = dao.adminInformationBoardList(start_no);
+		return adminInformationBoardList;
 	}
 
 	@Override
@@ -32,17 +32,17 @@ public class AdminVideoBoardServiceImpl implements AdminVideoBoardService {
 	}
 
 	@Override
-	public List<AdminBoardVO> videoDetail(Integer board_no) throws Exception {
-		List<AdminBoardVO> videoDetail = null;
-		videoDetail = dao.videoDetail(board_no);
-		return videoDetail;
+	public List<AdminBoardVO> infoDetail(Integer board_no) throws Exception {
+		List<AdminBoardVO> infoDetail = null;
+		infoDetail = dao.infoDetail(board_no);
+		return infoDetail;
 	}
 
 	@Override
-	public List<PageCount> videoCount() throws Exception {
-		List<PageCount> videoCount = null;
-		videoCount = dao.videoCount();
-		return videoCount;
+	public List<PageCount> infoCount() throws Exception {
+		List<PageCount> infoCount = null;
+		infoCount = dao.infoCount();
+		return infoCount;
 	}
 
 	@Override
@@ -51,5 +51,4 @@ public class AdminVideoBoardServiceImpl implements AdminVideoBoardService {
 		searchCount = dao.searchCount(searchtype, searchtext);
 		return searchCount;
 	}
-
 }
