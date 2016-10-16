@@ -5,7 +5,7 @@
 <mapper namespace="com.genelol.dao.adminboard.AdminVideoBoardMapper">
 
 	<!-- 전체 목록 -->
-	<select id="adminVideoBoardList" resultType="com.genelol.vo.admin.board.AdminVideoBoardVO">
+	<select id="adminVideoBoardList" resultType="com.genelol.vo.admin.board.AdminBoardVO">
 		<![CDATA[
 			select b.board_id board_id, b.board_no board_no, b.userid userid, u.username username, b.board_title board_title, b.board_content board_content, b.board_file board_file, b.board_count board_count, b.board_recomm board_recomm, b.board_date board_date
 			from boardtable b, usertable u
@@ -23,7 +23,7 @@
 			where b.userid=u.userid and rownum between 1 and 8 -->
 
 	<!-- 검색목록 -->
-	<select id="searchList" parameterType="hashmap" resultType="com.genelol.vo.admin.board.AdminVideoBoardVO">
+	<select id="searchList" parameterType="hashmap" resultType="com.genelol.vo.admin.board.AdminBoardVO">
 		select b.board_id board_id, b.board_no board_no, b.userid userid, u.username username, b.board_title board_title, b.board_content board_content, b.board_file board_file, b.board_count board_count, b.board_recomm board_recomm, b.board_date board_date
 		from boardtable b, usertable u
 		<choose>
@@ -40,7 +40,7 @@
 		order by b.board_no desc limit #{start_no}, 10
 	</select>
 
-	<select id="videoDetail" resultType="com.genelol.vo.admin.board.AdminVideoBoardVO">
+	<select id="videoDetail" resultType="com.genelol.vo.admin.board.AdminBoardVO">
 		<![CDATA[
 			select b.board_id board_id, b.board_no board_no, b.userid userid, u.username username, b.board_title board_title, b.board_content board_content, b.board_file board_file, b.board_count board_count, b.board_recomm board_recomm, b.board_date board_date
 			from boardtable b, usertable u

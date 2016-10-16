@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.genelol.dao.admin.board.AdminVideoBoardDAO;
-import com.genelol.vo.admin.board.AdminVideoBoardVO;
+import com.genelol.vo.admin.board.AdminBoardVO;
 import com.genelol.vo.admin.board.PageCount;
 import com.genelol.vo.admin.board.SearchCount;
 
@@ -18,22 +18,22 @@ public class AdminVideoBoardServiceImpl implements AdminVideoBoardService {
 	private AdminVideoBoardDAO dao;
 
 	@Override
-	public List<AdminVideoBoardVO> adminVideoBoardList(Integer start_no) throws Exception {
-		List<AdminVideoBoardVO> adminVideoBoardVOList = null;
-		adminVideoBoardVOList = dao.adminVideoBoardList(start_no);
-		return adminVideoBoardVOList;
+	public List<AdminBoardVO> adminVideoBoardList(Integer start_no) throws Exception {
+		List<AdminBoardVO> adminVideoBoardList = null;
+		adminVideoBoardList = dao.adminVideoBoardList(start_no);
+		return adminVideoBoardList;
 	}
 
 	@Override
-	public List<AdminVideoBoardVO> searchList(String searchtype, String searchtext, Integer start_no) throws Exception {
-		List<AdminVideoBoardVO> searchList = null;
+	public List<AdminBoardVO> searchList(String searchtype, String searchtext, Integer start_no) throws Exception {
+		List<AdminBoardVO> searchList = null;
 		searchList = dao.searchList(searchtype, searchtext, start_no);
 		return searchList;
 	}
 	
 	@Override
-	public List<AdminVideoBoardVO> videoDetail(Integer board_no) throws Exception {
-		List<AdminVideoBoardVO> videoDetail = null;
+	public List<AdminBoardVO> videoDetail(Integer board_no) throws Exception {
+		List<AdminBoardVO> videoDetail = null;
 		videoDetail = dao.videoDetail(board_no);
 
 		return videoDetail;

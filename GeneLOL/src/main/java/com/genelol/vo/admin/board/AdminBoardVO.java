@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class AdminVideoBoardVO {
+public class AdminBoardVO {
 	private String board_id; // 게시판구분
 	private Integer board_no; // 글 번호
 	private Integer userid; // 작성자

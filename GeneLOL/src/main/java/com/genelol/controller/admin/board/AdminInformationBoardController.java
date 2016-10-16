@@ -19,13 +19,13 @@ import com.genelol.vo.admin.board.PageCount;
 import com.genelol.vo.admin.board.SearchCount;
 
 @Controller
-@RequestMapping(value = "/videoboard")
-public class AdminVideoBoardController {
+@RequestMapping(value = "/infoboard")
+public class AdminInformationBoardController {
 
-	private static final Logger logger = LoggerFactory.getLogger(AdminVideoBoardController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdminInformationBoardController.class);
 
 	@Inject
-	private AdminVideoBoardService service;
+	private AdminInformationBoardService service;
 
 	@RequestMapping(value = "/article/{start_no}", method = RequestMethod.GET)
 	public ResponseEntity<List<AdminBoardVO>> list(@PathVariable("start_no") Integer start_no) throws Exception {
