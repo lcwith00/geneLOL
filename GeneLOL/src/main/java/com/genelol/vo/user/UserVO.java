@@ -1,5 +1,7 @@
 package com.genelol.vo.user;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class UserVO {
 
 	private Integer userID; // 유저식별코드
@@ -8,6 +10,7 @@ public class UserVO {
 	private boolean isCertificate; // 유저 인증
 	private String userPassword; // 유저 비밀번호
 	private String userType; // 유저 타입
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private String joinDate; // 가입일자
 
 	public Integer getUserID() {

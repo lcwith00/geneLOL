@@ -1,4 +1,4 @@
-package com.genelol.vo.admin.board;
+package com.genelol.common;
 
 public class SearchCount {
 
