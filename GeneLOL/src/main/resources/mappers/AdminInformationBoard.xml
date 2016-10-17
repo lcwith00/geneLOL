@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.genelol.dao.adminboard.AdminInformationBoardMapper">
+<mapper namespace="com.genelol.dao.admin.board.AdminInformationBoardMapper">
 
 	<!-- 전체 목록 -->
 	<select id="adminInformationBoardList" resultType="com.genelol.vo.admin.board.AdminBoardVO">
@@ -48,13 +48,13 @@
 		]]>
 	</select>
 	
-	<select id="infoCount" resultType="com.genelol.vo.admin.board.PageCount">
+	<select id="infoCount" resultType="com.genelol.common.PageCount">
 		select count(*) as totalCount
 		from boardtable b, usertable u
 		where b.userid=u.userid and b.board_id like'info%'
 	</select>
 	
-	<select id="searchCount" parameterType="hashmap" resultType="com.genelol.vo.admin.board.SearchCount">
+	<select id="searchCount" parameterType="hashmap" resultType="com.genelol.common.SearchCount">
 		select count(*) as searchCount
 		from boardtable b, usertable u
 		<choose>

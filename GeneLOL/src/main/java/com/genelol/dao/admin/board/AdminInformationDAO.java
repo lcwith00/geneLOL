@@ -2,9 +2,9 @@ package com.genelol.dao.admin.board;
 
 import java.util.List;
 
+import com.genelol.common.PageCount;
+import com.genelol.common.SearchCount;
 import com.genelol.vo.admin.board.AdminBoardVO;
-import com.genelol.vo.admin.board.PageCount;
-import com.genelol.vo.admin.board.SearchCount;
 
 public interface AdminInformationDAO {
 

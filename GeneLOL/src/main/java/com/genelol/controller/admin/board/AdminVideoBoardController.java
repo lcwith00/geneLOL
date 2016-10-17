@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.genelol.common.PageCount;
+import com.genelol.common.SearchCount;
 import com.genelol.service.admin.board.AdminVideoBoardService;
 import com.genelol.vo.admin.board.AdminBoardVO;
-import com.genelol.vo.admin.board.PageCount;
-import com.genelol.vo.admin.board.SearchCount;
 
 @Controller
 @RequestMapping(value = "/videoboard")
