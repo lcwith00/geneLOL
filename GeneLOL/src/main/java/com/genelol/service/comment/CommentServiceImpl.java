@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
 import com.genelol.dao.comment.CommentDAO;
 import com.genelol.vo.comment.CommentVO;
 import com.genelol.vo.comment.pageVO;
 
-
+@Service
 public class CommentServiceImpl implements CommentService{
 
 	@Inject
