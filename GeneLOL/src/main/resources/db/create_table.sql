@@ -45,7 +45,7 @@ create table commenttable(
   comment_date date default sysdate not null,
   constraint "board_no" foreign key (board_no)
   references boardtable(board_no),
-  constraint "userid1" foreign key (userid)
+  constraint "userid" foreign key (userid)
   references usertable(userid)
 );
 create sequence comment_no_seq
