@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="ko" class="no-js">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,12 +23,18 @@
 			$('#clickBtn').val("videoEtc");
 		});
 		$('#registBtn').click(function() {
+			var board_contentA = $("input[name=board_contentA]").val();
+			alert(board_contentA);
+			var board_contentB = board_contentA.substr(board_contentA.length -11,11);
+			alert(board_contentB);
+			$('input[name=board_content]').attr('value',board_contentB); 
 			alert("등록완료");
 		});
-		
 
 	});
 </script>
+
+
 <style type="text/css">
 div #top {
 	position: relative;
@@ -54,18 +60,22 @@ div #buttons {
 		<div class="ui purple basic button" id="Etcbtn">Etc</div>
 	</div>
 
-	<form class="ui form" id="registForm" method="post" action="/video/register">
+	<form class="ui form" id="registForm" method="post"
+		action="/video/register">
 		<input type="hidden" value="test" id="clickBtn" name="board_id">
 		<div class="field">
-			<label>VideoLink</label> <input type="text" name="board_content"
-				placeholder="Video Link" id="board_content" value="http://">
+			<label>VideoLink</label> <input type="text" name="board_contentA"
+				placeholder="Video Link" id="board_contentA" value="http://">
+		
+			<input type="hidden" name="board_content" value="11"
+				id="board_content">
 		</div>
 		<div class="field">
 			<label>VideoTitle</label> <input type="text" name="board_title"
 				id="board_title">
 		</div>
 		<input type="hidden" name="userid" value="1">
-	
+
 		<div class="field">
 			<div class="ui checkbox">
 				<input type="checkbox" tabindex="0" class="hidden"> <label>I

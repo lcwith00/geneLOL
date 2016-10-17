@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.genelol.dao.userboard.UserVideoReplyMapper">
+
+ <!--댓글 기본 조회 -->
+ 	<select id="replyList" parameterType="userVideoReply"
+		resultType="userVideoReply">
+		select comment_no, board_no, userid, comment_content,
+		to_char(comment_date,'YYYY-MM-DD HH24:MI:SS')as comment_date
+		from
+		commenttable
+		where board_no = #{board_no}
+		order by comment_no desc
+	</select> 
+</mapper>

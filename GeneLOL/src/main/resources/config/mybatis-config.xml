@@ -7,5 +7,6 @@
 		<typeAlias type="com.genelol.vo.main.PopularBoardVo" alias="popularBoard" />
 		<typeAlias type="com.genelol.vo.user.UserVO" alias="user" />
 		<typeAlias type="com.genelol.vo.userboard.UserVideoBoardVO" alias="userVideoBoard"/>
+		<typeAlias type="com.genelol.vo.userboard.UserVideoReplyVO" alias="userVideoReply"/>
 	</typeAliases>
 </configuration>

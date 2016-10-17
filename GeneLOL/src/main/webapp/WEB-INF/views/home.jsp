@@ -11,14 +11,8 @@
 	href="resources/semantic-ui/semantic.min.css">
 <script src="resources/semantic-ui/semantic.min.js"></script>
 
-<script type="text/javascript">
-	/* 비디오 게시판 버튼 클릭 시 처리 이벤트*/
-	$(document).ready(function() {
-		$("#userVideoBoardForm").click(function() {
-			location.href = "/videoBoard/videoWriteForm.do";
-		});
-	});
-</script>
+
+
 <style type="text/css">
 body, html {
 	margin: 0;

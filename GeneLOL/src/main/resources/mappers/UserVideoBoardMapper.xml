@@ -9,11 +9,18 @@
 		resultType="com.genelol.vo.userboard.UserVideoBoardVO">
 		<![CDATA[
 		
-		SELECT *
+		SELECT board_no, board_id, board_content, userid, board_title, 
+		to_char(board_date, 'YYYY-MM-DD HH24:MI:SS')as board_date,board_count,board_recomm
 		FROM boardtable
-		where board_id = 'videoLOL' OR board_id = 'videoFun' OR board_id='videoEtc'
-		order by board_no desc
 		]]>
+		<if test="board_title != null">
+			where board_title like '%' || #{board_title} || '%'
+		</if>
+
+		order by board_no desc, board_date desc
+		limit 0,12;
+
+
 	</select>
 	<!-- 동영상등록 -->
 
@@ -33,7 +40,7 @@
 		<if test="board_file != null and board_file !=''">,#{board_file}</if>
 		)
 	</insert>
-
+	<select id=""></select>
 
 
 	<update id="videoUpdate" parameterType="userVideoBoard">
@@ -55,7 +62,7 @@
 	<select id="videoDetail" parameterType="int"
 		resultType="com.genelol.vo.userboard.UserVideoBoardVO">
 		select
-		board_id,board_no,userid,board_title,board_content
+		*
 		from boardtable
 		where board_no = #{board_no}
 
@@ -68,4 +75,37 @@
 		from boardtable
 		where board_no = #{board_no}
 	</select>
+
+	<!-- 스크롤 다운 컨트롤러 -->
+
+	<select id="infiniteScrollDown" resultType="com.genelol.vo.userboard.UserVideoBoardVO">
+<![CDATA[
+	select board_no, board_id, board_content, userid, board_title, 
+		to_char(board_date, 'YYYY-MM-DD HH24:MI:SS')as board_date,board_count,board_recomm
+	from boardtable
+	where board_no <= #{board_no}
+	and board_no > #{board_no}-13
+	order by board_no desc, board_date desc
+	limit 0,12;
+	]]>
+		<!-- <![CDATA[ select * from (select board_no,board_title,board_content, 
+			ROWNUM as RNUM from (select * from boardtable where board_no<=#{board_no} 
+			and board_no>#{board_no}-13 order by board_no desc)) where RNUM<10;select 
+			* from (select board_no,board_title,board_content,ROWNUM as RNUM from (select 
+			* from boardtable where board_no<=#{board_no} and board_no>#{board_no}-13 
+			order by board_no desc)) where RNUM<10; ]]> -->
+	</select>
+	<update id="countUpdate" parameterType="userVideoBoard">
+
+		update boardtable set
+		board_count = board_count+1
+		where board_no = #{board_no}
+	</update>
+	<update id="likeUpdate" parameterType="userVideoBoard">
+			update boardtable set board_recomm = board_recomm+1
+		<if test="board_recomm == 1">
+			where board_no = #{board_no}
+		</if>
+	</update>
+
 </mapper>
