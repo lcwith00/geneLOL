@@ -307,7 +307,7 @@ div #bg {
 			<div class="one wide column">첵</div>
 			<div class="one wide column">번호</div>
 			<div class="two wide column">분류</div>
-			<div class="five wide column">제목</div>
+			<div class="four wide column">제목</div>
 			<div class="two wide column">작성자</div>
 			<div class="two wide column">작성일</div>
 			<div class="two wide column">조회수</div>
