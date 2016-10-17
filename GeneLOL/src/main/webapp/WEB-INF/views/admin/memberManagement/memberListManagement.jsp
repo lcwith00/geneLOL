@@ -50,7 +50,7 @@
 					},
 				});
 			}
-			
+
 			$('#memberListPageNavi').html("");
 			$("#memberManagementList").html("");
 			listAll();
