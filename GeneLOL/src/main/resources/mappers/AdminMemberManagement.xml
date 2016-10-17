@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.genelol.dao.admin.member.AdminMemberManagementMapper">
+
+	<!-- 전체 목록 -->
+	<select id="adminMemberManagementList" resultType="com.genelol.vo.user.UserVO">
+		<![CDATA[
+			select *
+			from usertable
+			where usertype like'member'
+			order by userid desc limit #{start_no}, 10
+		]]>
+	</select>
+	<!-- 오라클 버전
+			select rownum as rnum, b.board_id board_id, b.board_no board_no, b.userid userid, u.username username, b.board_title board_title, b.board_content board_content, b.board_file board_file, b.board_count board_count, b.board_recomm board_recomm, b.board_date board_date
+			from (
+  				select b.board_id board_id, b.board_no board_no, b.userid userid, u.username username, b.board_title board_title, b.board_content board_content, b.board_file board_file, b.board_count board_count, b.board_recomm board_recomm, b.board_date board_date
+  				from boardtable b, usertable u
+				where b.userid=u.userid and board_id like'info%'
+				order by b.board_no desc) A, boardtable b, usertable u
+			where b.userid=u.userid and rownum between 1 and 8 -->
+
+	<!-- 검색목록 -->
+	<select id="searchList" parameterType="hashmap" resultType="com.genelol.vo.user.UserVO">
+		select *
+		from usertable
+		<choose>
+			<when test="searchtype == 'all'">
+				where usertype like 'member' and (username like '%' || #{searchtext} || '%' or usermail like '%' || #{searchtext} || '%')
+			</when>
+			<when test="searchtype == 'id'">
+				where usertype like 'member' and (username like '%' || #{searchtext} || '%')
+			</when>
+			<when test="searchtype == 'email'">
+				where usertype like 'member' and (usermail like '%' || #{searchtext} || '%')
+			</when>
+		</choose>
+		order by userid desc limit #{start_no}, 10
+	</select>
+
+	
+	<select id="memberCount" resultType="com.genelol.common.PageCount">
+		select count(*) as totalCount
+		from usertable
+		where usertype like'member'
+	</select>
+	
+	<select id="searchCount" parameterType="hashmap" resultType="com.genelol.common.SearchCount">
+		select count(*) as searchCount
+		from usertable
+		<choose>
+			<when test="searchtype == 'all'">
+				where usertype like 'member' and (username like '%' || #{searchtext} || '%' or usermail like '%' || #{searchtext} || '%')
+			</when>
+			<when test="searchtype == 'id'">
+				where usertype like 'member' and (username like '%' || #{searchtext} || '%')
+			</when>
+			<when test="searchtype == 'email'">
+				where usertype like 'member' and (usermail like '%' || #{searchtext} || '%')
+			</when>
+		</choose>
+	</select>
+	
+	<update id="secessionMember">
+		update usertable 
+		set usertype = 'secession', joindate = sysdate
+		where userid = #{userid}
+	</update>
+</mapper>

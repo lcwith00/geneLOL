@@ -1,4 +1,4 @@
-package com.genelol.dao.admin.board;
+package com.genelol.dao.admin.member;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,23 +10,23 @@ import org.springframework.stereotype.Repository;
 
 import com.genelol.common.PageCount;
 import com.genelol.common.SearchCount;
-import com.genelol.vo.admin.board.AdminBoardVO;
+import com.genelol.vo.user.UserVO;
 
 @Repository
-public class AdminInformationDAOImpl implements AdminInformationDAO {
+public class AdminMemberManagementDAOImpl implements AdminMemberManagementDAO {
 
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "com.genelol.dao.admin.board.AdminInformationBoardMapper";
+	private static String namespace = "com.genelol.dao.admin.member.AdminMemberManagementMapper";
 
 	@Override
-	public List<AdminBoardVO> adminInformationBoardList(Integer start_no) {
-		return session.selectList(namespace + ".adminInformationBoardList", start_no);
+	public List<UserVO> adminMemberList(Integer start_no) {
+		return session.selectList(namespace + ".adminMemberManagementList", start_no);
 	}
 
 	@Override
-	public List<AdminBoardVO> searchList(String searchtype, String searchtext, Integer start_no) {
+	public List<UserVO> searchList(String searchtype, String searchtext, Integer start_no) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("searchtype", searchtype);
 		map.put("searchtext", searchtext);
@@ -35,13 +35,8 @@ public class AdminInformationDAOImpl implements AdminInformationDAO {
 	}
 
 	@Override
-	public List<AdminBoardVO> infoDetail(Integer board_no) {
-		return session.selectList(namespace + ".infoDetail", board_no);
-	}
-
-	@Override
-	public List<PageCount> infoCount() {
-		return session.selectList(namespace + ".infoCount");
+	public List<PageCount> memberCount() {
+		return session.selectList(namespace + ".memberCount");
 	}
 
 	@Override
@@ -50,6 +45,11 @@ public class AdminInformationDAOImpl implements AdminInformationDAO {
 		map.put("searchtype", searchtype);
 		map.put("searchtext", searchtext);
 		return session.selectList(namespace + ".searchCount", map);
+	}
+
+	@Override
+	public void secessionMember(Integer userid) {
+		session.update(namespace + ".secessionMember", userid);
 	}
 
 }

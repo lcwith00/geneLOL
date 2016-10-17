@@ -8,9 +8,9 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.genelol.common.PageCount;
+import com.genelol.common.SearchCount;
 import com.genelol.vo.admin.board.AdminBoardVO;
-import com.genelol.vo.admin.board.PageCount;
-import com.genelol.vo.admin.board.SearchCount;
 
 @Repository
 public class AdminVideoBoardDAOImpl implements AdminVideoBoardDAO {
@@ -18,7 +18,7 @@ public class AdminVideoBoardDAOImpl implements AdminVideoBoardDAO {
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "com.genelol.dao.adminboard.AdminVideoBoardMapper";
+	private static String namespace = "com.genelol.dao.admin.board.AdminVideoBoardMapper";
 
 	@Override
 	public List<AdminBoardVO> adminVideoBoardList(Integer start_no) {

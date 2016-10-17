@@ -38,10 +38,6 @@ div #bg {
 	float: right;
 }
 
-#page_navi {
-	text-align: center;
-}
-
 #first {
 	text-align: center;
 }
@@ -94,6 +90,24 @@ div #bg {
 		});
 	});
 
+	function allChk(obj) {
+		var chkObj = document.getElementsByName("rowCheck");
+		var rowCnt = chkObj.length - 1;
+		var check = obj.checked;
+		if (check) {
+			for (var i = 0; i <= rowCnt; i++) {
+				if (chkObj[i].type == "checkbox")
+					chkObj[i].checked = true;
+			}
+		} else {
+			for (var i = 0; i <= rowCnt; i++) {
+				if (chkObj[i].type == "checkbox") {
+					chkObj[i].checked = false;
+				}
+			}
+		}
+	}
+
 	function searchPage(str1, str2) {
 		var searchType = str1;
 		var searchtext = str2;
@@ -101,7 +115,7 @@ div #bg {
 		$.getJSON(url, function(data) {
 			$(data).each(function() {
 				var searchCount = this.searchCount;
-				resultCount = searchCount / 10
+				var resultCount = searchCount / 10
 				resultCount = Math.ceil(resultCount);
 				$('#articleListPageNavi').paging({
 					current : 1,
@@ -120,7 +134,7 @@ div #bg {
 		$.getJSON(url, function(data) {
 			$(data).each(function() {
 				var videoCount = this.totalCount;
-				resultCount = videoCount / 10
+				var resultCount = videoCount / 10
 				resultCount = Math.ceil(resultCount);
 				$('#articleListPageNavi').paging({
 					current : 1,
@@ -144,18 +158,20 @@ div #bg {
 				+ start_no;
 		$.getJSON(url, function(data) {
 			console.log(data.length);
-			$(data).each(
-					function() {
-						var board_no = this.board_no;
-						var board_id = this.board_id;
-						var board_title = this.board_title;
-						var username = this.username;
-						var board_date = this.board_date;
-						var board_count = this.board_count;
-						var board_recomm = this.board_recomm;
-						addSearchItem(board_no, board_id, board_title, username,
-								board_date, board_count, board_recomm);
-					});
+			$(data)
+					.each(
+							function() {
+								var board_no = this.board_no;
+								var board_id = this.board_id;
+								var board_title = this.board_title;
+								var username = this.username;
+								var board_date = this.board_date;
+								var board_count = this.board_count;
+								var board_recomm = this.board_recomm;
+								addSearchItem(board_no, board_id, board_title,
+										username, board_date, board_count,
+										board_recomm);
+							});
 		});
 	}
 
@@ -179,28 +195,28 @@ div #bg {
 						var board_date = this.board_date;
 						var board_count = this.board_count;
 						var board_recomm = this.board_recomm;
-						addNewItem(board_no, board_id, board_title, username, board_date,
-								board_count, board_recomm);
+						addNewItem(board_no, board_id, board_title, username,
+								board_date, board_count, board_recomm);
 					});
 		});
-
 	}
 
-	function addSearchItem(board_no, board_id, board_title, username, board_date,
-			board_count, board_recomm) {
+	function addSearchItem(board_no, board_id, board_title, username,
+			board_date, board_count, board_recomm) {
 
 		var new_div = $("<div class='ui fifteen column grid'>");
 
 		var checked_div = $("<div class='one wide column'>");
-		checked_div.html("첵");
+		checked_div
+				.html("<input type='checkbox' name='rowCheck' value='" + board_no + "'>");
 
 		var board_no_div = $("<div class='one wide column'>");
 		board_no_div.html(board_no);
 
 		var board_id_div = $("<div class='one wide column'>");
-		if(board_id == "videofun")
-		board_id_div.html(board_id);
-		
+		if (board_id == "videofun")
+			board_id_div.html(board_id);
+
 		var board_title_div = $("<div class='five wide column' id='title'>");
 		board_title_div.html("<a href='javascript:void(0);' onclick='read("
 				+ board_no + ")'>" + board_title + "</a>");
@@ -231,7 +247,8 @@ div #bg {
 		var new_div = $("<div class='ui fifteen column grid'>");
 
 		var checked_div = $("<div class='one wide column'>");
-		checked_div.html("첵");
+		checked_div
+				.html("<input type='checkbox' name='rowCheck' value='" + board_no + "'>");
 
 		var board_no_div = $("<div class='one wide column'>");
 		board_no_div.html(board_no);
@@ -255,9 +272,10 @@ div #bg {
 		var board_recomm_div = $("<div class='two wide column'>");
 		board_recomm_div.html(board_recomm);
 
-		new_div.append(checked_div).append(board_no_div).append(board_id_div).append(board_title_div).append(username_div).append(
-				board_date_div).append(board_count_div).append(
-				board_recomm_div);
+		new_div.append(checked_div).append(board_no_div).append(board_id_div)
+				.append(board_title_div).append(username_div).append(
+						board_date_div).append(board_count_div).append(
+						board_recomm_div);
 
 		$("#articleList").append(new_div);
 	}
@@ -290,21 +308,26 @@ div #bg {
 		<a class="item active" data-tab="first">게시물 관리</a> <a class="item"
 			data-tab="second">댓글 관리</a>
 	</div>
-	<div class="ui bottom attached tab segment active" data-tab="first" id="first">
+	<div class="ui bottom attached tab segment active" data-tab="first"
+		id="first">
 		<div id="articleListMenu">
-			<div id="selectArticleDelete">선택삭제</div>
+			<div class="ui button" id="selectArticleDelete">선택삭제</div>
 			<div class="ui action input" id="articleListSearch">
-				<select class="ui compact selection dropdown" id="articleListSearchBox">
+				<select class="ui compact selection dropdown"
+					id="articleListSearchBox">
 					<option value="all" selected="">전체</option>
 					<option value="writer">작성자</option>
 					<option value="subject">제목</option>
-				</select> <input type="text" placeholder="Search..." id="articleListSearchInput">
+				</select> <input type="text" placeholder="Search..."
+					id="articleListSearchInput">
 				<div class="ui button" id="articleListSearchButton">Search</div>
 			</div>
 		</div>
 		<br /> <br /> <br />
 		<div class="ui fifteen column grid">
-			<div class="one wide column">첵</div>
+			<div class="one wide column">
+				<input type="checkbox" onclick="allChk(this)" id="allCheck"><label></label>
+			</div>
 			<div class="one wide column">번호</div>
 			<div class="two wide column">분류</div>
 			<div class="four wide column">제목</div>
@@ -317,9 +340,8 @@ div #bg {
 		<br>
 		<div id="articleListPageNavi"></div>
 	</div>
-	<div class="ui bottom attached tab segment" data-tab="second" id="second">
-	
-	</div>
+	<div class="ui bottom attached tab segment" data-tab="second"
+		id="second"></div>
 </div>
 
 
