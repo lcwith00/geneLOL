@@ -43,5 +43,6 @@ public class UserDAOImpl implements UserDAO {
 	public List<UserVO> memberList() throws Exception {
 		return session.selectList(namespace + ".memberList");
 	}
+	
 
 }

@@ -51,3 +51,5 @@ create table commenttable(
 create sequence comment_no_seq
 increment by 1
 start with 1;
+
+
