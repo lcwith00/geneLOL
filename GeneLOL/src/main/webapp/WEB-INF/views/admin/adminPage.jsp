@@ -28,14 +28,14 @@
 	}
 
 	function loadMemberList() {
-		$("#list").load("memberListManagement");
+		$("#list").load("memberlistmanagement");
 	}
 
 	function loadSecessionList() {
 		$("#list").load("secessionlistmanagement");
 	}
 
-	function loadadminList() {
+	function loadAdminList() {
 		$("#list").load("adminlistmanagement");
 	}
 </script>

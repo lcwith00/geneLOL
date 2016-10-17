@@ -1,6 +1,7 @@
 package com.genelol.dao.user;
 
 import java.util.List;
+import java.util.Map;
 
 import com.genelol.vo.user.UserVO;
 
@@ -15,4 +16,5 @@ public interface UserDAO {
 	public Integer checkUserMail(String userMail);
 	
 	public List<UserVO> memberList()throws Exception; //회원 목록
+
 }

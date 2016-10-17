@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.genelol.service.user.UserService;
 
+
 /**
  * Handles requests for the application home page.
  */
@@ -38,7 +39,7 @@ public class AdminManagementController {
 		model.addAttribute("list", userService.memberList());
 		return "admin/memberManagement/memberListManagement";
 	}
-
+	
 	@RequestMapping(value = "/adminvideoboard", method = RequestMethod.GET)
 	public String adminVideoBoard(Locale locale, Model model) {
 		return "admin/boardManagement/adminVideoBoard";

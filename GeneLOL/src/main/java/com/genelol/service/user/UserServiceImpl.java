@@ -35,11 +35,12 @@ public class UserServiceImpl implements UserService {
 	public Integer checkUserMail(String userMail) throws Exception {
 		return userDAO.checkUserMail(userMail);
 	}
-	
-	//회원 목록
+
+	// 회원 목록
 	@Override
 	public List<UserVO> memberList() throws Exception {
 		return userDAO.memberList();
 	}
+
 
 }
