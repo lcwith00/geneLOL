@@ -16,7 +16,6 @@
 	});
 
 	function loadVideoBoard() {
-
 		$("#list").load("adminvideoboard")
 	}
 

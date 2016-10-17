@@ -42,21 +42,24 @@
 	text-align: center !important;
 }
 </style>
-
-<div class="ui top inverted menu">
-	<div class="ui container">
-		<a href="http://localhost:8080/" class="header item"> <img
-			class="logo" src="resources/images/logo.png">GeneLoL
-		</a> <a href="../ranking.jsp" class="item">랭킹</a>
-		<div class="ui simple dropdown item">
-			<span class="text">통계</span> <i class="dropdown icon"></i>
-			<div class="menu">
-				<div class="item">챔피언 별</div>
-				<div class="item">티어 별</div>
+</head>
+<body>
+	<div class="ui top fixed inverted menu">
+		<div class="ui container">
+			<a href="http://localhost:8080/" class="header item"> <img
+				class="logo" src="resources/images/logo.png">GeneLoL
+			</a> <a href="#" class="item">랭킹</a>
+			<div class="ui simple dropdown item">
+				<span class="text">통계</span> <i class="dropdown icon"></i>
+				<div class="menu">
+					<div class="item">챔피언 별</div>
+					<div class="item">티어 별</div>
+				</div>
 			</div>
+			<a href="http://localhost:8080/video/videoList" class="item">동영상</a>
+			<a href="#" class="item">정보</a>
 		</div>
-		<a href="http://localhost:8080/video/videoList" class="item">동영상</a> <a
-			href="#" class="item">정보</a>
+
 		<c:choose>
 			<c:when test="${login.userName!=null}">
 				<div class="ui right simple dropdown item">
@@ -75,7 +78,6 @@
 							<a href="/user/logout">Log Out</a>
 						</div>
 					</div>
-
 				</div>
 			</c:when>
 			<c:otherwise>
@@ -85,7 +87,7 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
-</div>
-<div class="ui modal" id="signup_modal">
-	<%@ include file="../user/signup.jsp"%>
-</div>
+	<div class="ui modal" id="signup_modal">
+		<%@ include file="../user/signup.jsp"%>
+	</div>
+</body>

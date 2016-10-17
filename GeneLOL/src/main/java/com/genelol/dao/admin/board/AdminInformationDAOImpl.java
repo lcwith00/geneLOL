@@ -13,18 +13,18 @@ import com.genelol.vo.admin.board.PageCount;
 import com.genelol.vo.admin.board.SearchCount;
 
 @Repository
-public class AdminVideoBoardDAOImpl implements AdminVideoBoardDAO {
+public class AdminInformationDAOImpl implements AdminInformationDAO {
 
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "com.genelol.dao.adminboard.AdminVideoBoardMapper";
+	private static String namespace = "com.genelol.dao.adminboard.AdminInformationBoardMapper";
 
 	@Override
-	public List<AdminBoardVO> adminVideoBoardList(Integer start_no) {
-		return session.selectList(namespace + ".adminVideoBoardList", start_no);
+	public List<AdminBoardVO> adminInformationBoardList(Integer start_no) {
+		return session.selectList(namespace + ".adminInformationBoardList", start_no);
 	}
-	
+
 	@Override
 	public List<AdminBoardVO> searchList(String searchtype, String searchtext, Integer start_no) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -35,13 +35,13 @@ public class AdminVideoBoardDAOImpl implements AdminVideoBoardDAO {
 	}
 
 	@Override
-	public List<AdminBoardVO> videoDetail(Integer board_no) {
-		return session.selectList(namespace + ".videoDetail", board_no);
+	public List<AdminBoardVO> infoDetail(Integer board_no) {
+		return session.selectList(namespace + ".infoDetail", board_no);
 	}
 
 	@Override
-	public List<PageCount> videoCount() {
-		return session.selectList(namespace + ".videoCount");
+	public List<PageCount> infoCount() {
+		return session.selectList(namespace + ".infoCount");
 	}
 
 	@Override
@@ -51,4 +51,5 @@ public class AdminVideoBoardDAOImpl implements AdminVideoBoardDAO {
 		map.put("searchtext", searchtext);
 		return session.selectList(namespace + ".searchCount", map);
 	}
+
 }

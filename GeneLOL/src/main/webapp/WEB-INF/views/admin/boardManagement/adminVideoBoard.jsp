@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css"
 	href="resources/semantic-ui/semantic.min.css">
 <script src="resources/semantic-ui/semantic.min.js"></script>
+<script src="resources/jquery.paging.js"></script>
 <style type="text/css">
 .embed-container {
 	position: relative;
@@ -36,12 +37,230 @@ div #bg {
 #btn_List, #btn_Modify, #btn_Delete {
 	float: right;
 }
+
+#page_navi {
+	text-align: center;
+}
+
+#first {
+	text-align: center;
+}
+
+#articleList {
+	text-align: center;
+}
+
+#title {
+	text-align: left;
+}
+
+#selectArticleDelete {
+	float: left;
+}
+
+#articleListSearch {
+	float: right;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.menu .item').tab();
+		$('.ui.dropdown').dropdown();
 		listAll();
+		page();
+
+		$('#articleListSearchButton').click(function() {
+			var searchType = $('#articleListSearchBox option:selected').val();
+			if (searchType == "all") {
+				$('#articleListPageNavi').html("");
+				$("#articleList").html("");
+				var searchtext = $("#articleListSearchInput").val();
+				listSearch(searchType, page, searchtext);
+				searchPage(searchType, searchtext);
+			} else if (searchType == "writer") {
+				$('#articleListPageNavi').html("");
+				$("#articleList").html("");
+				var searchtext = $("#articleListSearchInput").val();
+				listSearch(searchType, page, searchtext);
+				searchPage(searchType, searchtext);
+			} else if (searchType == "subject") {
+				$('#articleListPageNavi').html("");
+				$("#articleList").html("");
+				var searchtext = $("#articleListSearchInput").val();
+				listSearch(searchType, page, searchtext);
+				searchPage(searchType, searchtext);
+			}
+
+		});
 	});
+
+	function searchPage(str1, str2) {
+		var searchType = str1;
+		var searchtext = str2;
+		var url = "/videoboard/searchcount/" + searchType + "/" + searchtext;
+		$.getJSON(url, function(data) {
+			$(data).each(function() {
+				var searchCount = this.searchCount;
+				resultCount = searchCount / 10
+				resultCount = Math.ceil(resultCount);
+				$('#articleListPageNavi').paging({
+					current : 1,
+					max : resultCount,
+					onclick : function(e, page) {
+						listSearch(searchType, page, searchtext);
+					}
+				});
+			});
+		});
+	}
+
+	function page() {
+		$('#articleListPageNavi').html("");
+		var url = "/videoboard/totalcount";
+		$.getJSON(url, function(data) {
+			$(data).each(function() {
+				var videoCount = this.totalCount;
+				resultCount = videoCount / 10
+				resultCount = Math.ceil(resultCount);
+				$('#articleListPageNavi').paging({
+					current : 1,
+					max : resultCount,
+					onclick : function(e, page) {
+						listAll(page);
+					}
+				});
+			});
+		});
+	}
+	function listSearch(str1, str2, str3) {
+		var searchtype = str1;
+		var page = 1;
+		var searchtext = str3
+		if (str2 > 1) {
+			page = str2;
+		}
+		var start_no = (page - 1) * 10;
+		var url = "/videoboard/article/" + searchtype + "/" + searchtext + "/"
+				+ start_no;
+		$.getJSON(url, function(data) {
+			console.log(data.length);
+			$(data).each(
+					function() {
+						var board_no = this.board_no;
+						var board_id = this.board_id;
+						var board_title = this.board_title;
+						var username = this.username;
+						var board_date = this.board_date;
+						var board_count = this.board_count;
+						var board_recomm = this.board_recomm;
+						addSearchItem(board_no, board_id, board_title, username,
+								board_date, board_count, board_recomm);
+					});
+		});
+	}
+
+	function listAll(str) {
+		$("#articleList").html("");
+		var page = 1;
+		if (str > 1) {
+			page = str;
+		}
+		var start_no = (page - 1) * 10;
+		var url = "/videoboard/article/" + start_no;
+		$.getJSON(url, function(data) {
+			console.log(data.length);
+
+			$(data).each(
+					function() {
+						var board_no = this.board_no;
+						var board_id = this.board_id;
+						var board_title = this.board_title;
+						var username = this.username;
+						var board_date = this.board_date;
+						var board_count = this.board_count;
+						var board_recomm = this.board_recomm;
+						addNewItem(board_no, board_id, board_title, username, board_date,
+								board_count, board_recomm);
+					});
+		});
+
+	}
+
+	function addSearchItem(board_no, board_id, board_title, username, board_date,
+			board_count, board_recomm) {
+
+		var new_div = $("<div class='ui fifteen column grid'>");
+
+		var checked_div = $("<div class='one wide column'>");
+		checked_div.html("첵");
+
+		var board_no_div = $("<div class='one wide column'>");
+		board_no_div.html(board_no);
+
+		var board_id_div = $("<div class='one wide column'>");
+		if(board_id == "videofun")
+		board_id_div.html(board_id);
+		
+		var board_title_div = $("<div class='five wide column' id='title'>");
+		board_title_div.html("<a href='javascript:void(0);' onclick='read("
+				+ board_no + ")'>" + board_title + "</a>");
+
+		var username_div = $("<div class='two wide column'>");
+		username_div.html(username);
+
+		var board_date_div = $("<div class='two wide column'>");
+		board_date_div.html(board_date);
+
+		var board_count_div = $("<div class='two wide column'>");
+		board_count_div.html(board_count)
+
+		var board_recomm_div = $("<div class='two wide column'>");
+		board_recomm_div.html(board_recomm);
+
+		new_div.append(checked_div).append(board_no_div).append(board_id_div)
+				.append(board_title_div).append(username_div).append(
+						board_date_div).append(board_count_div).append(
+						board_recomm_div);
+
+		$("#articleList").append(new_div);
+	}
+
+	function addNewItem(board_no, board_id, board_title, username, board_date,
+			board_count, board_recomm) {
+
+		var new_div = $("<div class='ui fifteen column grid'>");
+
+		var checked_div = $("<div class='one wide column'>");
+		checked_div.html("첵");
+
+		var board_no_div = $("<div class='one wide column'>");
+		board_no_div.html(board_no);
+
+		var board_id_div = $("<div class='two wide column'>");
+		board_id_div.html(board_id);
+
+		var board_title_div = $("<div class='four wide column' id='title'>");
+		board_title_div.html("<a href='javascript:void(0);' onclick='read("
+				+ board_no + ")'>" + board_title + "</a>");
+
+		var username_div = $("<div class='two wide column'>");
+		username_div.html(username);
+
+		var board_date_div = $("<div class='two wide column'>");
+		board_date_div.html(board_date);
+
+		var board_count_div = $("<div class='two wide column'>");
+		board_count_div.html(board_count)
+
+		var board_recomm_div = $("<div class='two wide column'>");
+		board_recomm_div.html(board_recomm);
+
+		new_div.append(checked_div).append(board_no_div).append(board_id_div).append(board_title_div).append(username_div).append(
+				board_date_div).append(board_count_div).append(
+				board_recomm_div);
+
+		$("#articleList").append(new_div);
+	}
 
 	function read(str) {
 		var board_no = str;
@@ -64,92 +283,43 @@ div #bg {
 		});
 		$('#readVideo').modal('show');
 	}
-
-	function listAll() {
-		$("#videoList").html("");
-		var url = "/videoboard/article";
-		$.getJSON(url, function(data) {
-			console.log(data.length);
-
-			$(data).each(
-					function() {
-						var board_no = this.board_no;
-						var board_title = this.board_title;
-						var username = this.username;
-						var board_date = this.board_date;
-						var board_count = this.board_count;
-						var board_recomm = this.board_recomm;
-						addNewItem(board_no, board_title, username, board_date,
-								board_count, board_recomm);
-					});
-		});
-	}
-
-	function addNewItem(board_no, board_title, username, board_date,
-			board_count, board_recomm) {
-
-		var new_div = $("<div class='ui seven column grid'>");
-
-		var checked_div = $("<div class='one wide column'>");
-		checked_div.html("선택");
-
-		var board_no_div = $("<div class='one wide column'>");
-		board_no_div.html(board_no);
-
-		var board_title_div = $("<div class='six wide column'>");
-		board_title_div.html("<a href='javascript:void(0);' onclick='read("
-				+ board_no + ")'>" + board_title + "</a>");
-
-		var username_div = $("<div class='two wide column'>");
-		username_div.html(username);
-
-		var board_date_div = $("<div class='two wide column'>");
-		board_date_div.html(board_date);
-
-		var board_count_div = $("<div class='two wide column'>");
-		board_count_div.html(board_count)
-
-		var board_recomm_div = $("<div class='two wide column'>");
-		board_recomm_div.html(board_recomm);
-
-		new_div.append(checked_div).append(board_no_div)
-				.append(board_title_div).append(username_div).append(
-						board_date_div).append(board_count_div).append(
-						board_recomm_div);
-		$("#videoList").append(new_div);
-	}
 </script>
 <!-- list -->
 <div id="videoBoardlist">
 	<div class="ui top attached tabular menu">
-		<a class="item active" data-tab="first">전체글 보기</a> <a class="item"
-			data-tab="second">전체 댓글 보기</a> <a class="item" data-tab="third">공지글
-			관리</a>
-		<div class="right menu">
-			<div class="item">
-				<div class="ui transparent icon input">
-					<input type="text" placeholder="Search users..."> <i
-						class="search link icon"></i>
-				</div>
+		<a class="item active" data-tab="first">게시물 관리</a> <a class="item"
+			data-tab="second">댓글 관리</a>
+	</div>
+	<div class="ui bottom attached tab segment active" data-tab="first" id="first">
+		<div id="articleListMenu">
+			<div id="selectArticleDelete">선택삭제</div>
+			<div class="ui action input" id="articleListSearch">
+				<select class="ui compact selection dropdown" id="articleListSearchBox">
+					<option value="all" selected="">전체</option>
+					<option value="writer">작성자</option>
+					<option value="subject">제목</option>
+				</select> <input type="text" placeholder="Search..." id="articleListSearchInput">
+				<div class="ui button" id="articleListSearchButton">Search</div>
 			</div>
 		</div>
-	</div>
-	<div class="ui bottom attached tab segment active" data-tab="first">
-		<div class="ui seven column grid">
-			<div class="one wide column">선택</div>
+		<br /> <br /> <br />
+		<div class="ui fifteen column grid">
+			<div class="one wide column">첵</div>
 			<div class="one wide column">번호</div>
-			<div class="six wide column">제목</div>
+			<div class="two wide column">분류</div>
+			<div class="five wide column">제목</div>
 			<div class="two wide column">작성자</div>
 			<div class="two wide column">작성일</div>
 			<div class="two wide column">조회수</div>
 			<div class="two wide column">좋아요</div>
 		</div>
-		<div id="videoList"></div>
+		<div id="articleList"></div>
+		<br>
+		<div id="articleListPageNavi"></div>
 	</div>
-	<div class="ui bottom attached tab segment" data-tab="second">
-		Second</div>
-	<div class="ui bottom attached tab segment" data-tab="third">
-		Third</div>
+	<div class="ui bottom attached tab segment" data-tab="second" id="second">
+	
+	</div>
 </div>
 
 
