@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.genelol.mapper.CommentMapper">
+
+<!-- 일단mysql로했습니다.. -->
+<!-- 	private Integer board_NO;		// 글 번호
+	private Integer comment_NO;		// 댓글 번호
+	private Integer comment_ListNO; // 댓글 순서
+	private Integer comment_Depth; 	// 댓글 단계
+	private Integer comment_Parent; // 원 댓글 번호
+	private Integer userID; 		// 작성자
+	private String comment_Content;	// 댓글 내용
+	private Integer comment_Recomm;	// 좋아요 수
+	private String comment_Date;	// 작성일자
+
+	private String comment_File;	// 첨부파일
+	private String c_File;			// 실제 서버에 저장한 파일명
+ -->
+	<select id="list" resultType="CommentVO">
+		select
+		*
+		from
+		comment
+		where board_NO =
+		#{board_NO}
+		order by comment_NO desc
+	</select>
+
+	<insert id="create">
+		insert into comment (board_NO, comment_Content, userID)
+		values (#{board_NO},#{comment_Content},#{userID})
+	</insert>
+
+	<update id="update">
+		update comment set comment_Content = #{comment_Content},
+		comment_Date = now()
+		where comment_NO = #{comment_NO}
+	</update>
+
+	<delete id="delete">
+		delete from comment where comment_NO =#{comment_NO}
+	</delete>
+
+
+	<select id="listPage" resultType="CommentVO">
+		select
+		*
+		from
+		comment
+		where
+		board_NO = #{board_NO}
+		order by comment_NO desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+
+	<select id="count" resultType="int">
+		select count(board_NO) from comment where board_NO =#{board_NO}
+	</select>
+
+
+</mapper>
+
