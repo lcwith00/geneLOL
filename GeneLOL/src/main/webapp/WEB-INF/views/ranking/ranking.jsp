@@ -43,28 +43,33 @@
 #rankingPage{border: 1px solid black;
 margin: 3px;
 }
+#impormation{text-align: right; margin-top: 15px;}
 </style>
 </head>
 <body>
-<!--  총 16 1 2 3 3  2 2 3 -->
+	<!--  총 16 1 2 3 3  2 2 3 -->
 
-
-            <div class='box-body' id="search">
-
-               <select name="searchType">
-                  <option value="id"
-                     <c:out value="${cri.searchType eq 'id'?'selected':''}"/>>
-                     id명</option>
-                  <option value="tier"
-                     <c:out value="${cri.searchType eq 'tier'?'selected':''}"/>>
-                     티어</option>
-               </select> <input type="text" name='keyword' id="keywordInput"
-                  value='${cri.keyword }'>
-               <button id='searchBtn'>Search</button>
-               <button id='newBtn'>New Board</button>
-
-            </div>
-
+	<div class="ui three column grid" id="searchPage">
+		<div class="five wide column">
+			<div class='box-body' id="search">
+				<select name="searchType">
+					<option value="id"
+						<c:out value="${cri.searchType eq 'id'?'selected':''}"/>>
+						id명</option>
+					<option value="tier"
+						<c:out value="${cri.searchType eq 'tier'?'selected':''}"/>>
+						티 어</option>
+				</select> <input type="text" name='keyword' id="keywordInput"
+					value='${cri.keyword }'>
+				<button id='searchBtn'>Search</button>
+				<button id='newBtn'>New Board</button>
+			</div>
+		</div>
+		<div class="four wide column"></div>
+		<div class="six wide column" id="impormation">
+		아이디를 클릭하시면 전적정보를 보실 수 있습니다.
+		</div>
+	</div>
       <div class="ui three column grid" id="rankingPage">
          <div class="two wide column">순위</div>
          <div class="three wide column">아이콘</div>

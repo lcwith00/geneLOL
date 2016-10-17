@@ -2,11 +2,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="resources/semantic-ui/semantic.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -191,36 +187,30 @@
 		$('#reset-passwordTab').removeClass('active');
 	}
 </script>
-</head>
-<body>
-	<div id="modal_body">
-		<div class="ui bottom attached tab segment active" id="signinTab">
-			<div class="ui middle aligned center aligned grid">
-				<div class="column" id="modal_column">
-					<form class="ui large form" method="post">
-						<div class="ui stacked segment">
-							<div class="field">
-								관리자 로그인
+<div id="modal_body">
+	<div class="ui bottom attached tab segment active" id="signinTab">
+		<div class="ui middle aligned center aligned grid">
+			<div class="column" id="modal_column">
+				<form class="ui large form" method="post">
+					<div class="ui stacked segment">
+						<div class="field">관리자 로그인</div>
+						<div class="field">
+							<div class="ui left icon input">
+								<i class="user icon"></i> <input type="text" name="userMail"
+									placeholder="Email">
 							</div>
 							<div class="field">
 								<div class="ui left icon input">
-									<i class="user icon"></i> <input type="text" name="userMail"
-										placeholder="Email">
+									<i class="lock icon"></i> <input type="password"
+										name="userPassword" placeholder="password">
 								</div>
-								<div class="field">
-									<div class="ui left icon input">
-										<i class="lock icon"></i> <input type="password"
-											name="userPassword" placeholder="password">
-									</div>
-								</div>
-								<div class="ui fluid large teal submit button">로그인</div>
 							</div>
-							<div class="ui error message"></div>
+							<div class="ui fluid large teal submit button">로그인</div>
 						</div>
-					</form>
-				</div>
+						<div class="ui error message"></div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+</div>

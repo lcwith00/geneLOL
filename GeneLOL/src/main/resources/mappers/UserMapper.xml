@@ -35,6 +35,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where username =#{userName} or usermail =#{userMail}
 	</select>
 
+	<!-- 회원 목록 -->
+	<select id="memberList" resultType="user">
+	<![CDATA[
+	select *
+	from usertable
+	where usertype = 'member'
+	]]>
+	</select>
+
+	<update id="memberSecession">
+	<![CDATA[
+	update usertable
+	set usertype = 'secession'
+	where userID = #{userID}
+	]]>
+	</update>
+
 </mapper>
-
-

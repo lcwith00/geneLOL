@@ -318,7 +318,6 @@ div #tab_column {
 											<img
 											src="http://img.youtube.com/vi/${UserVideoBoardVO.board_content}/1.jpg">
 										</a>
-										<c:out value="${videoLinkImgB}"></c:out>
 									</div>
 									<div class="content">
 										<span class="right floated"> <i

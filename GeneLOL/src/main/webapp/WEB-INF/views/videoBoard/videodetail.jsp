@@ -73,7 +73,7 @@
 					}
 
 					if (like.equals("1")) {
-					out.println("추천됨");
+						out.println("추천됨");
 					}
 
 				} else {
@@ -127,7 +127,8 @@ div #bg {
 <body>
 
 	<form role="form" method="post" action="/video/videoDetail">
-		<input type='hidden' name='board_no' id="board_id_for_like"
+		<input type='hidden' name='board_no' id="board_id_for_like"> <input
+			type='hidden' name='board_no' id='board_no'
 			value="${UserVideoBoardVO.board_no }">
 	</form>
 
@@ -148,10 +149,6 @@ div #bg {
 					<iframe
 						src='http://www.youtube.com/embed/${UserVideoBoardVO.board_content }'
 						frameborder='0' allowfullscreen></iframe>
-					<c:out value="${userVideoBoardVO.board_content}"></c:out>
-					<c:out value="${videoLinkImgB}"></c:out>
-
-
 				</div>
 			</div>
 			<br>
@@ -183,8 +180,7 @@ div #bg {
 					<div class="comment"></div>
 				</div>
 				<div class="comment">
-					<a class="avatar"> <img src="/images/avatar/small/joe.jpg">
-					</a>
+					<a class="avatar"> </a>
 					<div class="content">
 						<a class="author">Joe Henderson</a>
 						<div class="metadata">
