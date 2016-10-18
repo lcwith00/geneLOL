@@ -99,7 +99,7 @@ public class PageMakerVO {
 	
 	@Override
 	public String toString() {
-		return "PageMaker [totalCount=" + totalCount + ", startPage="
+		return "PageMakerVO [totalCount=" + totalCount + ", startPage="
 				+ startPage + ", endPage=" + endPage + ", prev=" + prev
 				+ ", next=" + next + ", displayPageNum=" + displayPageNum
 				+ ", paging=" + paging + "]";

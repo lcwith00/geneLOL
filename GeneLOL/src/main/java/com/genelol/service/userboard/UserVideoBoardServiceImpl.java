@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.genelol.dao.userboard.UserVideoBoardDao;
 import com.genelol.vo.userboard.UserVideoBoardVO;
 
-import oracle.net.aso.d;
+/*import oracle.net.aso.d;*/
 
 @Service
 public class UserVideoBoardServiceImpl implements UserVideoBoardService {
