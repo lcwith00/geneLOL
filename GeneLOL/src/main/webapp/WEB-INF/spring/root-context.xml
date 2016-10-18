@@ -25,7 +25,8 @@
 			execution="INIT" />
 		<jdbc:script location="classpath:db/db_boardtable.sql"
 			execution="INIT" />
-
+		<jdbc:script location="classpath:db/riotSQL.sql"
+			execution="INIT" />
 	</jdbc:initialize-database>
 
 	<!-- mybatis setting -->

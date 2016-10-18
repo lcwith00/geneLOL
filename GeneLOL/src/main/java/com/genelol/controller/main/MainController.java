@@ -2,7 +2,6 @@ package com.genelol.controller.main;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.genelol.api.riotgames.service.RiotGamesRestAPIService;
 import com.genelol.service.main.MainService;
+import com.genelol.service.riotgames.RiotGamesService;
+import com.genelol.service.riotgames.RiotGamesServiceImp.GameDescCompare;
 import com.genelol.vo.main.PopularBoardVo;
 
+import net.rithms.riot.dto.Champion.Champion;
 import net.rithms.riot.dto.Game.Game;
-import net.rithms.riot.dto.Game.Player;
+import net.rithms.riot.dto.League.League;
+import net.rithms.riot.dto.Stats.RankedStats;
 import net.rithms.riot.dto.Summoner.Summoner;
 
 @Controller
@@ -28,7 +30,7 @@ public class MainController {
 	private MainService mainService;
 
 	@Autowired
-	private RiotGamesRestAPIService riotGamesRestAPIService;
+	private RiotGamesService riotGamesService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String recordSearchForm(Model model) {
@@ -45,39 +47,27 @@ public class MainController {
 			throws InterruptedException {
 
 		ArrayList<Game> recentGames = new ArrayList<>();
-		HashMap<String, String> players = new HashMap<>();
+		HashMap<String, Summoner> players = new HashMap<>();
+		HashMap<String, Champion> champions = new HashMap<>();
+		
+		Summoner summoner = riotGamesService.getSummonerBySummonerName(summonerName);
 
-		Summoner summoner = riotGamesRestAPIService.getSummonerBySummonerName(summonerName);
+		recentGames = riotGamesService.getRecentRocordBySummonerID(summoner.getId());
+		Collections.sort(recentGames, new GameDescCompare());
 
-		recentGames = riotGamesRestAPIService.getRecentRocordBySummonerID(summoner.getId());
+		players = riotGamesService.getAllSummoner(recentGames);
 
-		Collections.sort(recentGames, new NoAscCompare());
-		for (Game game : recentGames) {
-			for (Player player : game.getFellowPlayers()) {
-				if (players.containsKey(player.getSummonerId()+"")) {
-					continue;
-				} else {
-					players.putAll(riotGamesRestAPIService.getSummonerBySummonerID(player.getSummonerId()));
-				}
-			}
-		}
+		League league = riotGamesService.getLeagueEntryBySummonerID(summoner.getId());
 
+		RankedStats rankedStats = riotGamesService.getRankedStatsBySummonerID(summoner.getId(), "SEASON2016");
+
+		model.addAttribute("rankedStats", rankedStats);
+		model.addAttribute("league", league);
+		model.addAttribute("summoner", summoner);
 		model.addAttribute("players", players);
 		model.addAttribute("recentGames", recentGames);
 
 		return "/search/recordSearch";
 	}
 
-	static class NoAscCompare implements Comparator<Game> {
-
-		/**
-		 * 오름차순(ASC)
-		 */
-		@Override
-		public int compare(Game o1, Game o2) {
-			// TODO Auto-generated method stub
-			return o1.getCreateDate() > o2.getCreateDate() ? -1 : o1.getCreateDate() > o2.getCreateDate() ? 1 : 0;
-		}
-
-	}
 }

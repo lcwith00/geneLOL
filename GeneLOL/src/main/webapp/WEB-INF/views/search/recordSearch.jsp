@@ -26,13 +26,16 @@
 		<%@ include file="../common/header.jsp"%>
 	</header>
 	<div id="contents">
-		<%-- <c:forEach items="${recentGames}" var="recent">
+		${summoner.name }<br>
+		<c:forEach items="${recentGames}" var="recent">
 	${recent.gameId }
 	<br>
-		</c:forEach> --%>
-		<c:forEach items="${players}" var="player">
-			${player.value}<br>
 		</c:forEach>
+		<c:forEach items="${players}" var="player">
+			${player.value.name}<br>
+		</c:forEach>
+		${league.name} <br> ${rankedStats.champions[1].id}
+
 	</div>
 
 	<footer>
