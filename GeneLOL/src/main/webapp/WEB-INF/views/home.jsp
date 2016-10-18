@@ -15,17 +15,12 @@
 	href="resources/semantic-ui/semantic.min.css">
 <script src="resources/semantic-ui/semantic.min.js"></script>
 
-<script type="text/javascript">
-	/* 비디오 게시판 버튼 클릭 시 처리 이벤트*/
-	$(document).ready(function() {
-		$("#userVideoBoardForm").click(function() {
-			location.href = "/videoBoard/videoWriteForm.do";
-		});
-	});
-</script>
+
+
 <link rel="stylesheet" type="text/css"
 	href="resources/css/common.css">
 <link rel="stylesheet" type="text/css" href="resources/css/home.css">
+
 </head>
 <body>
 	<header>

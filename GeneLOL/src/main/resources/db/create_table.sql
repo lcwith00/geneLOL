@@ -26,7 +26,18 @@ create table boardtable(
   references usertable(userid)  
 );
 
-
+--create table liketable (
+-- board_id varchar2(10) not null	
+-- board_no varchar2(10) primary key,
+-- userid number;
+-- board_recomm number default 0 not null
+-- constraint "board_no" foreign key (board_no)
+-- references boardtable(board_no),
+-- constraint "userid" foreign key (userid)
+-- references usertable(userid)  
+--);
+-- 
+	
 
 create sequence board_no_seq
 increment by 1

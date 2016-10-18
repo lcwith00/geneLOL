@@ -1,5 +1,7 @@
 package com.genelol.test.uservideo;
 
+
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -32,13 +34,13 @@ public class UserVideoBoardDAOtest {
 	// dao.videoInsert(videoBoard);
 	// }
 
-//	// 비디오 읽기 테스트
-//	@Test
-//	public void testRead() throws Exception {
-//
-//		logger.info(dao.videoRead(1).toString());
-//
-//	}
+	// // 비디오 읽기 테스트
+	// @Test
+	// public void testRead() throws Exception {
+	//
+	// logger.info(dao.videoRead(1).toString());
+	//
+	// }
 
 	// 비디오 수정 테스트
 	@Test
@@ -54,7 +56,25 @@ public class UserVideoBoardDAOtest {
 
 	// 비디오 삭제 테스트
 	@Test
+	
 	public void testDelete() throws Exception {
 		dao.videoDelete(1);
+	}
+	@Test
+	public void testInfiniteDownScroll() throws Exception{
+		
+		dao.infiniteScrollDown(6);
+		logger.info(dao.infiniteScrollDown(53).toString());;
+		logger.info("123test");
+	}
+	
+	@Test
+	public void testViewCount() throws Exception{
+
+		UserVideoBoardVO videoBoard = new UserVideoBoardVO();
+		videoBoard.setBoard_no(0);
+		logger.info(videoBoard.toString());
+		dao.countUpdate(videoBoard);
+		logger.info(videoBoard.getBoard_count().toString());
 	}
 }

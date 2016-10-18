@@ -41,13 +41,15 @@ public class MypageController {
 
 		logger.info("mypageList 호출 성공!");
 
-		List<UserVideoBoardVO> mypage = userVideoBoardService.videoList();
-		for (UserVideoBoardVO uservideoBoardVO : mypage) {
-			logger.info(uservideoBoardVO.toString());
 
-		}
+//		List<UserVideoBoardVO> mypage = userVideoBoardService.videoList();
+//		for (UserVideoBoardVO uservideoBoardVO : mypage) {
+//			logger.info(uservideoBoardVO.toString());
+//
+//		}
+//
+//		model.addAttribute("videoList", mypage);
 
-		model.addAttribute("mypageList", mypage);
 
 		return "/mypage/mypageList";
 
