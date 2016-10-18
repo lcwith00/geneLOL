@@ -15,4 +15,5 @@ public interface UserService {
 	public Integer checkUserMail(String userMail) throws Exception;
 	
 	public List<UserVO> memberList() throws Exception; //회원 목록
+
 }

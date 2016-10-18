@@ -6,10 +6,10 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.genelol.common.PageCount;
+import com.genelol.common.SearchCount;
 import com.genelol.dao.admin.board.AdminInformationDAO;
 import com.genelol.vo.admin.board.AdminBoardVO;
-import com.genelol.vo.admin.board.PageCount;
-import com.genelol.vo.admin.board.SearchCount;
 
 @Service
 public class AdminInformationBoardServiceImpl implements AdminInformationBoardService {

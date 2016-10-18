@@ -51,7 +51,7 @@ footer {
 </head>
 <body>
 	<header>
-		<%@ include file="../../common/header.jsp"%>
+		<%@ include file="header.jsp"%>
 	</header>
 	<div id="agreement">
 		<div class="ui top attached tabular menu">
@@ -437,7 +437,7 @@ footer {
 		</div>
 	</div>
 	<footer>
-		<%@ include file="../../common/footer.jsp"%>
+		<%@ include file="footer.jsp"%>
 	</footer>
 </body>
 </html>

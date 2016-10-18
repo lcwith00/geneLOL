@@ -40,8 +40,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<![CDATA[
 	select *
 	from usertable
+	where usertype = 'member'
 	]]>
 	</select>
 
+	<update id="memberSecession">
+	<![CDATA[
+	update usertable
+	set usertype = 'secession'
+	where userID = #{userID}
+	]]>
+	</update>
 
 </mapper>

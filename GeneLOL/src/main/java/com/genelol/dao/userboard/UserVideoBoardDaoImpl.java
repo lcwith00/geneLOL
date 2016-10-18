@@ -2,6 +2,8 @@ package com.genelol.dao.userboard;
 
 import java.util.List;
 
+
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -19,9 +21,10 @@ public class UserVideoBoardDaoImpl implements UserVideoBoardDao {
 																						// namespace
 
 	@Override
-	public List<UserVideoBoardVO> videoList() { // 동영상 게시판 목록
+	public List<UserVideoBoardVO> videoList(UserVideoBoardVO uvbvo) { // 동영상 게시판 목록
 		// TODO Auto-generated method stub
-		return session.selectList(namespace + ".videoList");
+	
+		return session.selectList(namespace + ".videoList", uvbvo);
 	}
 
 	@Override
@@ -49,11 +52,32 @@ public class UserVideoBoardDaoImpl implements UserVideoBoardDao {
 		session.update(namespace + ".videoUpdate", uvbvo);
 	}
 
-//	@Override
-//	public UserVideoBoardVO videoRead(Integer board_no) throws Exception {
-//		// TODO Auto-generated method stub
-//		return session.selectOne(namespace + ".videoRead", board_no);
-//	}
+	@Override
+	public List<UserVideoBoardVO> infiniteScrollDown(Integer board_no) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace + ".infiniteScrollDown", board_no);
+	}
+
+	@Override
+	public void countUpdate(UserVideoBoardVO uvbvo) throws Exception {
+		// TODO Auto-generated method stub
+		session.update(namespace + ".countUpdate", uvbvo);
+	}
+
+	@Override
+	public void likeUpdate(UserVideoBoardVO uvbvo) throws Exception {
+		// TODO Auto-generated method stub
+		session.update(namespace +".likeUpdate", uvbvo);
+	}
+
+
+
+
+	// @Override
+	// public UserVideoBoardVO videoRead(Integer board_no) throws Exception {
+	// // TODO Auto-generated method stub
+	// return session.selectOne(namespace + ".videoRead", board_no);
+	// }
 
 	// 동영상 목록 구현
 

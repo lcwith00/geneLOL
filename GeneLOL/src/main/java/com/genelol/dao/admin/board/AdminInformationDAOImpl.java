@@ -8,9 +8,9 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.genelol.common.PageCount;
+import com.genelol.common.SearchCount;
 import com.genelol.vo.admin.board.AdminBoardVO;
-import com.genelol.vo.admin.board.PageCount;
-import com.genelol.vo.admin.board.SearchCount;
 
 @Repository
 public class AdminInformationDAOImpl implements AdminInformationDAO {
@@ -18,7 +18,7 @@ public class AdminInformationDAOImpl implements AdminInformationDAO {
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "com.genelol.dao.adminboard.AdminInformationBoardMapper";
+	private static String namespace = "com.genelol.dao.admin.board.AdminInformationBoardMapper";
 
 	@Override
 	public List<AdminBoardVO> adminInformationBoardList(Integer start_no) {

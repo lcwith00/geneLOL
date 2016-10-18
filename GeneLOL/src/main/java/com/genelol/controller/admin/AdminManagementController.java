@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.genelol.service.user.UserService;
 
+
 /**
  * Handles requests for the application home page.
  */
@@ -32,13 +33,6 @@ public class AdminManagementController {
 		return "admin/adminPage";
 	}
 
-	@RequestMapping(value = "/memberlistmanagement", method = RequestMethod.GET)
-	public String memberListManagement(Locale locale, Model model) throws Exception {
-		logger.info("show memberList...........");
-		model.addAttribute("list", userService.memberList());
-		return "admin/memberManagement/memberListManagement";
-	}
-
 	@RequestMapping(value = "/adminvideoboard", method = RequestMethod.GET)
 	public String adminVideoBoard(Locale locale, Model model) {
 		return "admin/boardManagement/adminVideoBoard";
@@ -49,13 +43,18 @@ public class AdminManagementController {
 		return "admin/boardManagement/adminInformationBoard";
 	}
 
-	@RequestMapping(value = "/adminlistmanagement", method = RequestMethod.GET)
-	public String adminListManagement(Locale locale, Model model) {
-		return "admin/memberManagement/adminListManagement";
+	@RequestMapping(value = "/memberlistmanagement", method = RequestMethod.GET)
+	public String memberListManagement(Locale locale, Model model) throws Exception {
+		return "admin/memberManagement/memberListManagement";
 	}
-
+	
 	@RequestMapping(value = "/secessionlistmanagement", method = RequestMethod.GET)
 	public String secssionListManagement(Locale locale, Model model) {
 		return "admin/memberManagement/secessionListManagement";
+	}
+	
+	@RequestMapping(value = "/adminlistmanagement", method = RequestMethod.GET)
+	public String adminListManagement(Locale locale, Model model) {
+		return "admin/memberManagement/adminListManagement";
 	}
 }

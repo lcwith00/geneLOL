@@ -3,10 +3,109 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.genelol.dao.userboard.UserVideoBoardMapper">
+
+	<!--동영상 게시물 기본 조회 -->
+	<select id="videoList" parameterType="userVideoBoard"
+		resultType="com.genelol.vo.userboard.UserVideoBoardVO">
+		<![CDATA[
+		
+		SELECT board_no, board_id, board_content, userid, board_title, 
+		to_char(board_date, 'YYYY-MM-DD HH24:MI:SS')as board_date,board_count,board_recomm
+		FROM boardtable
+		]]>
+		<if test="board_title != null">
+			where board_title like '%' || #{board_title} || '%'
+		</if>
+
+		order by board_no desc, board_date desc
+		limit 0,12;
+
+
+	</select>
+	<!-- 동영상등록 -->
+
+	<insert id="videoInsert" parameterType="userVideoBoard">
+		<selectKey keyProperty="board_no" resultType="Integer"
+			order="BEFORE">
+			select board_no_seq.nextval from dual
+		</selectKey>
+
+
+		insert into boardtable (board_id,board_no, userid,
+		board_title,board_content
+		<if test="board_file != null and board_file !=''">,board_file</if>
+		)
+		values(
+		#{board_id},#{board_no},#{userid},#{board_title},#{board_content}
+		<if test="board_file != null and board_file !=''">,#{board_file}</if>
+		)
+	</insert>
+	<select id=""></select>
+
+
+	<update id="videoUpdate" parameterType="userVideoBoard">
+		update
+		boardtable set
+		board_title=#{board_title},
+		board_content=#{board_content}
+		where
+		board_no=#{board_no}
+
+	</update>
+
+	<delete id="videoDelete">
+		delete from boardtable where board_no = #{board_no}
+	</delete>
+
+
+
+	<select id="videoDetail" parameterType="int"
+		resultType="com.genelol.vo.userboard.UserVideoBoardVO">
+		select
+		*
+		from boardtable
+		where board_no = #{board_no}
+
+	</select>
+
+
 	<select id="videoRead" resultType="com.genelol.vo.userboard.UserVideoBoardVO"
 		parameterType="int"> select
 		board_id,board_no,userid,board_title,board_content
 		from boardtable
 		where board_no = #{board_no}
 	</select>
+
+	<!-- 스크롤 다운 컨트롤러 -->
+
+	<select id="infiniteScrollDown" resultType="com.genelol.vo.userboard.UserVideoBoardVO">
+<![CDATA[
+	select board_no, board_id, board_content, userid, board_title, 
+		to_char(board_date, 'YYYY-MM-DD HH24:MI:SS')as board_date,board_count,board_recomm
+	from boardtable
+	where board_no <= #{board_no}
+	and board_no > #{board_no}-13
+	order by board_no desc, board_date desc
+	limit 0,12;
+	]]>
+		<!-- <![CDATA[ select * from (select board_no,board_title,board_content, 
+			ROWNUM as RNUM from (select * from boardtable where board_no<=#{board_no} 
+			and board_no>#{board_no}-13 order by board_no desc)) where RNUM<10;select 
+			* from (select board_no,board_title,board_content,ROWNUM as RNUM from (select 
+			* from boardtable where board_no<=#{board_no} and board_no>#{board_no}-13 
+			order by board_no desc)) where RNUM<10; ]]> -->
+	</select>
+	<update id="countUpdate" parameterType="userVideoBoard">
+
+		update boardtable set
+		board_count = board_count+1
+		where board_no = #{board_no}
+	</update>
+	<update id="likeUpdate" parameterType="userVideoBoard">
+			update boardtable set board_recomm = board_recomm+1
+		<if test="board_recomm == 1">
+			where board_no = #{board_no}
+		</if>
+	</update>
+
 </mapper>

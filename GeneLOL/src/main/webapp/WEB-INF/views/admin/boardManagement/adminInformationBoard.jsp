@@ -54,7 +54,7 @@ div #bg {
 	text-align: left;
 }
 
-#infoBoardDelete {
+#selectArticleDelete{
 	float: left;
 }
 
@@ -94,6 +94,24 @@ div #bg {
 		});
 	});
 
+	function allChk(obj) {
+		var chkObj = document.getElementsByName("rowCheck");
+		var rowCnt = chkObj.length - 1;
+		var check = obj.checked;
+		if (check) {
+			for (var i = 0; i <= rowCnt; i++) {
+				if (chkObj[i].type == "checkbox")
+					chkObj[i].checked = true;
+			}
+		} else {
+			for (var i = 0; i <= rowCnt; i++) {
+				if (chkObj[i].type == "checkbox") {
+					chkObj[i].checked = false;
+				}
+			}
+		}
+	}
+
 	function searchPage(str1, str2) {
 		var searchType = str1;
 		var searchtext = str2;
@@ -101,7 +119,7 @@ div #bg {
 		$.getJSON(url, function(data) {
 			$(data).each(function() {
 				var searchCount = this.searchCount;
-				resultCount = searchCount / 10
+				var resultCount = searchCount / 10
 				resultCount = Math.ceil(resultCount);
 				$('#page_navi').paging({
 					current : 1,
@@ -120,7 +138,7 @@ div #bg {
 		$.getJSON(url, function(data) {
 			$(data).each(function() {
 				var infoCount = this.totalCount;
-				resultCount = infoCount / 10
+				var resultCount = infoCount / 10
 				resultCount = Math.ceil(resultCount);
 				$('#page_navi').paging({
 					current : 1,
@@ -190,7 +208,8 @@ div #bg {
 		var new_div = $("<div class='ui seven column grid'>");
 
 		var checked_div = $("<div class='one wide column'>");
-		checked_div.html("첵");
+		checked_div
+				.html("<input type='checkbox' name='rowCheck' value='" + board_no + "'>");
 
 		var board_no_div = $("<div class='two wide column'>");
 		board_no_div.html(board_no);
@@ -225,7 +244,8 @@ div #bg {
 		var new_div = $("<div class='ui seven column grid'>");
 
 		var checked_div = $("<div class='one wide column'>");
-		checked_div.html("첵");
+		checked_div
+				.html("<input type='checkbox' name='rowCheck' value='" + board_no + "'>");
 
 		var board_no_div = $("<div class='two wide column'>");
 		board_no_div.html(board_no);
@@ -281,13 +301,13 @@ div #bg {
 <!-- list -->
 <div id="infoBoardlist">
 	<div class="ui top attached tabular menu">
-		<a class="item active" data-tab="first">전체글 보기</a> <a class="item"
-			data-tab="second">전체 댓글 보기</a>
+		<a class="item active" data-tab="first">게시물 관리</a> <a class="item"
+			data-tab="second">댓글 관리</a>
 	</div>
 	<div class="ui bottom attached tab segment active" data-tab="first"
 		id="infoBoardList">
 		<div id="infoBoardMenu">
-			<div id="infoBoardDelete">선택삭제</div>
+			<div class="ui button" id="selectArticleDelete">선택삭제</div>
 			<div class="ui action input" id="infoBoardSearch">
 				<select class="ui compact selection dropdown" id="searchBox">
 					<option value="all" selected="">전체</option>
@@ -299,7 +319,9 @@ div #bg {
 		</div>
 		<br /> <br /> <br />
 		<div class="ui seven column grid">
-			<div class="one wide column">첵</div>
+			<div class="one wide column">
+				<input type="checkbox" onclick="allChk(this)" id="allCheck"><label></label>
+			</div>
 			<div class="two wide column">번호</div>
 			<div class="five wide column">제목</div>
 			<div class="two wide column">작성자</div>
@@ -317,6 +339,4 @@ div #bg {
 
 
 	<!-- modal -->
-	<div class="ui modal" id="readinfo">
-		
-	</div>
+	<div class="ui modal" id="readinfo"></div>

@@ -1,3 +1,6 @@
+<%@page import="java.lang.ProcessBuilder.Redirect"%>
+<%@page import="javafx.scene.control.Alert"%>
+<%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -12,6 +15,9 @@
 <link rel="stylesheet" type="text/css"
 	href="../resources/semantic-ui/semantic.min.css">
 <script src="../resources/semantic-ui/semantic.min.js"></script>
+
+
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		var formObj = $("form[role='form']");
@@ -26,10 +32,61 @@
 			formObj.attr("method", "post");
 			formObj.submit();
 		});
-		
-		
+
+		/* 	$("#like_input_data").val("1");
+			$("#like_data").attr("action", "/video/videoDetail");
+			$("#like_data").attr("method", "get");
+			$("#like_data").submit();
+		 */
+		$("#likebtn").on("click", function() {
+			$.ajax({
+				type : "POST",
+				url : "/video/videoLike",
+				dataType : 'text', // 서버로부터 되돌려받는 데이터의 타입을 명시하는 것이다.
+				data : { // 서버로 보낼 데이터 명시 
+					board_no : $("#board_id_for_like").val(),
+					board_recomm : $("#like_input_data").val()
+				},
+				success : function() {
+					alert("전송완료");
+				}
+
+			});
+
+		});
+
 	});
 </script>
+
+<script type="text/javascript">
+	// Add contents for max height
+<%String like = "";
+
+			try {
+				Cookie[] cookies = request.getCookies();
+
+				if (cookies != null) {
+					for (int i = 0; i < cookies.length; i++) {
+						if (cookies[i].getName().equals("like")) {
+							like = cookies[i].getValue();
+						}
+					}
+
+					if (like.equals("1")) {
+						out.println("추천됨");
+					}
+
+				} else {
+					response.sendRedirect("videolistpage.jsp");
+				}
+
+			} catch (Exception e) {
+			}%>
+	$(document).ready(function() {
+
+	});
+</script>
+
 <style type="text/css">
 .embed-container {
 	position: relative;
@@ -59,6 +116,10 @@ div #bg {
 #btn_List, #btn_Modify, #btn_Delete {
 	float: right;
 }
+
+#viewCount {
+	float: right;
+}
 </style>
 
 <title>videoDetail</title>
@@ -66,7 +127,8 @@ div #bg {
 <body>
 
 	<form role="form" method="post" action="/video/videoDetail">
-		<input type='hidden' name='board_no' id='board_no'
+		<input type='hidden' name='board_no' id="board_id_for_like"> <input
+			type='hidden' name='board_no' id='board_no'
 			value="${UserVideoBoardVO.board_no }">
 	</form>
 
@@ -84,44 +146,29 @@ div #bg {
 			<div class='embed-container'>
 
 				<div class="video_play">
-					<c:choose>
-						<c:when test="${UserVideoBoardVO.board_content.length()==28}">
-							<c:set var="videoLinkImgA"
-								value="${UserVideoBoardVO.board_content}" />
-							<c:set var="videoLinkImgB"
-								value="${fn:substring(videoLinkImgA, 17,28)}" />
-						</c:when>
-						<c:when test="${UserVideoBoardVO.board_content.length()==43}">
-							<c:set var="videoLinkImgA"
-								value="${UserVideoBoardVO.board_content}" />
-							<c:set var="videoLinkImgB"
-								value="${fn:substring(videoLinkImgA, 32,43)}" />
-						</c:when>
-						<c:otherwise>
-							<c:set var="videoLinkImgB" value="notFoundImg" />
-						</c:otherwise>
-					</c:choose>
-
-					<iframe src='http://www.youtube.com/embed/${videoLinkImgB}'
+					<iframe
+						src='http://www.youtube.com/embed/${UserVideoBoardVO.board_content }'
 						frameborder='0' allowfullscreen></iframe>
-					<c:out value="${userVideoBoardVO.board_content}"></c:out>
-					<c:out value="${videoLinkImgB}"></c:out>
-
-
 				</div>
-			</div>
-			<div id="view_Cnt">
-				<i class="unhide icon"></i>${UserVideoBoard.board_count }
 			</div>
 			<br>
 		</div>
+		<div>
+			<form id="like_data" method="get">
+				<div class="ui labeled button" tabindex="0">
+					<div class="ui button" id="likebtn">
+						<i class="heart icon"></i> Like <input type="hidden"
+							name="board_recomm" value="1" id="like_input_data">
+					</div>
+					<a class="ui basic label"> ${UserVideoBoardVO.board_recomm } </a>
+				</div>
 
-		<div class="ui labeled button" tabindex="0">
+				<div class="ui blue labels" id="viewCount">
+					<a class="ui label"> 조회수 : ${UserVideoBoardVO.board_count}</a>
+				</div>
 
-			<div class="ui button">
-				<i class="heart icon"></i> Like
-			</div>
-			<a class="ui basic label"> 2,048 </a>
+			</form>
+
 		</div>
 		<!-- ================reply start================== -->
 		<div class="ui threaded comments">
@@ -133,12 +180,11 @@ div #bg {
 					<div class="comment"></div>
 				</div>
 				<div class="comment">
-					<a class="avatar">
-					</a>
+					<a class="avatar"> </a>
 					<div class="content">
 						<a class="author">Joe Henderson</a>
 						<div class="metadata">
-							<span class="date">5 days ago</span>
+							<span class="date">${UserVideoBoardVO.board_date }</span>
 						</div>
 						<div class="text">Dude, this is awesome. Thanks so much</div>
 						<div class="actions">
