@@ -103,6 +103,7 @@ strong {
 	font-size: 15px;
 }
 </style>
+<script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <script>
 	function boardpage_click() {
 		$('#commentpage').hide();
@@ -149,7 +150,102 @@ strong {
 									+ "&keyword=" + $('#keywordInput').val();
 						});
 			});
-	$()
+	
+	
+	var bno = 123239;
+	
+	getPageList(1);
+
+	function getAllList() {
+
+		$
+				.getJSON(
+						"/comment/all/" + board_NO,
+						function(data) {
+
+							//console.log(data.length);
+
+							var str = "";
+
+							$(data)
+									.each(
+											function() {
+												str += "<li data-comment_NO='"+this.comment_NO+"' class='commentLi'>"
+														+ this.comment_NO
+														+ ":"
+														+ this.comment_Content
+														+ "<button>MOD</button></li>";
+											});
+							$("#comment").html(str);
+						});
+	}
+	$("#comment").on("click", ".commentLi button", function() {
+
+		var comment = $(this).parent();
+
+		var comment_NO = reply.attr("data-comment_NO");
+		var comment_Content = reply.text();
+
+		$(".modal-title").html(rno);
+		$("#comment_Content").val(comment_Content);
+		$("#modDiv").show("slow");
+
+	});
+
+	
+	function getPageList(page){
+		
+	  $.getJSON("/comment/"+board_NO+"/"+page , function(data){
+		  
+		  console.log(data.list.length);
+		  
+		  var str ="";
+		  
+		  $(data.list).each(function(){
+			  str+= "<li data-comment_NO='"+this.comment_NO+"' class='commentLi'>" 
+			  +this.comment_NO+":"+ this.comment_Content+
+			  "<button>MOD</button></li>";
+		  });
+		  
+		  $("#comment").html(str);
+		  
+		  printPaging(data.pageMakerVO);
+		  
+	  });
+  }		
+	
+	  
+	function printPaging(pageMakerVO){
+		
+		var str = "";
+		
+		if(pageMakerVO.prev){
+			str += "<li><a href='"+(pageMakerVO.startPage-1)+"'> << </a></li>";
+		}
+		
+		for(var i=pageMakerVO.startPage, len = pageMakerVO.endPage; i <= len; i++){				
+				var strClass= pageMakerVO.paging.page == i?'class=active':'';
+			  str += "<li "+strClass+"><a href='"+i+"'>"+i+"</a></li>";
+		}
+		
+		if(pageMakerVO.next){
+			str += "<li><a href='"+(pageMakerVO.endPage + 1)+"'> >> </a></li>";
+		}
+		$('.pagination').html(str);				
+	}
+	
+	var commentPage = 1;
+	
+	$(".pagination").on("click", "li a", function(event){
+		
+		event.preventDefault();
+		
+		commentPage = $(this).attr("href");
+		
+		getPageList(commentPage);
+		
+	});
+	
 </script>
 </head>
 <body>
@@ -162,35 +258,24 @@ strong {
 		<div class="ui three column grid" id="menu">
 			<div class="three wide column"></div>
 			<div class="three wide column">
-				<button class="ui inverted teal button" id="boardbutton"
-					onclick="allpage_click();">
-					<strong>모두 보기</strong>
-				</button>
+				
 			</div>
 			<div class="three wide column">
 				<button class="ui inverted blue button" id="boardbutton"
 					onclick="boardpage_click();">
-					<strong>내가 작성한 글</strong>
-				</button>
-			</div>
-			<div class="four wide column">
-				<button class="ui inverted green button" id="commentbutton"
-					onclick="commentpage_click();">
 					<strong>내가 작성한 댓글</strong>
 				</button>
 			</div>
+			<div class="four wide column">
+				
+			</div>
 			<div class="one wide column"></div>
 		</div>
-
-
-		<!--글 검색 -->
+		
+		<!--댓글 검색 -->
 		<div class="ui three column grid">
-			<div class="eight wide column" id="boardsearch">
+			<div class="eight wide column" id="commentsearch">
 				<form id="search_form" method="get">
-				<select name="searchType">
-					<option value="content">
-						제목</option>
-				</select>
 					<input class="prompt" type="text" placeholder="검색"
 						name="board_title">
 
@@ -199,82 +284,6 @@ strong {
 						<i class="black search icon"></i>
 					</button>
 				</form>
-			</div>
-			<div class="seven wide column" id="boardsearchimpormation">
-				<strong>제목을 클릭하세요 게시물을 확인할 수 있습니다.</strong>
-			</div>
-		</div>
-		<!--  내가 작성한 글 메뉴-->
-		<!--  총 16 1 5 1 1  3 2 3 -->
-		<div class="ui three column grid" id="boardpage">
-			<div class="one wide column"></div>
-			<div class="three wide column">
-				<strong>제목</strong>
-			</div>
-			<div class="two wide column">
-				<strong>추천</strong>
-			</div>
-			<div class="two wide column">
-				<strong>댓글</strong>
-			</div>
-			<div class="two wide column">
-				<strong>시간</strong>
-			</div>
-			<div class="two wide column">
-				<strong>조회</strong>
-			</div>
-			<div class="three wide column">
-				<strong>관리</strong>
-			</div>
-		</div>
-
-		<c:forEach items="${mypageList}" var="UserVideoBoardVO">
-		<div class="ui three column grid" id="boardpage2">
-			<div class="one wide column"></div>
-			<div class="three wide column">
-				<a href="http://www.naver.com">${UserVideoBoardVO.board_title}</a>
-			</div>
-			<div class="two wide column">${UserVideoBoardVO.board_recomm}</div>
-			<div class="two wide column">${UserVideoBoardVO.board_content}</div>
-			<div class="two wide column">
-				<fmt:formatDate pattern="YYYY-MM-DD HH24:MI:SS"
-					value="${UserVideoBoardVO.board_date}"/>
-			</div>
-			<div class="two wide column">${UserVideoBoardVO.board_count}</div>
-			<div class="three wide column">
-			</div>
-		</div>
-		</br>
-		</c:forEach>
-		<!-- //내가 작성한 글 내용-->
-			<%--<!--  보드페이징 -->
-		 <!-- 이전페이지 -->
-		
-		<c:if test="${pageMaker.prev}">
-		<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
-	</c:if>
-	<!-- 시작페이지,끝페이지 -->
-		<c:forEach begin="${pageMaker.startPage }"
-		end="${pageMaker.endPage }" var="idx">
-	<li	<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-	<a href="list${pageMaker.makeSearch(idx)}">${idx}</a></li>
-	</c:forEach>
-	<!-- 다음페이지 -->
-	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-	<li><a href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
-	</c:if> --%>
-
-		<!--댓글 검색 -->
-		<div class="ui three column grid">
-			<div class="eight wide column" id="commentsearch">
-				<select name="searchType">
-					<option value="content"
-						<c:out value="${cri.searchType eq 'content'?'selected':''}"/>>
-						내용</option>
-				</select><i class="search icon"></i><input type="text" name='keyword'
-					id="keywordInput" value='${cri.keyword }'>
-
-				<button id='searchBtn'>Search</button>
 			</div>
 			<div class="seven wide column" id="commentsearchimpormation">
 				<strong>내용을 클릭하세요 댓글을 확인할 수 있습니다</strong>
@@ -295,24 +304,36 @@ strong {
 			</div>
 		</div>
 		<!--  내가 작성한 댓글 내용-->
-		<%-- <c:forEach items="${mypage}" var="UserVideoBoardVO"> --%>
 		<div class="ui three column grid" id="commentpage2">
 			<div class="one wide column"></div>
 			<div class="three wide column">
-				<a href="http://www.naver.com">${CommentVO.comment_Content}내용</a>
+				<a href="http://www.naver.com"><ul id="comment">
+	</ul>
+	
+	<ul class='pagination'>
+	</ul>	
+</a>
 			</div>
 			<div class="three wide column">
-				<fmt:formatDate pattern="yyyy-mm-dd HH:MM"
-					value="${CommentVO.comment_Date}" />
-				시간
+				
 			</div>
 			<div class="three wide column">
-			
+	
 			</div>
 		</div>
-		<%-- </c:forEach> --%>
-		<!--댓글페이징 -->
 	</div>
+	
+	<ul id="comment">
+	</ul>
+	
+	<ul class='pagination'>
+	</ul>	
+	
+	
+	
+	
+	
+	
 	<footer id="footer">
 		<%-- 	<%@ include file="../common/footer.jsp"%> --%>
 	</footer>

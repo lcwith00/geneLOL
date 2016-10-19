@@ -6,7 +6,7 @@ body, html {
 	height: 100%;
 	width: 100%;
 	min-width: 600px;
-	overflow-x: scroll;
+	overflow-x: auto;
 	font-size: 16px;
 }
 

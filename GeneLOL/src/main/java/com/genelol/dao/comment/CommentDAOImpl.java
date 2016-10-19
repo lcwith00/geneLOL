@@ -23,7 +23,7 @@ public class CommentDAOImpl implements CommentDAO {
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "com.genelol.mapper.CommentMapper";
+	private static String namespace = "com.genelol.mappers.CommentMapper";
 
 	@Override
 	// 리스트
