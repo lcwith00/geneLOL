@@ -17,9 +17,10 @@ import com.genelol.service.riotgames.RiotGamesService;
 import com.genelol.service.riotgames.RiotGamesServiceImp.GameDescCompare;
 import com.genelol.vo.main.PopularBoardVo;
 
-import net.rithms.riot.dto.Champion.Champion;
 import net.rithms.riot.dto.Game.Game;
 import net.rithms.riot.dto.League.League;
+import net.rithms.riot.dto.Static.Champion;
+import net.rithms.riot.dto.Static.SummonerSpellList;
 import net.rithms.riot.dto.Stats.RankedStats;
 import net.rithms.riot.dto.Summoner.Summoner;
 
@@ -36,7 +37,6 @@ public class MainController {
 	public String recordSearchForm(Model model) {
 
 		List<PopularBoardVo> popularBoardVoList = mainService.popularBoardList();
-
 		model.addAttribute("popularBoardVoList", popularBoardVoList);
 
 		return "home";
@@ -47,9 +47,9 @@ public class MainController {
 			throws InterruptedException {
 
 		ArrayList<Game> recentGames = new ArrayList<>();
-		HashMap<String, Summoner> players = new HashMap<>();
-		HashMap<String, Champion> champions = new HashMap<>();
-		
+		HashMap<Long, Summoner> players = new HashMap<>();
+		HashMap<Integer, Champion> champions = new HashMap<>();
+
 		Summoner summoner = riotGamesService.getSummonerBySummonerName(summonerName);
 
 		recentGames = riotGamesService.getRecentRocordBySummonerID(summoner.getId());
@@ -61,6 +61,13 @@ public class MainController {
 
 		RankedStats rankedStats = riotGamesService.getRankedStatsBySummonerID(summoner.getId(), "SEASON2016");
 
+		champions = riotGamesService.getRecentPlayedChampion(recentGames, "altimages");
+		champions.putAll(riotGamesService.getRankedPlayedChampion(rankedStats, "altimages"));
+
+		SummonerSpellList summonerSpellList = riotGamesService.getAllSpell("all");
+		
+		model.addAttribute("spellList", summonerSpellList);
+		model.addAttribute("champions", champions);
 		model.addAttribute("rankedStats", rankedStats);
 		model.addAttribute("league", league);
 		model.addAttribute("summoner", summoner);

@@ -21,35 +21,9 @@
 						$('#registLink').click(function() {
 							$('.ui.modal.link').modal('show');
 						});
-
 						//==========동영상 상세보기 ============
-						$('#videoRead').click(function() {
-
-							$('.ui.modal.Detail').modal('show');
-
-						});
-						/* $("#serach_form").attr("method", "GET");
-						$("#serach_form").attr("action", "/video/videoList");
-						$("#serach_form").submit();
 						
-						$("#btn_tab_LoL").click(function(){
 							
-						});
-						
-						}); */
-
-						/* 
-						$("#tab_LOL").attr("method", "GET");
-						$("#tab_LOL").attr("action", "/video/videoList");
-						$("#tab_LOL").submit();
-						
-						$("#tab_Fun").attr("method", "GET");
-						$("#tab_Fun").attr("action", "/video/videoList");
-						$("#tab_Fun").submit();
-						
-						$("#tab_Etc").attr("method", "GET");
-						$("#tab_Etc").attr("action", "/video/videoList");
-						$("#tab_Etc").submit(); */
 						$(document)
 								.scroll(
 										function() {
@@ -117,7 +91,7 @@
 																								+ this.board_date
 																								+ "</div>"
 																								+ "</div>";
-																						str += "<div class="+"'image'"+"id="+"'videoRead'"+">";
+																						str += "<div class="+"'image'"+"id="+"'btnImg'"+">";
 																						str += "<a href="
 																								+ "'http://localhost:8080/video/videoDetail?board_no='"
 																								+ this.board_no
@@ -167,6 +141,30 @@
 											}
 										});
 					});
+	function read(str) {
+	      var board_no = str;
+	      var url = "/videoboard/read/" + board_no;
+	      $.getJSON(url, function(data) {
+	         $(data).each(
+	               function() {
+	                  var board_no = this.board_no;
+	                  var board_title = this.board_title;
+	                  var username = this.username;
+	                  var board_date = this.board_date;
+	                  var board_content = this.board_content;
+	                  var board_count = this.board_count ;
+	                  var board_recomm = this.board_recomm;
+	                
+	                  $("#video_title_modal").html(board_title);
+	                  $("#video_content").html(board_content);
+	                  $("#video_writer").html("작성자 : " + username);
+	                  $("#view_Cnt").html(
+	                        "<i class='unhide icon'></i>" + board_count);
+	                  $("#like").html("Like " + board_recomm);
+	               });
+	      });
+	      $('#videoRead').modal('show');
+	   }
 </script>
 <style type="text/css">
 body, html {
@@ -282,7 +280,8 @@ div #tab_column {
 			<p></p>
 			<!-- ======================Detail=============================== -->
 
-			<form method="get" action="/video/videoDetail" id="sendDetail">
+			<form method="get" action="/video/videoDetail" id="sendDetail"
+				name="nsendDetail">
 
 				<div class="row">
 					<div class="ui four column doubling stackable grid container">
@@ -312,12 +311,11 @@ div #tab_column {
 
 										</div>
 									</div>
-									<div class="image" id="videoRead">
-										<a
-											href="http://localhost:8080/video/videoDetail?board_no=${UserVideoBoardVO.board_no}">
-											<img
+									<div class="image" id="btnimg"
+										onclick="read(${UserVideoBoardVO.board_no})">
+
+										<img
 											src="http://img.youtube.com/vi/${UserVideoBoardVO.board_content}/1.jpg">
-										</a>
 									</div>
 									<div class="content">
 										<span class="right floated"> <i
@@ -336,11 +334,8 @@ div #tab_column {
 						</c:forEach>
 					</div>
 					<div class="ui modal Detail" id="videoRead">
-
 						<%@ include file="../videoBoard/videodetail.jsp"%>
-
 					</div>
-
 
 
 				</div>
@@ -368,7 +363,6 @@ div #tab_column {
 		id="btn_tab_Fun"></div>
 	<div class="ui bottom attached tab segment " data-tab="ETC"
 		id="btn_tab_Etc"></div>
-
 
 
 
