@@ -36,12 +36,14 @@
 		$('#boardpage2').show();
 		$('#boardsearch').show();
 		$('#boardsearchimpormation').show();
+		$('#boardpagediv').show();
 	}
 	function commentpage_click() {
 		$('#boardpage').hide();
 		$('#boardpage2').hide();
 		$('#boardsearch').hide();
 		$('#boardsearchimpormation').hide();
+		$('#boardpagediv').hide();
 		$('#commentpage').show();
 		$('#commentpage2').show();
 		$('#commentsearch').show();
@@ -56,6 +58,7 @@
 		$('#commentsearch').show();
 		$('#boardsearchimpormation').show();
 		$('#commentsearchimpormation').show();
+		$('#boardpagediv').show();
 	}
 	$(document).ready(
 			function() {
@@ -107,7 +110,7 @@
 
 	});
 	
-	var bno = 1;
+	var board_NO = 1;
 	$.getJSON("/comment/all/" + board_NO,function(data) {
 		//console.log(data.length);
 	$(data).each(function() {
@@ -116,6 +119,49 @@
 								});
 				$("#comment").html(str);
 			});
+	
+	/* <div>
+	<div>userID<input type="text" name="userID" id="userID"></div>
+	<div>comment_Content<input type="text" name="comment_Content" id="comment_Content"></div>
+	<button id="commentAddButton">add comment</button>
+	</div> */
+	$("#commentAddButton").on("click",function(){
+		var userID = $("#userID").val();
+		var comment_Content= $("#comment_Content").val();
+		$.ajax({
+			type:'post',
+			url:'/comment',
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"POST"
+			},
+			dataType:'text',
+			data:JSON.stringify({
+				board_NO :board_NO,
+				userID:userID,
+				comment_Content:comment_Content
+				
+			}),
+			sucess:function(result){
+				if(result=='SUCESS'){
+					alert("등록 되었습니다.")
+				}
+			}
+		});
+	});
+	
+	$("#comment").on("click", ".commentLi button", function() {
+
+		var comment = $(this).parent();
+
+		var comment_NO = comment.attr("data-comment_NO");
+		var comment_Content = comment.text();
+		
+
+		alert(comment_NO+":"+comment_Content);
+
+	});
+	
 </script>
 <style type="text/css">
 .two.wide.column {
@@ -225,7 +271,7 @@ strong {
 			<div class="one wide column"></div>
 		</div>
 
-
+		<div id="boardpagediv">
 		<!--글 검색 -->
 		<div class="ui three column grid">
 			<div class="eight wide column" id="boardsearch">
@@ -247,6 +293,7 @@ strong {
 		</div>
 		<!--  내가 작성한 글 메뉴-->
 		<!--  총 16 1 5 1 1  3 2 3 -->
+		
 		<div class="ui three column grid" id="boardpage">
 			<div class="one wide column"></div>
 			<div class="three wide column">
@@ -269,16 +316,6 @@ strong {
 			</div>
 		</div>
 
-		<!--  내가 작성한 글 내용-->
-		<!-- private String board_id; // 게시판구분
-	private Integer board_no; // 글 번호
-	private Integer userid; // 작성자
-	private String board_title; // 글 제목
-	private String board_content; // 글 내용
-	private String board_file; // 첨부파일
-	private Integer board_count; // 조회수
-	private Integer board_recomm; // 좋아요 수
-	private Date board_date; // 작성일자 -->
 		<c:forEach items="${mypageList}" var="UserVideoBoardVO">
 			<div class="ui three column grid" id="boardpage2">
 				<div class="one wide column"></div>
@@ -289,7 +326,7 @@ strong {
 				<div class="two wide column">${UserVideoBoardVO.board_recomm}</div>
 				<div class="two wide column">${UserVideoBoardVO.board_content}</div>
 				<div class="two wide column">
-					<fmt:formatDate pattern="YYYY-MM-DD HH24:MI:SS"
+					 <fmt:formatDate pattern="yyyy-MM-dd hh:ss"
 						value="${UserVideoBoardVO.board_date}" />
 				</div>
 				<div class="two wide column">${UserVideoBoardVO.board_count}</div>
@@ -297,9 +334,10 @@ strong {
 			</br>
 		</c:forEach>
 		<!-- //내가 작성한 글 내용-->
+		
 		<!--  보드페이징 -->
 
-
+		</div>
 		<!--댓글 검색 -->
 		<div class="ui three column grid">
 			<div class="eight wide column" id="commentsearch">
@@ -315,7 +353,25 @@ strong {
 			</div>
 		</div>
 		
-		
+<!-- 		private Integer board_NO;		// 글 번호
+	private Integer comment_NO;		// 댓글 번호
+	private Integer comment_ListNO; // 댓글 순서
+	private Integer comment_Depth; 	// 댓글 단계
+	private Integer comment_Parent; // 원 댓글 번호
+	private Integer userID; 		// 작성자
+	private String comment_Content;	// 댓글 내용
+	private Integer comment_Recomm;	// 좋아요 수
+	private String comment_Date;	// 작성일자
+
+	private String comment_File;	// 첨부파일
+	private String c_File;			// 실제 서버에 저장한 파일명 -->
+		</br></br></br></br></br>
+		<div>
+		<div>userID<input type="text" name="userID" id="userID"></div>
+		<div>comment_Content<input type="text" name="comment_Content" id="comment_Content"></div>
+		<button id="commentAddButton">add comment</button>
+		</div>
+		</br></br>
 
 		<!--  내가 작성한 댓글 메뉴-->
 		<div class="ui three column grid" id="commentpage">

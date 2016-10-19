@@ -17,16 +17,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from
 		commenttable
 		where
-		board_NO =
-		#{board_NO}
-		order by comment_NO desc
+		board_no =
+		#{board_no}
+		order by comment_no desc
 	</select>
 
 	<!-- seq_comment.nextval -->
 	<insert id="create">
-		insert into commenttable (board_NO, comment_Content,
+		insert into commenttable (board_no, comment_content,
 		userID)
-		values (seq_comment.nextval,#{comment_Content},#{userID})
+		values (seq_comment.nextval,#{comment_content},#{userid})
 	</insert>
 
 	<!-- sysdate -->
