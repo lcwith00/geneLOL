@@ -49,7 +49,7 @@
 			.ready(
 					function() {
 						$('.menu .item').tab();
-						$('.ui.form')
+						$('#adminSigninForm')
 								.form(
 										{
 											fields : {
@@ -63,7 +63,7 @@
 												userMail : {
 													identifier : 'userMail',
 													rules : [ {
-														type : '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
+														type : 'regExp[/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/]',
 														prompt : '유효하지 않은 이메일입니다.'
 													} ]
 												},
@@ -191,7 +191,7 @@
 	<div class="ui bottom attached tab segment active" id="signinTab">
 		<div class="ui middle aligned center aligned grid">
 			<div class="column" id="modal_column">
-				<form class="ui large form" method="post">
+				<form class="ui large form" method="post" id="adminSigninForm" action="/adminpage">
 					<div class="ui stacked segment">
 						<div class="field">관리자 로그인</div>
 						<div class="field">

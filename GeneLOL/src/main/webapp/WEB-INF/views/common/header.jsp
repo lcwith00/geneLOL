@@ -56,6 +56,56 @@
 					<div class="item">티어 별</div>
 				</div>
 			</div>
+<<<<<<< HEAD
+			<a href="/video/videoList" class="item">동영상</a> <a href="#"
+				class="item">정보</a>
+			<div class="ui right simple dropdown item">
+				<div class="ui inverted button">
+					<span class="text">${login.userName}</span><i class="dropdown icon"
+						id="mySettingIcon"></i>
+				</div>
+				<div class="menu mySettingList">
+					<div class="item mySettingLink">
+						<a>개인 설정</a>
+					</div>
+					<div class="item mySettingLink">
+						<a>내가 쓴 글</a>
+					</div>
+					<div class="item mySettingLink">
+						<a href="/user/logout">Log Out</a>
+					</div>
+				</div>
+
+
+				<c:choose>
+					<c:when test="${login.userName!=null}">
+						<div class="ui right simple dropdown item">
+							<div class="ui inverted button">
+								<span class="text">${login.userName}</span><i
+									class="dropdown icon" id="mySettingIcon"></i>
+							</div>
+							<div class="menu mySettingList">
+								<div class="item mySettingLink">
+									<a>개인 설정</a>
+								</div>
+								<div class="item mySettingLink">
+									<a>내가 쓴 글</a>
+								</div>
+								<div class="item mySettingLink">
+									<a href="/user/logout">Log Out</a>
+								</div>
+							</div>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="ui right item">
+							<div class="ui inverted button" id="login">로그인</div>
+						</div>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</div>
+=======
 			<a href="http://localhost:8080/video/videoList" class="item">동영상</a>
 			<a href="#" class="item">정보</a>
 			<c:choose>
@@ -87,8 +137,13 @@
 
 		</div>
 
+>>>>>>> deec133e9c77038bf2b9cc42099a4a787bacb4cc
 	</div>
 	<div class="ui modal" id="signup_modal">
 		<%@ include file="../user/signup.jsp"%>
 	</div>
+<<<<<<< HEAD
 </body>
+=======
+</body>
+>>>>>>> deec133e9c77038bf2b9cc42099a4a787bacb4cc

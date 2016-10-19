@@ -62,8 +62,6 @@ div #bg {
 	$(document).ready(function() {
 		$('.menu .item').tab();
 		$('.ui.dropdown').dropdown();
-		listAll();
-		page();
 
 		$('#articleListSearchButton').click(function() {
 			var searchType = $('#articleListSearchBox option:selected').val();
@@ -88,6 +86,37 @@ div #bg {
 			}
 
 		});
+
+		//삭제처리
+		$('#selectArticleDelete').click(function() {
+			if ($('.chkclass :checked').size() < 1) {
+				alert("삭제할 게시물을 선택하세요.");
+				return false;
+			} else {
+				var checkArr = [];
+				$('.chkclass :checked').each(function() {
+					checkArr.push($(this).val());
+				});
+				$.ajax({
+					async : false,
+					method : "POST",
+					url : "/videoboard/deleteprocess",
+					data : {
+						'board_no' : checkArr
+					},
+				});
+			}
+
+			$('#articleListPageNavi').html("");
+			$("#articleList").html("");
+			listAll();
+			page();
+			$('#allCheck').prop("checked", false);
+		});
+
+		listAll();
+		page();
+
 	});
 
 	function allChk(obj) {
@@ -206,7 +235,7 @@ div #bg {
 
 		var new_div = $("<div class='ui fifteen column grid'>");
 
-		var checked_div = $("<div class='one wide column'>");
+		var checked_div = $("<div class='one wide column chkclass'>");
 		checked_div
 				.html("<input type='checkbox' name='rowCheck' value='" + board_no + "'>");
 
@@ -246,7 +275,7 @@ div #bg {
 
 		var new_div = $("<div class='ui fifteen column grid'>");
 
-		var checked_div = $("<div class='one wide column'>");
+		var checked_div = $("<div class='one wide column chkclass'>");
 		checked_div
 				.html("<input type='checkbox' name='rowCheck' value='" + board_no + "'>");
 
@@ -292,7 +321,7 @@ div #bg {
 						var board_date = this.board_date;
 						var board_count = this.board_count;
 						var board_recomm = this.board_recomm;
-						$("#video_title").html(board_title);
+						$("#video_title_modal").html(board_title);
 						$("#video_writer").html("작성자 : " + username);
 						$("#view_Cnt").html(
 								"<i class='unhide icon'></i>" + board_count);
@@ -347,97 +376,5 @@ div #bg {
 
 <!-- modal -->
 <div class="ui modal" id="readVideo">
-	<div class="form-group">
-		<h3 class="ui block header"></h3>
-
-		<h3 class="ui top attached header" id="video_title"></h3>
-		<div id="video_writer"></div>
-		<div class="ui attached segment" id="bg">
-
-
-			<a class="ui black label">Content</a>
-			<div class='embed-container'>
-
-				<div id="video_play">
-					<c:choose>
-						<c:when test="${UserVideoBoardVO.board_content.length()==28}">
-							<c:set var="videoLinkImgA"
-								value="${UserVideoBoardVO.board_content}" />
-							<c:set var="videoLinkImgB"
-								value="${fn:substring(videoLinkImgA, 17,28)}" />
-						</c:when>
-						<c:when test="${UserVideoBoardVO.board_content.length()==43}">
-							<c:set var="videoLinkImgA"
-								value="${UserVideoBoardVO.board_content}" />
-							<c:set var="videoLinkImgB"
-								value="${fn:substring(videoLinkImgA, 32,43)}" />
-						</c:when>
-						<c:otherwise>
-							<c:set var="videoLinkImgB" value="notFoundImg" />
-						</c:otherwise>
-					</c:choose>
-
-					<iframe src='http://www.youtube.com/embed/${videoLinkImgB}'
-						frameborder='0' allowfullscreen></iframe>
-					<c:out value="${userVideoBoardVO.board_content}"></c:out>
-					<c:out value="${videoLinkImgB}"></c:out>
-
-
-				</div>
-			</div>
-		</div>
-
-		<div class="ui labeled button" tabindex="0">
-
-			<div class="ui button">
-				<div id="view_Cnt"></div>
-			</div>
-
-			<div class="ui button">
-				<i class="heart icon"></i>
-				<p id="like"></p>
-			</div>
-
-		</div>
-		<!-- ================reply start================== -->
-		<div class="ui threaded comments">
-
-			<div>
-				<h3 class="ui dividing header">댓글</h3>
-				<div class="comment">
-					<div class="content"></div>
-					<div class="comment"></div>
-				</div>
-				<div class="comment">
-					<a class="avatar"> </a>
-					<div class="content">
-						<a class="author">Joe Henderson</a>
-						<div class="metadata">
-							<span class="date">5 days ago</span>
-						</div>
-						<div class="text">Dude, this is awesome. Thanks so much</div>
-						<div class="actions">
-							<a class="reply">Reply</a>
-						</div>
-					</div>
-				</div>
-				<form class="ui reply form">
-					<div class="field">
-						<textarea></textarea>
-					</div>
-					<div class="ui blue labeled submit icon button">
-						<i class="icon edit"></i> Add Reply
-					</div>
-				</form>
-			</div>
-			<!-- ================reply end================== -->
-		</div>
-
-	</div>
-	<!--  /.div-body -->
-	<div class="buttons">
-		<button class="ui blue basic button" id="btn_List">List ALL</button>
-		<button class="ui yellow basic button" id="btn_Modify">MODIFY</button>
-		<button class="ui red basic button" id="btn_Delete">DELETE</button>
-	</div>
+	<jsp:include page="../../videoBoard/videodetail.jsp"></jsp:include>
 </div>
