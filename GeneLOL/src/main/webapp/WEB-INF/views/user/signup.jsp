@@ -5,7 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css"
 	href="resources/semantic-ui/semantic.min.css">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="resources/semantic-ui/semantic.min.js"></script>
 <style type="text/css">
 #modal_body {
@@ -58,7 +57,7 @@
 												userMail : {
 													identifier : 'userMail',
 													rules : [ {
-														type : '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
+														type : 'regExp[/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
 														prompt : '유효하지 않은 이메일입니다.'
 													} ]
 												},

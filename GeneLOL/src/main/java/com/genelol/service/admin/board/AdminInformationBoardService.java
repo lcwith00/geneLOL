@@ -18,4 +18,6 @@ public interface AdminInformationBoardService {
 
 	public List<SearchCount> searchCount(String searchtype, String searchtext) throws Exception;
 
+	public void deleteArticle(Integer board_no) throws Exception;
+
 }

@@ -7,6 +7,7 @@
 		<typeAlias type="com.genelol.vo.main.PopularBoardVo" alias="popularBoard" />
 		<typeAlias type="com.genelol.vo.user.UserVO" alias="user" />
 		<typeAlias type="com.genelol.vo.userboard.UserVideoBoardVO" alias="userVideoBoard"/>
+		<typeAlias type="net.rithms.riot.dto.Summoner.Summoner" alias="summoner"/>
 		<typeAlias type="com.genelol.vo.userboard.UserVideoReplyVO" alias="userVideoReply"/>
 		<typeAlias type="com.genelol.vo.comment.CommentVO" alias="Comment"/>
 	</typeAliases>

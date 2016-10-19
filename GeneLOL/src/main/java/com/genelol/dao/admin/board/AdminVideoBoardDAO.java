@@ -17,4 +17,6 @@ public interface AdminVideoBoardDAO {
 	public List<PageCount> videoCount();
 
 	public List<SearchCount> searchCount(String searchtype, String searchtext);
+
+	public void deleteArticle(Integer board_no);
 }

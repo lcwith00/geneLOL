@@ -51,4 +51,9 @@ public class AdminInformationBoardServiceImpl implements AdminInformationBoardSe
 		searchCount = dao.searchCount(searchtype, searchtext);
 		return searchCount;
 	}
+	
+	@Override
+	public void deleteArticle(Integer board_no) throws Exception {
+		dao.deleteArticle(board_no);
+	}
 }

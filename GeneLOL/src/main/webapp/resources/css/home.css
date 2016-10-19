@@ -58,3 +58,7 @@
 .four.wide.column.thumbnail {
 	padding: 10px 10px !important;
 }
+
+.ui.center.aligned.container>.ui.form {
+	margin-bottom: 1rem !important;
+}

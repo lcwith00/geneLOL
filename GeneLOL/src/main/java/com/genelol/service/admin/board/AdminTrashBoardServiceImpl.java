@@ -8,20 +8,20 @@ import org.springframework.stereotype.Service;
 
 import com.genelol.common.PageCount;
 import com.genelol.common.SearchCount;
-import com.genelol.dao.admin.board.AdminVideoBoardDAO;
+import com.genelol.dao.admin.board.AdminTrashBoardDAO;
 import com.genelol.vo.admin.board.AdminBoardVO;
 
 @Service
-public class AdminVideoBoardServiceImpl implements AdminVideoBoardService {
+public class AdminTrashBoardServiceImpl implements AdminTrashBoardService {
 
 	@Inject
-	private AdminVideoBoardDAO dao;
+	private AdminTrashBoardDAO dao;
 
 	@Override
-	public List<AdminBoardVO> adminVideoBoardList(Integer start_no) throws Exception {
-		List<AdminBoardVO> adminVideoBoardList = null;
-		adminVideoBoardList = dao.adminVideoBoardList(start_no);
-		return adminVideoBoardList;
+	public List<AdminBoardVO> adminTrashBoardList(Integer start_no) throws Exception {
+		List<AdminBoardVO> adminTrashBoardList = null;
+		adminTrashBoardList = dao.adminTrashBoardList(start_no);
+		return adminTrashBoardList;
 	}
 
 	@Override
@@ -32,17 +32,17 @@ public class AdminVideoBoardServiceImpl implements AdminVideoBoardService {
 	}
 
 	@Override
-	public List<AdminBoardVO> videoDetail(Integer board_no) throws Exception {
-		List<AdminBoardVO> videoDetail = null;
-		videoDetail = dao.videoDetail(board_no);
-		return videoDetail;
+	public List<AdminBoardVO> trashDetail(Integer board_no) throws Exception {
+		List<AdminBoardVO> trashDetail = null;
+		trashDetail = dao.trashDetail(board_no);
+		return trashDetail;
 	}
 
 	@Override
-	public List<PageCount> videoCount() throws Exception {
-		List<PageCount> videoCount = null;
-		videoCount = dao.videoCount();
-		return videoCount;
+	public List<PageCount> trashCount() throws Exception {
+		List<PageCount> trashCount = null;
+		trashCount = dao.trashCount();
+		return trashCount;
 	}
 
 	@Override
@@ -56,5 +56,4 @@ public class AdminVideoBoardServiceImpl implements AdminVideoBoardService {
 	public void deleteArticle(Integer board_no) throws Exception {
 		dao.deleteArticle(board_no);
 	}
-
 }
