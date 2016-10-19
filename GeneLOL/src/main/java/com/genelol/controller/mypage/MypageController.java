@@ -32,19 +32,21 @@ public class MypageController {
 
 		logger.info("mypageList 호출 성공!");
 
-		List<UserVideoBoardVO> mypage = userVideoBoardService.videoList(uvbvo);
-		for (UserVideoBoardVO uservideoBoardVO : mypage) {
+		List<UserVideoBoardVO> mypageList = userVideoBoardService.videoList(uvbvo);
+		for (UserVideoBoardVO uservideoBoardVO : mypageList) {
 			logger.info(uservideoBoardVO.toString());
 		}
-		model.addAttribute("mypageList", mypage);
+		logger.info(uvbvo.getBoard_title());
+		logger.info(uvbvo.getBoard_id());
+		model.addAttribute("mypageList", mypageList);
 
 		return "/mypage/mypageList";
 
 	}
 
-/*	@RequestMapping(value = "/commentmypage", method = RequestMethod.GET)
+	@RequestMapping(value = "/commentmypage", method = RequestMethod.GET)
 	public void ajaxTest() {
 
-	}*/
+	}
 
 }

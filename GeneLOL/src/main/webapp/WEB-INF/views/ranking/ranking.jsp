@@ -1,47 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<link rel="stylesheet" href=".css"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<link rel="stylesheet" href=".css" />
 <title>GeneLOL Ranking</title>
 <link rel="stylesheet" type="text/css"
-   href="resources/semantic-ui/semantic.min.css">
+	href="resources/semantic-ui/semantic.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="resources/semantic-ui/semantic.min.js"></script>
 <link rel="stylesheet" type="text/css"
-   href="./Grid Example - Semantic_files/reset.css">
+	href="./Grid Example - Semantic_files/reset.css">
 <link rel="stylesheet" type="text/css"
-   href="./Grid Example - Semantic_files/site.css">
+	href="./Grid Example - Semantic_files/site.css">
 
 <link rel="stylesheet" type="text/css"
-   href="./Grid Example - Semantic_files/container.css">
+	href="./Grid Example - Semantic_files/container.css">
 <link rel="stylesheet" type="text/css"
-   href="./Grid Example - Semantic_files/divider.css">
+	href="./Grid Example - Semantic_files/divider.css">
 <link rel="stylesheet" type="text/css"
-   href="./Grid Example - Semantic_files/grid.css">
+	href="./Grid Example - Semantic_files/grid.css">
 <link rel="stylesheet" type="text/css"
-   href="./Grid Example - Semantic_files/header.css">
+	href="./Grid Example - Semantic_files/header.css">
 <style type="text/css">
 .two.wide.column {
-   word-wrap: break-word;
-   text-align: center;
+	word-wrap: break-word;
+	text-align: center;
 }
 
 .three.wide.column {
-   word-wrap: break-word;
-   text-align: center;
-   min-width: 179px;
+	word-wrap: break-word;
+	text-align: center;
+	min-width: 179px;
 }
 
 .ui.three.column.grid {
-   min-width: 970px;
+	min-width: 970px;
 }
-#search{margin: 10px;   min-width: 388px;}
-#rankingPage{border: 1px solid black;
-margin: 3px;
+
+#search {
+	margin: 10px;
+	min-width: 388px;
+}
+
+#rankingPage {
+	border: 1px solid black;
+	margin: 3px;
 }
 #impormation{text-align: right; margin-top: 15px;}
 </style>
@@ -70,22 +76,23 @@ margin: 3px;
 		아이디를 클릭하시면 전적정보를 보실 수 있습니다.
 		</div>
 	</div>
-      <div class="ui three column grid" id="rankingPage">
-         <div class="two wide column">순위</div>
-         <div class="three wide column">아이콘</div>
-         <div class="three wide column">id명</div>
-         <div class="two wide column">티어</div>
-         <div class="two wide column">티어점수</div>
-         <div class="four wide column">승률</div>
-      </div>
-            <div class="ui three column grid" id="rankingPage">
-         <div class="two wide column">12345678</div>
-         <div class="three wide column">아이콘aaaaaaaaa</div>
-         <div class="three wide column">최대여덟글자까지</div>
-         <div class="two wide column">Challenger</div>
-         <div class="two wide column">1234</div>
-         <div class="four wide column">300전 200승 100패 66.6%</div>
-      </div>
-      
+
+	<div class="ui three column grid" id="rankingPage">
+		<div class="two wide column">순위</div>
+		<div class="three wide column">아이콘</div>
+		<div class="three wide column">id명</div>
+		<div class="two wide column">티어</div>
+		<div class="two wide column">티어점수</div>
+		<div class="four wide column">승률</div>
+	</div>
+	<div class="ui three column grid" id="rankingPage">
+		<div class="two wide column">12345678</div>
+		<div class="three wide column">아이콘aaaaaaaaa</div>
+		<div class="three wide column">최대여덟글자까지</div>
+		<div class="two wide column">Challenger</div>
+		<div class="two wide column">1234</div>
+		<div class="four wide column"><span class="ui green label">300전</span><span class="ui blue label">200승</span><span class="ui pink label">100패</span><span class="ui brown label">66.6%</span></div>
+	</div>
+
 </body>
 </html>
