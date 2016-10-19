@@ -52,4 +52,8 @@ public class AdminInformationDAOImpl implements AdminInformationDAO {
 		return session.selectList(namespace + ".searchCount", map);
 	}
 
+	@Override
+	public void deleteArticle(Integer board_no) {
+		session.update(namespace + ".deleteArticle", board_no);
+	}
 }

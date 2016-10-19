@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.genelol.dao.main.RiotMapper">
+	<select id="summonerSelect" resultType="summoner" parameterType="long">
+		select * from summoner
+		where id = #{summonerID}
+	</select>
+	<select id="summonerDetailSelect" resultType="summoner"
+		parameterType="summoner">
+		select * from summoner
+		where id = #{summonerID} and
+		name=#{name} and
+		profileIconId=#{profileIconId} and
+		summonerLevel=#{summonerLevel} and
+		revisionDate=#{revisionDate}
+	</select>
+	<insert id="summonerInsert" parameterType="summoner">
+		insert into
+		summoner(id,name,profileiconid,summonerlevel,revisiondate)
+		values(#{id}, #{name}, #{profileIconId}, #{summonerLevel},
+		#{revisionDate})
+	</insert>
+	<update id="summonerUpdate" parameterType="summoner">
+		update summoner set
+		name=#{name},profileIconId=#{profileIconId},summonerLevel=#{summonerLevel},
+		revisionDate=#{revisionDate}
+		where id = #{summonerID}
+	</update>
+	<select id="championSelect" resultType="champion" parameterType="long">
+		select * from champion
+		where id = #{summonerID}
+	</select>
+
+	<insert id="championInsert" parameterType="champion">
+		insert into
+		champion(id,name,title,key)
+		values(#{id}, #{name}, #{title}, #{key})
+	</insert>
+
+</mapper>

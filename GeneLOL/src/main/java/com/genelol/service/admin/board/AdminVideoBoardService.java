@@ -17,4 +17,6 @@ public interface AdminVideoBoardService {
 	public List<PageCount> videoCount() throws Exception;	// 전체 게시물 수
 	
 	public List<SearchCount> searchCount(String searchtype, String searchtext) throws Exception;
+
+	public void deleteArticle(Integer board_no) throws Exception;
 }
