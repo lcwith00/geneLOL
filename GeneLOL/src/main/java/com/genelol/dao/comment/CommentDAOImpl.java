@@ -29,6 +29,7 @@ public class CommentDAOImpl implements CommentDAO {
 	// 리스트
 	public List<CommentVO> list(Integer board_NO) throws Exception {
 		// TODO Auto-generated method stub
+		
 		return session.selectList(namespace + ".list", board_NO);
 	}
 

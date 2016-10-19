@@ -11,22 +11,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		// 원 댓글 번호 Integer userID; // 작성자 String comment_Content; // 댓글 내용 Integer 
 		comment_Recomm; // 좋아요 수 String comment_Date; // 작성일자 String comment_File; 
 		// 첨부파일 String c_File; // 실제 서버에 저장한 파일명 -->
-	<select id="list" resultType="com.genelol.vo.comment.CommentVO">
+	<select id="list" resultType="com.genelol.vo.comment.CommentVO" parameterType="Integer">
 		select
 		*
 		from
 		commenttable
 		where
-		board_no =
-		#{board_no}
-		order by comment_no desc
+		board_NO =
+		#{board_NO}
+		order by comment_NO desc
 	</select>
 
 	<!-- seq_comment.nextval -->
 	<insert id="create">
-		insert into commenttable (board_no, comment_content,
+		insert into commenttable (board_NO, comment_Content,
 		userID)
-		values (seq_comment.nextval,#{comment_content},#{userid})
+		values (seq_comment.nextval,#{comment_Content},#{userID})
 	</insert>
 
 	<!-- sysdate -->

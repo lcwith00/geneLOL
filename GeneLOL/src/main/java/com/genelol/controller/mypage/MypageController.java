@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.genelol.controller.userboard.UserVideoBoardController;
-
+import com.genelol.service.comment.CommentService;
 import com.genelol.service.userboard.UserVideoBoardService;
-
+import com.genelol.vo.comment.CommentVO;
+import com.genelol.vo.comment.pageVO;
 import com.genelol.vo.userboard.UserVideoBoardVO;
 
 @Controller
@@ -25,6 +26,7 @@ public class MypageController {
 
 	@Inject
 	private UserVideoBoardService userVideoBoardService;
+	private CommentService commentService;
 
 	// 마이페이지 비디오
 	@RequestMapping(value = "/mypageList", method = RequestMethod.GET)
@@ -43,10 +45,25 @@ public class MypageController {
 		return "/mypage/mypageList";
 
 	}
+	
+	@RequestMapping(value = "/mypageComment", method = RequestMethod.GET)
+	public String mypagecomment(@ModelAttribute CommentVO covo, Model model,Integer board_NO) throws Exception {
 
-	@RequestMapping(value = "/commentmypage", method = RequestMethod.GET)
+		logger.info("mypageComment 호출 성공!");
+
+		List<CommentVO> CommentList = commentService.listReply(board_NO);
+		for (CommentVO CommentVO : CommentList) {
+			logger.info(CommentVO.toString());
+		}
+		logger.info(null, covo.getComment_Content().length());
+		model.addAttribute("CommentList", CommentList);
+
+		return "/mypage/mypageList";
+	}
+
+	/*@RequestMapping(value = "/commentmypage", method = RequestMethod.GET)
 	public void ajaxTest() {
 
-	}
+	}*/
 
 }

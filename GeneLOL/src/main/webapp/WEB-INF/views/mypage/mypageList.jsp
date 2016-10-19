@@ -339,6 +339,7 @@ strong {
 
 		</div>
 		<!--댓글 검색 -->
+		
 		<div class="ui three column grid">
 			<div class="eight wide column" id="commentsearch">
 				<select name="searchType">
@@ -387,6 +388,7 @@ strong {
 			</div>
 		</div>
 		<!--  내가 작성한 댓글 내용-->
+		<c:forEach items="${CommentList}" var="CommentVO">
 		<div class="ui three column grid" id="commentpage2">
 			<div class="one wide column"></div>
 			<div class="three wide column">
@@ -399,6 +401,7 @@ strong {
 			</div>
 			<div class="three wide column">${CommentVO.comment_recomm}</div>
 		</div>
+		</c:forEach>
 		<!--댓글페이징 -->
 	</div>
 	<footer id="footer">
