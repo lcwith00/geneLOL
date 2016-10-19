@@ -2,16 +2,12 @@ package com.genelol.service.userboard;
 
 import java.util.List;
 
-
-
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
 import com.genelol.dao.userboard.UserVideoBoardDao;
 import com.genelol.vo.userboard.UserVideoBoardVO;
-
-import oracle.net.aso.d;
 
 @Service
 public class UserVideoBoardServiceImpl implements UserVideoBoardService {
