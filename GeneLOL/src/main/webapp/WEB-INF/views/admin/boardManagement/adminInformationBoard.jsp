@@ -54,7 +54,7 @@ div #bg {
 	text-align: left;
 }
 
-#selectArticleDelete{
+#selectArticleDelete {
 	float: left;
 }
 
@@ -336,7 +336,6 @@ div #bg {
 	<div class="ui bottom attached tab segment" data-tab="second">
 		Second</div>
 	<div class="ui bottom attached tab segment" data-tab="third"></div>
-
-
-	<!-- modal -->
-	<div class="ui modal" id="readinfo"></div>
+</div>
+<!-- modal -->
+<div class="ui modal" id="readinfo"></div>
