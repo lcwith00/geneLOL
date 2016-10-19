@@ -75,7 +75,12 @@ create table stats(
     constraint "gameid_stats" foreign key (gameid) references game(gameid)
 );
 
-
+create table champion(
+	id number primary key,
+	key varchar2(100) not null,
+	name varchar2(100) not null,
+	title varchar2(200) not null
+);
 
 create sequence game_seq
 increment by 1
@@ -131,7 +136,7 @@ insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(36
 insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(3170949, 'ReaDyOn', 1382, 30, 1476615281000);
 insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(1647442,'오민자',673,30,1476554727000);
 insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(10949060,'기리랄',606,30,1476627409000);
-nsert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(10385670,'픽스선픽',577,30,1476554727000);
+insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(10385670,'픽스선픽',577,30,1476554727000);
 insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(5034322,'댕까이2',749,30,1476554727000);
 insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(14220141,'세무서징베',685,30,1476644876000);
 insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(30471148,'BurNisH7',1376,30,1476626740000);
@@ -149,3 +154,18 @@ insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(72
 insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(8382430,'서정민입니다',1377,30,1476433913000);
 insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(4615741,'EigenStyle',1301,30,1476520201000);
 insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(2486170,'plgh',1382,30,1476635109000);
+insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(20661520,'Talzuking',1211,30,1476777937000);
+insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(9256196,'덕덕형',781,30,1476778976000);;
+insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(17910224,'o똥꼬충o',552,30,1476783915000);
+insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(11081462,'돌 은 성',870,30,1476777937000);
+insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(1608804,'정일고기보쌈',1229,30,1476777937000);
+insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(5608434,'촌티팍팍',1301,30,1476793607000);
+insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(1486962,'Fear Me',1158,30,1476778503000);
+insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(8837796,'매떼매떼쿠다사이',1123,30,1476780407000);
+insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(2908241,'saojxzlf',1051,30,1476770478000);
+insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(10529249,'주월도로',774,30,1476774776000);
+insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(2445383,'초심으로 2016',982,30,1476770478000);
+insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(32001161,'할매유',1123,30,1476770478000);
+insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(3447857,'지금너에게로가',1301,30,1476770478000);
+insert into summoner(id,name,profileiconid,summonerlevel,revisiondate) values(10385670,'픽스선픽',577,30,1476811302000);
+

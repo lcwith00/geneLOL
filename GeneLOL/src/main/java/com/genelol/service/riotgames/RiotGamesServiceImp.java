@@ -25,11 +25,12 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.genelol.dao.riotgames.RiotGamesDao;
 
-import net.rithms.riot.dto.Champion.Champion;
 import net.rithms.riot.dto.Game.Game;
 import net.rithms.riot.dto.Game.Player;
 import net.rithms.riot.dto.Game.RecentGames;
 import net.rithms.riot.dto.League.League;
+import net.rithms.riot.dto.Static.Champion;
+import net.rithms.riot.dto.Static.SummonerSpellList;
 import net.rithms.riot.dto.Stats.ChampionStats;
 import net.rithms.riot.dto.Stats.RankedStats;
 import net.rithms.riot.dto.Summoner.Summoner;
@@ -120,9 +121,11 @@ public class RiotGamesServiceImp implements RiotGamesService {
 			String summonerStr = getEntity(uri, 0).substring(5 + summonerName.replace(" ", "").length());
 			summonerStr = "{" + summonerStr.substring(0, summonerStr.length() - 2) + "}";
 			summoner = mapper.readValue(summonerStr, Summoner.class);
-
-			if (riotGamesDao.getSummoner(summoner.getId()) == null) {
+			Summoner dbSummoner = riotGamesDao.getSummoner(summoner.getId());
+			if (dbSummoner == null) {
 				riotGamesDao.insertSummoner(summoner);
+			} else if (dbSummoner.getRevisionDate() != summoner.getRevisionDate()) {
+				riotGamesDao.updateSummoner(summoner);
 			}
 
 		} catch (URISyntaxException e) {
@@ -138,32 +141,24 @@ public class RiotGamesServiceImp implements RiotGamesService {
 		return summoner;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public HashMap<String, Summoner> getSummonerBySummonerID(long summonerID) {
+	public HashMap<Long, Summoner> getSummonerBySummonerID(long summonerID) {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		String summonerNameURL = "https://kr.api.pvp.net/api/lol/kr/v1.4/summoner/" + summonerID;
-		HashMap<String, Summoner> summonerMap = new HashMap<>();
+		HashMap<Long, Summoner> summonerMap = new HashMap<>();
 
 		Summoner summoner = riotGamesDao.getSummoner(summonerID);
 		if (summoner == null) {
 			try {
 				URI uri = new URI(summonerNameURL);
-				summonerMap = mapper.readValue(getEntity(uri, 0), HashMap.class);
 
-				String summonerStr = (summonerMap.get(summonerID + "") + "").replace("id=", "\"id\":\"");
-				summonerStr = summonerStr.replace("name=", "\"name\":\"");
-				summonerStr = summonerStr.replace("profileIconId=", "\"profileIconId\":\"");
-				summonerStr = summonerStr.replace("summonerLevel=", "\"summonerLevel\":\"");
-				summonerStr = summonerStr.replace("revisionDate=", "\"revisionDate\":\"");
-				summonerStr = summonerStr.replace(", ", "\",");
-				summonerStr = summonerStr.replace("}", "\"}");
-
+				String summonerStr = getEntity(uri, 0).substring(5 + (summonerID + "").length());
+				summonerStr = "{" + summonerStr.substring(0, summonerStr.length() - 2) + "}";
 				summoner = mapper.readValue(summonerStr, Summoner.class);
-				summonerMap.replace(summonerID + "", summoner);
-				riotGamesDao.insertSummoner(summoner);
 
+				riotGamesDao.insertSummoner(summoner);
+				summonerMap.put(summonerID, summoner);
 			} catch (URISyntaxException e) {
 				e.printStackTrace();
 			} catch (JsonParseException e) {
@@ -174,18 +169,18 @@ public class RiotGamesServiceImp implements RiotGamesService {
 				e.printStackTrace();
 			}
 		} else {
-			summonerMap.put(summonerID + "", summoner);
+			summonerMap.put(summonerID, summoner);
 		}
 		return summonerMap;
 	}
 
 	@Override
-	public HashMap<String, Summoner> getAllSummoner(ArrayList<Game> games) {
-		HashMap<String, Summoner> players = new HashMap<>();
+	public HashMap<Long, Summoner> getAllSummoner(ArrayList<Game> games) {
+		HashMap<Long, Summoner> players = new HashMap<>();
 
 		for (Game game : games) {
 			for (Player player : game.getFellowPlayers()) {
-				if (players.containsKey(player.getSummonerId() + "")) {
+				if (players.containsKey(player.getSummonerId())) {
 					continue;
 				} else {
 					players.putAll(getSummonerBySummonerID(player.getSummonerId()));
@@ -207,7 +202,6 @@ public class RiotGamesServiceImp implements RiotGamesService {
 			String leagueEntryStr = getEntity(uri, 0).substring(5 + (summonerID + "").length());
 			leagueEntryStr = leagueEntryStr.substring(0, leagueEntryStr.length() - 2);
 			league = mapper.readValue(leagueEntryStr, League.class);
-
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		} catch (JsonParseException e) {
@@ -247,25 +241,100 @@ public class RiotGamesServiceImp implements RiotGamesService {
 	}
 
 	@Override
-	public HashMap<String, Champion> getAllChampion(ArrayList<Game> games, String champData) {
+	public HashMap<Integer, Champion> getRecentPlayedChampion(ArrayList<Game> games, String champData) {
 
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		HashMap<String, Champion> champions = new HashMap<>();
-
+		HashMap<Integer, Champion> champions = new HashMap<>();
+		Champion champion = new Champion();
 		try {
 			for (Game game : games) {
 				String championURL = "https://global.api.pvp.net/api/lol/static-data/kr/v1.2/champion/"
 						+ game.getChampionId();
 				URI uri = new URI(championURL);
 				uri = new URIBuilder(uri).addParameter("champData", champData).build();
-				
+				champion = riotGamesDao.getChampion(game.getChampionId());
+				if (champion == null) {
+					champion = mapper.readValue(getEntity(uri, 0), Champion.class);
+					riotGamesDao.insertChampion(champion);
+
+				} else {
+					champions.put(game.getChampionId(), champion);
+					continue;
+				}
+				champions.put(game.getChampionId(), champion);
 			}
 
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		return null;
+		return champions;
+	}
+
+	@Override
+	public HashMap<Integer, Champion> getRankedPlayedChampion(RankedStats rankedStats, String champData) {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		HashMap<Integer, Champion> champions = new HashMap<>();
+		Champion champion = new Champion();
+		try {
+			for (ChampionStats championStats : rankedStats.getChampions()) {
+				if (championStats.getId() == 0) {
+					continue;
+				}
+				String championURL = "https://global.api.pvp.net/api/lol/static-data/kr/v1.2/champion/"
+						+ championStats.getId();
+				URI uri = new URI(championURL);
+				uri = new URIBuilder(uri).addParameter("champData", champData).build();
+				champion = riotGamesDao.getChampion(championStats.getId());
+				if (champion == null) {
+					champion = mapper.readValue(getEntity(uri, 0), Champion.class);
+					riotGamesDao.insertChampion(champion);
+				} else {
+					champions.put(championStats.getId(), champion);
+					continue;
+				}
+				champions.put(championStats.getId(), champion);
+			}
+
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return champions;
+	}
+
+	@Override
+	public SummonerSpellList getAllSpell(String spellData) {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		SummonerSpellList summonerSpellList = new SummonerSpellList();
+		String spellURL = "https://global.api.pvp.net/api/lol/static-data/kr/v1.2/summoner-spell";
+		try {
+			URI uri = new URI(spellURL);
+			uri = new URIBuilder(uri).addParameter("spellData", spellData).build();
+			summonerSpellList = mapper.readValue(getEntity(uri, 0), SummonerSpellList.class);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return summonerSpellList;
 	}
 
 	public static class GameDescCompare implements Comparator<Game> {
