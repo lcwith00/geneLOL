@@ -36,7 +36,6 @@ public class MainServiceImp implements MainService {
 				popularBoardVoList.addAll(addPopularBoardVoList);
 			}
 		}
-		System.out.println(popularBoardVoList.size()+"service");
 		return popularBoardVoList;
 	}
 
