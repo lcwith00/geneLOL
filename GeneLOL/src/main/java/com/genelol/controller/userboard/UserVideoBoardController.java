@@ -58,7 +58,6 @@ public class UserVideoBoardController {
 		List<UserVideoBoardVO> videoList = userVideoBoardService.videoList(uvbvo);
 		for (UserVideoBoardVO uservideoBoardVO : videoList) {
 			logger.info(uservideoBoardVO.toString());
-
 		}
 
 		logger.info(uvbvo.getBoard_title());

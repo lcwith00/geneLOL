@@ -37,7 +37,6 @@ public class MainController {
 	public String recordSearchForm(Model model) {
 
 		List<PopularBoardVo> popularBoardVoList = mainService.popularBoardList();
-		System.out.println(popularBoardVoList.size()+"controller");
 		model.addAttribute("popularBoardVoList", popularBoardVoList);
 
 		return "home";
