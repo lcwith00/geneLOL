@@ -52,4 +52,9 @@ public class AdminVideoBoardServiceImpl implements AdminVideoBoardService {
 		return searchCount;
 	}
 
+	@Override
+	public void deleteArticle(Integer board_no) throws Exception {
+		dao.deleteArticle(board_no);
+	}
+
 }

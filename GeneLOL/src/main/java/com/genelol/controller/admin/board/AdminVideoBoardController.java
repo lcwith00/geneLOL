@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.genelol.common.PageCount;
 import com.genelol.common.SearchCount;
@@ -70,5 +72,14 @@ public class AdminVideoBoardController {
 		searchEntity = new ResponseEntity<>(service.searchCount(searchtype, searchtext), HttpStatus.OK);
 
 		return searchEntity;
+	}
+	
+	// 삭제처리
+	@RequestMapping(value = "/deleteprocess", method = RequestMethod.POST)
+	@ResponseBody
+	public void deleteArticle(@RequestParam(value = "board_no[]") List<Integer> valueArr) throws Exception {
+		for(Integer value : valueArr){
+			service.deleteArticle(value);
+		}
 	}
 }

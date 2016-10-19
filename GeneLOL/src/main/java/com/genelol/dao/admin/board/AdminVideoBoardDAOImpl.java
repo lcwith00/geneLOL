@@ -51,4 +51,9 @@ public class AdminVideoBoardDAOImpl implements AdminVideoBoardDAO {
 		map.put("searchtext", searchtext);
 		return session.selectList(namespace + ".searchCount", map);
 	}
+
+	@Override
+	public void deleteArticle(Integer board_no) {
+		session.update(namespace + ".deleteArticle", board_no);
+	}	
 }

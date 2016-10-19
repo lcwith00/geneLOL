@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="true"%>
 
+<!DOCTYPE HTML>
+<HTML>
 <link rel="stylesheet" type="text/css"
 	href="resources/semantic-ui/semantic.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -56,56 +58,41 @@
 					<div class="item">티어 별</div>
 				</div>
 			</div>
-			<a href="/video/videoList" class="item">동영상</a> <a href="#"
-				class="item">정보</a>
-			<div class="ui right simple dropdown item">
-				<div class="ui inverted button">
-					<span class="text">${login.userName}</span><i class="dropdown icon"
-						id="mySettingIcon"></i>
-				</div>
-				<div class="menu mySettingList">
-					<div class="item mySettingLink">
-						<a>개인 설정</a>
-					</div>
-					<div class="item mySettingLink">
-						<a>내가 쓴 글</a>
-					</div>
-					<div class="item mySettingLink">
-						<a href="/user/logout">Log Out</a>
-					</div>
-				</div>
-
-
-				<c:choose>
-					<c:when test="${login.userName!=null}">
-						<div class="ui right simple dropdown item">
-							<div class="ui inverted button">
-								<span class="text">${login.userName}</span><i
-									class="dropdown icon" id="mySettingIcon"></i>
+			<a href="http://localhost:8080/video/videoList" class="item">동영상</a>
+			<a href="#" class="item">정보</a>
+			<c:choose>
+				<c:when test="${login.userName!=null}">
+					<div class="ui right simple dropdown item">
+						<div class="ui inverted button">
+							<span class="text">${login.userName}</span><i
+								class="dropdown icon" id="mySettingIcon"></i>
+						</div>
+						<div class="menu mySettingList">
+							<div class="item mySettingLink">
+								<a>개인 설정</a>
 							</div>
-							<div class="menu mySettingList">
-								<div class="item mySettingLink">
-									<a>개인 설정</a>
-								</div>
-								<div class="item mySettingLink">
-									<a>내가 쓴 글</a>
-								</div>
-								<div class="item mySettingLink">
-									<a href="/user/logout">Log Out</a>
-								</div>
+							<div class="item mySettingLink">
+								<a>내가 쓴 글</a>
+							</div>
+							<div class="item mySettingLink">
+								<a href="/user/logout">Log Out</a>
 							</div>
 						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="ui right item">
-							<div class="ui inverted button" id="login">로그인</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
-			</div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="ui right item">
+						<div class="ui inverted button" id="login">로그인</div>
+					</div>
+				</c:otherwise>
+			</c:choose>
+
 		</div>
+
 	</div>
 	<div class="ui modal" id="signup_modal">
 		<%@ include file="../user/signup.jsp"%>
 	</div>
 </body>
+</html>
+</HTML>

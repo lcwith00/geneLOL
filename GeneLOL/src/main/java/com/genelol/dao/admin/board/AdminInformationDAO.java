@@ -17,4 +17,6 @@ public interface AdminInformationDAO {
 	public List<PageCount> infoCount();
 
 	public List<SearchCount> searchCount(String searchtype, String searchtext);
+
+	public void deleteArticle(Integer board_no);
 }

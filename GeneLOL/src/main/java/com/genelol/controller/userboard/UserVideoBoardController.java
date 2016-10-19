@@ -1,12 +1,11 @@
 
 package com.genelol.controller.userboard;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.Cookie;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,7 +58,6 @@ public class UserVideoBoardController {
 		List<UserVideoBoardVO> videoList = userVideoBoardService.videoList(uvbvo);
 		for (UserVideoBoardVO uservideoBoardVO : videoList) {
 			logger.info(uservideoBoardVO.toString());
-
 		}
 
 		logger.info(uvbvo.getBoard_title());
@@ -149,5 +147,7 @@ public class UserVideoBoardController {
 		return userVideoBoardService.videoScroll(board_no);
 
 	}
+	
 
+	
 }

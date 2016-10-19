@@ -66,8 +66,6 @@ div #bg {
 	$(document).ready(function() {
 		$('.menu .item').tab();
 		$('.ui.dropdown').dropdown();
-		listAll();
-		page();
 
 		$('#searchButton').click(function() {
 			var searchType = $('#searchBox option:selected').val();
@@ -92,6 +90,36 @@ div #bg {
 			}
 
 		});
+
+		//삭제처리
+		$('#selectArticleDelete').click(function() {
+			if ($('.chkclass :checked').size() < 1) {
+				alert("삭제할 게시물을 선택하세요.");
+				return false;
+			} else {
+				var checkArr = [];
+				$('.chkclass :checked').each(function() {
+					checkArr.push($(this).val());
+				});
+				$.ajax({
+					async : false,
+					method : "POST",
+					url : "/infoboard/deleteprocess",
+					data : {
+						'board_no' : checkArr
+					},
+				});
+			}
+
+			$('#page_navi').html("");
+			$("#infoList").html("");
+			listAll();
+			page();
+			$('#allCheck').prop("checked", false);
+		});
+
+		listAll();
+		page();
 	});
 
 	function allChk(obj) {
@@ -207,7 +235,7 @@ div #bg {
 
 		var new_div = $("<div class='ui seven column grid'>");
 
-		var checked_div = $("<div class='one wide column'>");
+		var checked_div = $("<div class='one wide column chkclass'>");
 		checked_div
 				.html("<input type='checkbox' name='rowCheck' value='" + board_no + "'>");
 
@@ -243,7 +271,7 @@ div #bg {
 
 		var new_div = $("<div class='ui seven column grid'>");
 
-		var checked_div = $("<div class='one wide column'>");
+		var checked_div = $("<div class='one wide column chkclass'>");
 		checked_div
 				.html("<input type='checkbox' name='rowCheck' value='" + board_no + "'>");
 

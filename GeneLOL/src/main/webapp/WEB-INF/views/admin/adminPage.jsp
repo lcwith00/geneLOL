@@ -22,6 +22,10 @@
 		$("#list").load("admininformationboard");
 	}
 
+	function loadTrashBoard() {
+		$("#list").load("admintrashboard");
+	}
+
 	function loadUserStatistics() {
 		$("#list").load("adminUserStatistics");
 	}
@@ -35,7 +39,7 @@
 	}
 
 	function loadAdminList() {
-		$("#list").load("adminlistmanagement");
+		$("#list").load("operatorlistmanagement");
 	}
 </script>
 <style>
@@ -88,6 +92,8 @@ header {
 							onclick="loadVideoBoard()"><span>동영상 게시판</span></a></li>
 						<li><a id="infoBoard" href="javascript:void(0)"
 							onclick="loadInfoBoard()"><span>정보 게시판</span></a></li>
+						<li><a id="trashBoard" href="javascript:void(0)"
+							onclick="loadTrashBoard()"><span>휴지통</span></a></li>
 					</ul>
 				</div>
 				<div class="title">
