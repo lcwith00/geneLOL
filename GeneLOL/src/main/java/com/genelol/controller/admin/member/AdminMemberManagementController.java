@@ -70,7 +70,7 @@ public class AdminMemberManagementController {
 	
 	@RequestMapping(value = "/secessionprocess", method = RequestMethod.POST)
 	@ResponseBody
-	public void testCheck(@RequestParam(value = "userID[]") List<Integer> valueArr) throws Exception {
+	public void secessionMember(@RequestParam(value = "userID[]") List<Integer> valueArr) throws Exception {
 		for(Integer value : valueArr){
 			service.secessionMember(value);
 		}

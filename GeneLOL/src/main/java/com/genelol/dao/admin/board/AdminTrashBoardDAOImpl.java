@@ -13,18 +13,19 @@ import com.genelol.common.SearchCount;
 import com.genelol.vo.admin.board.AdminBoardVO;
 
 @Repository
-public class AdminVideoBoardDAOImpl implements AdminVideoBoardDAO {
+public class AdminTrashBoardDAOImpl implements AdminTrashBoardDAO {
 
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "com.genelol.dao.admin.board.AdminVideoBoardMapper";
-
-	@Override
-	public List<AdminBoardVO> adminVideoBoardList(Integer start_no) {
-		return session.selectList(namespace + ".adminVideoBoardList", start_no);
-	}
+	private static String namespace = "com.genelol.dao.admin.board.AdminTrashBoardMapper";
 	
+	
+	@Override
+	public List<AdminBoardVO> adminTrashBoardList(Integer start_no) {
+		return session.selectList(namespace + ".adminTrashBoardList", start_no);
+	}
+
 	@Override
 	public List<AdminBoardVO> searchList(String searchtype, String searchtext, Integer start_no) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -35,13 +36,13 @@ public class AdminVideoBoardDAOImpl implements AdminVideoBoardDAO {
 	}
 
 	@Override
-	public List<AdminBoardVO> videoDetail(Integer board_no) {
-		return session.selectList(namespace + ".videoDetail", board_no);
+	public List<AdminBoardVO> trashDetail(Integer board_no) {
+		return session.selectList(namespace + ".trashDetail", board_no);
 	}
 
 	@Override
-	public List<PageCount> videoCount() {
-		return session.selectList(namespace + ".videoCount");
+	public List<PageCount> trashCount() {
+		return session.selectList(namespace + ".trashCount");
 	}
 
 	@Override
@@ -55,5 +56,6 @@ public class AdminVideoBoardDAOImpl implements AdminVideoBoardDAO {
 	@Override
 	public void deleteArticle(Integer board_no) {
 		session.update(namespace + ".deleteArticle", board_no);
-	}	
+	}
+
 }

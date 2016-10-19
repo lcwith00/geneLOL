@@ -18,22 +18,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.genelol.common.PageCount;
 import com.genelol.common.SearchCount;
 import com.genelol.service.admin.board.AdminInformationBoardService;
+import com.genelol.service.admin.board.AdminTrashBoardService;
 import com.genelol.vo.admin.board.AdminBoardVO;
 
 @Controller
-@RequestMapping(value = "/infoboard")
-public class AdminInformationBoardController {
+@RequestMapping(value = "/trashboard")
+public class AdminTrashBoardController {
 
-	private static final Logger logger = LoggerFactory.getLogger(AdminInformationBoardController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdminTrashBoardController.class);
 
 	@Inject
-	private AdminInformationBoardService service;
+	private AdminTrashBoardService service;
 
 	@RequestMapping(value = "/article/{start_no}", method = RequestMethod.GET)
 	public ResponseEntity<List<AdminBoardVO>> list(@PathVariable("start_no") Integer start_no) throws Exception {
 
 		ResponseEntity<List<AdminBoardVO>> listAll = null;
-		listAll = new ResponseEntity<>(service.adminInformationBoardList(start_no), HttpStatus.OK);
+		listAll = new ResponseEntity<>(service.adminTrashBoardList(start_no), HttpStatus.OK);
 
 		return listAll;
 	}
@@ -53,18 +54,18 @@ public class AdminInformationBoardController {
 	public ResponseEntity<List<AdminBoardVO>> read(@PathVariable("board_no") Integer board_no) throws Exception {
 
 		ResponseEntity<List<AdminBoardVO>> readEntity = null;
-		readEntity = new ResponseEntity<>(service.infoDetail(board_no), HttpStatus.OK);
+		readEntity = new ResponseEntity<>(service.trashDetail(board_no), HttpStatus.OK);
 
 		return readEntity;
 	}
 
 	@RequestMapping(value = "/totalcount")
-	public ResponseEntity<List<PageCount>> infoCount() throws Exception {
+	public ResponseEntity<List<PageCount>> trashCount() throws Exception {
 
-		ResponseEntity<List<PageCount>> infoEntity = null;
-		infoEntity = new ResponseEntity<>(service.infoCount(), HttpStatus.OK);
+		ResponseEntity<List<PageCount>> trashEntity = null;
+		trashEntity = new ResponseEntity<>(service.trashCount(), HttpStatus.OK);
 
-		return infoEntity;
+		return trashEntity;
 	}
 
 	@RequestMapping(value = "/searchcount/{searchtype}/{searchtext}")

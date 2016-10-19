@@ -42,6 +42,11 @@ public class AdminManagementController {
 	public String adminInformationBoard(Locale locale, Model model) {
 		return "admin/boardManagement/adminInformationBoard";
 	}
+	
+	@RequestMapping(value = "/admintrashboard", method = RequestMethod.GET)
+	public String adminTrashBoard(Locale locale, Model model) {
+		return "admin/boardManagement/adminTrashBoard";
+	}
 
 	@RequestMapping(value = "/memberlistmanagement", method = RequestMethod.GET)
 	public String memberListManagement(Locale locale, Model model) throws Exception {
@@ -53,8 +58,8 @@ public class AdminManagementController {
 		return "admin/memberManagement/secessionListManagement";
 	}
 	
-	@RequestMapping(value = "/adminlistmanagement", method = RequestMethod.GET)
+	@RequestMapping(value = "/operatorlistmanagement", method = RequestMethod.GET)
 	public String adminListManagement(Locale locale, Model model) {
-		return "admin/memberManagement/adminListManagement";
+		return "admin/memberManagement/operatorListManagement";
 	}
 }

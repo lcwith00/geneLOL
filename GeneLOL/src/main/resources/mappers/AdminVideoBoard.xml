@@ -69,4 +69,10 @@
 			</when>
 		</choose>
 	</select>
+	
+	<update id="deleteArticle">
+		update boardtable
+		set board_id = 'deleted'
+		where board_no = #{board_no}
+	</update>
 </mapper>
