@@ -55,7 +55,7 @@ public class MypageController {
 		for (CommentVO CommentVO : CommentList) {
 			logger.info(CommentVO.toString());
 		}
-		logger.info(null, covo.getComment_Content().length());
+		logger.info(null,covo.getComment_NO());
 		model.addAttribute("CommentList", CommentList);
 
 		return "/mypage/mypageList";
