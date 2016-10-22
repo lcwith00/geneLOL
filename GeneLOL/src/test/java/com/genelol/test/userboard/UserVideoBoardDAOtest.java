@@ -1,4 +1,4 @@
-package com.genelol.test.uservideo;
+package com.genelol.test.userboard;
 
 
 

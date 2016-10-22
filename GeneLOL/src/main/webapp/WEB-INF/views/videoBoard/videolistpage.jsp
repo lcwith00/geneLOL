@@ -10,17 +10,29 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css"
-	href="../resources/semantic-ui/semantic.min.css">
-<script src="../resources/semantic-ui/semantic.min.js"></script>
+	href="/resources/semantic-ui/semantic.min.css">
+<script src="/resources/semantic-ui/semantic.min.js"></script>
 
 <script type="text/javascript">
 	// Add contents for max height
 	$(document)
 			.ready(
 					function() {
+						hide_modify();
 						$('#registLink').click(function() {
 							$('.ui.modal.link').modal('show');
+						
 						});
+						
+						//=========수정 버튼============
+							$("#btn_Modify").on("click", function() {
+							
+								hideme();
+								modify_val();
+								call_modify();
+								//callme();
+				
+		});
 						//==========동영상 상세보기 ============
 						
 							
@@ -91,13 +103,8 @@
 																								+ this.board_date
 																								+ "</div>"
 																								+ "</div>";
-																						str += "<div class="+"'image'"+"id="+"'btnImg'"+">";
-																						str += "<a href="
-																								+ "'http://localhost:8080/video/videoDetail?board_no='"
-																								+ this.board_no
-																								+ ">";
+																						str += "<div class="+"'image'"+"id="+"'btnImg'"+"onclick="+"read("+this.board_no+")"+">";
 																						str += "<img src="+"'http://img.youtube.com/vi/'"+this.board_content+"'/1.jpg'"+">"
-																								+ "</a>"
 																								+ "</div>";
 																						str += " <div class="+"'content'"+">";
 																						str += "<span class="+"'right floated'"+">";
@@ -142,7 +149,11 @@
 										});
 					});
 	function read(str) {
-	      var board_no = str;
+		
+		document.getElementById("btn_submit").style.visibility="hidden"; 
+		 document.getElementById("btn_cancel").style.visibility="hidden"; 
+		
+		 var board_no = str;
 	      var url = "/videoboard/read/" + board_no;
 	      $.getJSON(url, function(data) {
 	         $(data).each(
@@ -154,17 +165,45 @@
 	                  var board_content = this.board_content;
 	                  var board_count = this.board_count ;
 	                  var board_recomm = this.board_recomm;
-	                
+	                 $("#board_no_send_modal").html(board_no);
 	                  $("#video_title_modal").html(board_title);
-	                  $("#video_content").html(board_content);
+	                  $("#video_content_play").html("<iframe src='http://www.youtube.com/embed/"+board_content+"' frameborder='0' allowfullscreen></iframe>");
 	                  $("#video_writer").html("작성자 : " + username);
 	                  $("#view_Cnt").html(
 	                        "<i class='unhide icon'></i>" + board_count);
 	                  $("#like").html("Like " + board_recomm);
+	             	$("#date").html(board_date);
 	               });
 	      });
 	      $('#videoRead').modal('show');
 	   }
+	function hideme(){
+	    document.getElementById("video_title_modal").style.visibility="hidden"; 
+	    document.getElementById("video_content_play").style.visibility="hidden"; 
+		document.getElementById("btn_List").style.visibility="hidden";
+		document.getElementById("btn_Modify").style.visibility="hidden";
+		document.getElementById("btn_Delete").style.visibility="hidden";
+		
+	}
+	function call_modify(){
+		 document.getElementById("video_title_modify").style.visibility="visible"; 
+		 document.getElementById("video_content_modify").style.visibility="visible"; 
+		 document.getElementById("btn_submit").style.visibility="visible"; 
+		 document.getElementById("btn_cancel").style.visibility="visible"; 
+		 
+	};
+	function hide_modify(){
+	    document.getElementById("video_title_modify").style.visibility="hidden"; 
+	}
+	function modify_val(){
+		var modify_title_val =  $("#video_title_modal").html();
+		alert(modify_val);
+		$('input[name=modify_title_val]').attr('value',modify_title_val);
+		var modify_content_val =  $("#video_content_play").html();
+		alert(modify_content_val);
+		$('input[name=modify_content_val]').attr('value',modify_content_val);
+	}
+	
 </script>
 <style type="text/css">
 body, html {
@@ -280,66 +319,63 @@ div #tab_column {
 			<p></p>
 			<!-- ======================Detail=============================== -->
 
-			<form method="get" action="/video/videoDetail" id="sendDetail"
-				name="nsendDetail">
 
-				<div class="row">
-					<div class="ui four column doubling stackable grid container">
-						<c:forEach items="${videoList}" var="UserVideoBoardVO">
+			<div class="row">
+				<div class="ui four column doubling stackable grid container">
+					<c:forEach items="${videoList}" var="UserVideoBoardVO">
 
-							<div class="column" id="tab_column">
-								<div class="ui card">
+						<div class="column" id="tab_column">
+							<div class="ui card">
 
+								<!--board_no  -->
+								<input type="hidden" id="last_board_no" name="board_no"
+									value="${UserVideoBoardVO.board_no}">
+								<div class="content">
+									<!--board_count  -->
+									<div class="right floated meta">조회수 :
+										${UserVideoBoardVO.board_count}</div>
 									<!--board_no  -->
-									<input type="hidden" id="last_board_no" name="board_no"
-										value="${UserVideoBoardVO.board_no}">
-									<div class="content">
-										<!--board_count  -->
-										<div class="right floated meta">조회수 :
-											${UserVideoBoardVO.board_count}</div>
-										<!--board_no  -->
-										<label id="video_no"
-											data-board_no="${UserVideoBoardVO.board_no }">no.${UserVideoBoardVO.board_no }</label>
-										<br> <label id="video_title">
-											${UserVideoBoardVO.board_title } </label>
+									<label id="video_no"
+										data-board_no="${UserVideoBoardVO.board_no }">no.${UserVideoBoardVO.board_no }</label>
+									<br> <label id="video_title">
+										${UserVideoBoardVO.board_title } </label>
 
-										<div class="right floated meta">
+									<div class="right floated meta">
 
-											<!-- 날짜가져오기 -->
-											<fmt:formatDate pattern="yyyy-MM-dd"
-												value="${UserVideoBoardVO.board_date}" />
+										<!-- 날짜가져오기 -->
+										<fmt:formatDate pattern="yyyy-MM-dd"
+											value="${UserVideoBoardVO.board_date}" />
 
-										</div>
-									</div>
-									<div class="image" id="btnimg"
-										onclick="read(${UserVideoBoardVO.board_no})">
-
-										<img
-											src="http://img.youtube.com/vi/${UserVideoBoardVO.board_content}/1.jpg">
-									</div>
-									<div class="content">
-										<span class="right floated"> <i
-											class="heart outline like icon"></i> <!-- 좋아요수 -->likes
-											${UserVideoBoardVO.board_recomm}
-										</span> <i class="comment icon"></i>
-										<!-- 댓글수 -->
-										comments
-									</div>
-									<div class="extra content">
-										<div class="ui large transparent left icon input">작성자 :
-											${UserVideoBoardVO.userid}</div>
 									</div>
 								</div>
+								<div class="image" id="btnimg"
+									onclick="read(${UserVideoBoardVO.board_no})">
+
+									<img
+										src="http://img.youtube.com/vi/${UserVideoBoardVO.board_content}/1.jpg">
+								</div>
+								<div class="content">
+									<span class="right floated"> <i
+										class="heart outline like icon"></i> <!-- 좋아요수 -->likes
+										${UserVideoBoardVO.board_recomm}
+									</span> <i class="comment icon"></i>
+									<!-- 댓글수 -->
+									comments
+								</div>
+								<div class="extra content">
+									<div class="ui large transparent left icon input">작성자 :
+										${UserVideoBoardVO.userid}</div>
+								</div>
 							</div>
-						</c:forEach>
-					</div>
-					<div class="ui modal Detail" id="videoRead">
-						<%@ include file="../videoBoard/videodetail.jsp"%>
-					</div>
-
-
+						</div>
+					</c:forEach>
 				</div>
-			</form>
+				<div class="ui modal Detail" id="videoRead">
+					<%@ include file="../videoBoard/videodetail.jsp"%>
+				</div>
+
+
+			</div>
 		</div>
 
 
@@ -352,7 +388,7 @@ div #tab_column {
 
 	</div>
 
-	<form id="tab_type" method="get">
+	<!-- 	<form id="tab_type" method="get">
 		<div class="ui bottom attached tab segment" data-tab="LOL"
 			id="btn_tab_LoL">
 			<input type="hidden" name="board_id" value="test" id="type_Tap">
@@ -365,7 +401,7 @@ div #tab_column {
 		id="btn_tab_Etc"></div>
 
 
-
+ -->
 </body>
 
 

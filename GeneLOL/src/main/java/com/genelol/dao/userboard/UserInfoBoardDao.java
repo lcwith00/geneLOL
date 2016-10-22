@@ -1,5 +1,19 @@
 package com.genelol.dao.userboard;
 
-public interface UserInfoBoard {
+import java.util.List;
 
-}
+import com.genelol.vo.userboard.UserInfoBoardVO;
+
+public interface UserInfoBoardDao {
+	public List<UserInfoBoardVO> infoList(UserInfoBoardVO uibvo)throws Exception; //정보 목록 보기
+	
+	public void infoInsert(UserInfoBoardVO uibvo) throws Exception; //정보 올리기
+	
+	public void infoUpdatet(UserInfoBoardVO uibvo) throws Exception;
+	
+	public void infoDelete(Integer board_no) throws Exception;
+	
+	public UserInfoBoardVO infoDetail(Integer board_no) throws Exception;
+	
+	
+ }

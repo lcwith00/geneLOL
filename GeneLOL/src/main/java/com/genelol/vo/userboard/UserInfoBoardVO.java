@@ -1,6 +1,6 @@
 package com.genelol.vo.userboard;
 
-import java.sql.Clob;
+
 import java.util.Date;
 
 public class UserInfoBoardVO {
@@ -8,7 +8,7 @@ public class UserInfoBoardVO {
 	private Integer board_no; // 글 번호
 	private String username; // 작성자
 	private String board_title; // 글 제목
-	private Clob board_content; // 글 내용
+	private String board_content; // 글 내용
 	private String board_file; // 첨부파일
 	private Integer board_count; // 조회수
 	private Integer board_recomm; // 좋아요 수
@@ -46,11 +46,11 @@ public class UserInfoBoardVO {
 		this.board_title = board_title;
 	}
 
-	public Clob getBoard_content() {
+	public String getBoard_content() {
 		return board_content;
 	}
 
-	public void setBoard_content(Clob board_content) {
+	public void setBoard_content(String board_content) {
 		this.board_content = board_content;
 	}
 

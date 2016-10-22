@@ -22,33 +22,59 @@
 	$(document).ready(function() {
 		var formObj = $("form[role='form']");
 
-		$("#btn_Modify").on("click", function() {
-			formObj.attr("action", "/video/videoUpdateView");
-			formObj.attr("method", "get");
-			formObj.submit();
-		});
-		$("#btn_Delete").on("click", function() {
-			formObj.attr("action", "/video/videoDelete");
-			formObj.attr("method", "post");
-			formObj.submit();
+		$("#btn_submit").on("click", function() {
+
+			var board_no = $("#board_no_send_modal").html();
+			alert(board_no);
+			$('input[name=board_no]').attr('value', board_no);
+
+			var board_title = $("#video_title_modify_val").val();
+			alert(board_title);
+			$('input[name=board_title]').attr('value', board_title);
+
+			var board_content = $("#video_content_modify_val").val();
+			alert(board_content);
+			$('input[name=board_content]').attr('value', board_content);
+
+			$('#func').attr({
+				'action' : '/video/videoUpdate',
+				'method' : 'post'
+			});
+			$('#func').submit();
+
 		});
 
-		/* 	$("#like_input_data").val("1");
-			$("#like_data").attr("action", "/video/videoDetail");
-			$("#like_data").attr("method", "get");
-			$("#like_data").submit();
-		 */
+		$("#btn_Delete").on("click", function() {
+			var board_no = $("#board_no_send_modal").html();
+			alert(board_no);
+			$('input[name=board_no]').attr('value', board_no);
+			
+			if (confirm("정말 삭제하시겠습니까?") == true) {
+				$('#func').attr({
+					'action' : '/video/videoDelete',
+					'method' : 'post'
+				});
+				$('#func').submit();
+			} else {
+				return;
+			}
+
+		});
+
 		$("#likebtn").on("click", function() {
+
 			$.ajax({
 				type : "POST",
 				url : "/video/videoLike",
 				dataType : 'text', // 서버로부터 되돌려받는 데이터의 타입을 명시하는 것이다.
 				data : { // 서버로 보낼 데이터 명시 
-					board_no : $("#board_id_for_like").val(),
-					board_recomm : $("#like_input_data").val()
+
+					board_no : $("#board_no_send_modal").val(),
+					board_recomm : $("#like").val()
 				},
 				success : function() {
 					alert("전송완료");
+					alert(board_no_send_modal);
 				}
 
 			});
@@ -59,32 +85,7 @@
 </script>
 
 <script type="text/javascript">
-	// Add contents for max height
-<%String like = "";
-
-			try {
-				Cookie[] cookies = request.getCookies();
-
-				if (cookies != null) {
-					for (int i = 0; i < cookies.length; i++) {
-						if (cookies[i].getName().equals("like")) {
-							like = cookies[i].getValue();
-						}
-					}
-
-					if (like.equals("1")) {
-						out.println("추천됨");
-					}
-
-				} else {
-					response.sendRedirect("videolistpage.jsp");
-				}
-
-			} catch (Exception e) {
-			}%>
-	$(document).ready(function() {
-
-	});
+	
 </script>
 
 <style type="text/css">
@@ -113,7 +114,7 @@ div #bg {
 	text-align: right;
 }
 
-#btn_List, #btn_Modify, #btn_Delete {
+#btn_List, #btn_Modify, #btn_Delete, #btn_submit, #btn_cancel {
 	float: right;
 }
 
@@ -126,49 +127,44 @@ div #bg {
 </head>
 <body>
 
-	<form role="form" method="post" action="/video/videoDetail">
-		<input type='hidden' name='board_no' id="board_id_for_like"> <input
-			type='hidden' name='board_no' id='board_no'
-			value="${UserVideoBoardVO.board_no }">
-	</form>
-
 	<div class="form-group">
-		<h3 class="ui block header"></h3>
+		<form id="func">
+			<!-- 삭제, 수정을 위한 form -->
+			<h3 class="ui block header" id="board_no_send_modal"></h3>
+			<input type="hidden" name="board_no">
+			<h3 class="ui top attached header" id="video_title_modal"></h3>
+			<h3 class="ui top attached header" id="video_title_modify">
+				<label>제목 : </label> <input id="video_title_modify_val" type="text"
+					name="modify_title_val" size="70"> <input type="hidden"
+					name="board_title">
+			</h3>
+			<div id="video_writer"></div>
+			<div class="ui attached segment">
 
-		<h3 class="ui top attached header">${UserVideoBoardVO.board_title }
 
-		</h3>
-		<div id="writer">글쓴이 : ${UserVideoBoardVO.userid }</div>
-		<div class="ui attached segment" id="bg">
+				<div class='embed-container'>
 
-
-			<a class="ui black label">Content</a>
-			<div class='embed-container'>
-
-				<div class="video_play">
-					<iframe
-						src='http://www.youtube.com/embed/${UserVideoBoardVO.board_content }'
-						frameborder='0' allowfullscreen></iframe>
+					<div id="video_content_modify">
+						<label>링크 : </label><input id="video_content_modify_val"
+							type="text" size="100" name="modify_content_val" value="">
+						<input type="hidden" name="board_content">
+					</div>
+					<div class="video_play" id="video_content_play"></div>
 				</div>
+				<br>
 			</div>
-			<br>
-		</div>
+		</form>
+
 		<div>
 			<form id="like_data" method="get">
 				<div class="ui labeled button" tabindex="0">
 					<div class="ui button" id="likebtn">
-						<i class="heart icon"></i> Like <input type="hidden"
-							name="board_recomm" value="1" id="like_input_data">
+						<i class="heart icon" id="like"></i>
 					</div>
-					<a class="ui basic label"> ${UserVideoBoardVO.board_recomm } </a>
 				</div>
 
-				<div class="ui blue labels" id="viewCount">
-					<a class="ui label"> 조회수 : ${UserVideoBoardVO.board_count}</a>
-				</div>
-
+				<div class="ui blue labels" id="view_Cnt"></div>
 			</form>
-
 		</div>
 		<!-- ================reply start================== -->
 		<div class="ui threaded comments">
@@ -204,12 +200,16 @@ div #bg {
 			<!-- ================reply end================== -->
 		</div>
 
+		<div class="buttons">
+			<button class="ui blue basic button" id="btn_List">LIST ALL</button>
+			<button class="ui yellow basic button" id="btn_Modify">MODIFY</button>
+			<button class="ui red basic button" id="btn_Delete">DELETE</button>
+			<button class="ui green basic button" id="btn_submit">SUBMIT</button>
+			<button class="ui red basic button" id="btn_cancel">CANCEL</button>
+
+		</div>
 	</div>
 	<!--  /.div-body -->
-	<div class="buttons">
-		<button class="ui blue basic button" id="btn_List">List ALL</button>
-		<button class="ui yellow basic button" id="btn_Modify">MODIFY</button>
-		<button class="ui red basic button" id="btn_Delete">DELETE</button>
-	</div>
+
 </body>
 </html>
