@@ -34,11 +34,12 @@ public class CommentController {
 		ResponseEntity<String> entity = null;
 		try {
 			service.addReply(vo);
+			System.out.println("commentvo를 불러올까?"+vo);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("commentvo를 불러올까?"+vo);
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+			System.out.println("entity를 불러올까?"+entity);
 		}
 		return entity;
 	}
