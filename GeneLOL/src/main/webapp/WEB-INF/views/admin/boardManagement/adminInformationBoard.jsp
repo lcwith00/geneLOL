@@ -328,6 +328,7 @@ div #bg {
 </script>
 <!-- list -->
 <div id="infoBoardlist">
+	<div>정보 게시판</div>
 	<div class="ui top attached tabular menu">
 		<a class="item active" data-tab="first">게시물 관리</a> <a class="item"
 			data-tab="second">댓글 관리</a>

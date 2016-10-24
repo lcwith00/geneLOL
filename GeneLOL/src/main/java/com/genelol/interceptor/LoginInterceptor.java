@@ -8,6 +8,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.genelol.vo.user.UserVO;
+
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 	private static final String LOGIN = "login";
@@ -20,6 +22,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 		ModelMap modelMap = modelAndView.getModelMap();
 		Object userVO = modelMap.get("userVO");
+		UserVO adminVO = (UserVO) userVO;
 
 		System.out.println("post");
 
@@ -28,7 +31,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			session.setAttribute(LOGIN, userVO);
 			System.out.println(session.getAttribute("login").toString());
 		}
-		response.sendRedirect("/");
+
+		if (adminVO.getUserType().equals("member")) {
+			response.sendRedirect("/");
+		} else if (adminVO.getUserType().equals("operator")) {
+			response.sendRedirect("/adminpage");
+		}
+
 	}
 
 	@Override

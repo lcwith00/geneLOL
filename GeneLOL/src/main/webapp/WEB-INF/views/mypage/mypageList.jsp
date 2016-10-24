@@ -64,7 +64,7 @@
 	}
 	$(document).ready(
 			function() {
-				$('#searchBtn').on(
+				$('#searchButton').on(
 						"click",
 						function(event) {
 
@@ -192,194 +192,7 @@
 		alert(comment_NO + ":" + comment_Content);
 
 	}); */
-	/* 434page */
-	Handlebars.registerHelper("prettifyDate", function(timeValue) {
-		var dateObj = new Date(timeValue);
-		var year = dateObj.getFullYear();
-		var month = dateObj.getMonth() + 1;
-		var date = dateObj.getDate();
-		return year + "/" + month + "/" + date;
-	});
 
-	var printData = function(commentArr, target, templateObject) {
-
-		var template = Handlebars.compile(templateObject.html());
-
-		var html = template(replyArr);
-		$(".commentLi").remove();
-		target.after(html);
-	}
-
-	var board_no = $
-	{
-		UserVideoBoardVO.board_no
-	};
-
-	var CommentPage = 1;
-
-	function getPage(pageInfo) {
-
-		$.getJSON(pageInfo,
-				function(data) {
-					printData(data.list, $("#commentDiv"), $('#template'));
-					printPaging(data.pageMakerVO, $(".pagination"));
-
-					$("#modifyModal").modal('hide');
-					$("#commentCntSmall").html(
-							"[ " + data.pageMaker.totalCount + " ]");
-
-				});
-	}
-
-	var printPaging = function(pageMakerVO, target) {
-
-		var str = "";
-
-		if (pageMakerVO.prev) {
-			str += "<li><a href='" + (pageMakerVO.startPage - 1)
-					+ "'> << </a></li>";
-		}
-
-		for (var i = pageMakerVO.startPage, len = pageMakerVO.endPage; i <= len; i++) {
-			var strClass = pageMakerVO.paging.page == i ? 'class=active' : '';
-			str += "<li "+strClass+"><a href='"+i+"'>" + i + "</a></li>";
-		}
-
-		if (pageMakerVO.next) {
-			str += "<li><a href='" + (pageMakerVO.endPage + 1)
-					+ "'> >> </a></li>";
-		}
-
-		target.html(str);
-	};
-
-	$("#commentDiv").on("click", function() {
-
-		if ($(".timeline li").size() > 1) {
-			return;
-		}
-		getPage("/comment/" + board_no + "/1");
-
-	});
-
-	$(".pagination").on("click", "li a", function(event) {
-
-		event.preventDefault();
-
-		commentPage = $(this).attr("href");
-
-		getPage("/comment/" + board_no + "/" + commentPage);
-
-	});
-
-	$("#replyAddBtn").on("click", function() {
-
-		var userIDObj = $("#newuserID");
-		var comment_ContentObj = $("#newcomment_Content");
-		var userID = userIDObj.val();
-		var comment_Content = comment_ContentObj.val();
-
-		$.ajax({
-			type : 'post',
-			url : '/comment/',
-			headers : {
-				"Content-Type" : "application/json",
-				"X-HTTP-Method-Override" : "POST"
-			},
-			dataType : 'text',
-			data : JSON.stringify({
-				board_no : board_no,
-				userID : userID,
-				comment_Content : comment_Content
-			}),
-			success : function(result) {
-				console.log("result: " + result);
-				if (result == 'SUCCESS') {
-					alert("등록 되었습니다.");
-					replyPage = 1;
-					getPage("/comment/" + board_no + "/" + commentPage);
-					userIDObj.val("");
-					comment_ContentObj.val("");
-				}
-			}
-		});
-	});
-
-	$(".timeline").on("click", ".commentLi", function(event) {
-
-		var comment = $(this);
-
-		$("#comment_Content").val(comment.find('.timeline-body').text());
-		$(".modal-title").html(comment.attr("data-comment_NO"));
-
-	});
-	//수정
-	$("#commentModBtn").on("click", function() {
-
-		var comment_NO = $(".modal-title").html();
-		var comment_Content = $("comment_Content").val();
-
-		$.ajax({
-			type : 'put',
-			url : '/comment/' + comment_NO,
-			headers : {
-				"Content-Type" : "application/json",
-				"X-HTTP-Method-Override" : "PUT"
-			},
-			data : JSON.stringify({
-				comment_Content : comment_Content
-			}),
-			dataType : 'text',
-			success : function(result) {
-				console.log("result: " + result);
-				if (result == 'SUCCESS') {
-					alert("수정 되었습니다.");
-					getPage("/comment/" + board_NO + "/" + commentPage);
-				}
-			}
-		});
-	});
-
-	$("#commentDelBtn").on("click", function() {
-
-		var comment_NO = $(".modal-title").html();
-		var comment_Content = $("comment_Content").val();
-
-		$.ajax({
-			type : 'delete',
-			url : '/comment/' + comment_NO,
-			headers : {
-				"Content-Type" : "application/json",
-				"X-HTTP-Method-Override" : "DELETE"
-			},
-			dataType : 'text',
-			success : function(result) {
-				console.log("result: " + result);
-				if (result == 'SUCCESS') {
-					alert("삭제 되었습니다.");
-					getPage("/comment/" + board_NO + "/" + commentPage);
-				}
-			}
-		});
-	});
-</script>
-<script id="template" type="text/x-handlebars-template">
-{{#each .}}
-<li class="commentLi" data-comment_NO={{comment_NO}}>
-<i class="fa fa-comments bg-blue"></i>
- <div class="timeline-item" >
-  <span class="time">
-    <i class="fa fa-clock-o"></i>{{prettifyDate comment_Date}}
-  </span>
-  <h3 class="timeline-header"><strong>{{comment_NO}}</strong> -{{userID}}</h3>
-  <div class="timeline-body">{{comment_Content}} </div>
-    <div class="timeline-footer">
-     <a class="btn btn-primary btn-xs" 
-	    data-toggle="modal" data-target="#modifyModal">Modify</a>
-    </div>
-  </div>			
-</li>
-{{/each}}
 </script>
 
 
@@ -572,7 +385,7 @@ strong {
 				</select><i class="search icon"></i><input type="text" name='keyword'
 					id="keywordInput" value='${paging.keyword }'>
 
-				<button id='searchBtn'>Search</button>
+				<button id='searchButton'>Search</button>
 			</div>
 			<div class="seven wide column" id="commentsearchimpormation">
 				<strong>내용을 클릭하세요 댓글을 확인할 수 있습니다</strong>
@@ -611,6 +424,24 @@ strong {
 	</div>
 
 
+	<div>
+		<label for="exampleInputEmail">쓴사람</label><input class="form-control" type="text" placeholder="User ID" id="newUserID">
+		<label for="exampleInputEmail">내용</label><input class="form-control" type="text" placeholder="Content" id="newComment_Content">
+		<label for="exampleInputEmail">추천수</label><input class="form-control" type="text" placeholder="Recomm" id="newcomment_Recomm">
+		<button type="submit" class="button-primary" id="commentAddButton">댓글 추가</button>
+	</div>
+	<div>
+	<ul class="timeline">
+	<li class="time-label" id="commentDiv"><span class="bg-green">리플리스트</span></li>
+	</ul>
+	<div class='text-center'>
+	<ul class="pagination" class="">
+	
+	</ul>
+	</div>
+	</div>
+	
+<!-- 442page -->
 	<!-- Modal -->
 	<div id="modifyModal" class="modal modal-primary fade" role="dialog">
 		<div class="modal-dialog">
@@ -626,16 +457,205 @@ strong {
 					</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-info" id="commentModBtn">Modify</button>
-					<button type="button" class="btn btn-danger" id="commentDelBtn">DELETE</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="" id="commentModButton">Modify</button>
+					<button type="button" class="" id="commentDelButton">DELETE</button>
+					<button type="button" class="" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<!-- 434페이지 template-->
+<script id="template" type="text/x-handlebars-template">
+{{#each .}}
+<li class="commentLi" data-comment_NO={{comment_NO}}>
 
+ <div class="timeline-item" >
+  <div>{{prettifyDate comment_Date}}</div>
+  <div class="timeline-header"><strong>{{comment_NO}}</strong> -{{userID}}</div>
+  <div class="timeline-body">{{comment_Content}}</div>
+<div>{{comment_Recomm}}</div>
 
-	<footer id="footer">
+    <div class="timeline-footer">
+     <a class="button-primary btn-xs" 
+	    data-toggle="modal" data-target="#modifyModal">Modify</a>
+    </div>
+  </div>			
+</li>
+{{/each}}
+</script>
+	
+<script>
+/* 435page prettifyDate날짜에대한것*/
+Handlebars.registerHelper("prettifyDate", function(timeValue) {
+	var dateObj = new Date(timeValue);
+	var year = dateObj.getFullYear();
+	var month = dateObj.getMonth() + 1;
+	var date = dateObj.getDate();
+	return year + "/" + month + "/" + date;
+});
+
+var printData = function(commentArr, target, templateObject) {
+
+	var template = Handlebars.compile(templateObject.html());
+
+	var html = template(commentArr);
+	$(".commentLi").remove();
+	target.after(html);
+}
+/* 436페이지 */
+var board_no = ${UserVideoBoardVO.board_no};
+var CommentPage = 1;
+
+function getPage(pageInfo) {
+
+	$.getJSON(pageInfo, function(data) {
+		printData(data.list, $("#commentDiv"), $('#template'));
+		printPaging(data.pageMakerVO, $(".pagination"));
+
+		//
+		$("#modifyModal").modal('hide');
+		$("#commentCntSmall").html(
+				"[ " + data.pageMakerVO.totalCount + " ]");
+
+	});
+}
+
+var printPaging = function(pageMakerVO, target) {
+
+	var str = "";
+
+	if (pageMakerVO.prev) {
+		str += "<li><a href='"+(pageMakerVO.startPage - 1)+"'> << </a></li>";
+	}
+
+	for (var i = pageMakerVO.startPage, len = pageMakerVO.endPage; i <= len; i++) {
+		var strClass = pageMakerVO.paging.page == i ? 'class=active' : '';
+		str += "<li "+strClass+"><a href='"+i+"'>" + i + "</a></li>";
+	}
+
+	if (pageMakerVO.next) {
+		str += "<li><a href='" + (pageMakerVO.endPage + 1)+ "'> >> </a></li>";
+	}
+
+	target.html(str);
+};
+/* 438페이지 */
+$("#commentDiv").on("click", function() {
+
+	if ($(".timeline li").size() > 1) {
+		return;
+	}
+	getPage("/comment/" + board_no + "/1");
+
+});
+//439페이지
+$(".pagination").on("click", "li a", function(event) {
+
+	event.preventDefault();
+
+	commentPage = $(this).attr("href");
+
+	getPage("/comment/" + board_no + "/" + commentPage);
+
+});
+//440페이지
+$("#commentAddButton").on("click", function() {
+
+	var userIDObj = $("#newUserID");
+	var comment_ContentObj = $("#newcomment_Content");
+	var comment_RecommObj=$("#newcomment_Recomm")
+	var userID = userIDObj.val();
+	var comment_Content = comment_ContentObj.val();
+	var comment_Recomm = comment_RecommObj.val();
+
+	$.ajax({
+		type : 'post',
+		url : '/comment/',
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "POST"
+		},
+		dataType : 'text',
+		data : JSON.stringify({
+			board_no : board_no,
+			userID : userID,
+			comment_Content : comment_Content,
+			comment_Recomm:comment_Recomm
+		}),
+		success : function(result) {
+			console.log("result: " + result);
+			if (result == 'SUCCESS') {
+				alert("등록 되었습니다.");
+				commentPage = 1;
+				getPage("/comment/" + board_no + "/" + commentPage);
+				userIDObj.val("");
+				comment_ContentObj.val("");
+			}
+		}
+	});
+});
+
+$(".timeline").on("click", ".commentLi", function(event) {
+
+	var comment = $(this);
+
+	$("#comment_Content").val(comment.find('.timeline-body').text());
+	$(".modal-title").html(comment.attr("data-comment_NO"));
+
+});
+//수정 445page
+$("#commentModButton").on("click", function() {
+
+	var comment_NO = $(".modal-title").html();
+	var comment_Content = $("comment_Content").val();
+
+	$.ajax({
+		type : 'put',
+		url : '/comment/' + comment_NO,
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "PUT"
+		},
+		data : JSON.stringify({
+			comment_Content : comment_Content
+		}),
+		dataType : 'text',
+		success : function(result) {
+			console.log("result: " + result);
+			if (result == 'SUCCESS') {
+				alert("수정 되었습니다.");
+				getPage("/comment/" + board_no+ "/" + commentPage);
+			}
+		}
+	});
+});
+//삭제 446페이지
+$("#commentDelButton").on("click", function() {
+
+	var comment_NO = $(".modal-title").html();
+	var comment_Content = $("comment_Content").val();
+
+	$.ajax({
+		type : 'delete',
+		url : '/comment/' + comment_NO,
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "DELETE"
+		},
+		dataType : 'text',
+		success : function(result) {
+			console.log("result: " + result);
+			if (result == 'SUCCESS') {
+				alert("삭제 되었습니다.");
+				getPage("/comment/" + board_no + "/" + commentPage);
+			}
+		}
+	});
+});
+</script>
+
+<footer id="footer">
 		<%-- 	<%@ include file="../common/footer.jsp"%> --%>
 	</footer>
 

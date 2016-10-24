@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 	public UserVO login(UserVO userVO) throws Exception {
 		return userDAO.getUserByUID(userVO);
 	}
-
+	
 	@Override
 	public Integer checkUserMail(String userMail) throws Exception {
 		return userDAO.checkUserMail(userMail);
@@ -42,5 +42,23 @@ public class UserServiceImpl implements UserService {
 		return userDAO.memberList();
 	}
 
+	@Override
+	public void resetPassword(String usermail, String userpassword) throws Exception {
+		userDAO.resetPassword(usermail, userpassword);
+	}
 
+	@Override
+	public String searchUserName(String usermail) throws Exception {
+		return userDAO.searchUserName(usermail);
+	}
+
+	@Override
+	public String searchUserMail(String username) throws Exception {
+		return userDAO.searchUserMail(username);
+	}
+
+	@Override
+	public void cetification(String key) {
+		userDAO.cetification(key);
+	}
 }

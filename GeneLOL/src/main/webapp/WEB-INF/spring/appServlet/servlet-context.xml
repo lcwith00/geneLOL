@@ -37,8 +37,6 @@
 			<mapping path="/user/login" />
 			<beans:ref bean="loginInterceptor" />
 		</interceptor>
-		<!-- <interceptor> <mapping path="/" /> <beans:ref bean="authInterceptor" 
-			/> </interceptor> -->
 	</interceptors>
 
 </beans:beans>
