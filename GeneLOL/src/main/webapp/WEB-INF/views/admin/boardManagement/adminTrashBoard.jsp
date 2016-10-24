@@ -46,7 +46,7 @@ div #bg {
 	min-width: 7em !important;
 }
 
-#infoBoardList {
+#trashBoardList {
 	text-align: center;
 }
 
@@ -58,7 +58,7 @@ div #bg {
 	float: left;
 }
 
-#infoBoardSearch {
+#trashBoardSearch {
 	float: right;
 }
 </style>
@@ -71,19 +71,19 @@ div #bg {
 			var searchType = $('#searchBox option:selected').val();
 			if (searchType == "all") {
 				$('#page_navi').html("");
-				$("#infoList").html("");
+				$("#trashList").html("");
 				var searchtext = $("#searchInput").val();
 				listSearch(searchType, page, searchtext);
 				searchPage(searchType, searchtext);
 			} else if (searchType == "writer") {
 				$('#page_navi').html("");
-				$("#infoList").html("");
+				$("#trashList").html("");
 				var searchtext = $("#searchInput").val();
 				listSearch(searchType, page, searchtext);
 				searchPage(searchType, searchtext);
 			} else if (searchType == "subject") {
 				$('#page_navi').html("");
-				$("#infoList").html("");
+				$("#trashList").html("");
 				var searchtext = $("#searchInput").val();
 				listSearch(searchType, page, searchtext);
 				searchPage(searchType, searchtext);
@@ -104,7 +104,7 @@ div #bg {
 				$.ajax({
 					async : false,
 					method : "POST",
-					url : "/infoboard/deleteprocess",
+					url : "/trashboard/deleteprocess",
 					data : {
 						'board_no' : checkArr
 					},
@@ -112,7 +112,7 @@ div #bg {
 			}
 
 			$('#page_navi').html("");
-			$("#infoList").html("");
+			$("#trashList").html("");
 			listAll();
 			page();
 			$('#allCheck').prop("checked", false);
@@ -143,7 +143,7 @@ div #bg {
 	function searchPage(str1, str2) {
 		var searchType = str1;
 		var searchtext = str2;
-		var url = "/infoboard/searchcount/" + searchType + "/" + searchtext;
+		var url = "/trashboard/searchcount/" + searchType + "/" + searchtext;
 		$.getJSON(url, function(data) {
 			$(data).each(function() {
 				var searchCount = this.searchCount;
@@ -162,11 +162,11 @@ div #bg {
 
 	function page() {
 		$('#page_navi').html("");
-		var url = "/infoboard/totalcount";
+		var url = "/trashboard/totalcount";
 		$.getJSON(url, function(data) {
 			$(data).each(function() {
-				var infoCount = this.totalCount;
-				var resultCount = infoCount / 10
+				var trashCount = this.totalCount;
+				var resultCount = trashCount / 10
 				resultCount = Math.ceil(resultCount);
 				$('#page_navi').paging({
 					current : 1,
@@ -186,7 +186,7 @@ div #bg {
 			page = str2;
 		}
 		var start_no = (page - 1) * 10;
-		var url = "/infoboard/article/" + searchtype + "/" + searchtext + "/"
+		var url = "/trashboard/article/" + searchtype + "/" + searchtext + "/"
 				+ start_no;
 		$.getJSON(url, function(data) {
 			console.log(data.length);
@@ -205,13 +205,13 @@ div #bg {
 	}
 
 	function listAll(str) {
-		$("#infoList").html("");
+		$("#trashList").html("");
 		var page = 1;
 		if (str > 1) {
 			page = str;
 		}
 		var start_no = (page - 1) * 10;
-		var url = "/infoboard/article/" + start_no;
+		var url = "/trashboard/article/" + start_no;
 		$.getJSON(url, function(data) {
 			console.log(data.length);
 
@@ -263,7 +263,7 @@ div #bg {
 						board_date_div).append(board_count_div).append(
 						board_recomm_div);
 
-		$("#infoList").append(new_div);
+		$("#trashList").append(new_div);
 	}
 
 	function addNewItem(board_no, board_title, username, board_date,
@@ -299,12 +299,12 @@ div #bg {
 						board_date_div).append(board_count_div).append(
 						board_recomm_div);
 
-		$("#infoList").append(new_div);
+		$("#trashList").append(new_div);
 	}
 
 	function read(str) {
 		var board_no = str;
-		var url = "/infoboard/read/" + board_no;
+		var url = "/trashboard/read/" + board_no;
 		$.getJSON(url, function(data) {
 			$(data).each(
 					function() {
@@ -315,28 +315,29 @@ div #bg {
 						var board_date = this.board_date;
 						var board_count = this.board_count;
 						var board_recomm = this.board_recomm;
-						$("#info_title").html(board_title);
-						$("#info_writer").html("작성자 : " + username);
+						$("#trash_title").html(board_title);
+						$("#trash_writer").html("작성자 : " + username);
 						$("#content").html(board_content);
 						$("#view_Cnt").html(
 								"<i class='unhide icon'></i>" + board_count);
 						$("#like").html("Like " + board_recomm);
 					});
 		});
-		$('#readinfo').modal('show');
+		$('#readtrash').modal('show');
 	}
 </script>
 <!-- list -->
-<div id="infoBoardlist">
+<div id="trashBoardlist">
+	<div>휴지통</div>
 	<div class="ui top attached tabular menu">
 		<a class="item active" data-tab="first">게시물 관리</a> <a class="item"
 			data-tab="second">댓글 관리</a>
 	</div>
 	<div class="ui bottom attached tab segment active" data-tab="first"
-		id="infoBoardList">
-		<div id="infoBoardMenu">
+		id="trashBoardList">
+		<div id="trashBoardMenu">
 			<div class="ui button" id="selectArticleDelete">선택삭제</div>
-			<div class="ui action input" id="infoBoardSearch">
+			<div class="ui action input" id="trashBoardSearch">
 				<select class="ui compact selection dropdown" id="searchBox">
 					<option value="all" selected="">전체</option>
 					<option value="writer">작성자</option>
@@ -357,14 +358,12 @@ div #bg {
 			<div class="two wide column">조회수</div>
 			<div class="two wide column">좋아요</div>
 		</div>
-		<div id="infoList"></div>
+		<div id="trashList"></div>
 		<br>
 		<div id="page_navi"></div>
 	</div>
 	<div class="ui bottom attached tab segment" data-tab="second">
 		Second</div>
-	<div class="ui bottom attached tab segment" data-tab="third"></div>
-
-
-	<!-- modal -->
-	<div class="ui modal" id="readinfo"></div>
+</div>
+<!-- modal -->
+<div class="ui modal" id="readtrash"></div>

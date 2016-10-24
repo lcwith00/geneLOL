@@ -5,9 +5,8 @@ body, html {
 	padding: 0;
 	height: 100%;
 	width: 100%;
-	min-width: 600px;
+	min-width: 768px;
 	overflow-x: auto;
-	font-size: 16px;
 }
 
 header, footer {

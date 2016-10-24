@@ -38,7 +38,7 @@ public class RiotGamesDaoImp implements RiotGamesDao {
 
 	@Override
 	public int updateSummoner(Summoner summoner) {
-		return session.insert(namespace + ".summonerUpdate", summoner);
+		return session.update(namespace + ".summonerUpdate", summoner);
 	}
 
 	@Override

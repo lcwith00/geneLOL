@@ -76,13 +76,13 @@ public class AdminInformationBoardController {
 
 		return searchEntity;
 	}
-	
+
 	// 삭제처리
-		@RequestMapping(value = "/deleteprocess", method = RequestMethod.POST)
-		@ResponseBody
-		public void deleteArticle(@RequestParam(value = "board_no[]") List<Integer> valueArr) throws Exception {
-			for(Integer value : valueArr){
-				service.deleteArticle(value);
-			}
+	@RequestMapping(value = "/deleteprocess", method = RequestMethod.POST)
+	@ResponseBody
+	public void deleteArticle(@RequestParam(value = "board_no[]") List<Integer> valueArr) throws Exception {
+		for (Integer value : valueArr) {
+			service.deleteArticle(value);
 		}
+	}
 }

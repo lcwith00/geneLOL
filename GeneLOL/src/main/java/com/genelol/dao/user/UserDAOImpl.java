@@ -1,5 +1,6 @@
 package com.genelol.dao.user;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -29,10 +30,9 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public UserVO getUserByUID(UserVO userVO) {
-		// TODO Auto-generated method stub
 		return session.selectOne(namespace + ".login", userVO);
 	}
-
+	
 	@Override
 	public Integer checkUserMail(String userMail) {
 		return session.selectOne(namespace + ".checkUserMail", userMail);
@@ -40,9 +40,31 @@ public class UserDAOImpl implements UserDAO {
 
 	// 회원 목록
 	@Override
-	public List<UserVO> memberList() throws Exception {
+	public List<UserVO> memberList() {
 		return session.selectList(namespace + ".memberList");
 	}
-	
+
+	@Override
+	public void resetPassword(String usermail, String userpassword) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("usermail", usermail);
+		map.put("userpassword", userpassword);
+		session.update(namespace + ".resetPassword", map);
+	}
+
+	@Override
+	public String searchUserName(String usermail) {
+		return session.selectOne(namespace + ".searchUserName", usermail);
+	}
+
+	@Override
+	public String searchUserMail(String username) {
+		return session.selectOne(namespace + ".searchUserMail", username);
+	}
+
+	@Override
+	public void cetification(String key) {
+		session.update(namespace + ".cetification", key);
+	}
 
 }

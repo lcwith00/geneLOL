@@ -180,11 +180,42 @@
 		$('#reset-password').removeClass('active');
 		$('#reset-passwordTab').removeClass('active');
 	}
+
+	function resetPassword() {
+		$.ajax({
+			async : false,
+			url : "/user/mailcheck",
+			type : "post",
+			data : {
+				'userMail' : $("#resetMailInput").val()
+			},
+			dataType : "json",
+			success : function(data) {
+				if (data.result == "success") {
+					alert("메일주소를 정확히 입력해주세요.");
+					return false;
+				} else if (data.result == "failure") {
+					sendMail(data.mail);
+				}
+			}
+		});
+	}
+
+	function sendMail(str) {
+		var usermail = str;
+		$.ajax({
+			url : "/user/resetpassword/" + usermail,
+			type : "post",
+			data : usermail,
+			complete :
+				alert("메일이 전송되었습니다. 확인해주세요.")
+		});
+	}
 </script>
 
 <div id="modal_body">
 	<div class="ui top attached tabular menu" style="max-width: 450px">
-		<a class="item active" id="signin" data-tab="signin">로그인</a> <a
+		<a class="item active" data-tab="signin" id="signin">로그인</a> <a
 			class="item" data-tab="signup">회원가입</a> <a class="item"
 			data-tab="reset-password" id="reset-password"
 			style="visibility: hidden">비밀번호 초기화</a>
@@ -222,20 +253,20 @@
 		id="reset-passwordTab">
 		<div class="ui middle aligned center aligned grid">
 			<div class="column">
-				<form class="ui large form" id="reset-password" method="post">
+				<form class="ui large form" id="resetPasswordForm" method="post">
 					<div class="ui stacked segment" id="resetUI">
 						<div class="field">비밀번호 초기화</div>
 						<div class="field">
 							<div class="ui left icon input">
 								<i class="user icon"></i> <input type="text" name="userMail"
-									placeholder="Email">
+									id="resetMailInput" placeholder="Email">
 							</div>
+							<br /> <br />
 							<div class="field" id="resetButton">
-								<div class="ui fluid teal button" id="send-mail">메일발송</div>
-								<div class="ui fluid teal button" id="back">
-									<a href="javascript:void(0);" onclick="resetBack();"
-										id="resetBack">돌아가기</a>
-								</div>
+								<div class="ui fluid teal button" id="send-mail"
+									onclick="resetPassword()">메일발송</div>
+								<div class="ui fluid teal button" id="back"
+									onclick="resetBack()">돌아가기</div>
 							</div>
 						</div>
 					</div>

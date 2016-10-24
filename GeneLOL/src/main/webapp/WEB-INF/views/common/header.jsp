@@ -49,7 +49,7 @@
 	<div class="ui top fixed inverted menu">
 		<div class="ui container">
 			<a href="http://localhost:8080/" class="header item"> <img
-				class="logo" src="resources/images/logo.png">GeneLoL
+				class="logo" src="/resources/images/logo.png">GeneLoL
 			</a> <a href="#" class="item">랭킹</a>
 			<div class="ui simple dropdown item">
 				<span class="text">통계</span> <i class="dropdown icon"></i>
@@ -59,7 +59,7 @@
 				</div>
 			</div>
 			<a href="http://localhost:8080/video/videoList" class="item">동영상</a>
-			<a href="#" class="item">정보</a>
+			<a href="http://localhost:8080/info/infoList" class="item">정보</a>
 			<c:choose>
 				<c:when test="${login.userName!=null}">
 					<div class="ui right simple dropdown item">

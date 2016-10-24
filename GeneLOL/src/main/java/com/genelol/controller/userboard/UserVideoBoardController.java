@@ -126,6 +126,9 @@ public class UserVideoBoardController {
 	@RequestMapping(value = "/videoDelete", method = RequestMethod.POST)
 	public String videoDelete(@RequestParam("board_no") Integer board_no, RedirectAttributes rttr) throws Exception {
 
+		logger.info("삭제호출");
+		logger.info(board_no.toString());
+		
 		userVideoBoardService.videoRemove(board_no);
 
 		String url = "";

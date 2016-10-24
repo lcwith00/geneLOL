@@ -25,7 +25,7 @@
 							$('#clickBtn').val("videoEtc");
 						});
 						$('#registBtn').click(function() {
-							alert("등록완료");
+							alert("수정완료");
 						});
 
 						var formObj = $("form[role='form']");
@@ -87,7 +87,7 @@ div #buttons {
 		</div>
 		<div class="field">
 			<label>VideoTitle</label> <input type="text" name="board_title"
-				id="board_title" value="${UserVideoBoardVO.board_title}">
+				id="board_title" >
 		</div>
 		<input type="hidden" name="userid" value="1">
 

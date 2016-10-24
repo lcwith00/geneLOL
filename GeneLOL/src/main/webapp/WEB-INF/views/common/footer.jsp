@@ -7,11 +7,6 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="resources/semantic-ui/semantic.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#adminSignIn').click(function() {
-			$('#adminSignInModal').modal('show');
-		});
-	});
 </script>
 <style type="text/css">
 #adminSignInModal {
@@ -25,12 +20,9 @@
 		<img src="resources/images/logo.png" class="ui centered mini image">
 		<div class="ui inverted section divider"></div>
 		<div class="ui horizontal inverted small divided link list">
-			<a class="item">Contact Us</a> <a class="item">Privacy Policy</a><a
+			<a class="item">Contact Us</a> <a class="item" href="/privacy">Privacy Policy</a><a
 				class="item" href="/agreement">Terms and Conditions</a> <a
-				class="item" id="adminSignIn">Admin</a>
+				class="item" href="/adminpage">Admin</a>
 		</div>
 	</div>
-</div>
-<div class="ui modal" id="adminSignInModal">
-	<%@ include file="../admin/adminSignIn.jsp"%>
 </div>
