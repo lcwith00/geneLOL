@@ -15,7 +15,14 @@
 
 <script type="text/javascript">
 	// Add contents for max height
-
+	$(document)
+			.ready(
+					function() {
+						$('#registInfo').click(function() {
+							location.href = "http://localhost:8080/info/register"						
+						});
+						
+					});
 </script>
 <style type="text/css">
 body, html {
@@ -29,13 +36,6 @@ body, html {
 header, footer {
 	width: 100%;
 	min-height: 50px;
-}
-
-div #bg {
-	width: 90%;
-	min-height: 700px;
-	background-color: gray;
-	margin: 50px;
 }
 
 div #popularVideo {
@@ -77,18 +77,7 @@ div #for_search_Div {
 	float: right;
 }
 
-div #tap_container {
-	width: 90%;
-	min-height: 500px;
-	margin: auto;
-}
-
 div #tab_column {
-	margin: auto;
-}
-
-#register_modal {
-	width: 60%;
 	margin: auto;
 }
 </style>
@@ -104,7 +93,7 @@ div #tab_column {
 
 		<div id="for_search_Div">
 			<div class=" ui icon input" id="search">
-				<button class="positive ui button" id="registLink">링크 등록</button>
+				<button class="positive ui button" id="registInfo">글 등록</button>
 				<div class="ui modal link" id="register_link">
 					<%@ include file="../videoBoard/register.jsp"%>
 				</div>
@@ -121,11 +110,7 @@ div #tab_column {
 			</div>
 		</div>
 
-		<div class="ui top attached tabular menu" id="manu_tap">
-			<a class="item active" data-tab="ALL">ALL</a> <a class="item"
-				data-tab="LOL">LOL</a> <a class="item" data-tab="FUN">FUN</a><a
-				class="item " data-tab="ETC">Etc</a>
-		</div>
+
 		<div class="ui tap" data-tab="ALL" id="tap_container">
 			<p></p>
 			<p></p>
@@ -140,16 +125,16 @@ div #tab_column {
 							<div class="ui card">
 
 								<!--board_no  -->
-								<input type="hidden" id="last_board_no" name="board_no"
+								<input type="hidden" id="last_board_no" name="info_no"
 									value="${UserinfoBoardVO.board_no}">
 								<div class="content">
 									<!--board_count  -->
 									<div class="right floated meta">조회수 :
 										${UserinfoBoardVO.board_count}</div>
 									<!--board_no  -->
-									<label id="video_no"
+									<label id="info_no"
 										data-board_no="${UserinfoBoardVO.board_no }">no.${UserinfoBoardVO.board_no }</label>
-									<br> <label id="video_title">
+									<br> <label id="info_title">
 										${UserinfoBoardVO.board_title } </label>
 
 									<div class="right floated meta">
@@ -160,11 +145,14 @@ div #tab_column {
 
 									</div>
 								</div>
+
 								<div class="image" id="btnimg"
 									onclick="read(${UserinfoBoardVO.board_no})">
-
-									<img
+									<a
+										href="http://localhost:8080/info/infoDetail?board_no=${UserinfoBoardVO.board_no}">
+										<img
 										src="http://img.youtube.com/vi/${UserinfoBoardVO.board_content}/1.jpg">
+									</a>
 								</div>
 								<div class="content">
 									<span class="right floated"> <i
@@ -182,7 +170,7 @@ div #tab_column {
 						</div>
 					</c:forEach>
 				</div>
-				
+
 
 			</div>
 		</div>
@@ -197,20 +185,9 @@ div #tab_column {
 
 	</div>
 
-	<!-- 	<form id="tab_type" method="get">
-		<div class="ui bottom attached tab segment" data-tab="LOL"
-			id="btn_tab_LoL">
-			<input type="hidden" name="board_id" value="test" id="type_Tap">
-			Third
-		</div>
-	</form>
-	<div class="ui bottom attached tab segment " data-tab="FUN"
-		id="btn_tab_Fun"></div>
-	<div class="ui bottom attached tab segment " data-tab="ETC"
-		id="btn_tab_Etc"></div>
-
-
- -->
+	<footer>
+		<%@ include file="../common/footer.jsp"%>
+	</footer>
 </body>
 
 

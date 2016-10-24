@@ -7,23 +7,16 @@
 	<!--정보 게시물 기본 조회 -->
 	<select id="infoList" parameterType="userInfoBoard"
 		resultType="com.genelol.vo.userboard.UserInfoBoardVO">
-		<![CDATA[
-		
-		SELECT board_no, board_id, board_content, username, board_title, 
-		to_char(board_date, 'YYYY-MM-DD HH24:MI:SS')as board_date,board_count,board_recomm
-		FROM boardtable
-		]]>
 
-		<if test="board_title != null">
-			where board_title like '%' || #{board_title} || '%'
-		</if>
-
-		order by board_no desc, board_date desc
-		limit 0,12;
+		select *
+		from boardtable
+		where board_id = 'info'
+		order by board_no desc,
+		board_date desc
 
 
 	</select>
-	<!-- 게시글 등록 --> 
+	<!-- 게시글 등록 -->
 	<insert id="infoInsert" parameterType="userInfoBoard">
 		<selectKey keyProperty="board_no" resultType="Integer"
 			order="BEFORE">
@@ -31,14 +24,41 @@
 		</selectKey>
 
 
-		insert into boardtable (board_id,board_no, username,
+		insert into boardtable (board_id,board_no, userid,
 		board_title,board_content
 		<if test="board_file != null and board_file !=''">,board_file</if>
 		)
 		values(
-		#{board_id},#{board_no},#{username},#{board_title},#{board_content}
+		#{board_id},#{board_no},#{userid},#{board_title},#{board_content}
 		<if test="board_file != null and board_file !=''">,#{board_file}</if>
 		)
-	
+
 	</insert>
+	<update id="infoUpdate" parameterType="userInfoBoard">
+		update
+		boardtable set
+		board_title=#{board_title},
+		board_content=#{board_content}
+		where
+		board_no=#{board_no}
+
+	</update>
+
+	<delete id="infoDelete">
+		delete from boardtable where board_no = #{board_no}
+	</delete>
+	<select id="infoDetail" parameterType="int"
+		resultType="com.genelol.vo.userboard.UserInfoBoardVO">
+		select
+		*
+		from boardtable
+		where board_no = #{board_no}
+
+	</select>
+	<update id="likeUpdate" parameterType="userInfoBoard">
+		update boardtable set board_recomm = board_recomm+1
+			where board_no = #{board_no}
+	</update>
+
+
 </mapper>

@@ -11,7 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		// 원 댓글 번호 Integer userID; // 작성자 String comment_Content; // 댓글 내용 Integer 
 		comment_Recomm; // 좋아요 수 String comment_Date; // 작성일자 String comment_File; 
 		// 첨부파일 String c_File; // 실제 서버에 저장한 파일명 -->
-	<select id="list" resultType="com.genelol.vo.comment.CommentVO">
+	<select id="list" resultType="com.genelol.vo.comment.CommentVO"
+		parameterType="Integer">
 		select
 		*
 		from
@@ -19,7 +20,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 		board_NO =
 		#{board_NO}
-		order by comment_NO desc
+		order
+		by comment_NO desc
 	</select>
 
 	<!-- seq_comment.nextval -->
@@ -43,26 +45,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		=#{comment_NO}
 	</delete>
 
-<!-- 
-	<select id="listPage" resultType="com.genelol.vo.comment.CommentVO"> 
+	<!-- <select id="list" resultType="com.genelol.vo.comment.CommentVO" parameterType="Integer"> 
+		select * from commenttable where UserID = #{UserID} order by comment_NO desc 
+		</select> -->
+
+	<!-- <select id="listPage" resultType="com.genelol.vo.comment.CommentVO" parameterType="Integer"> 
 		<![CDATA[ select * from ( select /*+INDEX_DESC(comment pk_comment))*/ rownum 
 		rn, comment_NO, board_NO,comment_Content, userID, comment_Date from commenttable 
 		where board_NO = #{board_NO} and comment_NO > 0 and rownum <= #{paging.page} 
 		* #{paging.perPageNum} ) where rn > ( #{paging.page} -1) * #{paging.perPageNum} 
 		]]>
-	</select> -->
-	
-	<!-- <select id="count" resultType="int"> select count(board_NO)
-		from commenttable where board_NO =#{board_NO}
-	</select> -->
-	
-	<!-- <select id="listPage" resultType="com.genelol.vo.comment.CommentVO"> select * from commenttable
-		where board_NO = #{board_NO} order by comment_NO desc limit
-		#{paging.pageStart},
-		#{paging.perPageNum}
-	</select> -->
-	
-	<!-- <select id="count" resultType="int"> select
-		count(board_NO) from commenttable where board_NO =#{board_NO}
-	</select> -->
+	</select>
+ -->
+	<!-- <select id="count" resultType="int"> select count(board_NO) from commenttable 
+		where board_NO =#{board_NO} </select> -->
+
+	<!-- <select id="listPage" resultType="com.genelol.vo.comment.CommentVO"> 
+		select * from commenttable where board_NO = #{board_NO} order by comment_NO 
+		desc limit #{paging.pageStart}, #{paging.perPageNum} </select> -->
+
+	<!-- <select id="count" resultType="int"> select count(board_NO) from commenttable 
+		where board_NO =#{board_NO} </select> -->
 </mapper>

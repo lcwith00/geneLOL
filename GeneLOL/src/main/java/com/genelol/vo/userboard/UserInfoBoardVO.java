@@ -6,7 +6,7 @@ import java.util.Date;
 public class UserInfoBoardVO {
 	private String board_id; // 게시판구분
 	private Integer board_no; // 글 번호
-	private String username; // 작성자
+	private Integer userid; // 작성자
 	private String board_title; // 글 제목
 	private String board_content; // 글 내용
 	private String board_file; // 첨부파일
@@ -30,12 +30,26 @@ public class UserInfoBoardVO {
 		this.board_no = board_no;
 	}
 
-	public String getUsername() {
-		return username;
+	
+
+	public Integer getUserid() {
+		return userid;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserid(Integer userid) {
+		this.userid = userid;
+	}
+
+	public void setBoard_no(Integer board_no) {
+		this.board_no = board_no;
+	}
+
+	public void setBoard_count(Integer board_count) {
+		this.board_count = board_count;
+	}
+
+	public void setBoard_recomm(Integer board_recomm) {
+		this.board_recomm = board_recomm;
 	}
 
 	public String getBoard_title() {
@@ -84,6 +98,14 @@ public class UserInfoBoardVO {
 
 	public void setBoard_date(Date board_date) {
 		this.board_date = board_date;
+	}
+
+	@Override
+	public String toString() {
+		return "UserInfoBoardVO [board_id=" + board_id + ", board_no=" + board_no + ", userid=" + userid
+				+ ", board_title=" + board_title + ", board_content=" + board_content + ", board_file=" + board_file
+				+ ", board_count=" + board_count + ", board_recomm=" + board_recomm + ", board_date=" + board_date
+				+ "]";
 	}
 
 }

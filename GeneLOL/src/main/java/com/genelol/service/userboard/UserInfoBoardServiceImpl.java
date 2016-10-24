@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.genelol.dao.userboard.UserInfoBoardDao;
 import com.genelol.vo.userboard.UserInfoBoardVO;
+import com.genelol.vo.userboard.UserVideoBoardVO;
 
 @Service
 public class UserInfoBoardServiceImpl implements UserInfoBoardService {
@@ -32,19 +33,30 @@ public class UserInfoBoardServiceImpl implements UserInfoBoardService {
 	@Override
 	public void infoModify(UserInfoBoardVO uibvo) throws Exception {
 		// TODO Auto-generated method stub
-
+		dao.infoUpdate(uibvo);
 	}
 
 	@Override
 	public void infoRemovo(Integer board_no) throws Exception {
 		// TODO Auto-generated method stub
-
+		dao.infoDetail(board_no);
 	}
 
 	@Override
 	public UserInfoBoardVO infoDetail(Integer board_no) throws Exception {
+
+		UserInfoBoardVO infoDetail = null;
+		infoDetail = dao.infoDetail(board_no);
+
+		return infoDetail;
+
+	}
+
+	@Override
+	public void likeCount(UserInfoBoardVO uibvo) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println(uibvo.getBoard_no());
+		dao.likeUpdate(uibvo);
 	}
 
 }
