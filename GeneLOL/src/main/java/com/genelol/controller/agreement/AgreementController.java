@@ -23,14 +23,14 @@ public class AgreementController {
 	public String agreement(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
-		return "admin/memberManagement/agreement";
+		return "common/agreement";
 	}
 
 	@RequestMapping(value = "/privacy", method = RequestMethod.GET)
 	public String privacy(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
-		return "admin/memberManagement/privacy";
+		return "common/privacy";
 	}
 
 }

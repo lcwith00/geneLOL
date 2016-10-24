@@ -3,7 +3,8 @@ create table usertable(
   username varchar2(100) not null unique,
   usermail varchar2(500) not null unique,
   iscertificate varchar2(10) default 'false' not null,
-  userpassword varchar2(20) not null,
+  certifiacatekey varchar2(200),
+  userpassword varchar2(200) not null,
   usertype varchar2(10) default 'member' not null,
   joindate date default sysdate not null
 );

@@ -35,21 +35,56 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where username =#{userName} or usermail =#{userMail}
 	</select>
 
+	<select id="operatorLogin" parameterType="user" resultType="user">
+		select *
+		from
+		usertable
+		where (username =#{userName} or usermail =#{userMail}) and (usertype='admin' or usertype='operator')
+	</select>
+
 	<!-- 회원 목록 -->
 	<select id="memberList" resultType="user">
 	<![CDATA[
-	select *
-	from usertable
-	where usertype = 'member'
+		select *
+		from usertable
+		where usertype = 'member'
 	]]>
 	</select>
 
 	<update id="memberSecession">
 	<![CDATA[
-	update usertable
-	set usertype = 'secession'
-	where userID = #{userID}
+		update usertable
+		set usertype = 'secession'
+		where userid = #{userID}
 	]]>
 	</update>
 
+	<select id="searchUserName" resultType="String">
+		select username
+		from usertable
+		where usermail like '' || #{usermail} || '%'
+	</select>
+
+	<select id="searchUserMail" resultType="String">
+		select usermail
+		from usertable
+		where username = #{username}
+	</select>
+
+	<update id="resetPassword" parameterType="hashmap">
+		<![CDATA[
+			update usertable
+			set userpassword = #{userpassword}
+			where usermail = #{usermail}
+	]]>
+	</update>
+	
+	<update id="cetification">
+		<![CDATA[
+			update usertable
+			set iscertificate = 'true'
+			where certifiacatekey = #{key}
+	]]>
+	</update>
+	
 </mapper>

@@ -153,8 +153,7 @@
 			<div class="two wide column">번호</div>
 			<div class="three wide column">아이디</div>
 			<div class="five wide column">이메일</div>
-			<div class="three wide column">가입일</div>
-			<div class="two wide column">인증</div>
+			<div class="three wide column">생성일</div>
 		</div>
 		<div id="operatorManagementList"></div>
 		<br>
