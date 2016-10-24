@@ -72,7 +72,7 @@
 								<a>개인 설정</a>
 							</div>
 							<div class="item mySettingLink">
-								<a>내가 쓴 글</a>
+								<a href="mypage/mypageList" value="">내가 쓴 글</a>
 							</div>
 							<div class="item mySettingLink">
 								<a href="/user/logout">Log Out</a>

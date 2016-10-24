@@ -2,7 +2,7 @@ package com.genelol.vo.userboard;
 
 import java.util.Date;
 
-public class UserVideoBoardVO {
+public class UserVideoBoardVO extends PageVO{
 	private String board_id; // 게시판구분
 	private Integer board_no; // 글 번호
 	private Integer userid; // 작성자
