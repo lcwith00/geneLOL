@@ -99,7 +99,7 @@ div #bg {
 				});
 				$.ajax({
 					async : false,
-					method : "POST",
+					type : "POST",
 					url : "/videoboard/deleteprocess",
 					data : {
 						'board_no' : checkArr
@@ -333,6 +333,7 @@ div #bg {
 </script>
 <!-- list -->
 <div id="videoBoardlist">
+	<div>동영상 게시판</div>
 	<div class="ui top attached tabular menu">
 		<a class="item active" data-tab="first">게시물 관리</a> <a class="item"
 			data-tab="second">댓글 관리</a>

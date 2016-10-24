@@ -12,6 +12,8 @@
 	href="resources/semantic-ui/semantic.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="resources/semantic-ui/semantic.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="./Grid Example - Semantic_files/reset.css">
 <link rel="stylesheet" type="text/css"
@@ -36,12 +38,14 @@
 		$('#boardpage2').show();
 		$('#boardsearch').show();
 		$('#boardsearchimpormation').show();
+		$('#boardpagediv').show();
 	}
 	function commentpage_click() {
 		$('#boardpage').hide();
 		$('#boardpage2').hide();
 		$('#boardsearch').hide();
 		$('#boardsearchimpormation').hide();
+		$('#boardpagediv').hide();
 		$('#commentpage').show();
 		$('#commentpage2').show();
 		$('#commentsearch').show();
@@ -56,10 +60,11 @@
 		$('#commentsearch').show();
 		$('#boardsearchimpormation').show();
 		$('#commentsearchimpormation').show();
+		$('#boardpagediv').show();
 	}
 	$(document).ready(
 			function() {
-				$('#searchBtn').on(
+				$('#searchButton').on(
 						"click",
 						function(event) {
 
@@ -70,7 +75,7 @@
 									+ "&keyword=" + $('#keywordInput').val();
 						});
 			});
-	//수정 삭제 버튼
+	/* //수정 삭제 버튼
 	$(document).ready(function() {
 		var formObj = $("form[role='form']");
 
@@ -87,8 +92,8 @@
 			formObj.submit();
 		});
 
-	});
-	//수정 삭제 버튼
+	}); */
+	/* //수정 삭제 버튼
 	$(document).ready(function() {
 		var formObj = $("form[role='form']");
 
@@ -106,17 +111,92 @@
 		});
 
 	});
-	
-	var bno = 1;
-	$.getJSON("/comment/all/" + board_NO,function(data) {
-		//console.log(data.length);
-	$(data).each(function() {
-		str += "<li data-comment_NO='"+this.comment_NO+"' class='commentLi'>"
-		+ this.comment_NO+ ":"+ this.comment_Content+ "</li>";
-								});
-				$("#comment").html(str);
-			});
+
+	var board_NO = 1;
+	$
+			.getJSON(
+					"/comment/all/" + board_NO,
+					function(data) {
+						//console.log(data.length);
+						$(data)
+								.each(
+										function() {
+											str += "<li data-comment_NO='"+this.comment_NO+"' class='commentLi'>"
+													+ this.comment_NO
+													+ ":"
+													+ this.comment_Content
+													+ "</li>";
+										});
+						$("#comment").html(str);
+					});
+
+	/* <div>
+	<div>userID<input type="text" name="userID" id="userID"></div>
+	<div> comment_listno<input type="text" name="comment_listno" id="comment_listno"></div>
+	<div>comment_parent<input type="text" name="comment_parent" id="comment_parent"></div>
+	<div>comment_depth<input type="text" name="comment_depth" id="comment_depth"></div>
+	<div>comment_content<input type="text" name="comment_content" id="comment_content"></div>
+	<div>comment_recomm<input type="text" name="comment_recomm" id="comment_recomm"></div>
+	<div>comment_date<input type="text" name="comment_date" id="comment_date"></div>
+	<div>board_no_comment<input type="text" name="board_no_comment" id="board_no_comment"></div>
+	<div>comment_Content<input type="text" name="comment_Content" id="comment_Content"></div> */
+	/* $("#commentAddButton").on("click", function() {
+		var userID = $("#userID").val();
+		var comment_listno = $("#comment_listno").val();
+		var comment_parent = $("#comment_parent").val();
+		var comment_depth = $("#comment_depth").val();
+		var comment_recomm = $("#comment_recomm").val();
+		var comment_date = $("#comment_date").val();
+		var comment_Content = $("#comment_Content").val();
+
+		$.ajax({
+			type : 'post',
+			url : '/comment',
+			headers : {
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "POST"
+			},
+			dataType : 'text',
+			data : JSON.stringify({
+				board_NO : board_NO,
+				userID : userID,
+				comment_Content : comment_Content,
+				comment_listno : comment_listno,
+				comment_parent : comment_parent,
+				comment_depth : comment_depth,
+				comment_recomm : comment_recomm,
+				comment_date : comment_date
+			}),
+			sucess : function(result) {
+				if (result == 'SUCESS') {
+					alert("등록 되었습니다.");
+				}
+			}
+		});
+	});
+
+	$("#comment").on("click", ".commentLi button", function() {
+
+		var comment = $(this).parent();
+
+		var comment_NO = comment.attr("data-comment_NO");
+		var comment_Content = comment.text();
+
+		<button type="button" id="commentModBtn">수정</button>
+		<button type="button" id="commentDelBtn">삭제</button>
+		<button type="button" id="closeBtn">취소</button>
+		
+		$("#model-title").html(comment_no)
+		$("#comment_Content").val(comment_Content);
+		$("#modDiv").show("slow");
+		alert(comment_NO + ":" + comment_Content);
+
+	}); */
+
 </script>
+
+
+
 <style type="text/css">
 .two.wide.column {
 	word-wrap: break-word;
@@ -162,7 +242,6 @@
 }
 
 #mypage {
-	border: 3px solid red;
 	width: 90%;
 	min-height: 600px;
 	min-width: 840px;
@@ -194,11 +273,16 @@ a {
 strong {
 	font-size: 15px;
 }
+
+#mypage {
+	margin: 100px;
+}
 </style>
+
 </head>
 <body>
 	<header>
-		<%-- <%@ include file="../common/header.jsp"%> --%>
+		<%@ include file="../common/header.jsp"%>
 	</header>
 	<div id="mypage">
 		<!-- 메뉴판 -->
@@ -225,97 +309,88 @@ strong {
 			<div class="one wide column"></div>
 		</div>
 
+		<div id="boardpagediv">
+			<!--글 검색 -->
+			<div class="ui three column grid">
+				<div class="eight wide column" id="boardsearch">
+					<form id="search_form" method="get">
+						<select name="searchType">
+							<option value="content">제목</option>
+						</select> <input class="prompt" type="text" placeholder="검색"
+							name="board_title">
 
-		<!--글 검색 -->
-		<div class="ui three column grid">
-			<div class="eight wide column" id="boardsearch">
-				<form id="search_form" method="get">
-					<select name="searchType">
-						<option value="content">제목</option>
-					</select> <input class="prompt" type="text" placeholder="검색"
-						name="board_title">
+						<button class="ui inverted basic button" type="submit"
+							id="submit_search">
+							<i class="black search icon"></i>
+						</button>
+					</form>
+				</div>
+				<div class="seven wide column" id="boardsearchimpormation">
+					<strong>제목을 클릭하세요 게시물을 확인할 수 있습니다.</strong>
+				</div>
+			</div>
+			<!--  내가 작성한 글 메뉴-->
+			<!--  총 16 1 5 1 1  3 2 3 -->
 
-					<button class="ui inverted basic button" type="submit"
-						id="submit_search">
-						<i class="black search icon"></i>
-					</button>
-				</form>
-			</div>
-			<div class="seven wide column" id="boardsearchimpormation">
-				<strong>제목을 클릭하세요 게시물을 확인할 수 있습니다.</strong>
-			</div>
-		</div>
-		<!--  내가 작성한 글 메뉴-->
-		<!--  총 16 1 5 1 1  3 2 3 -->
-		<div class="ui three column grid" id="boardpage">
-			<div class="one wide column"></div>
-			<div class="three wide column">
-				<strong>게시판 분류</strong>
-			</div>
-			<div class="three wide column">
-				<strong>제목</strong>
-			</div>
-			<div class="two wide column">
-				<strong>추천</strong>
-			</div>
-			<div class="two wide column">
-				<strong>댓글</strong>
-			</div>
-			<div class="two wide column">
-				<strong>시간</strong>
-			</div>
-			<div class="two wide column">
-				<strong>조회</strong>
-			</div>
-		</div>
-
-		<!--  내가 작성한 글 내용-->
-		<!-- private String board_id; // 게시판구분
-	private Integer board_no; // 글 번호
-	private Integer userid; // 작성자
-	private String board_title; // 글 제목
-	private String board_content; // 글 내용
-	private String board_file; // 첨부파일
-	private Integer board_count; // 조회수
-	private Integer board_recomm; // 좋아요 수
-	private Date board_date; // 작성일자 -->
-		<c:forEach items="${mypageList}" var="UserVideoBoardVO">
-			<div class="ui three column grid" id="boardpage2">
+			<div class="ui three column grid" id="boardpage">
 				<div class="one wide column"></div>
-				<div class="three wide column">${UserVideoBoardVO.board_id}</div>
 				<div class="three wide column">
-					<a href="http://www.naver.com">${UserVideoBoardVO.board_title}</a>
+					<strong>게시판 분류</strong>
 				</div>
-				<div class="two wide column">${UserVideoBoardVO.board_recomm}</div>
-				<div class="two wide column">${UserVideoBoardVO.board_content}</div>
+				<div class="three wide column">
+					<strong>제목</strong>
+				</div>
 				<div class="two wide column">
-					<fmt:formatDate pattern="YYYY-MM-DD HH24:MI:SS"
-						value="${UserVideoBoardVO.board_date}" />
+					<strong>추천</strong>
 				</div>
-				<div class="two wide column">${UserVideoBoardVO.board_count}</div>
+				<div class="two wide column">
+					<strong>댓글</strong>
+				</div>
+				<div class="two wide column">
+					<strong>시간</strong>
+				</div>
+				<div class="two wide column">
+					<strong>조회</strong>
+				</div>
 			</div>
-			</br>
-		</c:forEach>
-		<!-- //내가 작성한 글 내용-->
-		<!--  보드페이징 -->
 
+			<c:forEach items="${mypageList}" var="UserVideoBoardVO">
+				<div class="ui three column grid" id="boardpage2">
+					<div class="one wide column"></div>
+					<div class="three wide column">${UserVideoBoardVO.board_id}</div>
+					<div class="three wide column">
+						<a href="http://www.naver.com">${UserVideoBoardVO.board_title}</a>
+					</div>
+					<div class="two wide column">${UserVideoBoardVO.board_recomm}</div>
+					<div class="two wide column">${UserVideoBoardVO.board_content}</div>
+					<div class="two wide column">
+						<fmt:formatDate pattern="yyyy-MM-dd hh:ss"
+							value="${UserVideoBoardVO.board_date}" />
+					</div>
+					<div class="two wide column">${UserVideoBoardVO.board_count}</div>
+				</div>
+				</br>
+			</c:forEach>
+			<!-- //내가 작성한 글 내용-->
 
+			<!--  보드페이징 -->
+
+		</div>
 		<!--댓글 검색 -->
+
 		<div class="ui three column grid">
 			<div class="eight wide column" id="commentsearch">
 				<select name="searchType">
 					<option value="content">내용</option>
 				</select><i class="search icon"></i><input type="text" name='keyword'
-					id="keywordInput" value='${cri.keyword }'>
+					id="keywordInput" value='${paging.keyword }'>
 
-				<button id='searchBtn'>Search</button>
+				<button id='searchButton'>Search</button>
 			</div>
 			<div class="seven wide column" id="commentsearchimpormation">
 				<strong>내용을 클릭하세요 댓글을 확인할 수 있습니다</strong>
 			</div>
 		</div>
-		
-		
 
 		<!--  내가 작성한 댓글 메뉴-->
 		<div class="ui three column grid" id="commentpage">
@@ -331,21 +406,256 @@ strong {
 			</div>
 		</div>
 		<!--  내가 작성한 댓글 내용-->
-		<div class="ui three column grid" id="commentpage2">
-			<div class="one wide column"></div>
-			<div class="three wide column">
-				<span id="comment"></span>
+		<c:forEach items="${CommentList}" var="CommentVO">
+			<div class="ui three column grid" id="commentpage2">
+				<div class="one wide column"></div>
+				<div class="three wide column">
+					<span id="comment"></span>
+				</div>
+				<div class="three wide column">
+					<fmt:formatDate pattern="yyyy-MM-dd hh:ss"
+						value="${CommentVO.comment_Date}" />
+					2016-10-13-10:35
+				</div>
+				<div class="three wide column">${CommentVO.comment_Recomm}</div>
 			</div>
-			<div class="three wide column">
-				<fmt:formatDate pattern="yyyy-mm-dd HH:MM"
-					value="${CommentVO.comment_Date}" />
-				2016-10-13-10:35
-			</div>
-			<div class="three wide column">${CommentVO.comment_recomm}</div>
-		</div>
+		</c:forEach>
 		<!--댓글페이징 -->
 	</div>
-	<footer id="footer">
+
+
+	<div>
+		<label for="exampleInputEmail">쓴사람</label><input class="form-control" type="text" placeholder="User ID" id="newUserID">
+		<label for="exampleInputEmail">내용</label><input class="form-control" type="text" placeholder="Content" id="newComment_Content">
+		<label for="exampleInputEmail">추천수</label><input class="form-control" type="text" placeholder="Recomm" id="newcomment_Recomm">
+		<button type="submit" class="button-primary" id="commentAddButton">댓글 추가</button>
+	</div>
+	<div>
+	<ul class="timeline">
+	<li class="time-label" id="commentDiv"><span class="bg-green">리플리스트</span></li>
+	</ul>
+	<div class='text-center'>
+	<ul class="pagination" class="">
+	
+	</ul>
+	</div>
+	</div>
+	
+<!-- 442page -->
+	<!-- Modal -->
+	<div id="modifyModal" class="modal modal-primary fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title"></h4>
+				</div>
+				<div class="modal-body" data-rno>
+					<p>
+						<input type="text" id="comment_Content" class="form-control">
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="" id="commentModButton">Modify</button>
+					<button type="button" class="" id="commentDelButton">DELETE</button>
+					<button type="button" class="" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 434페이지 template-->
+<script id="template" type="text/x-handlebars-template">
+{{#each .}}
+<li class="commentLi" data-comment_NO={{comment_NO}}>
+
+ <div class="timeline-item" >
+  <div>{{prettifyDate comment_Date}}</div>
+  <div class="timeline-header"><strong>{{comment_NO}}</strong> -{{userID}}</div>
+  <div class="timeline-body">{{comment_Content}}</div>
+<div>{{comment_Recomm}}</div>
+
+    <div class="timeline-footer">
+     <a class="button-primary btn-xs" 
+	    data-toggle="modal" data-target="#modifyModal">Modify</a>
+    </div>
+  </div>			
+</li>
+{{/each}}
+</script>
+	
+<script>
+/* 435page prettifyDate날짜에대한것*/
+Handlebars.registerHelper("prettifyDate", function(timeValue) {
+	var dateObj = new Date(timeValue);
+	var year = dateObj.getFullYear();
+	var month = dateObj.getMonth() + 1;
+	var date = dateObj.getDate();
+	return year + "/" + month + "/" + date;
+});
+
+var printData = function(commentArr, target, templateObject) {
+
+	var template = Handlebars.compile(templateObject.html());
+
+	var html = template(commentArr);
+	$(".commentLi").remove();
+	target.after(html);
+}
+/* 436페이지 */
+var board_no = ${UserVideoBoardVO.board_no};
+var CommentPage = 1;
+
+function getPage(pageInfo) {
+
+	$.getJSON(pageInfo, function(data) {
+		printData(data.list, $("#commentDiv"), $('#template'));
+		printPaging(data.pageMakerVO, $(".pagination"));
+
+		//
+		$("#modifyModal").modal('hide');
+		$("#commentCntSmall").html(
+				"[ " + data.pageMakerVO.totalCount + " ]");
+
+	});
+}
+
+var printPaging = function(pageMakerVO, target) {
+
+	var str = "";
+
+	if (pageMakerVO.prev) {
+		str += "<li><a href='"+(pageMakerVO.startPage - 1)+"'> << </a></li>";
+	}
+
+	for (var i = pageMakerVO.startPage, len = pageMakerVO.endPage; i <= len; i++) {
+		var strClass = pageMakerVO.paging.page == i ? 'class=active' : '';
+		str += "<li "+strClass+"><a href='"+i+"'>" + i + "</a></li>";
+	}
+
+	if (pageMakerVO.next) {
+		str += "<li><a href='" + (pageMakerVO.endPage + 1)+ "'> >> </a></li>";
+	}
+
+	target.html(str);
+};
+/* 438페이지 */
+$("#commentDiv").on("click", function() {
+
+	if ($(".timeline li").size() > 1) {
+		return;
+	}
+	getPage("/comment/" + board_no + "/1");
+
+});
+//439페이지
+$(".pagination").on("click", "li a", function(event) {
+
+	event.preventDefault();
+
+	commentPage = $(this).attr("href");
+
+	getPage("/comment/" + board_no + "/" + commentPage);
+
+});
+//440페이지
+$("#commentAddButton").on("click", function() {
+
+	var userIDObj = $("#newUserID");
+	var comment_ContentObj = $("#newcomment_Content");
+	var comment_RecommObj=$("#newcomment_Recomm")
+	var userID = userIDObj.val();
+	var comment_Content = comment_ContentObj.val();
+	var comment_Recomm = comment_RecommObj.val();
+
+	$.ajax({
+		type : 'post',
+		url : '/comment/',
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "POST"
+		},
+		dataType : 'text',
+		data : JSON.stringify({
+			board_no : board_no,
+			userID : userID,
+			comment_Content : comment_Content,
+			comment_Recomm:comment_Recomm
+		}),
+		success : function(result) {
+			console.log("result: " + result);
+			if (result == 'SUCCESS') {
+				alert("등록 되었습니다.");
+				commentPage = 1;
+				getPage("/comment/" + board_no + "/" + commentPage);
+				userIDObj.val("");
+				comment_ContentObj.val("");
+			}
+		}
+	});
+});
+
+$(".timeline").on("click", ".commentLi", function(event) {
+
+	var comment = $(this);
+
+	$("#comment_Content").val(comment.find('.timeline-body').text());
+	$(".modal-title").html(comment.attr("data-comment_NO"));
+
+});
+//수정 445page
+$("#commentModButton").on("click", function() {
+
+	var comment_NO = $(".modal-title").html();
+	var comment_Content = $("comment_Content").val();
+
+	$.ajax({
+		type : 'put',
+		url : '/comment/' + comment_NO,
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "PUT"
+		},
+		data : JSON.stringify({
+			comment_Content : comment_Content
+		}),
+		dataType : 'text',
+		success : function(result) {
+			console.log("result: " + result);
+			if (result == 'SUCCESS') {
+				alert("수정 되었습니다.");
+				getPage("/comment/" + board_no+ "/" + commentPage);
+			}
+		}
+	});
+});
+//삭제 446페이지
+$("#commentDelButton").on("click", function() {
+
+	var comment_NO = $(".modal-title").html();
+	var comment_Content = $("comment_Content").val();
+
+	$.ajax({
+		type : 'delete',
+		url : '/comment/' + comment_NO,
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "DELETE"
+		},
+		dataType : 'text',
+		success : function(result) {
+			console.log("result: " + result);
+			if (result == 'SUCCESS') {
+				alert("삭제 되었습니다.");
+				getPage("/comment/" + board_no + "/" + commentPage);
+			}
+		}
+	});
+});
+</script>
+
+<footer id="footer">
 		<%-- 	<%@ include file="../common/footer.jsp"%> --%>
 	</footer>
 

@@ -29,6 +29,8 @@ public class CommentDAOImpl implements CommentDAO {
 	// 리스트
 	public List<CommentVO> list(Integer board_NO) throws Exception {
 		// TODO Auto-generated method stub
+
+		System.out.println("commentdao:"+board_NO);
 		return session.selectList(namespace + ".list", board_NO);
 	}
 
@@ -36,6 +38,7 @@ public class CommentDAOImpl implements CommentDAO {
 	@Override
 	public void create(CommentVO vo) throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("commentdao:"+vo);
 		session.insert(namespace + ".create", vo);
 	}
 
@@ -60,14 +63,14 @@ public class CommentDAOImpl implements CommentDAO {
 		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("board_NO", board_NO);
 		paramMap.put("paging", paging);
-		return session.selectList(namespace+".listPage",paramMap);
+		return session.selectList(namespace + ".listPage", paramMap);
 	}
 
 	// 페이지
 	@Override
 	public int count(Integer board_NO) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectOne(namespace+".count",board_NO);
+		return session.selectOne(namespace + ".count", board_NO);
 	}
 
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page session="true"%>
 
 <!DOCTYPE html>
 <html>
@@ -112,8 +113,7 @@ header {
 				<div class="content">
 					<ul>
 						<li><a id="memberList" href="javascript:void(0)"
-							onclick="loadMemberList()"><span>회원 목록</span>
-						</a></li>
+							onclick="loadMemberList()"><span>회원 목록</span> </a></li>
 						<li><a id="secessionList" href="javascript:void(0)"
 							onclick="loadSecessionList()"><span>탈퇴 목록</span></a></li>
 					</ul>
