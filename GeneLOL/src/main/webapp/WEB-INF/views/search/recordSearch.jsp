@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css"
 	href="/resources/semantic-ui/semantic.min.css">
 <script src="/resources/semantic-ui/semantic.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/resources/css/common.css">
+<link rel="stylesheet" type="text/css" href="resources/css/common.css">
 <title>${summoner.name}</title>
 <style type="text/css">
 #contents {

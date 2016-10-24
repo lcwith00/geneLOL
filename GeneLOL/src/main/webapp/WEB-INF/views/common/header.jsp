@@ -5,6 +5,11 @@
 
 <!DOCTYPE HTML>
 <HTML>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/resources/semantic-ui/semantic.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/resources/semantic-ui/semantic.min.css">
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#login').click(function() {

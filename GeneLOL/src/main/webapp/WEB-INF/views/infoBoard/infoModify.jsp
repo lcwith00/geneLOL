@@ -13,11 +13,8 @@
 <script src="/resources/semantic-ui/semantic.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-
 		$('#registBtn').click(function() {
-
 		});
-
 	});
 </script>
 

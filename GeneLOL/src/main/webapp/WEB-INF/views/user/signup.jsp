@@ -3,6 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/resources/semantic-ui/semantic.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/resources/semantic-ui/semantic.min.css">
 <style type="text/css">
 #modal_body {
 	background-color: #DADADA !important;
@@ -39,7 +44,7 @@
 	$(document)
 			.ready(
 					function() {
-						$('.menu .item').tab();
+						$('.menu.item').tab();
 						$('.ui.form')
 								.form(
 										{

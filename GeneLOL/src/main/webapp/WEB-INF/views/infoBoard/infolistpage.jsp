@@ -8,20 +8,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>videoList</title>
+<title>infoList</title>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/resources/semantic-ui/semantic.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="/resources/semantic-ui/semantic.min.css">
-<script src="/resources/semantic-ui/semantic.min.js"></script>
-
 <script type="text/javascript">
-	// Add contents for max height
 $(document)
 			.ready(
 					function() {
 						$('#registInfo').click(function() {
-							$('.ui.modal.info').modal('show');
+							$('#register_info').modal('show');
+						
 						});
 					});
 </script>
@@ -77,10 +76,6 @@ div #for_search_Div {
 #search {
 	float: right;
 }
-
-div #tab_column {
-	margin: auto;
-}
 </style>
 </head>
 <body>
@@ -112,69 +107,64 @@ div #tab_column {
 		</div>
 
 
-		<div class="ui tap" data-tab="ALL" id="tap_container">
-			<p></p>
-			<p></p>
-			<!-- ======================Detail=============================== -->
-			<div class="row">
-				<div class="ui four column doubling stackable grid container">
-					<c:forEach items="${infoList}" var="UserinfoBoardVO">
-						<div class="column" id="tab_column">
-							<div class="ui card">
+		<!-- ======================Detail=============================== -->
+		<div class="row">
+			<div class="ui four column doubling stackable grid container">
+				<c:forEach items="${infoList}" var="UserinfoBoardVO">
+					<div class="column">
+						<div class="ui card">
+							<!--board_no  -->
+							<input type="hidden" id="last_board_no" name="info_no"
+								value="${UserinfoBoardVO.board_no}">
+							<div class="content">
+								<!--board_count  -->
+								<div class="right floated meta">조회수 :
+									${UserinfoBoardVO.board_count}</div>
 								<!--board_no  -->
-								<input type="hidden" id="last_board_no" name="info_no"
-									value="${UserinfoBoardVO.board_no}">
-								<div class="content">
-									<!--board_count  -->
-									<div class="right floated meta">조회수 :
-										${UserinfoBoardVO.board_count}</div>
-									<!--board_no  -->
-									<label id="info_no"
-										data-board_no="${UserinfoBoardVO.board_no }">no.${UserinfoBoardVO.board_no }</label>
-									<br> <label id="info_title">
-										${UserinfoBoardVO.board_title } </label>
+								<label id="info_no" data-board_no="${UserinfoBoardVO.board_no }">no.${UserinfoBoardVO.board_no }</label>
+								<br> <label id="info_title">
+									${UserinfoBoardVO.board_title } </label>
 
-									<div class="right floated meta">
+								<div class="right floated meta">
 
-										<!-- 날짜가져오기 -->
-										<fmt:formatDate pattern="yyyy-MM-dd"
-											value="${UserinfoBoardVO.board_date}" />
-									</div>
-								</div>
-
-								<div class="image" id="btnimg"
-									onclick="read(${UserinfoBoardVO.board_no})">
-									<a
-										href="http://localhost:8080/info/infoDetail?board_no=${UserinfoBoardVO.board_no}">
-										<img
-										src="http://img.youtube.com/vi/${UserinfoBoardVO.board_content}/1.jpg">
-									</a>
-								</div>
-								<div class="content">
-									<span class="right floated"> <i
-										class="heart outline like icon"></i> <!-- 좋아요수 -->likes
-										${UserinfoBoardVO.board_recomm}
-									</span> <i class="comment icon"></i>
-									<!-- 댓글수 -->
-									comments
-								</div>
-								<div class="extra content">
-									<div class="ui large transparent left icon input">작성자 :
-										${UserinfoBoardVO.userid}</div>
+									<!-- 날짜가져오기 -->
+									<fmt:formatDate pattern="yyyy-MM-dd"
+										value="${UserinfoBoardVO.board_date}" />
 								</div>
 							</div>
+
+							<div class="image" id="btnimg"
+								onclick="read(${UserinfoBoardVO.board_no})">
+								<a
+									href="http://localhost:8080/info/infoDetail?board_no=${UserinfoBoardVO.board_no}">
+									<img
+									src="http://img.youtube.com/vi/${UserinfoBoardVO.board_content}/1.jpg">
+								</a>
+							</div>
+							<div class="content">
+								<span class="right floated"> <i
+									class="heart outline like icon"></i> <!-- 좋아요수 -->likes
+									${UserinfoBoardVO.board_recomm}
+								</span> <i class="comment icon"></i>
+								<!-- 댓글수 -->
+								comments
+							</div>
+							<div class="extra content">
+								<div class="ui large transparent left icon input">작성자 :
+									${UserinfoBoardVO.userid}</div>
+							</div>
 						</div>
-					</c:forEach>
-				</div>
-				<div class="ui modal Detail" id="infoRead">
-					<%@ include file="../infoBoard/infodetail.jsp"%>
-				</div>
-
-
+					</div>
+				</c:forEach>
 			</div>
+			<div class="ui modal Detail" id="infoRead">
+				<%@ include file="../infoBoard/infodetail.jsp"%>
+			</div>
+
+
 		</div>
-		<!-- ===================================================== -->
 	</div>
+	<!-- ===================================================== -->
 	<footer>
 		<%@ include file="../common/footer.jsp"%>
 	</footer>

@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page session="true"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,8 +14,6 @@
 <script src="/resources/semantic-ui/semantic.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="/resources/semantic-ui/semantic.min.css">
-
-
 <script type="text/javascript">
 	// Add contents for max height
 	$(document)
@@ -23,7 +22,6 @@
 						hide_modify();
 						$('#registLink').click(function() {
 							$('.ui.modal.link').modal('show');
-						
 						});
 						
 						//=========수정 버튼============
