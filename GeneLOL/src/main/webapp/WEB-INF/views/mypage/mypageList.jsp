@@ -16,37 +16,18 @@
 
 <script>
 	function boardpage_click() {
-		$('#commentpage').hide();
-		$('#commentpage2').hide();
-		$('#commentsearch').hide();
-		$('#commentsearchimpormation').hide();
-		$('#boardpage').show();
-		$('#boardpage2').show();
-		$('#boardsearch').show();
-		$('#boardsearchimpormation').show();
+		$('#commentpagediv').hide();
 		$('#boardpagediv').show();
 	}
 	function commentpage_click() {
-		$('#boardpage').hide();
-		$('#boardpage2').hide();
-		$('#boardsearch').hide();
-		$('#boardsearchimpormation').hide();
 		$('#boardpagediv').hide();
-		$('#commentpage').show();
-		$('#commentpage2').show();
-		$('#commentsearch').show();
-		$('#commentsearchimpormation').show();
+		$('#commentpagediv').show();
+		
 	}
 	function allpage_click() {
-		$('#boardpage').show();
-		$('#boardpage2').show();
-		$('#commentpage').show();
-		$('#commentpage2').show();
-		$('#boardsearch').show();
-		$('#commentsearch').show();
-		$('#boardsearchimpormation').show();
-		$('#commentsearchimpormation').show();
 		$('#boardpagediv').show();
+		$('#commentpagediv').show();
+		
 	}
 	$(document).ready(
 			function() {
@@ -407,7 +388,7 @@ strong {
 </form>
 		</div>
 		<!--댓글 검색 -->
-
+<div id="commentpagediv">
 		<div class="ui three column grid">
 			<div class="eight wide column" id="commentsearch">
 				<select name="searchType">
@@ -452,7 +433,7 @@ strong {
 		</c:forEach>
 		<!--댓글페이징 -->
 	</div>
-
+</div>
 
 	<div>
 		<label for="exampleInputEmail">쓴사람</label><input class="form-control" type="text" placeholder="User ID" id="newUserID">
