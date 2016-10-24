@@ -12,22 +12,8 @@
 	href="resources/semantic-ui/semantic.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="resources/semantic-ui/semantic.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="./Grid Example - Semantic_files/reset.css">
-<link rel="stylesheet" type="text/css"
-	href="./Grid Example - Semantic_files/site.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
-<link rel="stylesheet" type="text/css"
-	href="./Grid Example - Semantic_files/container.css">
-<link rel="stylesheet" type="text/css"
-	href="./Grid Example - Semantic_files/divider.css">
-<link rel="stylesheet" type="text/css"
-	href="./Grid Example - Semantic_files/grid.css">
-<link rel="stylesheet" type="text/css"
-	href="./Grid Example - Semantic_files/header.css">
-<script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <script>
 	function boardpage_click() {
 		$('#commentpage').hide();
@@ -75,6 +61,14 @@
 									+ "&keyword=" + $('#keywordInput').val();
 						});
 			});
+	
+	  //페이지 이동
+    function fn_movePage(val){
+        jQuery("input[name=pageNo]").val(val);
+        jQuery("form[name=frm]").attr("method", "post");
+        jQuery("form[name=frm]").attr("action","").submit();
+    }	
+	
 	/* //수정 삭제 버튼
 	$(document).ready(function() {
 		var formObj = $("form[role='form']");
@@ -309,8 +303,15 @@ strong {
 			<div class="one wide column"></div>
 		</div>
 
+
+
+
 		<div id="boardpagediv">
+			<form name="frm">
+    <input type="hidden" name="pageNo" /><!-- //페이지 번호 -->
+    <input type="hidden" name="userid" value="${UserVideoBoardVO.userid}">
 			<!--글 검색 -->
+			
 			<div class="ui three column grid">
 				<div class="eight wide column" id="boardsearch">
 					<form id="search_form" method="get">
@@ -372,9 +373,38 @@ strong {
 				</br>
 			</c:forEach>
 			<!-- //내가 작성한 글 내용-->
-
-			<!--  보드페이징 -->
-
+<!--  보드페이징 -->
+         <div id="page">
+    <c:if test="${pageVO.pageNo != 0}">
+        <c:if test="${pageVO.pageNo > pageVO.pageBlock}">
+            <a href="javascript:fn_movePage(${pageVO.firstPageNo})" style="text-decoration: none;">[첫 페이지]</a>
+       </c:if>
+       <c:if test="${pageVO.pageNo != 1}">
+           <a href="javascript:fn_movePage(${pageVO.prevPageNo})" style="text-decoration: none;">[이전]</a>
+        </c:if>
+        <span>
+            <c:forEach var="i" begin="${pageVO.startPageNo}" end="${pageVO.endPageNo}" step="1">
+                <c:choose>
+                    <c:when test="${i eq pageVO.pageNo}">
+                        <a href="javascript:fn_movePage(${i})" style="text-decoration: none;">
+                            <font style="font-weight: bold;">${i}</font>
+                        </a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="javascript:fn_movePage(${i})" style="text-decoration: none;">${i+1}</a>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </span>
+        <c:if test="${pageVO.pageNo != pageVO.finalPageNo }">
+            <a href="javascript:fn_movePage(${pageVO.nextPageNo})" style="text-decoration: none;">[다음]</a>
+        </c:if>
+        <c:if test="${pageVO.endPageNo < pageVO.finalPageNo }">
+            <a href="javascript:fn_movePage(${pageVO.finalPageNo})" style="text-decoration: none;">[마지막 페이지]</a>
+        </c:if>
+    </c:if>
+    </div>
+</form>
 		</div>
 		<!--댓글 검색 -->
 
