@@ -10,8 +10,8 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css"
-	href="resources/semantic-ui/semantic.min.css">
-<script src="resources/semantic-ui/semantic.min.js"></script>
+	href="/resources/semantic-ui/semantic.min.css">
+<script src="/resources/semantic-ui/semantic.min.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/css/common.css">
 <title>소환사 검색 결과</title>
 <style type="text/css">

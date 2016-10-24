@@ -4,15 +4,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page session="true"%>
+<!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>videoList</title>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/resources/semantic-ui/semantic.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="/resources/semantic-ui/semantic.min.css">
-<script src="/resources/semantic-ui/semantic.min.js"></script>
-
 <script type="text/javascript">
 	// Add contents for max height
 	$(document)
@@ -21,7 +22,6 @@
 						hide_modify();
 						$('#registLink').click(function() {
 							$('.ui.modal.link').modal('show');
-						
 						});
 						
 						//=========수정 버튼============
@@ -143,8 +143,6 @@
 
 															}// success
 														});// ajax
-												alert("test");
-												console.log("하하");
 											}
 										});
 					});
@@ -318,8 +316,6 @@ div #tab_column {
 			<p></p>
 			<p></p>
 			<!-- ======================Detail=============================== -->
-
-
 			<div class="row">
 				<div class="ui four column doubling stackable grid container">
 					<c:forEach items="${videoList}" var="UserVideoBoardVO">
