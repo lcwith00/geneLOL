@@ -120,5 +120,6 @@ values('info',board_no_seq.nextval,'5','정보9','정보9',sysdate,10,10);
 insert into boardtable(board_id,board_no,userid,board_title,board_content,board_date,board_recomm,board_count)
 values('info',board_no_seq.nextval,'5','정보10','정보10',sysdate,10,10);
 insert into boardtable(board_id,board_no,userid,board_title,board_content,board_date,board_recomm,board_count)
-values('info',board_no_seq.nextval,'5','정보11','정보11',sysdate,10,10);
-
+values('info',board_no_seq.nextval,5,'정보11','정보11',sysdate,10,10);
+insert into commenttable(board_no,comment_no,comment_listno,comment_depth,comment_parent,userid,comment_content,comment_file,comment_recomm,comment_date)
+values(160,comment_no_seq.nextval,2,2,2,5,'1','1',1,SYSDATE);

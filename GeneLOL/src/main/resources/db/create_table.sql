@@ -40,9 +40,9 @@ create table commenttable(
   comment_file varchar2(500),
   comment_recomm number default 0 not null,
   comment_date date default sysdate not null,
-  constraint "board_no" foreign key (board_no)
+  constraint "board_no_comment" foreign key (board_no)
   references boardtable(board_no),
-  constraint "userid" foreign key (userid)
+  constraint "userid_comment" foreign key (userid)
   references usertable(userid)
 );
 create sequence comment_no_seq
