@@ -43,7 +43,7 @@ div #buttons {
 		<input type="hidden" value="info" name="board_id">
 		<div class="field">
 			<label>제목</label> <input type="text" name="board_title"
-				id="board_title">
+					id="board_title">
 		</div>
 		<div class="ui form">
 			<div class="field">

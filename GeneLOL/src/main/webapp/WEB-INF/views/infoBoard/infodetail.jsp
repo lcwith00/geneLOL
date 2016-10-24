@@ -11,8 +11,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css"
-	href="../resources/semantic-ui/semantic.min.css">
-<script src="../resources/semantic-ui/semantic.min.js"></script>
+	href="/resources/semantic-ui/semantic.min.css">
+<script src="/resources/semantic-ui/semantic.min.js"></script>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript">
