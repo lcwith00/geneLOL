@@ -53,12 +53,12 @@ public class MainController {
 		Summoner summoner = riotGamesService.getSummonerBySummonerName(summonerName);
 
 		recentGames = riotGamesService.getRecentRocordBySummonerID(summoner.getId());
+
 		Collections.sort(recentGames, new GameDescCompare());
 
 		players = riotGamesService.getAllSummoner(recentGames);
 
 		League league = riotGamesService.getLeagueEntryBySummonerID(summoner.getId());
-
 		RankedStats rankedStats = riotGamesService.getRankedStatsBySummonerID(summoner.getId(), "SEASON2016");
 
 		champions = riotGamesService.getRecentPlayedChampion(recentGames, "altimages");

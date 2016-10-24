@@ -52,12 +52,10 @@ public class RiotGamesServiceImp implements RiotGamesService {
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		ArrayList<Game> matchDetailList = new ArrayList<>();
 		String recentGameURL = "https://kr.api.pvp.net/api/lol/kr/v1.3/game/by-summoner/" + summonerID + "/recent/";
-
 		try {
 
 			URI uri = new URI(recentGameURL);
 			RecentGames recentGames = mapper.readValue(getEntity(uri, 0), RecentGames.class);
-
 			for (Game game : recentGames.getGames()) {
 				matchDetailList.add(game);
 			}
@@ -113,14 +111,13 @@ public class RiotGamesServiceImp implements RiotGamesService {
 		Summoner summoner = new Summoner();
 		String summonerIDURL = "https://kr.api.pvp.net/api/lol/kr/v1.4/summoner/by-name/"
 				+ summonerName.replace(" ", "");
-
 		try {
-
 			URI uri = new URI(summonerIDURL);
 
 			String summonerStr = getEntity(uri, 0).substring(5 + summonerName.replace(" ", "").length());
 			summonerStr = "{" + summonerStr.substring(0, summonerStr.length() - 2) + "}";
 			summoner = mapper.readValue(summonerStr, Summoner.class);
+			
 			Summoner dbSummoner = riotGamesDao.getSummoner(summoner.getId());
 			if (dbSummoner == null) {
 				riotGamesDao.insertSummoner(summoner);

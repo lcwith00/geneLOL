@@ -6,14 +6,16 @@
 <!DOCTYPE HTML>
 <HTML>
 <link rel="stylesheet" type="text/css"
-	href="resources/semantic-ui/semantic.min.css">
+	href="/resources/semantic-ui/semantic.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="resources/semantic-ui/semantic.min.js"></script>
+<script src="/resources/semantic-ui/semantic.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#login').click(function() {
 			$('#signup_modal').modal('show')
 		});
+		if (document.location.href != "http://localhost:8080/") {
+		}
 	});
 </script>
 <style type="text/css">
@@ -27,7 +29,7 @@
 <title>header</title>
 <style type="text/css">
 .ui.top.inverted.menu {
-	min-width: 600px;
+	min-width: 768px;
 	margin-top: 0 !important;
 }
 
@@ -46,10 +48,10 @@
 </style>
 </head>
 <body>
-	<div class="ui top fixed inverted menu">
+	<div class="ui top inverted menu">
 		<div class="ui container">
 			<a href="http://localhost:8080/" class="header item"> <img
-				class="logo" src="resources/images/logo.png">GeneLoL
+				class="logo" src="/resources/images/logo.png">GeneLoL
 			</a> <a href="#" class="item">랭킹</a>
 			<div class="ui simple dropdown item">
 				<span class="text">통계</span> <i class="dropdown icon"></i>
@@ -60,35 +62,45 @@
 			</div>
 			<a href="http://localhost:8080/video/videoList" class="item">동영상</a>
 			<a href="#" class="item">정보</a>
-			<c:choose>
-				<c:when test="${login.userName!=null}">
-					<div class="ui right simple dropdown item">
-						<div class="ui inverted button">
-							<span class="text">${login.userName}</span><i
-								class="dropdown icon" id="mySettingIcon"></i>
-						</div>
-						<div class="menu mySettingList">
-							<div class="item mySettingLink">
-								<a>개인 설정</a>
-							</div>
-							<div class="item mySettingLink">
-								<a>내가 쓴 글</a>
-							</div>
-							<div class="item mySettingLink">
-								<a href="/user/logout">Log Out</a>
-							</div>
+			<div class="right menu">
+				<c:set value="http://localhost:8080/WEB-INF/views/home.jsp"
+					var="homeURL"></c:set>
+				<c:if test="${pageContext.request.requestURL != homeURL}">
+					<div class="item">
+						<div class="ui inverted icon input">
+							<i class="search icon"></i> <input type="text"
+								placeholder="Search">
 						</div>
 					</div>
-				</c:when>
-				<c:otherwise>
-					<div class="ui right item">
-						<div class="ui inverted button" id="login">로그인</div>
-					</div>
-				</c:otherwise>
-			</c:choose>
-
+				</c:if>
+				<c:choose>
+					<c:when test="${login.userName!=null}">
+						<div class="ui simple dropdown item">
+							<div class="ui inverted button">
+								<span class="text">${login.userName}</span><i
+									class="dropdown icon" id="mySettingIcon"></i>
+							</div>
+							<div class="menu mySettingList">
+								<div class="item mySettingLink">
+									<a>개인 설정</a>
+								</div>
+								<div class="item mySettingLink">
+									<a>내가 쓴 글</a>
+								</div>
+								<div class="item mySettingLink">
+									<a href="/user/logout">Log Out</a>
+								</div>
+							</div>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="item">
+							<div class="ui inverted button" id="login">로그인</div>
+						</div>
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
-
 	</div>
 	<div class="ui modal" id="signup_modal">
 		<%@ include file="../user/signup.jsp"%>

@@ -7,6 +7,7 @@
 		select * from summoner
 		where id = #{summonerID}
 	</select>
+	
 	<select id="summonerDetailSelect" resultType="summoner"
 		parameterType="summoner">
 		select * from summoner
@@ -16,6 +17,7 @@
 		summonerLevel=#{summonerLevel} and
 		revisionDate=#{revisionDate}
 	</select>
+	
 	<insert id="summonerInsert" parameterType="summoner">
 		insert into
 		summoner(id,name,profileiconid,summonerlevel,revisiondate)
@@ -26,7 +28,7 @@
 		update summoner set
 		name=#{name},profileIconId=#{profileIconId},summonerLevel=#{summonerLevel},
 		revisionDate=#{revisionDate}
-		where id = #{summonerID}
+		where id = #{id}
 	</update>
 	<select id="championSelect" resultType="champion" parameterType="long">
 		select * from champion
