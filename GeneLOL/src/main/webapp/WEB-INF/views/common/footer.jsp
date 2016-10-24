@@ -2,10 +2,6 @@
 	pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>footer</title>
-<link rel="stylesheet" type="text/css"
-	href="resources/semantic-ui/semantic.min.css">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="resources/semantic-ui/semantic.min.js"></script>
 <script type="text/javascript">
 </script>
 <style type="text/css">

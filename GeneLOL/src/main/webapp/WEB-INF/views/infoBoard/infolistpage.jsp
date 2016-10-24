@@ -4,8 +4,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page session="true"%>
+<!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>videoList</title>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -15,13 +17,12 @@
 
 <script type="text/javascript">
 	// Add contents for max height
-	$(document)
+$(document)
 			.ready(
 					function() {
 						$('#registInfo').click(function() {
-							location.href = "http://localhost:8080/info/register"						
+							$('.ui.modal.info').modal('show');
 						});
-						
 					});
 </script>
 <style type="text/css">
@@ -94,8 +95,8 @@ div #tab_column {
 		<div id="for_search_Div">
 			<div class=" ui icon input" id="search">
 				<button class="positive ui button" id="registInfo">글 등록</button>
-				<div class="ui modal link" id="register_link">
-					<%@ include file="../videoBoard/register.jsp"%>
+				<div class="ui modal info" id="register_info">
+					<%@ include file="../infoBoard/inforegister.jsp"%>
 				</div>
 
 				<form id="search_form" method="get">
@@ -115,15 +116,11 @@ div #tab_column {
 			<p></p>
 			<p></p>
 			<!-- ======================Detail=============================== -->
-
-
 			<div class="row">
 				<div class="ui four column doubling stackable grid container">
 					<c:forEach items="${infoList}" var="UserinfoBoardVO">
-
 						<div class="column" id="tab_column">
 							<div class="ui card">
-
 								<!--board_no  -->
 								<input type="hidden" id="last_board_no" name="info_no"
 									value="${UserinfoBoardVO.board_no}">
@@ -142,7 +139,6 @@ div #tab_column {
 										<!-- 날짜가져오기 -->
 										<fmt:formatDate pattern="yyyy-MM-dd"
 											value="${UserinfoBoardVO.board_date}" />
-
 									</div>
 								</div>
 
@@ -170,21 +166,15 @@ div #tab_column {
 						</div>
 					</c:forEach>
 				</div>
+				<div class="ui modal Detail" id="infoRead">
+					<%@ include file="../infoBoard/infodetail.jsp"%>
+				</div>
 
 
 			</div>
 		</div>
-
-
-
-
-
 		<!-- ===================================================== -->
-
-
-
 	</div>
-
 	<footer>
 		<%@ include file="../common/footer.jsp"%>
 	</footer>
