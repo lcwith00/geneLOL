@@ -54,7 +54,7 @@ div #bg {
 	text-align: left;
 }
 
-#selectArticleDelete {
+#selectArticleDelete, #insertArticle {
 	float: left;
 }
 
@@ -117,6 +117,10 @@ div #bg {
 			page();
 			$('#allCheck').prop("checked", false);
 		});
+
+		$("#insertArticle").click(function() {
+			$('#insertArticleModal').modal('show');
+		})
 
 		listAll();
 		page();
@@ -239,10 +243,10 @@ div #bg {
 		checked_div
 				.html("<input type='checkbox' name='rowCheck' value='" + board_no + "'>");
 
-		var board_no_div = $("<div class='two wide column'>");
+		var board_no_div = $("<div class='one wide column'>");
 		board_no_div.html(board_no);
 
-		var board_title_div = $("<div class='five wide column' id='title'>");
+		var board_title_div = $("<div class='four wide column' id='title'>");
 		board_title_div.html("<a href='javascript:void(0);' onclick='read("
 				+ board_no + ")'>" + board_title + "</a>");
 
@@ -258,10 +262,14 @@ div #bg {
 		var board_recomm_div = $("<div class='two wide column'>");
 		board_recomm_div.html(board_recomm);
 
+		var board_update_div = $("<div class='two wide column'>");
+		board_update_div
+				.html("<div class='ui button updateArticle' id='" + board_no + "'>수정 </div>");
+
 		new_div.append(checked_div).append(board_no_div)
 				.append(board_title_div).append(username_div).append(
 						board_date_div).append(board_count_div).append(
-						board_recomm_div);
+						board_recomm_div).append(board_update_div);
 
 		$("#infoList").append(new_div);
 	}
@@ -275,10 +283,10 @@ div #bg {
 		checked_div
 				.html("<input type='checkbox' name='rowCheck' value='" + board_no + "'>");
 
-		var board_no_div = $("<div class='two wide column'>");
+		var board_no_div = $("<div class='one wide column'>");
 		board_no_div.html(board_no);
 
-		var board_title_div = $("<div class='five wide column' id='title'>");
+		var board_title_div = $("<div class='four wide column' id='title'>");
 		board_title_div.html("<a href='javascript:void(0);' onclick='read("
 				+ board_no + ")'>" + board_title + "</a>");
 
@@ -294,10 +302,14 @@ div #bg {
 		var board_recomm_div = $("<div class='two wide column'>");
 		board_recomm_div.html(board_recomm);
 
+		var board_update_div = $("<div class='two wide column'>");
+		board_update_div
+				.html("<div class='ui button updateArticle' id='" + board_no + "'>수정</div>");
+
 		new_div.append(checked_div).append(board_no_div)
 				.append(board_title_div).append(username_div).append(
 						board_date_div).append(board_count_div).append(
-						board_recomm_div);
+						board_recomm_div).append(board_update_div);
 
 		$("#infoList").append(new_div);
 	}
@@ -337,6 +349,7 @@ div #bg {
 		id="infoBoardList">
 		<div id="infoBoardMenu">
 			<div class="ui button" id="selectArticleDelete">선택삭제</div>
+			<div class="ui button" id="insertArticle">등록</div>
 			<div class="ui action input" id="infoBoardSearch">
 				<select class="ui compact selection dropdown" id="searchBox">
 					<option value="all" selected="">전체</option>
@@ -351,12 +364,13 @@ div #bg {
 			<div class="one wide column">
 				<input type="checkbox" onclick="allChk(this)" id="allCheck"><label></label>
 			</div>
-			<div class="two wide column">번호</div>
-			<div class="five wide column">제목</div>
+			<div class="one wide column">번호</div>
+			<div class="four wide column">제목</div>
 			<div class="two wide column">작성자</div>
 			<div class="two wide column">작성일</div>
 			<div class="two wide column">조회수</div>
 			<div class="two wide column">좋아요</div>
+			<div class="two wide column"></div>
 		</div>
 		<div id="infoList"></div>
 		<br>
@@ -364,7 +378,10 @@ div #bg {
 	</div>
 	<div class="ui bottom attached tab segment" data-tab="second">
 		Second</div>
-	<div class="ui bottom attached tab segment" data-tab="third"></div>
 </div>
 <!-- modal -->
 <div class="ui modal" id="readinfo"></div>
+
+<div class="ui modal" id="insertArticleModal">
+	<jsp:include page="insertArticle.jsp"></jsp:include>
+</div>
