@@ -2,6 +2,9 @@
 <%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -209,117 +212,119 @@
 			url : "/user/resetpassword/" + usermail,
 			type : "post",
 			data : usermail,
-			complete :
-				alert("메일이 전송되었습니다. 확인해주세요.")
+			complete : alert("메일이 전송되었습니다. 확인해주세요.")
 		});
 	}
 </script>
+</head>
+<body>
+	<div id="modal_body">
+		<div class="ui top attached tabular menu" style="max-width: 450px">
+			<a class="item active" data-tab="signin" id="signin">로그인</a> <a
+				class="item" data-tab="signup">회원가입</a> <a class="item"
+				data-tab="reset-password" id="reset-password"
+				style="visibility: hidden">비밀번호 초기화</a>
+		</div>
+		<div class="ui bottom attached tab segment active" data-tab="signin"
+			id="signinTab">
+			<div class="ui middle aligned center aligned grid">
+				<div class="column" id="modal_column">
+					<form class="ui large form" method="post" action="/user/login">
+						<div class="ui stacked segment">
+							<div class="field">
+								<div class="ui left icon input">
+									<i class="user icon"></i> <input type="text" name="userMail"
+										placeholder="Email">
+								</div>
+							</div>
+							<div class="field">
+								<div class="ui left icon input">
+									<i class="lock icon"></i> <input type="password"
+										name="userPassword" placeholder="password">
+								</div>
+							</div>
+							<div class="ui fluid large teal submit button">로그인</div>
+						</div>
+						<p id="resetP">
+							<a href="javascript:void(0);" onclick="reset();" id="reset">비밀번호를
+								잊으셨나요?</a>
+						</p>
+						<div class="ui error message"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="ui bottom attached tab segment" data-tab="reset-password"
+			id="reset-passwordTab">
+			<div class="ui middle aligned center aligned grid">
+				<div class="column">
+					<form class="ui large form" id="resetPasswordForm" method="post">
+						<div class="ui stacked segment" id="resetUI">
+							<div class="field">비밀번호 초기화</div>
+							<div class="field">
+								<div class="ui left icon input">
+									<i class="user icon"></i> <input type="text" name="userMail"
+										id="resetMailInput" placeholder="Email">
+								</div>
+								<br /> <br />
+								<div class="field" id="resetButton">
+									<div class="ui fluid teal button" id="send-mail"
+										onclick="resetPassword()">메일발송</div>
+									<div class="ui fluid teal button" id="back"
+										onclick="resetBack()">돌아가기</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="ui bottom attached tab segment" data-tab="signup">
+			<div class="ui middle aligned center aligned grid">
+				<div class="column">
+					<form class="ui large form" id="insertUserForm" method="post"
+						action="/user/signup" onsubmit="return insertUser()">
+						<div class="field">
+							<input type="hidden" id="duplicatedID" name="duplicatedID"
+								value="Y"> <input type="hidden" id="duplicatedMail"
+								name="duplicatedMail" value="Y">
+						</div>
+						<div class="ui stacked segment">
+							<div class="field" id="divUserName">
+								<div class="ui left icon input" id="inputUserName">
+									<i class="user icon"></i> <input type="text" name="userName"
+										id="userName" placeholder="ID">
+								</div>
+							</div>
+							<div class="field">
+								<div class="ui left icon input">
+									<i class="user icon"></i> <input type="text" name="userMail"
+										id="userMail" placeholder="Email">
+								</div>
+							</div>
+							<div class="field">
+								<div class="ui left icon input">
+									<i class="lock icon"></i> <input type="password"
+										id="userPassword" name="userPassword" placeholder="password">
+								</div>
+							</div>
+							<div class="field">
+								<div class="ui checkbox">
+									<input name="acceptTerms" type="checkbox" id="acceptTerms">
+									<label><a href="/agreement" target="_blank">약관</a>을 모두
+										읽고 동의합니다.</label>
+								</div>
+							</div>
+							<div class="field">
+								<div class="ui fluid large teal submit button" id="insertButton">회원가입</div>
+							</div>
+						</div>
 
-<div id="modal_body">
-	<div class="ui top attached tabular menu" style="max-width: 450px">
-		<a class="item active" data-tab="signin" id="signin">로그인</a> <a
-			class="item" data-tab="signup">회원가입</a> <a class="item"
-			data-tab="reset-password" id="reset-password"
-			style="visibility: hidden">비밀번호 초기화</a>
-	</div>
-	<div class="ui bottom attached tab segment active" data-tab="signin"
-		id="signinTab">
-		<div class="ui middle aligned center aligned grid">
-			<div class="column" id="modal_column">
-				<form class="ui large form" method="post" action="/user/login">
-					<div class="ui stacked segment">
-						<div class="field">
-							<div class="ui left icon input">
-								<i class="user icon"></i> <input type="text" name="userMail"
-									placeholder="Email">
-							</div>
-						</div>
-						<div class="field">
-							<div class="ui left icon input">
-								<i class="lock icon"></i> <input type="password"
-									name="userPassword" placeholder="password">
-							</div>
-						</div>
-						<div class="ui fluid large teal submit button">로그인</div>
-					</div>
-					<p id="resetP">
-						<a href="javascript:void(0);" onclick="reset();" id="reset">비밀번호를
-							잊으셨나요?</a>
-					</p>
-					<div class="ui error message"></div>
-				</form>
+						<div class="ui error message" id="error"></div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="ui bottom attached tab segment" data-tab="reset-password"
-		id="reset-passwordTab">
-		<div class="ui middle aligned center aligned grid">
-			<div class="column">
-				<form class="ui large form" id="resetPasswordForm" method="post">
-					<div class="ui stacked segment" id="resetUI">
-						<div class="field">비밀번호 초기화</div>
-						<div class="field">
-							<div class="ui left icon input">
-								<i class="user icon"></i> <input type="text" name="userMail"
-									id="resetMailInput" placeholder="Email">
-							</div>
-							<br /> <br />
-							<div class="field" id="resetButton">
-								<div class="ui fluid teal button" id="send-mail"
-									onclick="resetPassword()">메일발송</div>
-								<div class="ui fluid teal button" id="back"
-									onclick="resetBack()">돌아가기</div>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<div class="ui bottom attached tab segment" data-tab="signup">
-		<div class="ui middle aligned center aligned grid">
-			<div class="column">
-				<form class="ui large form" id="insertUserForm" method="post"
-					action="/user/signup" onsubmit="return insertUser()">
-					<div class="field">
-						<input type="hidden" id="duplicatedID" name="duplicatedID"
-							value="Y"> <input type="hidden" id="duplicatedMail"
-							name="duplicatedMail" value="Y">
-					</div>
-					<div class="ui stacked segment">
-						<div class="field" id="divUserName">
-							<div class="ui left icon input" id="inputUserName">
-								<i class="user icon"></i> <input type="text" name="userName"
-									id="userName" placeholder="ID">
-							</div>
-						</div>
-						<div class="field">
-							<div class="ui left icon input">
-								<i class="user icon"></i> <input type="text" name="userMail"
-									id="userMail" placeholder="Email">
-							</div>
-						</div>
-						<div class="field">
-							<div class="ui left icon input">
-								<i class="lock icon"></i> <input type="password"
-									id="userPassword" name="userPassword" placeholder="password">
-							</div>
-						</div>
-						<div class="field">
-							<div class="ui checkbox">
-								<input name="acceptTerms" type="checkbox" id="acceptTerms">
-								<label><a href="/agreement" target="_blank">약관</a>을 모두
-									읽고 동의합니다.</label>
-							</div>
-						</div>
-						<div class="field">
-							<div class="ui fluid large teal submit button" id="insertButton">회원가입</div>
-						</div>
-					</div>
-
-					<div class="ui error message" id="error"></div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
+</body>
+</html>
