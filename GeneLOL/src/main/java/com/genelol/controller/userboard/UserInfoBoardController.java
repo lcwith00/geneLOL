@@ -51,14 +51,7 @@ public class UserInfoBoardController {
 	@RequestMapping(value = "/infoList", method = RequestMethod.GET)
 	public String infoList(@ModelAttribute UserInfoBoardVO uibvo, Model model) throws Exception {
 		logger.info("infoList 호출 성공!");
-
 		List<UserInfoBoardVO> infoList = userInfoBoardService.infoList(uibvo);
-		for (UserInfoBoardVO userInfoBoardVO : infoList) {
-			logger.info(userInfoBoardVO.toString());
-		}
-
-		logger.info(uibvo.getBoard_title());
-		logger.info(uibvo.getBoard_id());
 		model.addAttribute("infoList", infoList);
 
 		return "/infoBoard/infolistpage";
@@ -97,6 +90,7 @@ public class UserInfoBoardController {
 		logger.info("infoDetail 호출성공!");
 		logger.info("" + board_no);
 		UserInfoBoardVO uibvo = userInfoBoardService.infoDetail(board_no);
+		userInfoBoardService.viewCount(uibvo);
 		logger.info(uibvo.toString());
 
 		logger.info("board_conut =" + uibvo.getBoard_count());

@@ -59,4 +59,10 @@ public class UserInfoBoardServiceImpl implements UserInfoBoardService {
 		dao.likeUpdate(uibvo);
 	}
 
+	@Override
+	public void viewCount(UserInfoBoardVO uibvo) throws Exception {
+		// TODO Auto-generated method stub
+		dao.viewCount(uibvo);
+	}
+
 }

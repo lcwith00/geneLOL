@@ -54,5 +54,11 @@ public class UserInfoBoardDaoImpl implements UserInfoBoardDao{
 		session.update(namespace +".likeUpdate", uibvo);
 	}
 
+	@Override
+	public void viewCount(UserInfoBoardVO uibvo) throws Exception {
+		// TODO Auto-generated method stub
+		session.update(namespace + ".viewCount", uibvo);
+	}
+
 	
 }

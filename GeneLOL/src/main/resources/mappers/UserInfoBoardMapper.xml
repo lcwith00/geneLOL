@@ -11,6 +11,9 @@
 		select *
 		from boardtable
 		where board_id = 'info'
+		<if test="board_title != null">
+			and board_title like '%' || #{board_title} || '%'
+		</if>
 		order by board_no desc,
 		board_date desc
 
@@ -56,9 +59,14 @@
 
 	</select>
 	<update id="likeUpdate" parameterType="userInfoBoard">
-		update boardtable set board_recomm = board_recomm+1
-			where board_no = #{board_no}
+		update boardtable set
+		board_recomm = board_recomm+1
+		where board_no = #{board_no}
 	</update>
-
+	<update id="viewCount" parameterType="userInfoBoard">
+		update boardtable set
+		board_count = board_count+1
+		where board_no = #{board_no}
+	</update>
 
 </mapper>

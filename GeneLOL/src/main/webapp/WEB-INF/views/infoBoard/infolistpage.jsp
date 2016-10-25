@@ -21,9 +21,12 @@ $(document)
 						$("#title_modify").hide();
 						$("#text_area_modify").hide();
 						$("#file_Modify").hide();
-						
+						$("#btn_submit").hide();
 						$('#registInfo').click(function() {
 							$('#register_info').modal('show');
+						});
+						$('#listAll').click(function(){
+							location.href = "http://localhost:8080/info/infoList"
 						});
 						$('#btn_Modify').click(function(){
 							modify_val();
@@ -36,6 +39,7 @@ $(document)
 							$("#likeBtn").hide();
 							$("#view_Cnt").hide();
 							$("#file_Modify").show();
+							$("#btn_submit").show();
 						});
 					});
 function read(str) {
@@ -135,6 +139,7 @@ div #for_search_Div {
 
 		<div id="for_search_Div">
 			<div class=" ui icon input" id="search">
+				<button class="ui white button" id="listAll">전체목록</button>
 				<button class="positive ui button" id="registInfo">글 등록</button>
 				<div class="ui modal info" id="register_info">
 					<%@ include file="../infoBoard/inforegister.jsp"%>
