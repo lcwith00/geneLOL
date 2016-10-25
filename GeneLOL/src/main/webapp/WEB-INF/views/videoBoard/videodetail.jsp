@@ -159,7 +159,7 @@ div #bg {
 		<!-- ================reply start================== -->
 		<div class="ui threaded comments">
 
-			<div>
+			<div >
 				<h3 class="ui dividing header">댓글</h3>
 				<div class="comment">
 					<div class="content"></div>
