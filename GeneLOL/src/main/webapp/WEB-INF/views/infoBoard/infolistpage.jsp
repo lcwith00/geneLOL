@@ -18,11 +18,57 @@
 $(document)
 			.ready(
 					function() {
+						$("#title_modify").hide();
+						$("#text_area_modify").hide();
+						$("#file_Modify").hide();
+						
 						$('#registInfo').click(function() {
 							$('#register_info').modal('show');
-						
+						});
+						$('#btn_Modify').click(function(){
+							modify_val();
+							$("#title_modify").show();
+							$("#text_area_modify").show();
+							$("#title").hide();
+							$("#board_content_modal").hide();
+							$("#reply_form").hide();
+							$("#btn_Modify").hide();
+							$("#likeBtn").hide();
+							$("#view_Cnt").hide();
+							$("#file_Modify").show();
 						});
 					});
+function read(str) {
+	 var board_no = str;
+      var url = "/videoboard/read/" + board_no;
+      $.getJSON(url, function(data) {
+         $(data).each(
+               function() {
+                  var board_no = this.board_no;
+                  var board_title = this.board_title;
+                  var username = this.username;
+                  var board_date = this.board_date;
+                  var board_content = this.board_content;
+                  var board_count = this.board_count ;
+                  var board_recomm = this.board_recomm;
+                 $("#board_no_modal").html(board_no);
+                  $("#title").html(board_title);
+                  $("#board_content_modal").html(board_content);
+                  $("#writer").html("작성자 : " + username);
+                  $("#view_Cnt").html(
+                        "<i class='unhide icon'></i>" + board_count);
+                  $("#likeConut").html(board_recomm);
+             	$("#date").html(board_date);
+               });
+      });
+      $('#infoRead').modal('show');
+   }
+function modify_val(){
+	var title =  $("#title").html();
+	$('input[name=title_modify]').attr('value',title);
+	var board_content_modal =  $("#board_content_modal").html();
+	$('textarea[id=board_content_modify]').attr('value',board_content_modal);
+}
 </script>
 <style type="text/css">
 body, html {
@@ -135,11 +181,9 @@ div #for_search_Div {
 
 							<div class="image" id="btnimg"
 								onclick="read(${UserinfoBoardVO.board_no})">
-								<a
-									href="http://localhost:8080/info/infoDetail?board_no=${UserinfoBoardVO.board_no}">
-									<img
+
+								<img
 									src="http://img.youtube.com/vi/${UserinfoBoardVO.board_content}/1.jpg">
-								</a>
 							</div>
 							<div class="content">
 								<span class="right floated"> <i
