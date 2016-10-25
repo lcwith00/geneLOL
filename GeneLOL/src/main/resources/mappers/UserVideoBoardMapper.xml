@@ -13,9 +13,9 @@
 		to_char(board_date, 'YYYY-MM-DD HH24:MI:SS')as board_date,board_count,board_recomm
 		FROM boardtable
 		]]>
-
+		where board_id in('videoLOL','videoFun','videoEtc')
 		<if test="board_title != null">
-			where board_title like '%' || #{board_title} || '%'
+			and board_title like '%' || #{board_title} || '%'
 		</if>
 
 		order by board_no desc, board_date desc
@@ -103,8 +103,8 @@
 		where board_no = #{board_no}
 	</update>
 	<update id="likeUpdate" parameterType="userVideoBoard">
-			update boardtable set board_recomm = board_recomm+1
-			where board_no = #{board_no}
+		update boardtable set board_recomm = board_recomm+1
+		where board_no = #{board_no}
 	</update>
 
 </mapper>

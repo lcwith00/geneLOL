@@ -5,10 +5,11 @@
 
 <!DOCTYPE HTML>
 <HTML>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/resources/semantic-ui/semantic.min.js"></script>
 <link rel="stylesheet" type="text/css"
-	href="resources/semantic-ui/semantic.min.css">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="resources/semantic-ui/semantic.min.js"></script>
+	href="/resources/semantic-ui/semantic.min.css">
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#login').click(function() {
@@ -72,7 +73,7 @@
 								<a>개인 설정</a>
 							</div>
 							<div class="item mySettingLink">
-								<a>내가 쓴 글</a>
+								<a href="mypage/mypageList" value="">내가 쓴 글</a>
 							</div>
 							<div class="item mySettingLink">
 								<a href="/user/logout">Log Out</a>

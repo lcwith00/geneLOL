@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.genelol.service.userboard.UserInfoBoardService;
 import com.genelol.vo.userboard.UserInfoBoardVO;
@@ -64,6 +65,32 @@ public class UserInfoBoardController {
 
 	}
 
+	@RequestMapping(value = "/infoUpdateView", method = RequestMethod.GET)
+	public String infoUpdateGET(Integer board_no, Model model) throws Exception {
+		model.addAttribute(userInfoBoardService.infoDetail(board_no));
+		logger.info("modify get........");
+		logger.info("" + board_no);
+		model.addAttribute("UserInfoBoardVO", userInfoBoardService.infoDetail(board_no));
+		return "/infoBoard/infoModify";
+	}
+
+	@RequestMapping(value = "/infoUpdate", method = RequestMethod.POST)
+	public String infoUpdatePost(@ModelAttribute UserInfoBoardVO uibvo, RedirectAttributes rttr) throws Exception {
+
+		logger.info("infoUpdate 호출 성공");
+
+		userInfoBoardService.infoModify(uibvo);
+		logger.info("" + uibvo);
+
+		String url = "";
+
+		rttr.addFlashAttribute("msg", "등록성공");
+
+		url = "/info/infoList";
+
+		return "redirect:" + url;
+	}
+
 	@RequestMapping(value = "/infoDetail", method = RequestMethod.GET)
 	public String infoDetail(@RequestParam("board_no") Integer board_no, Model model) throws Exception {
 
@@ -85,7 +112,7 @@ public class UserInfoBoardController {
 		logger.info("좋아요컨트롤러호출");
 		logger.info(uibvo.toString());
 		userInfoBoardService.likeCount(uibvo);
-	
+
 		return "/infoBoard/infodetail";
 	}
 }

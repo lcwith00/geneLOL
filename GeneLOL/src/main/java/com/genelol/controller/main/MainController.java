@@ -47,7 +47,6 @@ public class MainController {
 			throws InterruptedException {
 
 		ArrayList<Game> recentGames = new ArrayList<>();
-		HashMap<Long, Summoner> players = new HashMap<>();
 		HashMap<Integer, Champion> champions = new HashMap<>();
 
 		Summoner summoner = riotGamesService.getSummonerBySummonerName(summonerName);
@@ -56,8 +55,6 @@ public class MainController {
 
 		Collections.sort(recentGames, new GameDescCompare());
 
-		players = riotGamesService.getAllSummoner(recentGames);
-
 		League league = riotGamesService.getLeagueEntryBySummonerID(summoner.getId());
 		RankedStats rankedStats = riotGamesService.getRankedStatsBySummonerID(summoner.getId(), "SEASON2016");
 
@@ -65,13 +62,12 @@ public class MainController {
 		champions.putAll(riotGamesService.getRankedPlayedChampion(rankedStats, "altimages"));
 
 		SummonerSpellList summonerSpellList = riotGamesService.getAllSpell("all");
-		
+	
 		model.addAttribute("spellList", summonerSpellList);
 		model.addAttribute("champions", champions);
 		model.addAttribute("rankedStats", rankedStats);
 		model.addAttribute("league", league);
 		model.addAttribute("summoner", summoner);
-		model.addAttribute("players", players);
 		model.addAttribute("recentGames", recentGames);
 
 		return "/search/recordSearch";

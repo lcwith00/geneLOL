@@ -10,10 +10,10 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css"
-	href="resources/semantic-ui/semantic.min.css">
-<script src="resources/semantic-ui/semantic.min.js"></script>
+	href="/resources/semantic-ui/semantic.min.css">
+<script src="/resources/semantic-ui/semantic.min.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/css/common.css">
-<title>${summoner.name}</title>
+<title>소환사 검색 결과</title>
 <style type="text/css">
 #contents {
 	margin-top: 3rem;
@@ -126,10 +126,18 @@
 					</div>
 				</aside>
 				<section class="ui segments">
-					<c:forEach var="champion" items="${rankedStats.champions}">
+					<c:forEach var="champion" items="${rankedStats.champions}"
+						begin="0" end="6">
 						<c:if test="${champion.id != 0}">
-							<div class="ui segment">${champions[champion.id].name}:
-								${champion.stats.totalSessionsPlayed }</div>
+							<div class="ui segment">
+								<div class="ui middle aligned two column left grid">
+									<div class="ui four wide column">
+										<img class="ui tiny image"
+											src="http://ddragon.leagueoflegends.com/cdn/6.21.1/img/champion/${champions[champion.id].key}.png " />
+									</div>
+									<div class="ui twelve wide column">${champion.stats.totalSessionsPlayed }</div>
+								</div>
+							</div>
 						</c:if>
 					</c:forEach>
 				</section>
@@ -151,10 +159,10 @@
 				<section class="ui segments">
 					<c:forEach var="game" items="${recentGames}">
 						<div class="ui segment">
-							<c:forEach var="player" items="${game.fellowPlayers}">
+							<%-- <c:forEach var="player" items="${game.fellowPlayers}">
 								${players[player.summonerId].name }
 								<br>
-							</c:forEach>
+							</c:forEach> --%>
 						</div>
 					</c:forEach>
 				</section>

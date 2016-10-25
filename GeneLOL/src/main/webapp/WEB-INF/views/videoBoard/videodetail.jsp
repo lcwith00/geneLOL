@@ -1,5 +1,4 @@
 <%@page import="java.lang.ProcessBuilder.Redirect"%>
-<%@page import="javafx.scene.control.Alert"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -9,11 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css"
-	href="../resources/semantic-ui/semantic.min.css">
-<script src="../resources/semantic-ui/semantic.min.js"></script>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
 	$(document).ready(function() {
 		var formObj = $("form[role='form']");
@@ -150,7 +145,6 @@ div #bg {
 				<br>
 			</div>
 		</form>
-
 		<div>
 			<form id="like_data" method="get">
 				<div class="ui labeled button" tabindex="0">
@@ -195,17 +189,14 @@ div #bg {
 			</div>
 			<!-- ================reply end================== -->
 		</div>
-
 		<div class="buttons">
 			<button class="ui blue basic button" id="btn_List">LIST ALL</button>
 			<button class="ui yellow basic button" id="btn_Modify">MODIFY</button>
 			<button class="ui red basic button" id="btn_Delete">DELETE</button>
 			<button class="ui green basic button" id="btn_submit">SUBMIT</button>
 			<button class="ui red basic button" id="btn_cancel">CANCEL</button>
-
 		</div>
 	</div>
 	<!--  /.div-body -->
-
 </body>
 </html>
