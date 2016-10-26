@@ -63,6 +63,7 @@ public class CommentDAOImpl implements CommentDAO {
 		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("board_NO", board_NO);
 		paramMap.put("paging", paging);
+		System.out.println("commentdao1:"+paging);
 		return session.selectList(namespace + ".listPage", paramMap);
 	}
 
@@ -72,5 +73,11 @@ public class CommentDAOImpl implements CommentDAO {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace + ".count", board_NO);
 	}
+
+	/*@Override
+	public void mypagecomment(Integer userID, pageVO paging) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace + ".listPage");
+	}*/
 
 }

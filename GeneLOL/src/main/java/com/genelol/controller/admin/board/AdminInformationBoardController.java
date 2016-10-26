@@ -3,12 +3,14 @@ package com.genelol.controller.admin.board;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +21,7 @@ import com.genelol.common.PageCount;
 import com.genelol.common.SearchCount;
 import com.genelol.service.admin.board.AdminInformationBoardService;
 import com.genelol.vo.admin.board.AdminBoardVO;
+import com.genelol.vo.board.BoardVO;
 
 @Controller
 @RequestMapping(value = "/infoboard")
@@ -84,5 +87,27 @@ public class AdminInformationBoardController {
 		for (Integer value : valueArr) {
 			service.deleteArticle(value);
 		}
+	}
+
+	// 글 등록
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public void boardInsert(@ModelAttribute BoardVO bvo, HttpServletRequest request) throws Exception {
+
+		String username = request.getParameter("writer");
+
+		Integer userID = service.searchUserID(username);
+		String board_id = "info";
+		String board_title = request.getParameter("subject");
+		String board_content = request.getParameter("editor");
+
+		bvo.setBoard_ID(board_id);
+		bvo.setUserID(userID);
+		bvo.setBoard_Title(board_title);
+		bvo.setBoard_Content(board_content);
+
+		logger.info(
+				bvo.getBoard_ID() + "/" + bvo.getUserID() + "/" + bvo.getBoard_Title() + "/" + bvo.getBoard_Content());
+
+		service.insertArticle(bvo);
 	}
 }

@@ -12,6 +12,5 @@
 		<typeAlias type="net.rithms.riot.dto.Static.Champion" alias="champion"/>
 		<typeAlias type="com.genelol.vo.userboard.UserVideoReplyVO" alias="userVideoReply"/>
 		<typeAlias type="com.genelol.vo.comment.CommentVO" alias="Comment"/>
-		
 	</typeAliases>
 </configuration>
