@@ -237,9 +237,6 @@ strong {
 			<div class="one wide column"></div>
 		</div>
 
-
-
-
 		<div id="boardPageDiv">
 		<div>
 			<form name="frm">
@@ -303,7 +300,7 @@ strong {
 						<div class="two wide column">${UserVideoBoardVO.board_recomm}</div>
 						<div class="two wide column">${UserVideoBoardVO.board_content}</div>
 						<div class="two wide column">
-							<fmt:formatDate pattern="yyyy-MM-dd hh:ss"
+							<fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss"
 								value="${UserVideoBoardVO.board_date}" />
 						</div>
 						<div class="two wide column">${UserVideoBoardVO.board_count}</div>
@@ -333,7 +330,7 @@ strong {
 									</c:when>
 									<c:otherwise>
 										<a href="javascript:fn_movePage(${i})"
-											style="text-decoration: none;">${i+1}</a>
+											style="text-decoration: none;">[${i+1}]</a>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
@@ -394,9 +391,8 @@ strong {
 						<span id="comment">${CommentVO.comment_NO}"/></span>
 					</div>
 					<div class="three wide column">
-						<fmt:formatDate pattern="yyyy-MM-dd hh:ss"
+						<fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss"
 							value="${CommentVO.comment_Date}" />
-						2016-10-13-10:35
 					</div>
 					<div class="three wide column">${CommentVO.comment_Recomm}</div>
 				</div>
@@ -405,7 +401,7 @@ strong {
 		</div>
 	</div>
 	
-	<div>
+	<div><form action="commentAddButton" name="commentAddButton">
 		<label for="newUserID">쓴사람</label><input class="form-control"
 			type="text" placeholder="User ID" id="newUserID"> <label
 			for="newComment_Content">내용</label><input class="form-control"
@@ -418,8 +414,8 @@ strong {
 			type="text" placeholder="단계" id="comment_Depth"> 
 			<label for="comment_Parent">부모</label><input class="form-control"
 			type="text" placeholder="부모" id="comment_Parent"> 
-		<button type="submit" class="button-primary" id="commentAddButton">댓글
-			추가</button>
+		<button type="submit" class="button-primary" id="commentAddButton">댓글 추가</button>
+		</form>
 	</div>
 	<div>
 		<ul class="timeline">
@@ -488,7 +484,7 @@ Handlebars.registerHelper("prettifyDate", function(timeValue) {
 
 var printData = function(commentArr, target, templateObject) {
 
-	var template = Handlebars.compile(templateObject.html());
+	var template = $("#template").html();
 
 	var html = template(commentArr);
 	$(".commentLi").remove();
@@ -552,9 +548,6 @@ $(".pagination").on("click", "li a", function(event) {
 });
 //440페이지
 $("#commentAddButton").on("click", function() {
-	 /* comment_listno number not null,
-	  comment_depth number not null,
-	  comment_parent number not null, */
 	var comment_ListnoObj=$("#comment_Listno");
 	var comment_DepthObj=$("#comment_Depth");
 	var comment_ParentObj=$("#comment_Parent");
@@ -597,6 +590,7 @@ $("#commentAddButton").on("click", function() {
 				comment_ListnoObj.val("");
 				comment_DepthObj.val("");
 				comment_ParentObj.val("");
+			
 			}
 		}
 	});
@@ -608,55 +602,21 @@ $(".timeline").on("click", ".commentLi", function(event) {
 
 	$("#comment_Content").val(comment.find('.timeline-body').text());
 	$(".modal-title").html(comment.attr("data-comment_NO"));
-
+	$("#commentDiv").html(template);
 });
-//수정 445page
-$("#commentModButton").on("click", function() {
 
-	var comment_NO = $(".modal-title").html();
-	var comment_Content = $("comment_Content").val();
+</script>
 
-	$.ajax({
-		type : 'put',
-		url : '/comment/' + comment_NO,
-		headers : {
-			"Content-Type" : "application/json",
-			"X-HTTP-Method-Override" : "PUT"
-		},
-		data : JSON.stringify({
-			comment_Content : comment_Content
-		}),
-		dataType : 'text',
-		success : function(result) {
-			console.log("result: " + result);
-			if (result == 'SUCCESS') {
-				alert("수정 되었습니다.");
-				getPage("/comment/" + board_no+ "/" + commentPage);
-			}
-		}
-	});
-});
-//삭제 446페이지
-$("#commentDelButton").on("click", function() {
-
-	var comment_NO = $(".modal-title").html();
-	var comment_Content = $("comment_Content").val();
-
-	$.ajax({
-		type : 'delete',
-		url : '/comment/' + comment_NO,
-		headers : {
-			"Content-Type" : "application/json",
-			"X-HTTP-Method-Override" : "DELETE"
-		},
-		dataType : 'text',
-		success : function(result) {
-			console.log("result: " + result);
-			if (result == 'SUCCESS') {
-				alert("삭제 되었습니다.");
-				getPage("/comment/" + board_no + "/" + commentPage);
-			}
-		}
+<script>
+$(document).ready(function(){
+	
+	var formObj = $("form[role='form']");
+	
+	console.log(formObj);
+	$("#commentAddButton ").on("click", function(){
+		formObj.attr("method", "get");
+		formObj.attr("action", "/mypage/mypageList");
+		formObj.submit();
 	});
 });
 </script>
