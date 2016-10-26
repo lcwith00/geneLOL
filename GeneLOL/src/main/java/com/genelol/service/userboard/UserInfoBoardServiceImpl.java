@@ -65,4 +65,21 @@ public class UserInfoBoardServiceImpl implements UserInfoBoardService {
 		dao.viewCount(uibvo);
 	}
 
+	@Override
+	public List<UserInfoBoardVO> infoScroll(Integer board_no) throws Exception {
+		// TODO Auto-generated method stub
+	
+		List<UserInfoBoardVO> infoScroll = null;
+		infoScroll = dao.infiniteScrollDown(board_no);
+		return infoScroll;
+	}
+
+	@Override
+	public List<UserInfoBoardVO> infoPopularBoardList(UserInfoBoardVO uibvo) {
+		// TODO Auto-generated method stub
+		List<UserInfoBoardVO> infoPopularList = null;
+		infoPopularList = dao.infoPopularBoardList(uibvo);
+		return infoPopularList;
+	}
+
 }

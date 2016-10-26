@@ -2,7 +2,6 @@ package com.genelol.dao.userboard;
 
 import java.util.List;
 
-
 import com.genelol.vo.userboard.UserInfoBoardVO;
 
 public interface UserInfoBoardDao {
@@ -19,4 +18,9 @@ public interface UserInfoBoardDao {
 	public  void likeUpdate(UserInfoBoardVO uibvo ) throws Exception;// 추천수
 	
 	public void viewCount(UserInfoBoardVO uibvo) throws Exception; //조회수
- }
+
+	public List<UserInfoBoardVO> infiniteScrollDown(Integer board_no) throws Exception;
+
+	public List<UserInfoBoardVO> infoPopularBoardList(UserInfoBoardVO uibvo);
+
+}

@@ -2,13 +2,14 @@ package com.genelol.dao.userboard;
 
 import java.util.List;
 
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.genelol.vo.main.PopularBoardVo;
 import com.genelol.vo.userboard.UserInfoBoardVO;
-import com.genelol.vo.userboard.UserVideoBoardVO;
 
 @Repository
 public class UserInfoBoardDaoImpl implements UserInfoBoardDao{
@@ -58,6 +59,18 @@ public class UserInfoBoardDaoImpl implements UserInfoBoardDao{
 	public void viewCount(UserInfoBoardVO uibvo) throws Exception {
 		// TODO Auto-generated method stub
 		session.update(namespace + ".viewCount", uibvo);
+	}
+
+	@Override
+	public List<UserInfoBoardVO> infiniteScrollDown(Integer board_no) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace + ".infiniteScrollDown", board_no);
+	}
+
+	@Override
+	public List<UserInfoBoardVO> infoPopularBoardList(UserInfoBoardVO uibvo) {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace + ".todayPopularBoardList", uibvo);
 	}
 
 	

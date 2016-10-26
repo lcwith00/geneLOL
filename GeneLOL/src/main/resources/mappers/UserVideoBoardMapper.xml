@@ -106,5 +106,6 @@
 		update boardtable set board_recomm = board_recomm+1
 		where board_no = #{board_no}
 	</update>
+	
 
 </mapper>

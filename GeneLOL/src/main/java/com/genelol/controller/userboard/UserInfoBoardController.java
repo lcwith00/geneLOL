@@ -2,19 +2,25 @@ package com.genelol.controller.userboard;
 
 import java.util.List;
 
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.genelol.service.userboard.UserInfoBoardService;
+import com.genelol.vo.admin.board.AdminBoardVO;
 import com.genelol.vo.userboard.UserInfoBoardVO;
 import com.genelol.vo.userboard.UserVideoBoardVO;
 
@@ -90,7 +96,6 @@ public class UserInfoBoardController {
 		logger.info("infoDetail 호출성공!");
 		logger.info("" + board_no);
 		UserInfoBoardVO uibvo = userInfoBoardService.infoDetail(board_no);
-		userInfoBoardService.viewCount(uibvo);
 		logger.info(uibvo.toString());
 
 		logger.info("board_conut =" + uibvo.getBoard_count());
@@ -101,6 +106,14 @@ public class UserInfoBoardController {
 
 	}
 
+	@RequestMapping(value="/viewCount", method = RequestMethod.POST)
+	public String viewCount(@ModelAttribute UserInfoBoardVO uibvo, Model model) throws Exception {
+		logger.info("조회수컨트롤러호출");
+		logger.info(uibvo.toString());
+		userInfoBoardService.viewCount(uibvo);
+
+		return "/infoBoard/infodetail";
+	}
 	@RequestMapping(value = "/likeUpdate", method = RequestMethod.POST)
 	public String likeUpdate(@ModelAttribute UserInfoBoardVO uibvo, Model model) throws Exception {
 		logger.info("좋아요컨트롤러호출");
@@ -108,5 +121,25 @@ public class UserInfoBoardController {
 		userInfoBoardService.likeCount(uibvo);
 
 		return "/infoBoard/infodetail";
+	}
+
+	@RequestMapping(value = "/infiniteScrollDown", method = RequestMethod.POST)
+	public @ResponseBody List<UserInfoBoardVO> infiniteScrollDownPOST(@RequestBody UserVideoBoardVO uvbvo)
+			throws Exception {
+		Integer board_no = uvbvo.getBoard_no();
+		return userInfoBoardService.infoScroll(board_no);
+	}
+	
+	@RequestMapping(value="/infoPopularBoardList", method = RequestMethod.GET)
+	public ResponseEntity<List<UserInfoBoardVO>> infoPopularBoardList(@ModelAttribute UserInfoBoardVO uibvo, Model model) throws Exception {
+		logger.info("popList 호출 성공!");
+//		List<UserInfoBoardVO> infoPopularList = userInfoBoardService.infoPopularBoardList(uibvo);
+//		model.addAttribute("infoPopularList", infoPopularList);
+//
+//		return "/infoBoard/infolistpage";
+		ResponseEntity<List<UserInfoBoardVO>> readEntity = null;
+		readEntity = new ResponseEntity<>(userInfoBoardService.infoPopularBoardList(uibvo), HttpStatus.OK);
+
+		return readEntity;
 	}
 }
