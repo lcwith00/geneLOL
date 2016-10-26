@@ -6,7 +6,7 @@ public class BoardVO {
 
 	private String board_ID; // 게시판 구분
 	private Integer board_NO; // 글 번호
-	private Integer UserID; // 작성자
+	private Integer userID; // 작성자
 	private String board_Title; // 글 제목
 	private String board_Content; // 글 내용
 	private Integer board_Count; // 조회수
@@ -33,11 +33,11 @@ public class BoardVO {
 	}
 
 	public Integer getUserID() {
-		return UserID;
+		return userID;
 	}
 
 	public void setUserID(Integer userID) {
-		UserID = userID;
+		this.userID = userID;
 	}
 
 	public String getBoard_Title() {

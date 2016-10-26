@@ -8,6 +8,8 @@
 	href="resources/semantic-ui/semantic.min.css">
 <script src="resources/semantic-ui/semantic.min.js"></script>
 <script src="resources/jquery.paging.js"></script>
+<script type="text/javascript"
+	src="resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <style type="text/css">
 .embed-container {
 	position: relative;
@@ -121,6 +123,42 @@ div #bg {
 		$("#insertArticle").click(function() {
 			$('#insertArticleModal').modal('show');
 		})
+
+		var obj = [];
+		nhn.husky.EZCreator.createInIFrame({
+			oAppRef : obj,
+			elPlaceHolder : "editor",
+			sSkinURI : "/resources/smarteditor/SmartEditor2Skin.html",
+			htParams : {
+				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+				bUseToolbar : true,
+				// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+				bUseVerticalResizer : true,
+				// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+				bUseModeChanger : true
+			}
+		});
+
+		$("#insertArticleButton").click(function() {
+			obj.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
+			$('#insertArticleModal').modal('hide');
+			var formData = $("#frm").serialize();
+
+			$.ajax({
+				type : "post",
+				url : "/infoboard/insert",
+				async : false,
+				data : formData,
+			})
+
+			$('#subject').empty();
+			$('#content').empty();
+			$('#page_navi').html("");
+			$("#infoList").html("");
+			listAll();
+			page();
+
+		});
 
 		listAll();
 		page();

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.genelol.common.PageCount;
 import com.genelol.common.SearchCount;
 import com.genelol.vo.admin.board.AdminBoardVO;
+import com.genelol.vo.board.BoardVO;
 
 @Repository
 public class AdminInformationDAOImpl implements AdminInformationDAO {
@@ -55,5 +56,15 @@ public class AdminInformationDAOImpl implements AdminInformationDAO {
 	@Override
 	public void deleteArticle(Integer board_no) {
 		session.update(namespace + ".deleteArticle", board_no);
+	}
+
+	@Override
+	public Integer searchUserID(String username) {
+		return session.selectOne(namespace + ".searchUserID", username);
+	}
+
+	@Override
+	public void insertArticle(BoardVO boardVO) {
+		session.insert(namespace + ".insertArticle", boardVO);
 	}
 }
