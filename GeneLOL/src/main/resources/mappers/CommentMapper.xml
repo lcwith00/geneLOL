@@ -45,25 +45,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		=#{comment_NO}
 	</delete>
 
-	<!-- <select id="list" resultType="com.genelol.vo.comment.CommentVO" parameterType="Integer"> 
-		select * from commenttable where UserID = #{UserID} order by comment_NO desc 
-		</select> -->
+	<!-- <select id="mypagecomment" resultType="com.genelol.vo.comment.CommentVO" 
+		parameterType="Integer"> select * from commenttable where UserID = #{UserID} 
+		order by comment_NO desc </select> -->
 
-	<!-- <select id="listPage" resultType="com.genelol.vo.comment.CommentVO" parameterType="Integer"> 
-		<![CDATA[ select * from ( select /*+INDEX_DESC(comment pk_comment))*/ rownum 
-		rn, comment_NO, board_NO,comment_Content, userID, comment_Date from commenttable 
-		where board_NO = #{board_NO} and comment_NO > 0 and rownum <= #{paging.page} 
-		* #{paging.perPageNum} ) where rn > ( #{paging.page} -1) * #{paging.perPageNum} 
-		]]>
+
+
+
+	<select id="listPage" resultType="com.genelol.vo.comment.CommentVO">
+		select * from commenttable where board_NO = #{board_NO} order by comment_NO
+		desc limit #{paging.pageStart}, #{paging.perPageNum}
 	</select>
- -->
-	<!-- <select id="count" resultType="int"> select count(board_NO) from commenttable 
-		where board_NO =#{board_NO} </select> -->
 
-	<!-- <select id="listPage" resultType="com.genelol.vo.comment.CommentVO"> 
-		select * from commenttable where board_NO = #{board_NO} order by comment_NO 
-		desc limit #{paging.pageStart}, #{paging.perPageNum} </select> -->
-
-	<!-- <select id="count" resultType="int"> select count(board_NO) from commenttable 
-		where board_NO =#{board_NO} </select> -->
+	<select id="count" resultType="int"> select count(board_NO) from
+		commenttable
+		where board_NO =#{board_NO}
+	</select>
 </mapper>

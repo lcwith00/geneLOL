@@ -81,11 +81,10 @@ public class MypageController {
 	
 	
 	
-	@RequestMapping(value = "/mypageComment", method = RequestMethod.GET)
+	@RequestMapping(value = "/CommentList", method = RequestMethod.GET)
 	public String mypagecomment(@ModelAttribute CommentVO covo, Model model,Integer board_NO) throws Exception {
 
 		logger.info("mypageComment 호출 성공!");
-
 		List<CommentVO> CommentList = commentService.listReply(board_NO);
 		for (CommentVO CommentVO : CommentList) {
 			logger.info(CommentVO.toString());

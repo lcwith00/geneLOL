@@ -13,28 +13,39 @@
 			order by b.board_no desc limit #{start_no}, 10
 		]]>
 	</select>
-	<!-- 오라클 버전
-			select rownum as rnum, b.board_id board_id, b.board_no board_no, b.userid userid, u.username username, b.board_title board_title, b.board_content board_content, b.board_file board_file, b.board_count board_count, b.board_recomm board_recomm, b.board_date board_date
-			from (
-  				select b.board_id board_id, b.board_no board_no, b.userid userid, u.username username, b.board_title board_title, b.board_content board_content, b.board_file board_file, b.board_count board_count, b.board_recomm board_recomm, b.board_date board_date
-  				from boardtable b, usertable u
-				where b.userid=u.userid and board_id like'info%'
-				order by b.board_no desc) A, boardtable b, usertable u
-			where b.userid=u.userid and rownum between 1 and 8 -->
+	<!-- 오라클 버전 select rownum as rnum, b.board_id board_id, b.board_no board_no, 
+		b.userid userid, u.username username, b.board_title board_title, b.board_content 
+		board_content, b.board_file board_file, b.board_count board_count, b.board_recomm 
+		board_recomm, b.board_date board_date from ( select b.board_id board_id, 
+		b.board_no board_no, b.userid userid, u.username username, b.board_title 
+		board_title, b.board_content board_content, b.board_file board_file, b.board_count 
+		board_count, b.board_recomm board_recomm, b.board_date board_date from boardtable 
+		b, usertable u where b.userid=u.userid and board_id like'info%' order by 
+		b.board_no desc) A, boardtable b, usertable u where b.userid=u.userid and 
+		rownum between 1 and 8 -->
 
 	<!-- 검색목록 -->
-	<select id="searchList" parameterType="hashmap" resultType="com.genelol.vo.admin.board.AdminBoardVO">
-		select b.board_id board_id, b.board_no board_no, b.userid userid, u.username username, b.board_title board_title, b.board_content board_content, b.board_file board_file, b.board_count board_count, b.board_recomm board_recomm, b.board_date board_date
-		from boardtable b, usertable u
+	<select id="searchList" parameterType="hashmap"
+		resultType="com.genelol.vo.admin.board.AdminBoardVO">
+		select b.board_id board_id, b.board_no board_no, b.userid userid,
+		u.username username, b.board_title board_title, b.board_content
+		board_content, b.board_file board_file, b.board_count board_count,
+		b.board_recomm board_recomm, b.board_date board_date
+		from boardtable b,
+		usertable u
 		<choose>
 			<when test="searchtype == 'all'">
-				where b.userid=u.userid and board_id like'info%' and (u.username like '%' || #{searchtext} || '%' or b.board_title like '%' || #{searchtext} || '%')
+				where b.userid=u.userid and board_id like'info%' and
+				(u.username like '%' || #{searchtext} || '%' or b.board_title like
+				'%' || #{searchtext} || '%')
 			</when>
 			<when test="searchtype == 'writer'">
-				where b.userid=u.userid and board_id like'info%' and (u.username like '%' || #{searchtext} || '%')
+				where b.userid=u.userid and board_id like'info%' and
+				(u.username like '%' || #{searchtext} || '%')
 			</when>
 			<when test="searchtype == 'subject'">
-				where b.userid=u.userid and board_id like'info%' and (b.board_title like '%' || #{searchtext} || '%')
+				where b.userid=u.userid and board_id like'info%' and
+				(b.board_title like '%' || #{searchtext} || '%')
 			</when>
 		</choose>
 		order by b.board_no desc limit #{start_no}, 10
@@ -47,32 +58,52 @@
 			where b.userid=u.userid and board_no = #{board_no}
 		]]>
 	</select>
-	
+
 	<select id="infoCount" resultType="com.genelol.common.PageCount">
 		select count(*) as totalCount
 		from boardtable b, usertable u
-		where b.userid=u.userid and b.board_id like'info%'
+		where b.userid=u.userid and b.board_id
+		like'info%'
 	</select>
-	
-	<select id="searchCount" parameterType="hashmap" resultType="com.genelol.common.SearchCount">
+
+	<select id="searchCount" parameterType="hashmap"
+		resultType="com.genelol.common.SearchCount">
 		select count(*) as searchCount
 		from boardtable b, usertable u
 		<choose>
 			<when test="searchtype == 'all'">
-				where b.userid=u.userid and board_id like'info%' and (u.username like '%' || #{searchtext} || '%' or b.board_title like '%' || #{searchtext} || '%')
+				where b.userid=u.userid and board_id like'info%' and
+				(u.username like '%' || #{searchtext} || '%' or b.board_title like
+				'%' || #{searchtext} || '%')
 			</when>
 			<when test="searchtype == 'writer'">
-				where b.userid=u.userid and board_id like'info%' and (u.username like '%' || #{searchtext} || '%')
+				where b.userid=u.userid and board_id like'info%' and
+				(u.username like '%' || #{searchtext} || '%')
 			</when>
 			<when test="searchtype == 'subject'">
-				where b.userid=u.userid and board_id like'info%' and (b.board_title like '%' || #{searchtext} || '%')
+				where b.userid=u.userid and board_id like'info%' and
+				(b.board_title like '%' || #{searchtext} || '%')
 			</when>
 		</choose>
 	</select>
-	
+
 	<update id="deleteArticle">
 		update boardtable
 		set board_id = 'deleted'
-		where board_no = #{board_no}
+		where
+		board_no = #{board_no}
 	</update>
+
+	<select id="searchUserID" resultType="Integer">
+		select userid
+		from usertable
+		where username = #{username}
+	</select>
+
+	<insert id="insertArticle">
+		<![CDATA[
+			insert into boardtable (board_id, board_no, userid, board_title, board_content)
+			values(#{board_ID}, board_no_seq.nextval, #{userID}, #{board_Title}, #{board_Content})
+		]]>
+	</insert>
 </mapper>

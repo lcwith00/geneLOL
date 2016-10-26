@@ -44,11 +44,15 @@
 .menu.mySettingList, .item.mySettingLink {
 	text-align: center !important;
 }
+
+.nav {
+	min-width: 1024px;
+}
 </style>
 </head>
 <body>
-	<div class="ui top fixed inverted menu">
-		<div class="ui container">
+	<div class="ui top inverted menu">
+		<div class="ui container nav">
 			<a href="http://localhost:8080/" class="header item"> <img
 				class="logo" src="/resources/images/logo.png">GeneLoL
 			</a> <a href="#" class="item">랭킹</a>
@@ -61,39 +65,49 @@
 			</div>
 			<a href="http://localhost:8080/video/videoList" class="item">동영상</a>
 			<a href="http://localhost:8080/info/infoList" class="item">정보</a>
-			<c:choose>
-				<c:when test="${login.userName!=null}">
-					<div class="ui right simple dropdown item">
-						<div class="ui inverted button">
-							<span class="text">${login.userName}</span><i
-								class="dropdown icon" id="mySettingIcon"></i>
-						</div>
-						<div class="menu mySettingList">
-							<div class="item mySettingLink">
-								<a>개인 설정</a>
-							</div>
-							<div class="item mySettingLink">
-								<a href="mypage/mypageList" value="">내가 쓴 글</a>
-							</div>
-							<div class="item mySettingLink">
-								<a href="/user/logout">Log Out</a>
-							</div>
+			<div class="right menu">
+				<c:set value="http://localhost:8080/WEB-INF/views/home.jsp"
+					var="homeURL"></c:set>
+				<c:if test="${pageContext.request.requestURL != homeURL}">
+					<div class="item">
+						<div class="ui inverted icon input">
+							<i class="search icon"></i> <input type="text"
+								placeholder="Search">
 						</div>
 					</div>
-				</c:when>
-				<c:otherwise>
-					<div class="ui right item">
-						<div class="ui inverted button" id="login">로그인</div>
-					</div>
-				</c:otherwise>
-			</c:choose>
-
+				</c:if>
+				<c:choose>
+					<c:when test="${login.userName!=null}">
+						<div class="ui right simple dropdown item">
+							<div class="ui inverted button">
+								<span class="text">${login.userName}</span><i
+									class="dropdown icon" id="mySettingIcon"></i>
+							</div>
+							<div class="menu mySettingList">
+								<div class="item mySettingLink">
+									<a>개인 설정</a>
+								</div>
+								<div class="item mySettingLink">
+									<a href="mypage/mypageList">내가 쓴 글</a>
+								</div>
+								<div class="item mySettingLink">
+									<a href="/user/logout">Log Out</a>
+								</div>
+							</div>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="ui right item">
+							<div class="ui inverted button" id="login">로그인</div>
+						</div>
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
-
 	</div>
+
 	<div class="ui modal" id="signup_modal">
 		<%@ include file="../user/signup.jsp"%>
 	</div>
 </body>
-</html>
 </HTML>
