@@ -2,7 +2,6 @@
 package com.genelol.controller.userboard;
 
 import java.util.List;
-
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -16,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.genelol.service.userboard.UserVideoBoardService;
-import com.genelol.vo.userboard.UserInfoBoardVO;
 import com.genelol.vo.userboard.UserVideoBoardVO;
 
 @Controller
@@ -55,21 +52,26 @@ public class UserVideoBoardController {
 	@RequestMapping(value = "/videoDetail", method = RequestMethod.GET)
 	public String videoDetail(@RequestParam("board_no") Integer board_no, Model model) throws Exception {
 
-		UserVideoBoardVO uvbvo = userVideoBoardService.videoDetail(board_no);
-		userVideoBoardService.viewCount(uvbvo);
 		model.addAttribute("UserVideoBoardVO", userVideoBoardService.videoDetail(board_no));
 		return "/videoBoard/videodetail";
 
 	}
 
 	@RequestMapping(value = "/videoLike", method = RequestMethod.POST)
-		public String likeUpdate(@ModelAttribute UserVideoBoardVO uvbvo, Model model) throws Exception {
-			logger.info("좋아요컨트롤러호출");
-			logger.info(uvbvo.toString());
-			userVideoBoardService.likeCount(uvbvo);
+	public void videoLike(@ModelAttribute UserVideoBoardVO uvbvo, Model model) throws Exception {
+		logger.info("좋아요컨트롤러호출");
+		logger.info(uvbvo.toString());
+		userVideoBoardService.likeCount(uvbvo);
 
-			return "/videoBoard/videodetail";
-		}
+	}
+
+	@RequestMapping(value = "/viewCount", method = RequestMethod.POST)
+	public void viewCount(@ModelAttribute UserVideoBoardVO uvbvo, Model model) throws Exception {
+		logger.info("조회수컨트롤러호출");
+		logger.info(uvbvo.toString());
+		userVideoBoardService.viewCount(uvbvo);
+
+	}
 
 	@RequestMapping(value = "/videoUpdateView", method = RequestMethod.GET)
 	public String videoUpdateGET(Integer board_no, Model model) throws Exception {

@@ -70,7 +70,7 @@ public class UserInfoBoardDaoImpl implements UserInfoBoardDao{
 	@Override
 	public List<UserInfoBoardVO> infoPopularBoardList(UserInfoBoardVO uibvo) {
 		// TODO Auto-generated method stub
-		return session.selectList(namespace + ".todayPopularBoardList", uibvo);
+		return session.selectList(namespace + ".infoPopularBoardList", uibvo);
 	}
 
 	

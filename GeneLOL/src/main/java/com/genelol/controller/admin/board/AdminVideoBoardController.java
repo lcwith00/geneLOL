@@ -58,7 +58,6 @@ public class AdminVideoBoardController {
 
 	@RequestMapping(value = "/totalcount")
 	public ResponseEntity<List<PageCount>> videoCount() throws Exception {
-
 		ResponseEntity<List<PageCount>> videoEntity = null;
 		videoEntity = new ResponseEntity<>(service.videoCount(), HttpStatus.OK);
 
