@@ -5,6 +5,11 @@
 
 <!DOCTYPE HTML>
 <HTML>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/resources/semantic-ui/semantic.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/resources/semantic-ui/semantic.min.css">
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#login').click(function() {
@@ -54,8 +59,8 @@
 					<div class="item">티어 별</div>
 				</div>
 			</div>
-			<a href="http://localhost:8080/video/videoList" class="item">동영상</a>
-			<a href="http://localhost:8080/info/infoList" class="item">정보</a>
+			<a href="/video/videoList" class="item">동영상</a>
+			<a href="/info/infoList" class="item">정보</a>
 			<c:choose>
 				<c:when test="${login.userName!=null}">
 					<div class="ui right simple dropdown item">

@@ -11,6 +11,9 @@
 		select *
 		from boardtable
 		where board_id = 'info'
+		<if test="board_title != null">
+			and board_title like '%' || #{board_title} || '%'
+		</if>
 		order by board_no desc,
 		board_date desc
 
@@ -56,9 +59,40 @@
 
 	</select>
 	<update id="likeUpdate" parameterType="userInfoBoard">
-		update boardtable set board_recomm = board_recomm+1
-			where board_no = #{board_no}
+		update boardtable set
+		board_recomm = board_recomm+1
+		where board_no = #{board_no}
 	</update>
-
-
+	<update id="viewCount" parameterType="userInfoBoard">
+		update boardtable set
+		board_count = board_count+1
+		where board_no = #{board_no}
+	</update>
+	<select id="infiniteScrollDown" resultType="com.genelol.vo.userboard.UserInfoBoardVO">
+<![CDATA[
+	select board_no, board_id, board_content, userid, board_title, 
+		to_char(board_date, 'YYYY-MM-DD HH24:MI:SS')as board_date,board_count,board_recomm
+	from boardtable
+	where  board_id = 'info'
+	and board_no <= #{board_no}
+	and board_no > #{board_no}-13
+	order by board_no desc, board_date desc
+	limit 0,12;
+	]]>
+		<!-- <![CDATA[ select * from (select board_no,board_title,board_content, 
+			ROWNUM as RNUM from (select * from boardtable where board_no<=#{board_no} 
+			and board_no>#{board_no}-13 order by board_no desc)) where RNUM<10;select 
+			* from (select board_no,board_title,board_content,ROWNUM as RNUM from (select 
+			* from boardtable where board_no<=#{board_no} and board_no>#{board_no}-13 
+			order by board_no desc)) where RNUM<10; ]]> -->
+	</select>
+<select id="infoPopularBoardList" resultType="com.genelol.vo.userboard.UserInfoBoardVO">
+		select *
+		from
+		boardtable
+		where board_id = 'info'
+		order by
+		board_count desc,board_recomm desc
+		limit 0,5
+	</select>
 </mapper>

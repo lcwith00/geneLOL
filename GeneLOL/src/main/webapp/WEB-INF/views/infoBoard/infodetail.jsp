@@ -16,9 +16,48 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript">
+	$("#btnimg").click(function() {
+
+		alert("test");
+
+		$.ajax({
+			type : "POST",
+			url : "/info/viewCount",
+			dataType : 'text', // 서버로부터 되돌려받는 데이터의 타입을 명시하는 것이다.
+			data : { // 서버로 보낼 데이터 명시 
+				board_no : $("#board_no_view").val(),
+			},
+			success : function() {
+				alert("전송완료");
+				location.reload();
+			}
+
+		});
+	});
 	$(document).ready(function() {
 		$('#btn_List').click(function() {
 			location.href = "http://localhost:8080/info/infoList"
+		});
+		$("#btn_submit").on("click", function() {
+
+			var board_no = $("#board_no_modal").html();
+			alert(board_no);
+			$('input[name=board_no]').attr('value', board_no);
+
+			var board_title = $("#title_modify").val();
+			alert(board_title);
+			$('input[name=board_title]').attr('value', board_title);
+
+			var board_content = $("#board_content_modify").val();
+			alert(board_content);
+			$('input[name=board_content]').attr('value', board_content);
+
+			$('#func').attr({
+				'action' : '/info/infoUpdate',
+				'method' : 'post'
+			});
+			$('#func').submit();
+
 		});
 		$("#likeBtn").click(function() {
 
@@ -29,20 +68,20 @@
 				url : "/info/likeUpdate",
 				dataType : 'text', // 서버로부터 되돌려받는 데이터의 타입을 명시하는 것이다.
 				data : { // 서버로 보낼 데이터 명시 
-
 					board_no : $("#board_no").html(),
 				},
 				success : function() {
 					alert("전송완료");
-					location.reload(); 				
+					location.reload();
 				}
 
 			});
 		});
 
 		function like_count() {
-			var board_no = $("#board_no").html();
+			var board_no = $("#board_no").val();
 		}
+
 	});
 </script>
 
@@ -68,35 +107,48 @@
 }
 </style>
 
-<title>videoDetail</title>
+<title>infoDetail</title>
 </head>
 <body>
-	<header>
-		<%@ include file="../common/header.jsp"%>
-	</header>
-	<br>
-	<br>
-	<br>
-	<br>
 
 	<div class="ui raised very padded text container segment">
-		no.<label id="board_no">${UserInfoBoardVO.board_no } </label>
-		<h3 class="ui block header">${UserInfoBoardVO.board_title }</h3>
-		<div id="writer">글쓴이 : ${UserInfoBoardVO.userid}</div>
+		<form id="func">
+			no.<label id="board_no"></label>
 
-		<div class="ui attached segment">
-			${UserInfoBoardVO.board_content}</div>
+			<h3 class="ui block header" id="title"></h3>
+			<input type="text" name="title_modify" id="title_modify"
+				class="ui block header" size="71"> <input type="hidden"
+				id="board_title" name="board_title">
+
+			<div id="writer">글쓴이 :</div>
+
+			<div class="ui attached segment" id="board_content_modal"></div>
+			<div class="ui form" id="text_area_modify">
+				<div class="field">
+					<label>내용</label>
+					<textarea id="board_content_modify" name="board_content_modify"></textarea>
+				</div>
+			</div>
+			<input type="hidden" id="board_content" name="board_content">
+
+			<div id="file_Modify">
+				file : <input type="file" name="filename">
+			</div>
+
+		</form>
 
 		<div class="ui labeled button" tabindex="0" id="likeBtn">
 			<div class="ui red button">
 				<i class="heart icon"></i> Like
 			</div>
+
 			<a class="ui basic red left pointing label" id="likeConut">
 				${UserInfoBoardVO.board_recomm } </a>
+
 		</div>
 
 		<!-- ================reply start================== -->
-		<div class="ui threaded comments">
+		<div class="ui threaded comments" id="reply_form">
 
 			<div>
 				<h3 class="ui dividing header">댓글</h3>
@@ -127,7 +179,8 @@
 			<div class="ui blue labels" id="view_Cnt"></div>
 
 			<button class="ui blue basic button" id="btn_List">LIST ALL</button>
-
+			<!-- 	<button class="ui yellow basic button" id="btn_Modify">MODIFY</button>
+			<button class="ui green basic button" id="btn_submit">SUBMIT</button> -->
 		</div>
 		<!--  /.div-body -->
 	</div>

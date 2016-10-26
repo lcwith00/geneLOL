@@ -10,10 +10,11 @@ import com.genelol.common.PageCount;
 import com.genelol.common.SearchCount;
 import com.genelol.dao.admin.board.AdminInformationDAO;
 import com.genelol.vo.admin.board.AdminBoardVO;
+import com.genelol.vo.board.BoardVO;
 
 @Service
 public class AdminInformationBoardServiceImpl implements AdminInformationBoardService {
-	
+
 	@Inject
 	private AdminInformationDAO dao;
 
@@ -51,9 +52,19 @@ public class AdminInformationBoardServiceImpl implements AdminInformationBoardSe
 		searchCount = dao.searchCount(searchtype, searchtext);
 		return searchCount;
 	}
-	
+
 	@Override
 	public void deleteArticle(Integer board_no) throws Exception {
 		dao.deleteArticle(board_no);
+	}
+
+	@Override
+	public Integer searchUserID(String username) throws Exception {
+		return dao.searchUserID(username);
+	}
+
+	@Override
+	public void insertArticle(BoardVO boardVO) throws Exception{
+		dao.insertArticle(boardVO);
 	}
 }

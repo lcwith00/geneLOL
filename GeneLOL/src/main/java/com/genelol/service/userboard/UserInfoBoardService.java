@@ -2,8 +2,8 @@ package com.genelol.service.userboard;
 
 import java.util.List;
 
+import com.genelol.vo.main.PopularBoardVo;
 import com.genelol.vo.userboard.UserInfoBoardVO;
-import com.genelol.vo.userboard.UserVideoBoardVO;
 
 public interface UserInfoBoardService {
 
@@ -22,4 +22,9 @@ public interface UserInfoBoardService {
 
 	public void likeCount(UserInfoBoardVO uibvo) throws Exception;// 좋아요수
 
+	public void viewCount(UserInfoBoardVO uibvo) throws Exception;// 조회수
+
+	public List<UserInfoBoardVO> infoScroll(Integer board_no) throws Exception;
+	
+	public List<UserInfoBoardVO> infoPopularBoardList(UserInfoBoardVO uibvo);
 }
