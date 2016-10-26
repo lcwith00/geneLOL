@@ -85,6 +85,11 @@ values('info',board_no_seq.nextval,'5','정보11','qWVLNsZyJQs',sysdate,10,10);
 
 =======
 values('info',board_no_seq.nextval,5,'정보11','정보11',sysdate,10,10);
+
 insert into commenttable(board_no,comment_no,comment_listno,comment_depth,comment_parent,userid,comment_content,comment_file,comment_recomm,comment_date)
-values(160,comment_no_seq.nextval,2,2,2,5,'1','1',1,SYSDATE);
->>>>>>> 0c7215d0b17cffe1c6c4cb45739f17fc3a0e9d2a
+values(115,comment_no_seq.nextval,2,2,2,1,'1','1',1,sysdate);
+insert into commenttable(board_no,comment_no,comment_listno,comment_depth,comment_parent,userid,comment_content,comment_recomm,comment_date)
+values(115,comment_no_seq.nextval,2,2,2,1,'1',1,sysdate);
+insert into commenttable(board_no,comment_no,comment_listno,comment_depth,comment_parent,userid,comment_content,comment_recomm,comment_date)
+values(115,comment_no_seq.nextval,2,2,2,1,'1',1,sysdate);
+
