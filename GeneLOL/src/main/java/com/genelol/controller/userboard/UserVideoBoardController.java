@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.genelol.service.userboard.UserVideoBoardService;
+import com.genelol.vo.userboard.UserInfoBoardVO;
 import com.genelol.vo.userboard.UserVideoBoardVO;
 
 @Controller
@@ -62,11 +63,13 @@ public class UserVideoBoardController {
 	}
 
 	@RequestMapping(value = "/videoLike", method = RequestMethod.POST)
-	public String videoLike(@ModelAttribute UserVideoBoardVO uvbvo, Model model) throws Exception {
-		userVideoBoardService.likeCount(uvbvo);
-		return "redirect:/video/videoDetail?" + uvbvo.getBoard_no();
+		public String likeUpdate(@ModelAttribute UserVideoBoardVO uvbvo, Model model) throws Exception {
+			logger.info("좋아요컨트롤러호출");
+			logger.info(uvbvo.toString());
+			userVideoBoardService.likeCount(uvbvo);
 
-	}
+			return "/videoBoard/videodetail";
+		}
 
 	@RequestMapping(value = "/videoUpdateView", method = RequestMethod.GET)
 	public String videoUpdateGET(Integer board_no, Model model) throws Exception {

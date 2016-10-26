@@ -52,24 +52,23 @@
 
 		});
 
-		$("#likebtn").on("click", function() {
+		$("#likeBtn").click(function() {
+
+			alert("test");
 
 			$.ajax({
 				type : "POST",
 				url : "/video/videoLike",
 				dataType : 'text', // 서버로부터 되돌려받는 데이터의 타입을 명시하는 것이다.
 				data : { // 서버로 보낼 데이터 명시 
-
-					board_no : $("#board_no_send_modal").val(),
-					board_recomm : $("#like").val()
+					board_no : $("#board_no_send_modal").html(),
 				},
 				success : function() {
 					alert("전송완료");
-					alert(board_no_send_modal);
+					location.reload();
 				}
 
 			});
-
 		});
 
 	});
@@ -147,13 +146,15 @@ div #bg {
 		</form>
 		<div>
 			<form id="like_data" method="get">
-				<div class="ui labeled button" tabindex="0">
-					<div class="ui button" id="likebtn">
-						<i class="heart icon" id="like"></i>
-					</div>
-				</div>
+				<div class="ui labeled button" tabindex="0" id="likeBtn">
+			<div class="ui red button">
+				<i class="heart icon"></i> Like
+			</div>
 
-				<div class="ui blue labels" id="view_Cnt"></div>
+			<a class="ui basic red left pointing label" id="likeConut">
+				${UserInfoBoardVO.board_recomm } </a>
+
+		</div>
 			</form>
 		</div>
 		<!-- ================reply start================== -->

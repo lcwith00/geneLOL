@@ -169,7 +169,7 @@
 	                  $("#video_writer").html("작성자 : " + username);
 	                  $("#view_Cnt").html(
 	                        "<i class='unhide icon'></i>" + board_count);
-	                  $("#like").html("Like " + board_recomm);
+	                  $("#likeConut").html(board_recomm);
 	             	$("#date").html(board_date);
 	               });
 	      });
