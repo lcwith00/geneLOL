@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css"
 	href="/resources/semantic-ui/semantic.min.css">
 <script src="/resources/semantic-ui/semantic.min.js"></script>
-<link rel="stylesheet" type="text/css" href="resources/css/common.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/common.css">
 <title>소환사 검색 결과</title>
 <style type="text/css">
 #contents {
@@ -21,7 +21,11 @@
 	padding-left: 5%;
 	padding-right: 5%;
 	min-height: 1000px;
-	min-width: 768px !important;
+	min-width: 1024px !important;
+}
+
+#contents>aside, #contents>section {
+	width: 100% !important;
 }
 
 .summonerName {
@@ -59,6 +63,23 @@
 
 .tierInfo {
 	color: #879292;
+}
+
+.rankedChamp {
+	margin: 0 !important;
+	padding-left: 0 !important;
+}
+
+.row.rankedStat {
+	padding-top: 0.5rem !important;
+	padding-bottom: 0.5rem !important;
+}
+
+.champName {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-wrap: normal;
+	overflow: hidden;
 }
 </style>
 </head>
@@ -121,7 +142,6 @@
 									<span class="tierInfo">${league.name}</span>
 								</c:otherwise>
 							</c:choose>
-
 						</div>
 					</div>
 				</aside>
@@ -130,12 +150,45 @@
 						begin="0" end="6">
 						<c:if test="${champion.id != 0}">
 							<div class="ui segment">
-								<div class="ui middle aligned two column left grid">
+								<div class="ui middle aligned two column grid">
 									<div class="ui four wide column">
 										<img class="ui tiny image"
 											src="http://ddragon.leagueoflegends.com/cdn/6.21.1/img/champion/${champions[champion.id].key}.png " />
 									</div>
-									<div class="ui twelve wide column">${champion.stats.totalSessionsPlayed }</div>
+									<div class="ui twelve wide column grid rankedChamp">
+										<div class="row rankedStat">
+											<div class="left floated six wide column champName">${champions[champion.id].name}</div>
+											<div class="six wide column">
+												<span><fmt:formatNumber
+														value="${(champion.stats.totalChampionKills+champion.stats.totalAssists)/champion.stats.totalDeathsPerSession}"
+														pattern=".00" type="" />:1 평점</span>
+											</div>
+											<div class="right floated four wide column">
+												<span><fmt:formatNumber
+														value="${champion.stats.totalSessionsWon/champion.stats.totalSessionsPlayed}"
+														pattern="" type="percent" /></span>
+											</div>
+										</div>
+										<div class="row rankedStat">
+											<div class="left floated six wide column">
+												<span>CS<fmt:formatNumber
+														value="${champion.stats.totalMinionKills/champion.stats.totalSessionsPlayed}"
+														pattern=".0" type="" /></span>
+											</div>
+											<div class="six wide column">
+												<span><fmt:formatNumber
+														value="${champion.stats.totalChampionKills/champion.stats.totalSessionsPlayed}"
+														pattern=".0" type="" />/<fmt:formatNumber
+														value="${champion.stats.totalDeathsPerSession/champion.stats.totalSessionsPlayed}"
+														pattern=".0" type="" />/<fmt:formatNumber
+														value="${champion.stats.totalAssists/champion.stats.totalSessionsPlayed}"
+														pattern=".0" type="" /></span>
+											</div>
+											<div class="right floated four wide column">
+												<span>${champion.stats.totalSessionsPlayed} 게임</span>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</c:if>
