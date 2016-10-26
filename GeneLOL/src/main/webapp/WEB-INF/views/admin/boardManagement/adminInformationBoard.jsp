@@ -150,19 +150,77 @@ div #bg {
 				async : false,
 				data : formData,
 			})
-
-			$('#subject').empty();
-			$('#content').empty();
+			
+			$("#frm")[0].reset();
+			obj.getById["editor"].exec("SET_CONTENTS", [ "" ]);
 			$('#page_navi').html("");
 			$("#infoList").html("");
 			listAll();
 			page();
-
 		});
 
 		listAll();
 		page();
 	});
+
+	function read(str) {
+		var board_no = str;
+		var url = "/infoboard/read/" + board_no;
+		$.getJSON(url, function(data) {
+			$(data).each(
+					function() {
+						var board_no = this.board_no;
+						var board_title = this.board_title;
+						var board_content = this.board_content;
+						var username = this.username;
+						var board_date = this.board_date;
+						var board_count = this.board_count;
+						var board_recomm = this.board_recomm;
+						$("#info_title").html(board_title);
+						$("#info_writer").html("작성자 : " + username);
+						$("#content").html(board_content);
+						$("#view_Cnt").html(
+								"<i class='unhide icon'></i>" + board_count);
+					});
+		});
+		$('#readinfo').modal('show');
+	}
+
+	function updateArticle(str) {
+		var board_no = str;
+		var url = "/infoboard/read/" + board_no;
+		$.getJSON(url, function(data) {
+			$(data).each(
+					function() {
+						var board_no = this.board_no;
+						var board_title = this.board_title;
+						var board_content = this.board_content;
+						var username = this.username;
+						var board_date = this.board_date;
+						var board_count = this.board_count;
+						var board_recomm = this.board_recomm;
+						$("#info_title").val(board_title);
+						$("#info_writer").val(username);
+						var obj = [];
+						nhn.husky.EZCreator.createInIFrame({
+							oAppRef : obj,
+							elPlaceHolder : "updateEditor",
+							sSkinURI : "/resources/smarteditor/SmartEditor2Skin.html",
+							htParams : {
+								// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+								bUseToolbar : true,
+								// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+								bUseVerticalResizer : true,
+								// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+								bUseModeChanger : true
+							}
+						});
+						$("#updateEditor").text(board_content);
+						obj.getById["updateEditor"].exec("LOAD_CONTENTS_FIELD");
+					});
+		});
+		$('#updateArticleModal').modal('show');
+	}
 
 	function allChk(obj) {
 		var chkObj = document.getElementsByName("rowCheck");
@@ -302,7 +360,8 @@ div #bg {
 
 		var board_update_div = $("<div class='two wide column'>");
 		board_update_div
-				.html("<div class='ui button updateArticle' id='" + board_no + "'>수정 </div>");
+				.html("<div class='ui button updateArticle' onclick='updateArticle("
+						+ board_no + ")'>수정</div>");
 
 		new_div.append(checked_div).append(board_no_div)
 				.append(board_title_div).append(username_div).append(
@@ -342,7 +401,8 @@ div #bg {
 
 		var board_update_div = $("<div class='two wide column'>");
 		board_update_div
-				.html("<div class='ui button updateArticle' id='" + board_no + "'>수정</div>");
+				.html("<div class='ui button updateArticle' onclick='updateArticle("
+						+ board_no + ")'>수정</div>");
 
 		new_div.append(checked_div).append(board_no_div)
 				.append(board_title_div).append(username_div).append(
@@ -350,30 +410,6 @@ div #bg {
 						board_recomm_div).append(board_update_div);
 
 		$("#infoList").append(new_div);
-	}
-
-	function read(str) {
-		var board_no = str;
-		var url = "/infoboard/read/" + board_no;
-		$.getJSON(url, function(data) {
-			$(data).each(
-					function() {
-						var board_no = this.board_no;
-						var board_title = this.board_title;
-						var board_content = this.board_content;
-						var username = this.username;
-						var board_date = this.board_date;
-						var board_count = this.board_count;
-						var board_recomm = this.board_recomm;
-						$("#info_title").html(board_title);
-						$("#info_writer").html("작성자 : " + username);
-						$("#content").html(board_content);
-						$("#view_Cnt").html(
-								"<i class='unhide icon'></i>" + board_count);
-						$("#like").html("Like " + board_recomm);
-					});
-		});
-		$('#readinfo').modal('show');
 	}
 </script>
 <!-- list -->
@@ -422,4 +458,7 @@ div #bg {
 
 <div class="ui modal" id="insertArticleModal">
 	<jsp:include page="insertArticle.jsp"></jsp:include>
+</div>
+<div class="ui modal" id="updateArticleModal">
+	<jsp:include page="updateArticle.jsp"></jsp:include>
 </div>
