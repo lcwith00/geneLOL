@@ -21,5 +21,7 @@ public interface CommentDAO {
 
 	// 페이지 처리
 	public int count(Integer board_NO) throws Exception;
-
+	/*
+	public void mypagecomment(Integer userID,pageVO paging)throws Exception;
+*/
 }
