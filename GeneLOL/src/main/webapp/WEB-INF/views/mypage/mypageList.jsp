@@ -249,16 +249,27 @@ strong {
 				<div class="ui three column grid">
 					<div class="eight wide column" id="boardsearch">
 						<form id="search_form" method="get">
-							<select name="searchType">
-								<option value="content">제목</option>
-							</select> <input class="prompt" type="text" placeholder="검색"
+							 <input class="prompt" type="hidden" placeholder="검색"
 								name="board_title">
 
-							<button class="ui inverted basic button" type="submit"
+							<button class="ui inverted basic button" type="hidden"
 								id="submit_search">
-								<i class="black search icon"></i>
+					
 							</button>
 						</form>
+						<form id="search_form" method="get">
+						<select name="searchType">
+								<option value="content">제목</option>
+							</select> 
+					<input class="prompt" type="text" placeholder="검색"
+						name="board_title">
+
+					<button class="ui inverted basic button" type="submit"
+						id="submit_search">
+						<i class="black search icon"></i>
+					</button>
+						</form>
+						
 					</div>
 					<div class="seven wide column" id="boardsearchimpormation">
 						<strong>제목을 클릭하세요 게시물을 확인할 수 있습니다.</strong>
@@ -401,226 +412,6 @@ strong {
 		</div>
 	</div>
 	
-	<div><form action="commentAddButton" name="commentAddButton">
-		<label for="newUserID">쓴사람</label><input class="form-control"
-			type="text" placeholder="User ID" id="newUserID"> <label
-			for="newComment_Content">내용</label><input class="form-control"
-			type="text" placeholder="Content" id="newComment_Content"> <label
-			for="newComment_Recomm">추천수</label><input class="form-control"
-			type="text" placeholder="Recomm" id="newComment_Recomm">
-			<label for="comment_Listno">리스트넘버</label><input class="form-control"
-			type="text" placeholder="리스트넘버" id="comment_Listno"> 
-			<label for="comment_Depth">단계</label><input class="form-control"
-			type="text" placeholder="단계" id="comment_Depth"> 
-			<label for="comment_Parent">부모</label><input class="form-control"
-			type="text" placeholder="부모" id="comment_Parent"> 
-		<button type="submit" class="button-primary" id="commentAddButton">댓글 추가</button>
-		</form>
-	</div>
-	<div>
-		<ul class="timeline">
-			<li class="time-label" id="commentDiv"><span class="bg-green">리플리스트</span></li>
-		</ul>
-		<div class='text-center'>
-			<ul class="pagination" id="pagination">
-
-			</ul>
-		</div>
-	</div>
-
-	<!-- 442page -->
-	<!-- Modal -->
-	<div id="modifyModal" class="modal modal-primary fade" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title"></h4>
-				</div>
-				<div class="modal-body" data-rno>
-					<p>
-						<input type="text" id="comment_Content" class="form-control">
-					</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="" id="commentModButton">Modify</button>
-					<button type="button" class="" id="commentDelButton">DELETE</button>
-					<button type="button" class="" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- 434페이지 template-->
-	<script id="template" type="text/x-handlebars-template">
-{{#each .}}
-<li class="commentLi" data-comment_NO={{comment_NO}}>
-
- <div class="timeline-item" >
-  <div>{{prettifyDate comment_Date}}</div>
-  <div class="timeline-header"><strong>{{comment_NO}}</strong> -{{userID}}</div>
-  <div class="timeline-body">{{comment_Content}}</div>
-<div>{{comment_Recomm}}</div>
-
-    <div class="timeline-footer">
-     <a class="button-primary btn-xs" 
-	    data-toggle="modal" data-target="#modifyModal">Modify</a>
-    </div>
-  </div>			
-</li>
-{{/each}}
-</script>
-
-	<script>
-/* 435page prettifyDate날짜에대한것*/
-Handlebars.registerHelper("prettifyDate", function(timeValue) {
-	var dateObj = new Date(timeValue);
-	var year = dateObj.getFullYear();
-	var month = dateObj.getMonth() + 1;
-	var date = dateObj.getDate();
-	return year + "/" + month + "/" + date;
-});
-
-var printData = function(commentArr, target, templateObject) {
-
-	var template = $("#template").html();
-
-	var html = template(commentArr);
-	$(".commentLi").remove();
-	target.after(html);
-}
-/* 436페이지 */
-var board_no = ${UserVideoBoardVO.board_no};
-var CommentPage = 1;
-
-function getPage(pageInfo) {
-
-	$.getJSON(pageInfo, function(data) {
-		printData(data.list, $("#commentDiv"), $('#template'));
-		printPaging(data.pageMakerVO, $(".pagination"));
-
-		//
-		$("#modifyModal").modal('hide');
-		$("#commentCntSmall").html(
-				"[ " + data.pageMakerVO.totalCount + " ]");
-
-	});
-}
-
-var printPaging = function(pageMakerVO, target) {
-
-	var str = "";
-
-	if (pageMakerVO.prev) {
-		str += "<li><a href='"+(pageMakerVO.startPage - 1)+"'> << </a></li>";
-	}
-
-	for (var i = pageMakerVO.startPage, len = pageMakerVO.endPage; i <= len; i++) {
-		var strClass = pageMakerVO.paging.page == i ? 'class=active' : '';
-		str += "<li "+strClass+"><a href='"+i+"'>" + i + "</a></li>";
-	}
-
-	if (pageMakerVO.next) {
-		str += "<li><a href='" + (pageMakerVO.endPage + 1)+ "'> >> </a></li>";
-	}
-
-	target.html(str);
-};
-/* 438페이지 */
-$("#commentDiv").on("click", function() {
-
-	if ($(".timeline li").size() > 1) {
-		return;
-	}
-	getPage("/comment/" + board_no + "/1");
-
-});
-//439페이지
-$(".pagination").on("click", "li a", function(event) {
-
-	event.preventDefault();
-
-	commentPage = $(this).attr("href");
-
-	getPage("/comment/" + board_no + "/" + commentPage);
-
-});
-//440페이지
-$("#commentAddButton").on("click", function() {
-	var comment_ListnoObj=$("#comment_Listno");
-	var comment_DepthObj=$("#comment_Depth");
-	var comment_ParentObj=$("#comment_Parent");
-	var userIDObj = $("#newUserID");
-	var comment_ContentObj = $("#newComment_Content");
-	var comment_RecommObj=$("#newComment_Recomm");
-	var userID = userIDObj.val();
-	var comment_Content = comment_ContentObj.val();
-	var comment_Recomm = comment_RecommObj.val();
-	var comment_Listno=comment_ListnoObj.val();
-	var comment_Depth=comment_DepthObj.val();
-	var comment_Parent=comment_ParentObj.val();
-	$.ajax({
-		type : 'post',
-		url : '/comment/',
-		headers : {
-			"Content-Type" : "application/json",
-			"X-HTTP-Method-Override" : "POST"
-		},
-		dataType : 'text',
-		data : JSON.stringify({
-			board_No : board_No,
-			userID : userID,
-			comment_Content : comment_Content,
-			comment_Recomm:comment_Recomm,
-			comment_listno:comment_listno,
-			comment_Recomm:comment_Recomm,
-			comment_Parent:comment_Parent
-			
-		}),
-		success : function(result) {
-			console.log("result: " + result);
-			if (result == 'SUCCESS') {
-				alert("등록 되었습니다.");
-				commentPage = 1;
-				getPage("/comment/" + board_no + "/" + commentPage);
-				userIDObj.val("");
-				comment_ContentObj.val("");
-				comment_RecommObj.val("");
-				comment_ListnoObj.val("");
-				comment_DepthObj.val("");
-				comment_ParentObj.val("");
-			
-			}
-		}
-	});
-});
-
-$(".timeline").on("click", ".commentLi", function(event) {
-
-	var comment = $(this);
-
-	$("#comment_Content").val(comment.find('.timeline-body').text());
-	$(".modal-title").html(comment.attr("data-comment_NO"));
-	$("#commentDiv").html(template);
-});
-
-</script>
-
-<script>
-$(document).ready(function(){
-	
-	var formObj = $("form[role='form']");
-	
-	console.log(formObj);
-	$("#commentAddButton ").on("click", function(){
-		formObj.attr("method", "get");
-		formObj.attr("action", "/mypage/mypageList");
-		formObj.submit();
-	});
-});
-</script>
-
 	<footer id="footer">
 		<%-- 	<%@ include file="../common/footer.jsp"%> --%>
 	</footer>
