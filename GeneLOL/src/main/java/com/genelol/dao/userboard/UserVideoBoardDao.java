@@ -2,7 +2,7 @@ package com.genelol.dao.userboard;
 
 import java.util.List;
 
-
+import com.genelol.vo.userboard.UserInfoBoardVO;
 import com.genelol.vo.userboard.UserVideoBoardVO;
 
 public interface UserVideoBoardDao {
@@ -29,4 +29,5 @@ public interface UserVideoBoardDao {
 	
 	public  void likeUpdate(UserVideoBoardVO uvbvo ) throws Exception;// 조회수
 	
+	public List<UserVideoBoardVO> videoPopularBoardList(UserVideoBoardVO uvbvo);
 }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.genelol.service.userboard.UserInfoBoardService;
+import com.genelol.vo.admin.board.AdminBoardVO;
 import com.genelol.vo.userboard.UserInfoBoardVO;
 
 @Controller
@@ -128,12 +129,12 @@ public class UserInfoBoardController {
 	}
 
 	@RequestMapping(value = "/infoPopularBoardList", method = RequestMethod.GET)
-	public String infoPopularBoardList(@ModelAttribute UserInfoBoardVO uibvo, Model model) throws Exception {
-		logger.info("popList 호출 성공!");
-		List<UserInfoBoardVO> infoPopularList = userInfoBoardService.infoPopularBoardList(uibvo);
-		logger.info(infoPopularList.toString());
-		model.addAttribute("infoPopularList", infoPopularList);
-		return "/infoBoard/infolistpage";
+	public ResponseEntity<List<UserInfoBoardVO>> infoPopularBoardList(@ModelAttribute UserInfoBoardVO uibvo, Model model)
+			throws Exception {
+		ResponseEntity<List<UserInfoBoardVO>> listAll = null;
+		listAll = new ResponseEntity<>(userInfoBoardService.infoPopularBoardList(uibvo), HttpStatus.OK);
+		model.addAttribute("poplist", listAll);
+		return listAll;
 
 	}
 }

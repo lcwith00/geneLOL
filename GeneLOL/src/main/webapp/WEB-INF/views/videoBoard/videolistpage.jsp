@@ -20,6 +20,7 @@
 			.ready(
 					function() {
 						hide_modify();
+						popVideo()
 						$('#registLink').click(function() {
 							$('.ui.modal.link').modal('show');
 						});
@@ -118,7 +119,7 @@
 																								+ "</div>"
 																								+ "</div>";
 																						str += "<div class="+"'image'"+"id="+"'btnImg'"+"onclick="+"read("+this.board_no+")"+">";
-																						str += "<img src="+"'http://img.youtube.com/vi/'"+this.board_content+"'/1.jpg'"+">"
+																						str += "<img src="+"http://img.youtube.com/vi/"+this.board_content+"/1.jpg"+">"
 																								+ "</div>";
 																						str += " <div class="+"'content'"+">";
 																						str += "<span class="+"'right floated'"+">";
@@ -179,7 +180,7 @@
 	                  var board_recomm = this.board_recomm;
 	                 $("#board_no_send_modal").html(board_no);
 	                  $("#video_title_modal").html(board_title);
-	                  $("#video_content_play").html("<iframe src='http://www.youtube.com/embed/"+board_content+"' frameborder='0' allowfullscreen></iframe>");
+	                  $("#video_content_play").html("<iframe src="+"http://www.youtube.com/embed/"+board_content+" frameborder="+"'0'"+ "allowfullscreen>"+"</iframe>");
 	                  $("#video_writer").html("작성자 : " + username);
 	                  $("#view_Cnt").html(
 	                        "<i class='unhide icon'></i>" + board_count);
@@ -217,7 +218,37 @@
 	}
 	var board_no_send_modal =  $("#board_no_send_modal").html();
 	$('input[name=board_no_view]').attr('value',board_no_send_modal);
-	
+
+	function popVideo() {
+     var url = "/video/videoPopularBoardList" ;
+     $.getJSON(url, function(data) {
+    	 var html="";
+    	html +="<thead>";
+		html +="<tr>";
+		html +=	"<th style="+"'width: 170px;'"+">"+"번호"+"</th>";
+		html +=	"<th style="+"'width: 170px;'"+">"+"제목"+"</th>";
+		html +=	"<th class="+"'right aligned'"+"style="+"'width: 170px;'"+">"+"조회수"+"</th>";
+		html +=	"</tr>";
+    
+			$(data).each(
+              function() {
+            	 var board_no = this.board_no;
+                 var board_title = this.board_title;
+                 var username = this.username;
+                 var board_date = this.board_date;
+                 var board_content = this.board_content;
+                 var board_count = this.board_count ;
+                 var board_recomm = this.board_recomm;
+				html += "<tbody class="+"'tbody_pop'"+">"+"<tr>";
+				html += "<td onclick="+"'read('"+this.board_no+"')'"+">"+board_no+"</td>";
+				html +=	"<td id="+"'pop_title'"+">"+board_title+"</td>";
+				html += "<td class="+"'right aligned'"+ "id="+"'view_Cnt'"+">"+board_count+"</td>";
+				html += "</tr>"+" </tbody>";
+				html +="</thead>";
+              });
+    	$(".tbody_pop").append(html);
+     });
+  }
 </script>
 <style type="text/css">
 body, html {
@@ -233,12 +264,6 @@ header, footer {
 	min-height: 50px;
 }
 
-div #bg {
-	width: 90%;
-	min-height: 700px;
-	background-color: gray;
-	margin: 50px;
-}
 
 div #popularVideo {
 	width: 55%;
@@ -251,7 +276,6 @@ div #popularVideo {
 div #popularRank {
 	width: 30%;
 	min-height: 200px;
-	background-color: black;
 	margin: 40px;
 	position: relative;
 	float: left;
@@ -301,8 +325,18 @@ div #tab_column {
 	</header>
 	<!-- 배경 div -->
 	<div id="bg">
-		<div id="popularVideo"></div>
-		<div id="popularRank"></div>
+		<div id="popularVideo">
+			<img alt="lol" src="../resources/images/loldcup.jpg">
+		</div>
+		<div id="popularRank">
+			<h3>베스트 동영상</h3>
+			<table class="ui unstackable table">
+				<thead>
+				</thead>
+				<tbody class="tbody_pop">
+				</tbody>
+			</table>
+		</div>
 
 		<div id="for_search_Div">
 			<div class=" ui icon input" id="search">

@@ -93,6 +93,6 @@
 		where board_id = 'info'
 		order by
 		board_count desc,board_recomm desc
-		limit 0,5
+		limit 0, 5;
 	</select>
 </mapper>

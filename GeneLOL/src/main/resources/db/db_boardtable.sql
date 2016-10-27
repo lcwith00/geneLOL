@@ -60,11 +60,11 @@ values('videoLOL',board_no_seq.nextval,'1','good','qWVLNsZyJQs',sysdate,1,4);
 
 
 insert into boardtable(board_id,board_no,userid,board_title,board_content,board_date,board_recomm,board_count)
-values('info',board_no_seq.nextval,'5','정보1','정보1',sysdate,10,10);
+values('info',board_no_seq.nextval,'5','정보1','정보1',sysdate,5,9);
 insert into boardtable(board_id,board_no,userid,board_title,board_content,board_date,board_recomm,board_count)
-values('info',board_no_seq.nextval,'5','정보2','qWVLNsZyJQs',sysdate,10,10);
+values('info',board_no_seq.nextval,'5','정보2','qWVLNsZyJQs',sysdate,4,8);
 insert into boardtable(board_id,board_no,userid,board_title,board_content,board_date,board_recomm,board_count)
-values('info',board_no_seq.nextval,'5','정보3','qWVLNsZyJQs',sysdate,10,10);
+values('info',board_no_seq.nextval,'5','정보3','qWVLNsZyJQs',sysdate,11,11);
 insert into boardtable(board_id,board_no,userid,board_title,board_content,board_date,board_recomm,board_count)
 values('info',board_no_seq.nextval,'5','정보4','qWVLNsZyJQs',sysdate,10,10);
 insert into boardtable(board_id,board_no,userid,board_title,board_content,board_date,board_recomm,board_count)

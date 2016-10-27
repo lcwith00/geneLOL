@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.genelol.service.userboard.UserVideoBoardService;
+import com.genelol.vo.userboard.UserInfoBoardVO;
 import com.genelol.vo.userboard.UserVideoBoardVO;
 
 @Controller
@@ -106,4 +109,13 @@ public class UserVideoBoardController {
 
 	}
 
+	@RequestMapping(value = "/videoPopularBoardList", method = RequestMethod.GET)
+	public ResponseEntity<List<UserVideoBoardVO>> videoPopularBoardList(@ModelAttribute UserVideoBoardVO uvbvo,
+			Model model) throws Exception {
+		ResponseEntity<List<UserVideoBoardVO>> listAll = null;
+		listAll = new ResponseEntity<>(userVideoBoardService.videoPopularBoardList(uvbvo), HttpStatus.OK);
+		model.addAttribute("poplist", listAll);
+		return listAll;
+
+	}
 }
