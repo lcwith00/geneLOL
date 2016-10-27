@@ -23,7 +23,21 @@
 						$('#registLink').click(function() {
 							$('.ui.modal.link').modal('show');
 						});
-						
+					
+						$(".view_up").click(function() {
+							$.ajax({
+								type : "POST",
+								url : "/video/viewCount",
+								dataType : 'text', // 서버로부터 되돌려받는 데이터의 타입을 명시하는 것이다.
+								data : { // 서버로 보낼 데이터 명시 
+									board_no : $("#board_no_send_modal").html(),
+								},
+								success : function() {
+									alert("전송완료");
+								}
+
+							});
+						});
 						//=========수정 버튼============
 							$("#btn_Modify").on("click", function() {
 							
@@ -201,6 +215,8 @@
 		alert(modify_content_val);
 		$('input[name=modify_content_val]').attr('value',modify_content_val);
 	}
+	var board_no_send_modal =  $("#board_no_send_modal").html();
+	$('input[name=board_no_view]').attr('value',board_no_send_modal);
 	
 </script>
 <style type="text/css">
@@ -347,7 +363,7 @@ div #tab_column {
 								<div class="image" id="btnimg"
 									onclick="read(${UserVideoBoardVO.board_no})">
 
-									<img
+									<img class="view_up"
 										src="http://img.youtube.com/vi/${UserVideoBoardVO.board_content}/1.jpg">
 								</div>
 								<div class="content">

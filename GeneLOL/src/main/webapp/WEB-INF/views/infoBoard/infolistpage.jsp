@@ -18,6 +18,7 @@
 $(document)
 			.ready(
 					function() {
+						popInfo();
 						$("#popularinfo").click(function(){
 							popInfo();
 						});
@@ -44,6 +45,19 @@ $(document)
 							$("#view_Cnt").hide();
 							$("#file_Modify").show();
 							$("#btn_submit").show();
+						});
+						$(".view_up").click(function() {
+							$.ajax({
+								type : "POST",
+								url : "/info/viewCount",
+								dataType : 'text', // 서버로부터 되돌려받는 데이터의 타입을 명시하는 것이다.
+								data : { // 서버로 보낼 데이터 명시 
+									board_no : $("#board_no").html(),
+								},
+								success : function() {
+									alert("전송완료");
+								}
+							});
 						});
 					
 						$(document)
@@ -181,13 +195,12 @@ function read(str) {
       });
       $('#infoRead').modal('show');
    }
-function modify_val(){
-	var board_no_view =  $("#board_no").html();
-	$('input[name=board_no_view]').attr('value',board_no_view);
+	var board_view_up =  $("#board_no").html();
+	$('input[name=board_view_up]').attr('value',board_view_up);
 	var board_content_modal =  $("#board_content_modal").html();
 	$('textarea[id=board_content_modify]').attr('value',board_content_modal);
-}
-function popInfo() {
+
+	function popInfo() {
      var url = "/info/infoPopularBoardList" ;
      $.getJSON(url, function(data) {
         $(data).each(
@@ -233,10 +246,10 @@ div #popularinfo {
 div #popularRank {
 	width: 30%;
 	min-height: 200px;
-	background-color: black;
-	margin: 40px;
+	border-style: solid; margin : 40px;
 	position: relative;
 	float: left;
+	margin: 40px;
 }
 
 div #for_search_Div {
@@ -268,11 +281,11 @@ div #for_search_Div {
 	</header>
 	<!-- 배경 div -->
 	<div id="bg">
-		<div id="popularinfo">
+		<div id="popularinfo"></div>
+		<div id="popularRank">
+			<h3>베스트 동영상</h3>
 			<label id="pop_no"></label>
-
 		</div>
-		<div id="popularRank"></div>
 
 		<div id="for_search_Div">
 			<div class=" ui icon input" id="search">
@@ -323,8 +336,7 @@ div #for_search_Div {
 
 							<div class="image" id="btnimg"
 								onclick="read(${UserinfoBoardVO.board_no})">
-								<input type="hidden" id="board_no_view"> <img
-									id="view_up"
+								<img class="view_up"
 									src="http://img.youtube.com/vi/${UserinfoBoardVO.board_content}/1.jpg">
 							</div>
 							<div class="content">

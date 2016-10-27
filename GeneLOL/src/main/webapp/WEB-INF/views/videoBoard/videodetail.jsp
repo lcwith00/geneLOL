@@ -121,7 +121,7 @@ div #bg {
 		<form id="func">
 			<!-- 삭제, 수정을 위한 form -->
 			<h3 class="ui block header" id="board_no_send_modal"></h3>
-			<input type="hidden" name="board_no">
+			<input type="hidden" name="board_no" id="board_no_view">
 			<h3 class="ui top attached header" id="video_title_modal"></h3>
 			<h3 class="ui top attached header" id="video_title_modify">
 				<label>제목 : </label> <input id="video_title_modify_val" type="text"

@@ -16,24 +16,6 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript">
-	$("#btnimg").click(function() {
-
-		alert("test");
-
-		$.ajax({
-			type : "POST",
-			url : "/info/viewCount",
-			dataType : 'text', // 서버로부터 되돌려받는 데이터의 타입을 명시하는 것이다.
-			data : { // 서버로 보낼 데이터 명시 
-				board_no : $("#board_no_view").val(),
-			},
-			success : function() {
-				alert("전송완료");
-				location.reload();
-			}
-
-		});
-	});
 	$(document).ready(function() {
 		$('#btn_List').click(function() {
 			location.href = "http://localhost:8080/info/infoList"
@@ -114,7 +96,7 @@
 	<div class="ui raised very padded text container segment">
 		<form id="func">
 			no.<label id="board_no"></label>
-
+		<input type="hidden" name="board_view_up" id="board_view_up">
 			<h3 class="ui block header" id="title"></h3>
 			<input type="text" name="title_modify" id="title_modify"
 				class="ui block header" size="71"> <input type="hidden"
