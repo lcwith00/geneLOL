@@ -306,7 +306,7 @@ strong {
 						<div class="one wide column">${UserVideoBoardVO.board_no}</div>
 						<div class="three wide column">${UserVideoBoardVO.board_id}</div>
 						<div class="three wide column">
-							<a href="http://www.naver.com">${UserVideoBoardVO.board_title}</a>
+							<a href="http:localhost:8080/videoBoard/videoDetail?board_no=${UserVideoBoardVO.board_no}">${UserVideoBoardVO.board_title}</a>
 						</div>
 						<div class="two wide column">${UserVideoBoardVO.board_recomm}</div>
 						<div class="two wide column">${UserVideoBoardVO.board_content}</div>

@@ -55,7 +55,6 @@ $(document)
 									board_no : $("#board_no").html(),
 								},
 								success : function() {
-									alert("전송완료");
 								}
 							});
 						});
@@ -73,7 +72,6 @@ $(document)
 										var last_no = $(
 												".ui .card:last>#last_board_no")
 												.val() - 1;
-										alert(last_no);
 										$
 												.ajax({
 													type : 'post', // 요청 method 방식 

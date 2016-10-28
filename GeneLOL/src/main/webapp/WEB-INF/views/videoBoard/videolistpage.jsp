@@ -34,7 +34,6 @@
 									board_no : $("#board_no_send_modal").html(),
 								},
 								success : function() {
-									alert("전송완료");
 								}
 
 							});
@@ -44,7 +43,7 @@
 							
 								hideme();
 								modify_val();
-								call_modify();
+								 call_modify()
 								//callme();
 				
 		});
@@ -64,7 +63,6 @@
 												var last_no = $(
 														".ui .card:last>#last_board_no")
 														.val() - 1;
-												alert(last_no);
 												$
 														.ajax({
 															type : 'post', // 요청 method 방식 
@@ -210,10 +208,8 @@
 	}
 	function modify_val(){
 		var modify_title_val =  $("#video_title_modal").html();
-		alert(modify_val);
 		$('input[name=modify_title_val]').attr('value',modify_title_val);
 		var modify_content_val =  $("#video_content_play").html();
-		alert(modify_content_val);
 		$('input[name=modify_content_val]').attr('value',modify_content_val);
 	}
 	var board_no_send_modal =  $("#board_no_send_modal").html();
@@ -225,9 +221,9 @@
     	 var html="";
     	html +="<thead>";
 		html +="<tr>";
-		html +=	"<th style="+"'width: 170px;'"+">"+"번호"+"</th>";
-		html +=	"<th style="+"'width: 170px;'"+">"+"제목"+"</th>";
-		html +=	"<th class="+"'right aligned'"+"style="+"'width: 170px;'"+">"+"조회수"+"</th>";
+		html +=	"<th style="+"'width: 70px;'"+">"+"번호"+"</th>";
+		html +=	"<th style="+"'width: 420px;'"+">"+"제목"+"</th>";
+		html +=	"<th class="+"'right aligned'"+"style="+"'width: 70px;'"+">"+"조회수"+"</th>";
 		html +=	"</tr>";
     
 			$(data).each(
@@ -263,7 +259,6 @@ header, footer {
 	width: 100%;
 	min-height: 50px;
 }
-
 
 div #popularVideo {
 	width: 55%;
