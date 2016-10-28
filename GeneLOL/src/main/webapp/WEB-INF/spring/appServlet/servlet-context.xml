@@ -42,6 +42,7 @@
 		</interceptor>
 		<interceptor>
 			<mapping path="/adminpage" />
+			<mapping path="/mypageList" />
 			<beans:ref bean="authInterceptor" />
 		</interceptor>
 	</interceptors>

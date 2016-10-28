@@ -48,6 +48,7 @@
 .nav {
 	min-width: 1024px;
 }
+
 #submit_btn_nav {
 	position: absolute;
 	top: 5%;
@@ -62,7 +63,7 @@
 <body>
 	<div class="ui top inverted menu">
 		<div class="ui container nav">
-			<a href="http://localhost:8080/" class="header item"> <img
+			<a href="/" class="header item"> <img
 				class="logo" src="/resources/images/logo.png">GeneLoL
 			</a> <a href="#" class="item">랭킹</a>
 			<div class="ui simple dropdown item">
@@ -72,18 +73,21 @@
 					<div class="item">티어 별</div>
 				</div>
 			</div>
-			<a href="http://localhost:8080/video/videoList" class="item">동영상</a>
-			<a href="http://localhost:8080/info/infoList" class="item">정보</a>
+			<a href="/video/videoList" class="item">동영상</a>
+			<a href="/info/infoList" class="item">정보</a>
 			<div class="right menu">
 				<c:set value="http://localhost:8080/WEB-INF/views/home.jsp"
 					var="homeURL"></c:set>
 				<c:if test="${pageContext.request.requestURL != homeURL}">
 					<div class="item">
 						<div class="ui inverted icon input">
-							<input type="text" placeholder="Search">
-							<button class="ui basic button" type="submit" id="submit_btn_nav">
-								<i class="search icon"></i>
-							</button>
+							<form class="ui form" method="get" action="/summoner">
+								<input type="text" placeholder="Search" name="summonerName">
+								<button class="ui basic button" type="submit"
+									id="submit_btn_nav">
+									<i class="search icon"></i>
+								</button>
+							</form>
 						</div>
 					</div>
 				</c:if>
@@ -99,7 +103,7 @@
 									<a>개인 설정</a>
 								</div>
 								<div class="item mySettingLink">
-									<a href="mypage/mypageList">내가 쓴 글</a>
+									<a href="/mypageList">내가 쓴 글</a>
 								</div>
 								<div class="item mySettingLink">
 									<a href="/user/logout">Log Out</a>
