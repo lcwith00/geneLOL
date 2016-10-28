@@ -27,7 +27,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			
 			saveDest(request);
 			
-			response.sendRedirect("/user/login");
+			response.sendRedirect("/user/loginpage");
 			return false;
 		}
 		return true;
