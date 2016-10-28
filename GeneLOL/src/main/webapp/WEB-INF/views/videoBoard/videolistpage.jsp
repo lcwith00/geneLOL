@@ -222,8 +222,8 @@
     	html +="<thead>";
 		html +="<tr>";
 		html +=	"<th style="+"'width: 70px;'"+">"+"번호"+"</th>";
-		html +=	"<th style="+"'width: 420px;'"+">"+"제목"+"</th>";
-		html +=	"<th class="+"'right aligned'"+"style="+"'width: 70px;'"+">"+"조회수"+"</th>";
+		html +=	"<th style="+"'width: 400px;'"+">"+"제목"+"</th>";
+		html +=	"<th class="+"'right aligned'"+"style="+"'width: 90px;'"+">"+"조회수"+"</th>";
 		html +=	"</tr>";
     
 			$(data).each(

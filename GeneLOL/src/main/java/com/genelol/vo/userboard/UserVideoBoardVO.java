@@ -2,6 +2,8 @@ package com.genelol.vo.userboard;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class UserVideoBoardVO extends PageVO{
 	private String board_id; // 게시판구분
 	private Integer board_no; // 글 번호
@@ -11,6 +13,7 @@ public class UserVideoBoardVO extends PageVO{
 	private String board_file; // 첨부파일
 	private Integer board_count; // 조회수
 	private Integer board_recomm; // 좋아요 수
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date board_date; // 작성일자
 
 	public String getBoard_id() {
