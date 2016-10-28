@@ -61,7 +61,7 @@
 	font-size: 1.1rem;
 }
 
-.tierInfo {
+.tierInfo, .statInfo {
 	color: #879292;
 }
 
@@ -75,11 +75,31 @@
 	padding-bottom: 0.5rem !important;
 }
 
+.rankedStat>.column {
+	padding: 0 !important;
+}
+
 .champName {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	word-wrap: normal;
 	overflow: hidden;
+}
+
+.attached.ui.five.item.menu {
+	border: none !important;
+}
+
+.attached.ui.five.item.menu>.item {
+	padding: 0 !important;
+}
+
+.attached.ui.five.item.menu>.item>img, .mychamp>img {
+	border-radius: 50% !important;
+}
+
+.attached.ui.five.item.menu>.item:before {
+	width: 0px !important;
 }
 </style>
 </head>
@@ -108,7 +128,7 @@
 		<section class="ui center aligned container two column grid">
 			<section class="six wide column">
 				<aside class="ui segment tierInfoAside">
-					<div class="ui middle aligned two column left grid">
+					<div class="ui middle aligned two column grid">
 						<div class="six wide column">
 							<c:choose>
 								<c:when test="${league.tier == null }">
@@ -151,27 +171,48 @@
 						<c:if test="${champion.id != 0}">
 							<div class="ui segment">
 								<div class="ui middle aligned two column grid">
-									<div class="ui four wide column">
+									<div class="ui four wide column mychamp">
 										<img class="ui tiny image"
 											src="http://ddragon.leagueoflegends.com/cdn/6.21.1/img/champion/${champions[champion.id].key}.png " />
 									</div>
-									<div class="ui twelve wide column grid rankedChamp">
+									<div
+										class="ui center aligned twelve wide column grid rankedChamp">
 										<div class="row rankedStat">
 											<div class="left floated six wide column champName">${champions[champion.id].name}</div>
 											<div class="six wide column">
-												<span><fmt:formatNumber
-														value="${(champion.stats.totalChampionKills+champion.stats.totalAssists)/champion.stats.totalDeathsPerSession}"
-														pattern=".00" type="" />:1 평점</span>
+												<c:set
+													value="${(champion.stats.totalChampionKills+champion.stats.totalAssists)/champion.stats.totalDeathsPerSession}"
+													var="statsPoint"></c:set>
+												<c:set var="grade_color" value="color: #879292"></c:set>
+												<c:choose>
+													<c:when test="${statsPoint>=3 && statsPoint<4}">
+														<c:set var="grade_color" value="color: green"></c:set>
+													</c:when>
+													<c:when test="${statsPoint>=4 && statsPoint<5}">
+														<c:set var="grade_color" value="color: dodgerblue"></c:set>
+													</c:when>
+													<c:when test="${statsPoint>=5}">
+														<c:set var="grade_color" value="color: gold"></c:set>
+													</c:when>
+												</c:choose>
+												<span style="${grade_color}; font-size:1.1rem;"><fmt:formatNumber
+														value="${statsPoint}" pattern=".00" type="" />:1 평점</span>
 											</div>
 											<div class="right floated four wide column">
-												<span><fmt:formatNumber
-														value="${champion.stats.totalSessionsWon/champion.stats.totalSessionsPlayed}"
-														pattern="" type="percent" /></span>
+												<c:set
+													value="${champion.stats.totalSessionsWon/champion.stats.totalSessionsPlayed}"
+													var="winRate"></c:set>
+												<c:set var="winRate_color" value="color: #879292"></c:set>
+												<c:if test="${winRate>0.6}">
+													<c:set var="winRate_color" value="color: red"></c:set>
+												</c:if>
+												<span style="${winRate_color}"><fmt:formatNumber
+														value="${winRate}" pattern="" type="percent" /></span>
 											</div>
 										</div>
-										<div class="row rankedStat">
+										<div class="row rankedStat statInfo">
 											<div class="left floated six wide column">
-												<span>CS<fmt:formatNumber
+												<span>CS <fmt:formatNumber
 														value="${champion.stats.totalMinionKills/champion.stats.totalSessionsPlayed}"
 														pattern=".0" type="" /></span>
 											</div>
@@ -209,13 +250,70 @@
 					</c:forEach>
 					<%=winRate%>
 				</aside>
-				<section class="ui segments">
+				<section class="ui segment">
 					<c:forEach var="game" items="${recentGames}">
-						<div class="ui segment">
-							<%-- <c:forEach var="player" items="${game.fellowPlayers}">
-								${players[player.summonerId].name }
-								<br>
-							</c:forEach> --%>
+						<c:choose>
+							<c:when test="${game.stats.win}">
+								<c:set value="lightskyblue " var="winBg"></c:set>
+							</c:when>
+							<c:otherwise>
+								<c:set value="lightpink " var="winBg"></c:set>
+							</c:otherwise>
+						</c:choose>
+
+						<div class="ui segment" style="background-color:${winBg}">
+							<div class="ui middle aligned five column grid">
+								<div class="three wide column">
+									<c:choose>
+										<c:when test="${game.stats.win}">승리</c:when>
+										<c:otherwise>패배</c:otherwise>
+									</c:choose>
+									<br><span> <fmt:formatNumber
+											value="${game.stats.timePlayed/60}" pattern="0" type=""></fmt:formatNumber>분
+										<fmt:formatNumber value="${game.stats.timePlayed%60}"
+											pattern="0" type=""></fmt:formatNumber>초
+									</span>
+								</div>
+								<div class="three wide column mychamp">
+									<img class="ui tiny image"
+										src="http://ddragon.leagueoflegends.com/cdn/6.21.1/img/champion/${champions[game.championId].key}.png " />
+								</div>
+								<div class="three wide column">
+									<span>${champions[game.championId].name}</span><br> <span>${game.stats.championsKilled }/${game.stats.numDeaths }/${game.stats.assists }</span><br>
+									<span>${(game.stats.championsKilled+game.stats.assists)/game.stats.numDeaths}</span>
+								</div>
+								<div class="six wide column">
+									<div class="top attached ui five item menu"
+										style="background-color:${winBg}">
+										<div class="item" style="background-color:${winBg}">
+											<img class="ui tiny image"
+												src="http://ddragon.leagueoflegends.com/cdn/6.21.1/img/champion/${champions[game.championId].key}.png " />
+										</div>
+										<c:forEach var="fellowPlayers" items="${game.fellowPlayers}">
+											<c:if test="${game.teamId==fellowPlayers.teamId }">
+												<div class="item" style="background-color:${winBg}">
+													<img class="ui tiny image"
+														src="http://ddragon.leagueoflegends.com/cdn/6.21.1/img/champion/${champions[fellowPlayers.championId].key}.png " />
+												</div>
+											</c:if>
+										</c:forEach>
+									</div>
+									<div class="attached ui five item menu"
+										style="background-color:${winBg}">
+										<c:forEach var="fellowPlayers" items="${game.fellowPlayers}">
+											<c:if test="${game.teamId!=fellowPlayers.teamId }">
+												<div class="item" style="background-color:${winBg}">
+													<img class="ui tiny image"
+														src="http://ddragon.leagueoflegends.com/cdn/6.21.1/img/champion/${champions[fellowPlayers.championId].key}.png " />
+												</div>
+											</c:if>
+										</c:forEach>
+									</div>
+								</div>
+								<div class="one wide column"></div>
+							</div>
+
+
 						</div>
 					</c:forEach>
 				</section>

@@ -55,7 +55,6 @@ $(document)
 									board_no : $("#board_no").html(),
 								},
 								success : function() {
-									alert("전송완료");
 								}
 							});
 						});
@@ -73,7 +72,6 @@ $(document)
 										var last_no = $(
 												".ui .card:last>#last_board_no")
 												.val() - 1;
-										alert(last_no);
 										$
 												.ajax({
 													type : 'post', // 요청 method 방식 
@@ -358,7 +356,7 @@ text-align: center;
 							<div class="image" id="btnimg"
 								onclick="read(${UserinfoBoardVO.board_no})">
 								<img class="view_up"
-									src="http://img.youtube.com/vi/${UserinfoBoardVO.board_content}/1.jpg">
+									src="../resources/images/infoimg.png">
 							</div>
 							<div class="content">
 								<span class="right floated"> <i

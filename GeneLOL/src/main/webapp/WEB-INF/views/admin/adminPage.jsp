@@ -131,7 +131,9 @@ header {
 			</div>
 		</div>
 		<!-- list -->
-		<div id="list">관리자 메인이지롱</div>
+		<div id="list">
+			<h1>관리자 페이지</h1>
+		</div>
 	</div>
 	<footer id="footer">
 		<%@ include file="../common/footer.jsp"%>

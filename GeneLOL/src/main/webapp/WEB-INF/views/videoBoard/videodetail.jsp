@@ -12,32 +12,31 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		var formObj = $("form[role='form']");
-
+			
+		$('#btn_List').click(function() {
+			location.href = "http://localhost:8080/video/videoList"
+		});
+		$('#btn_cancel').click(function() {
+			location.href = "http://localhost:8080/video/videoList"
+		});
+		
 		$("#btn_submit").on("click", function() {
-
 			var board_no = $("#board_no_send_modal").html();
-			alert(board_no);
 			$('input[name=board_no]').attr('value', board_no);
-
 			var board_title = $("#video_title_modify_val").val();
-			alert(board_title);
 			$('input[name=board_title]').attr('value', board_title);
-
-			var board_content = $("#video_content_modify_val").val();
-			alert(board_content);
-			$('input[name=board_content]').attr('value', board_content);
-
+			var board_contentA = $("#video_content_modify_val").val();
+			var board_contentB = board_contentA.substr(board_contentA.length -11,11);
+			$('input[name=board_content]').attr('value',board_contentB); 
 			$('#func').attr({
 				'action' : '/video/videoUpdate',
 				'method' : 'post'
 			});
 			$('#func').submit();
-
 		});
 
 		$("#btn_Delete").on("click", function() {
 			var board_no = $("#board_no_send_modal").html();
-			alert(board_no);
 			$('input[name=board_no]').attr('value', board_no);
 			
 			if (confirm("정말 삭제하시겠습니까?") == true) {
@@ -49,12 +48,10 @@
 			} else {
 				return;
 			}
-
 		});
 
 		$("#likeBtn").click(function() {
 
-			alert("test");
 
 			$.ajax({
 				type : "POST",
@@ -64,10 +61,9 @@
 					board_no : $("#board_no_send_modal").html(),
 				},
 				success : function() {
-					alert("전송완료");
+					alert("좋아요완료!");
 					location.reload();
 				}
-
 			});
 		});
 
@@ -136,7 +132,7 @@ div #bg {
 
 					<div id="video_content_modify">
 						<label>링크 : </label><input id="video_content_modify_val"
-							type="text" size="100" name="modify_content_val" value="">
+							type="text" size="100" name="modify_content_val">
 						<input type="hidden" name="board_content">
 					</div>
 					<div class="video_play" id="video_content_play"></div>
@@ -167,14 +163,10 @@ div #bg {
 					<div class="comment"></div>
 				</div>
 				<div class="comment">
-					<a class="avatar"> </a>
 					<div class="content">
-						<a class="author">Joe Henderson</a>
 						<div class="metadata">
 							<span class="date">${UserVideoBoardVO.board_date }</span>
 						</div>
-						<div class="text">Dude, this is awesome. Thanks so much</div>
-						<div class="actions">
 							<a class="reply">Reply</a>
 						</div>
 					</div>

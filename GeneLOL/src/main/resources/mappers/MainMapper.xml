@@ -8,7 +8,7 @@
 		select *
 		from
 		boardtable
-		where board_date >= sysdate-1 and board_count >=10
+		where board_date >= sysdate-1
 		order by
 		board_count desc,board_recomm desc, board_date
 	</select>
