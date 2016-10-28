@@ -1,10 +1,10 @@
 insert into boardtable(board_id,board_no,userid,board_title,board_content,board_date,board_recomm,board_count)
 values('videoLOL',board_no_seq.nextval,'1','해물파전 편집본','qWVLNsZyJQs',sysdate,1,1);
-
 insert into boardtable(board_id,board_no,userid,board_title,board_content,board_date,board_recomm,board_count)
 values('videoLOL',board_no_seq.nextval,'2','이번엔 진으로돌아왔다! 돌아온허디','91G3FRfYsb8',sysdate,1,110);
 insert into boardtable(board_id,board_no,userid,board_title,board_content,board_date,board_recomm,board_count)
 values('videoLOL',board_no_seq.nextval,'3','뽀글이면 lux 매드무비','VgPazjrf1Ug',sysdate,1,6);
+
 insert into boardtable(board_id,board_no,userid,board_title,board_content,board_date,board_recomm,board_count)
 values('videoLOL',board_no_seq.nextval,'4','허디! 시야석가요! 미포서폿! 서정민입니다','31bFjCBAaZg',sysdate,1,18);
 insert into boardtable(board_id,board_no,userid,board_title,board_content,board_date,board_recomm,board_count)

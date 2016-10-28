@@ -1,14 +1,5 @@
-insert into usertable(userid,username,usermail,iscertificate,userpassword,usertype)
-values(userid_seq.nextval,'test','test@gmail.com','true','12344321','member');
-
-insert into usertable(userid,username,usermail,iscertificate,userpassword,usertype)
-values(userid_seq.nextval,'test2','test2@gmail.com','true','12344321','member');
-
-insert into usertable(userid,username,usermail,iscertificate,userpassword,usertype)
-values(userid_seq.nextval,'test3','test3@gmail.com','true','12344321','member');
-
 insert into usertable(userid, username, usermail, iscertificate, userpassword, usertype)
-values (userid_seq.nextval,'최승혁','needgumo@gmail.com','true','1234','member');
+values (userid_seq.nextval,'chdd','needgumo@gmail.com','true','1234','member');
 
 insert into usertable(userid, username, usermail, iscertificate, userpassword, usertype)
 values (userid_seq.nextval,'kys','kys@gmail.com','true','123456','member');
@@ -36,3 +27,35 @@ values (userid_seq.nextval,'admin','admin@genelol.com','true','123456','operator
 
 insert into usertable(userid, username, usermail, iscertificate, userpassword, usertype)
 values (userid_seq.nextval,'admin2','admin2@genelol.com','true','123456','operator');
+
+insert into usertable(userid, username, usermail, iscertificate, userpassword, usertype)
+values (userid_seq.nextval,'kys2068','kimys2248@naver.com','true','123456','member');
+
+insert into usertable(userid, username, usermail, iscertificate, userpassword, usertype)
+values (userid_seq.nextval,'genelol1','genelol1@naver.com','true','123456','member');
+
+insert into usertable(userid, username, usermail, iscertificate, userpassword, usertype)
+values (userid_seq.nextval,'opgg','opgg@naver.com','true','123456','member');
+
+insert into usertable(userid, username, usermail, iscertificate, userpassword, usertype)
+values (userid_seq.nextval,'chdd12','needgumo12@gmail.com','true','1234','member');
+
+insert into usertable(userid, username, usermail, iscertificate, userpassword, usertype)
+values (userid_seq.nextval,'kys12','kys12@gmail.com','true','123456','member');
+
+insert into usertable(userid, username, usermail, iscertificate, userpassword, usertype)
+values (userid_seq.nextval,'sjm12','sjm9009@gmail.com','true','123456','member');
+
+insert into usertable(userid, username, usermail, iscertificate, userpassword, usertype)
+values (userid_seq.nextval,'lcw33','lcw7@gmail.com','true','123456','member');
+
+insert into usertable(userid, username, usermail, iscertificate, userpassword, usertype)
+values (userid_seq.nextval,'kjh998','kjh998@gmail.com','true','123456','member');
+
+insert into usertable(userid, username, usermail, iscertificate, userpassword, usertype)
+values (userid_seq.nextval,'csh15','csh15@gmail.com','true','123456','member');
+
+insert into usertable(userid, username, usermail, iscertificate, userpassword, usertype)
+values (userid_seq.nextval,'heody1234','heody1243@gmail.com','true','123456','member');
+
+
