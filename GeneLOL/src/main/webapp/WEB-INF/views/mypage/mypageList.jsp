@@ -35,6 +35,15 @@
 	<script>
 	$(document).ready(
 			function() {
+				
+				$("#btn_Modify").on("click", function() {
+					
+					hideme();
+					modify_val();
+					 call_modify()
+					//callme();
+
+			});
 				$('#searchButton').on(
 						"click",
 						function(event) {
@@ -57,6 +66,9 @@
 	      $.getJSON(url, function(data) {
 	         $(data).each(
 	               function() {
+	            	   
+	            	   
+	            	   
 	                  var board_no = this.board_no;
 	                  var board_title = this.board_title;
 	                  var username = this.username;
@@ -149,6 +161,30 @@
 		alert(comment_NO + ":" + comment_Content);
 
 	}); 
+	function hideme(){
+	    document.getElementById("video_title_modal").style.visibility="hidden"; 
+	    document.getElementById("video_content_play").style.visibility="hidden"; 
+		document.getElementById("btn_List").style.visibility="hidden";
+		document.getElementById("btn_Modify").style.visibility="hidden";
+		document.getElementById("btn_Delete").style.visibility="hidden";
+		
+	}
+	function call_modify(){
+		 document.getElementById("video_title_modify").style.visibility="visible"; 
+		 document.getElementById("video_content_modify").style.visibility="visible"; 
+		 document.getElementById("btn_submit").style.visibility="visible"; 
+		 document.getElementById("btn_cancel").style.visibility="visible"; 
+		 
+	};
+	function hide_modify(){
+	    document.getElementById("video_title_modify").style.visibility="hidden"; 
+	}
+	function modify_val(){
+		var modify_title_val =  $("#video_title_modal").html();
+		$('input[name=modify_title_val]').attr('value',modify_title_val);
+		var modify_content_val =  $("#video_content_play").html();
+		$('input[name=modify_content_val]').attr('value',modify_content_val);
+	}
 
 </script>
 
