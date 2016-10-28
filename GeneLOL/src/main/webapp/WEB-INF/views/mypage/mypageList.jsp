@@ -16,7 +16,6 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
 <script>
-
 	function boardpage_click() {
 		$('#commentPageDiv').hide();
 		$('#boardPageDiv').show();
@@ -36,6 +35,15 @@
 	<script>
 	$(document).ready(
 			function() {
+				
+				$("#btn_Modify").on("click", function() {
+					
+					hideme();
+					modify_val();
+					 call_modify()
+					//callme();
+
+			});
 				$('#searchButton').on(
 						"click",
 						function(event) {
@@ -47,6 +55,39 @@
 									+ "&keyword=" + $('#keywordInput').val();
 						});
 			});
+	
+	function read(str) {
+		
+		document.getElementById("btn_submit").style.visibility="hidden"; 
+		 document.getElementById("btn_cancel").style.visibility="hidden"; 
+		
+		 var board_no = str;
+	      var url = "/videoboard/read/" + board_no;
+	      $.getJSON(url, function(data) {
+	         $(data).each(
+	               function() {
+	            	   
+	            	   
+	            	   
+	                  var board_no = this.board_no;
+	                  var board_title = this.board_title;
+	                  var username = this.username;
+	                  var board_date = this.board_date;
+	                  var board_content = this.board_content;
+	                  var board_count = this.board_count ;
+	                  var board_recomm = this.board_recomm;
+	                 $("#board_no_send_modal").html(board_no);
+	                  $("#video_title_modal").html(board_title);
+	                  $("#video_content_play").html("<iframe src="+"http://www.youtube.com/embed/"+board_content+" frameborder="+"'0'"+ "allowfullscreen>"+"</iframe>");
+	                  $("#video_writer").html("작성자 : " + username);
+	                  $("#view_Cnt").html(
+	                        "<i class='unhide icon'></i>" + board_count);
+	                  $("#likeConut").html(board_recomm);
+	             	$("#date").html(board_date);
+	               });
+	      });
+	      $('#videoRead').modal('show');
+	   }
 	</script>
 	<script>
     function fn_movePage(val){
@@ -120,6 +161,30 @@
 		alert(comment_NO + ":" + comment_Content);
 
 	}); 
+	function hideme(){
+	    document.getElementById("video_title_modal").style.visibility="hidden"; 
+	    document.getElementById("video_content_play").style.visibility="hidden"; 
+		document.getElementById("btn_List").style.visibility="hidden";
+		document.getElementById("btn_Modify").style.visibility="hidden";
+		document.getElementById("btn_Delete").style.visibility="hidden";
+		
+	}
+	function call_modify(){
+		 document.getElementById("video_title_modify").style.visibility="visible"; 
+		 document.getElementById("video_content_modify").style.visibility="visible"; 
+		 document.getElementById("btn_submit").style.visibility="visible"; 
+		 document.getElementById("btn_cancel").style.visibility="visible"; 
+		 
+	};
+	function hide_modify(){
+	    document.getElementById("video_title_modify").style.visibility="hidden"; 
+	}
+	function modify_val(){
+		var modify_title_val =  $("#video_title_modal").html();
+		$('input[name=modify_title_val]').attr('value',modify_title_val);
+		var modify_content_val =  $("#video_content_play").html();
+		$('input[name=modify_content_val]').attr('value',modify_content_val);
+	}
 
 </script>
 
@@ -305,8 +370,10 @@ strong {
 					<div class="ui three column grid" id="boardpage2">
 						<div class="one wide column">${UserVideoBoardVO.board_no}</div>
 						<div class="three wide column">${UserVideoBoardVO.board_id}</div>
-						<div class="three wide column">
-							<a href="http://localhost:8080/videoBoard/videoDetail?board_no=${UserVideoBoardVO.board_no}">${UserVideoBoardVO.board_title}</a>
+						<div class="three wide column" onclick="read(${UserVideoBoardVO.board_no})">
+						${UserVideoBoardVO.board_title}
+						
+							<%-- <a href="/videoBoard/videoDetail?board_no=${UserVideoBoardVO.board_no}">${UserVideoBoardVO.board_title}</a> --%>
 						</div>
 						<div class="two wide column">${UserVideoBoardVO.board_recomm}</div>
 						<div class="two wide column">${UserVideoBoardVO.board_content}</div>
@@ -411,6 +478,9 @@ strong {
 			<!--댓글페이징 -->
 		</div>
 	</div>
+	<div class="ui modal Detail" id="videoRead">
+					<%@ include file="../videoBoard/videodetail.jsp"%>
+				</div>
 	
 	<footer id="footer">
 		<%-- 	<%@ include file="../common/footer.jsp"%> --%>

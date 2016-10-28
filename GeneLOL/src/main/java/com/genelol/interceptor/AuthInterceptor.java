@@ -8,6 +8,8 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.genelol.vo.user.UserVO;
+
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 	private static final Logger logger = Logger.getLogger(AuthInterceptor.class);
 
@@ -24,11 +26,14 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
 		if (httpSession.getAttribute("login") == null) {
 			logger.info("current user is not logined");
-			
+
 			saveDest(request);
-			
+
 			response.sendRedirect("/user/loginpage");
 			return false;
+		} else if (((UserVO) httpSession.getAttribute("login")).getUserType().equals("member")
+				&& request.getRequestURI().equals("/adminpage")) {
+			response.sendRedirect("/");
 		}
 		return true;
 	}
