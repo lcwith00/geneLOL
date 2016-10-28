@@ -166,8 +166,7 @@
 					</div>
 				</aside>
 				<section class="ui segments">
-					<c:forEach var="champion" items="${rankedStats.champions}"
-						begin="0" end="6">
+					<c:forEach var="champion" items="${rankedStats.champions}">
 						<c:if test="${champion.id != 0}">
 							<div class="ui segment">
 								<div class="ui middle aligned two column grid">
@@ -184,19 +183,25 @@
 													value="${(champion.stats.totalChampionKills+champion.stats.totalAssists)/champion.stats.totalDeathsPerSession}"
 													var="statsPoint"></c:set>
 												<c:set var="grade_color" value="color: #879292"></c:set>
-												<c:choose>
-													<c:when test="${statsPoint>=3 && statsPoint<4}">
-														<c:set var="grade_color" value="color: green"></c:set>
-													</c:when>
-													<c:when test="${statsPoint>=4 && statsPoint<5}">
-														<c:set var="grade_color" value="color: dodgerblue"></c:set>
-													</c:when>
-													<c:when test="${statsPoint>=5}">
-														<c:set var="grade_color" value="color: gold"></c:set>
-													</c:when>
-												</c:choose>
-												<span style="${grade_color}; font-size:1.1rem;"><fmt:formatNumber
-														value="${statsPoint}" pattern=".00" type="" />:1 평점</span>
+												<c:if test="${champion.stats.totalDeathsPerSession !=0}">
+													<c:choose>
+														<c:when test="${statsPoint>=3 && statsPoint<4}">
+															<c:set var="grade_color" value="color: green"></c:set>
+														</c:when>
+														<c:when test="${statsPoint>=4 && statsPoint<5}">
+															<c:set var="grade_color" value="color: dodgerblue"></c:set>
+														</c:when>
+														<c:when test="${statsPoint>=5}">
+															<c:set var="grade_color" value="color: gold"></c:set>
+														</c:when>
+													</c:choose>
+													<span style="${grade_color}; font-size:1.1rem;"><fmt:formatNumber
+															value="${statsPoint}" pattern=".00" type="" />:1 평점</span>
+												</c:if>
+												<c:if test="${champion.stats.totalDeathsPerSession ==0}">
+													<c:set var="grade_color" value="color: gold"></c:set>
+													<span style="${grade_color}; font-size:1.1rem;">Perfect!</span>
+												</c:if>
 											</div>
 											<div class="right floated four wide column">
 												<c:set
@@ -214,16 +219,16 @@
 											<div class="left floated six wide column">
 												<span>CS <fmt:formatNumber
 														value="${champion.stats.totalMinionKills/champion.stats.totalSessionsPlayed}"
-														pattern=".0" type="" /></span>
+														pattern="0.0" type="" /></span>
 											</div>
 											<div class="six wide column">
 												<span><fmt:formatNumber
 														value="${champion.stats.totalChampionKills/champion.stats.totalSessionsPlayed}"
-														pattern=".0" type="" />/<fmt:formatNumber
+														pattern="0.0" type="" />/<fmt:formatNumber
 														value="${champion.stats.totalDeathsPerSession/champion.stats.totalSessionsPlayed}"
-														pattern=".0" type="" />/<fmt:formatNumber
+														pattern="0.0" type="" />/<fmt:formatNumber
 														value="${champion.stats.totalAssists/champion.stats.totalSessionsPlayed}"
-														pattern=".0" type="" /></span>
+														pattern="0.0" type="" /></span>
 											</div>
 											<div class="right floated four wide column">
 												<span>${champion.stats.totalSessionsPlayed} 게임</span>
@@ -268,7 +273,7 @@
 										<c:when test="${game.stats.win}">승리</c:when>
 										<c:otherwise>패배</c:otherwise>
 									</c:choose>
-									<br><span> <fmt:formatNumber
+									<br> <span> <fmt:formatNumber
 											value="${game.stats.timePlayed/60}" pattern="0" type=""></fmt:formatNumber>분
 										<fmt:formatNumber value="${game.stats.timePlayed%60}"
 											pattern="0" type=""></fmt:formatNumber>초
@@ -280,7 +285,9 @@
 								</div>
 								<div class="three wide column">
 									<span>${champions[game.championId].name}</span><br> <span>${game.stats.championsKilled }/${game.stats.numDeaths }/${game.stats.assists }</span><br>
-									<span>${(game.stats.championsKilled+game.stats.assists)/game.stats.numDeaths}</span>
+									<span><fmt:formatNumber
+											value="${(game.stats.championsKilled+game.stats.assists)/game.stats.numDeaths}"
+											pattern="0.00" type="" />:1 평점</span>
 								</div>
 								<div class="six wide column">
 									<div class="top attached ui five item menu"

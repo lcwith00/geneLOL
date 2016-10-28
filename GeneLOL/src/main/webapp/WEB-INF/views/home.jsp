@@ -50,14 +50,14 @@
 								<c:choose>
 									<c:when test="${board.board_id == 'info' }">
 										<c:set var="hrefVal"
-											value="http://localhost:8080/info/infoList"></c:set>
+											value="/info/infoList"></c:set>
 										<a href="${hrefVal }"> <img class="ui small image"
-											src="/resources/images/empty_thumbnail.png">
+											src="/resources/images/infoimg.png">
 										</a>
 									</c:when>
 									<c:otherwise>
 										<c:set var="hrefVal"
-											value="http://localhost:8080/video/videoList"></c:set>
+											value="/video/videoList"></c:set>
 										<a href="${hrefVal }"> <img class="ui small image"
 											src="http://img.youtube.com/vi/${board.board_content}/1.jpg">
 										</a>
