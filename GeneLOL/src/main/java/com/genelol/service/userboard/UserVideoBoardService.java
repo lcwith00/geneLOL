@@ -2,8 +2,7 @@ package com.genelol.service.userboard;
 
 import java.util.List;
 
-
-
+import com.genelol.vo.userboard.UserInfoBoardVO;
 import com.genelol.vo.userboard.UserVideoBoardVO;
 
 public interface UserVideoBoardService {
@@ -28,4 +27,6 @@ public interface UserVideoBoardService {
 	public void viewCount(UserVideoBoardVO uvbvo) throws Exception;// 조회수
 
 	public void likeCount(UserVideoBoardVO uvbvo) throws Exception;// 좋아요수
+	
+	public List<UserVideoBoardVO> videoPopularBoardList(UserVideoBoardVO uvbvo);
 }

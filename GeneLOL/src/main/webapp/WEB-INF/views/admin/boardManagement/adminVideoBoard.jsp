@@ -309,27 +309,34 @@ div #bg {
 		$("#articleList").append(new_div);
 	}
 
-	function read(str) {
-		var board_no = str;
-		var url = "/videoboard/read/" + board_no;
-		$.getJSON(url, function(data) {
-			$(data).each(
-					function() {
-						var board_no = this.board_no;
-						var board_title = this.board_title;
-						var username = this.username;
-						var board_date = this.board_date;
-						var board_count = this.board_count;
-						var board_recomm = this.board_recomm;
-						$("#video_title_modal").html(board_title);
-						$("#video_writer").html("작성자 : " + username);
-						$("#view_Cnt").html(
-								"<i class='unhide icon'></i>" + board_count);
-						$("#like").html("Like " + board_recomm);
-					});
+function read(str) {
+	document.getElementById("video_title_modify").style.visibility="hidden"; 
+	document.getElementById("btn_submit").style.visibility="hidden"; 
+	document.getElementById("btn_cancel").style.visibility="hidden"; 
+		
+	var board_no = str;
+	var url = "/videoboard/read/" + board_no;
+	$.getJSON(url, function(data) {
+		$(data).each(
+				function() {
+					var board_no = this.board_no;
+	                var board_title = this.board_title;
+	                var username = this.username;
+	                var board_date = this.board_date;
+	                var board_content = this.board_content;
+	                var board_count = this.board_count ;
+	                var board_recomm = this.board_recomm;
+	                $("#board_no_send_modal").html(board_no);
+	                $("#video_title_modal").html(board_title);
+	                $("#video_content_play").html("<iframe src="+"http://www.youtube.com/embed/"+board_content+" frameborder="+"'0'"+ "allowfullscreen>"+"</iframe>");
+	                $("#video_writer").html("작성자 : " + username);
+	                $("#view_Cnt").html("<i class='unhide icon'></i>" + board_count);
+	                $("#likeConut").html(board_recomm);
+	             	$("#date").html(board_date);
 		});
-		$('#readVideo').modal('show');
-	}
+	});
+	$('#readVideo').modal('show');
+}
 </script>
 <!-- list -->
 <div id="videoBoardlist">

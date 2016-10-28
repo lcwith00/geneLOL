@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.genelol.dao.userboard.UserVideoBoardDao;
+import com.genelol.vo.userboard.UserInfoBoardVO;
 import com.genelol.vo.userboard.UserVideoBoardVO;
 
 @Service
@@ -79,6 +80,11 @@ public class UserVideoBoardServiceImpl implements UserVideoBoardService {
 		dao.likeUpdate(uvbvo);
 	}
 
-	
+	@Override
+	public List<UserVideoBoardVO> videoPopularBoardList(UserVideoBoardVO uvbvo) {
+		List<UserVideoBoardVO> videoPopularList = null;
+		videoPopularList = dao.videoPopularBoardList(uvbvo);
+		return videoPopularList;
+	}
 
 }

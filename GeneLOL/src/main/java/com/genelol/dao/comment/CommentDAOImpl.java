@@ -31,6 +31,7 @@ public class CommentDAOImpl implements CommentDAO {
 		// TODO Auto-generated method stub
 
 		System.out.println("commentdao:"+board_NO);
+		System.out.println("commentdao2:"+board_NO);
 		return session.selectList(namespace + ".list", board_NO);
 	}
 
@@ -38,7 +39,7 @@ public class CommentDAOImpl implements CommentDAO {
 	@Override
 	public void create(CommentVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("commentdao:"+vo);
+		System.out.println("commentdaovo:"+vo);
 		session.insert(namespace + ".create", vo);
 	}
 

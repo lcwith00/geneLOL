@@ -103,9 +103,18 @@
 		where board_no = #{board_no}
 	</update>
 	<update id="likeUpdate" parameterType="userVideoBoard">
-		update boardtable set board_recomm = board_recomm+1
+		update boardtable set
+		board_recomm = board_recomm+1
 		where board_no = #{board_no}
 	</update>
-	
+	<select id="videoPopularBoardList" resultType="com.genelol.vo.userboard.UserVideoBoardVO">
+		select *
+		from
+		boardtable
+		where board_id in('videoLOL','videoFun','videoEtc')
+		order by
+		board_count desc,board_recomm desc
+		limit 0, 5;
+	</select>
 
 </mapper>

@@ -18,6 +18,7 @@
 $(document)
 			.ready(
 					function() {
+						popInfo();
 						$("#popularinfo").click(function(){
 							popInfo();
 						});
@@ -45,6 +46,18 @@ $(document)
 							$("#file_Modify").show();
 							$("#btn_submit").show();
 						});
+						$(".view_up").click(function() {
+							$.ajax({
+								type : "POST",
+								url : "/info/viewCount",
+								dataType : 'text', // 서버로부터 되돌려받는 데이터의 타입을 명시하는 것이다.
+								data : { // 서버로 보낼 데이터 명시 
+									board_no : $("#board_no").html(),
+								},
+								success : function() {
+								}
+							});
+						});
 					
 						$(document)
 						.scroll(
@@ -59,7 +72,6 @@ $(document)
 										var last_no = $(
 												".ui .card:last>#last_board_no")
 												.val() - 1;
-										alert(last_no);
 										$
 												.ajax({
 													type : 'post', // 요청 method 방식 
@@ -114,7 +126,7 @@ $(document)
 																						+ "</div>"
 																						+ "</div>";
 																				str += "<div class="+"'image'"+"id="+"'btnImg'"+"onclick="+"read("+this.board_no+")"+">";
-																				str += "<img src="+"'http://img.youtube.com/vi/'"+this.board_content+"'/1.jpg'"+">"
+																				str += "<img src="+"http://img.youtube.com/vi/"+this.board_content+"/1.jpg"+">"
 																						+ "</div>";
 																				str += " <div class="+"'content'"+">";
 																				str += "<span class="+"'right floated'"+">";
@@ -181,31 +193,39 @@ function read(str) {
       });
       $('#infoRead').modal('show');
    }
-function modify_val(){
-	var board_no_view =  $("#board_no").html();
-	$('input[name=board_no_view]').attr('value',board_no_view);
+	var board_view_up =  $("#board_no").html();
+	$('input[name=board_view_up]').attr('value',board_view_up);
 	var board_content_modal =  $("#board_content_modal").html();
 	$('textarea[id=board_content_modify]').attr('value',board_content_modal);
-}
-function popInfo() {
+
+	function popInfo() {
      var url = "/info/infoPopularBoardList" ;
      $.getJSON(url, function(data) {
-        $(data).each(
+    	 var html="";
+    	html +="<thead>";
+		html +="<tr>";
+		html +=	"<th style="+"'width: 170px;'"+">"+"번호"+"</th>";
+		html +=	"<th style="+"'width:170px;'"+">"+"제목"+"</th>";
+		html +=	"<th class="+"'right aligned'"+"style="+"'width: 170px;'"+">"+"조회수"+"</th>";
+		html +=	"</tr>";
+    
+			$(data).each(
               function() {
-                 var board_no = this.board_no;
+            	 var board_no = this.board_no;
                  var board_title = this.board_title;
                  var username = this.username;
                  var board_date = this.board_date;
                  var board_content = this.board_content;
                  var board_count = this.board_count ;
                  var board_recomm = this.board_recomm;
-                $("#pop_no").html(board_no);
-                 $("#pop_title").html(board_title);
-                 $("#writer").html("작성자 : " + username);
-                 $("#view_Cnt").html(board_count);
-                 $("#likeConut").html(board_recomm);
-            	$("#date").html(board_date);
+				html += "<tbody class="+"'tbody_pop'"+">"+"<tr>";
+				html += "<td onclick="+"'read('"+this.board_no+"')'"+">"+board_no+"</td>";
+				html +=	"<td id="+"'pop_title'"+">"+board_title+"</td>";
+				html += "<td class="+"'right aligned'"+ "id="+"'view_Cnt'"+">"+board_count+"</td>";
+				html += "</tr>"+" </tbody>";
+				html +="</thead>";
               });
+    	$(".tbody_pop").append(html);
      });
   }
 </script>
@@ -233,10 +253,10 @@ div #popularinfo {
 div #popularRank {
 	width: 30%;
 	min-height: 200px;
-	background-color: black;
 	margin: 40px;
 	position: relative;
 	float: left;
+	margin: 40px;
 }
 
 div #for_search_Div {
@@ -260,6 +280,9 @@ div #for_search_Div {
 #search {
 	float: right;
 }
+h3{
+text-align: center;
+}
 </style>
 </head>
 <body>
@@ -269,10 +292,19 @@ div #for_search_Div {
 	<!-- 배경 div -->
 	<div id="bg">
 		<div id="popularinfo">
-			<label id="pop_no"></label>
+		<img alt="lol" src="../resources/images/Glolboard.png">
+		
+		</div>
+		<div id="popularRank">
+			<h3>베스트 게시물</h3>
+			<table class="ui unstackable table">
+				<thead>
+				</thead>
+				<tbody class="tbody_pop">
+				</tbody>
+			</table>
 
 		</div>
-		<div id="popularRank"></div>
 
 		<div id="for_search_Div">
 			<div class=" ui icon input" id="search">
@@ -323,8 +355,7 @@ div #for_search_Div {
 
 							<div class="image" id="btnimg"
 								onclick="read(${UserinfoBoardVO.board_no})">
-								<input type="hidden" id="board_no_view"> <img
-									id="view_up"
+								<img class="view_up"
 									src="http://img.youtube.com/vi/${UserinfoBoardVO.board_content}/1.jpg">
 							</div>
 							<div class="content">

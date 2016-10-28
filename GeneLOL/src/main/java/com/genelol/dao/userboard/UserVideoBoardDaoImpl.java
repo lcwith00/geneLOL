@@ -70,6 +70,12 @@ public class UserVideoBoardDaoImpl implements UserVideoBoardDao {
 		session.update(namespace +".likeUpdate", uvbvo);
 	}
 
+	@Override
+	public List<UserVideoBoardVO> videoPopularBoardList(UserVideoBoardVO uvbvo) {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace + ".videoPopularBoardList", uvbvo);
+	}
+
 
 
 
