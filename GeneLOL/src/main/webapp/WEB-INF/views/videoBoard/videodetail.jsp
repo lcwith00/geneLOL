@@ -154,7 +154,7 @@ div #bg {
 			</form>
 		</div>
 		<!-- ================reply start================== -->
-		<div class="ui threaded comments">
+		<div class="ui threaded comments" id="reply_div">
 
 			<div >
 				<h3 class="ui dividing header">댓글</h3>
@@ -189,7 +189,6 @@ div #bg {
 			<button class="ui green basic button" id="btn_submit">SUBMIT</button>
 			<button class="ui red basic button" id="btn_cancel">CANCEL</button>
 		</div>
-	</div>
 	<!--  /.div-body -->
 </body>
 </html>

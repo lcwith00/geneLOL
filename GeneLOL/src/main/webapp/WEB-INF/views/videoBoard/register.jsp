@@ -72,14 +72,8 @@ div #buttons {
 			<label>VideoTitle</label> <input type="text" name="board_title"
 				id="board_title">
 		</div>
-		<input type="hidden" name="userid" value="1">
+		<input type="hidden" name="userid" value="${login.userID }">
 
-		<div class="field">
-			<div class="ui checkbox">
-				<input type="checkbox" tabindex="0" class="hidden"> <label>I
-					agree to the Terms and Conditions</label>
-			</div>
-		</div>
 		<button class="ui green button" type="submit" id="registBtn">Submit</button>
 		<div class="ui red button" id="cancle">Cancle</div>
 	</form>

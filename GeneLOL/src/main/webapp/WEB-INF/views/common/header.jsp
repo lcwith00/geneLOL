@@ -5,11 +5,10 @@
 
 <!DOCTYPE HTML>
 <HTML>
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="/resources/semantic-ui/semantic.min.js"></script>
 <link rel="stylesheet" type="text/css"
-	href="/resources/semantic-ui/semantic.min.css">
+	href="resources/semantic-ui/semantic.min.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="resources/semantic-ui/semantic.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#login').click(function() {
@@ -28,7 +27,7 @@
 <title>header</title>
 <style type="text/css">
 .ui.top.inverted.menu {
-	min-width: 1024px;
+	min-width: 600px;
 	margin-top: 0 !important;
 }
 
@@ -45,10 +44,6 @@
 	text-align: center !important;
 }
 
-.nav {
-	min-width: 1024px;
-}
-
 #submit_btn_nav {
 	position: absolute;
 	top: 5%;
@@ -56,7 +51,6 @@
 	margin-right: 0px;
 	height: 90%;
 	padding-right: 1em;
-	border: 0;
 }
 </style>
 </head>
@@ -102,7 +96,7 @@
 									<a>개인 설정</a>
 								</div>
 								<div class="item mySettingLink">
-									<a href="/mypageList">내가 쓴 글</a>
+									<a>내가 쓴 글</a>
 								</div>
 								<div class="item mySettingLink">
 									<a href="/user/logout">Log Out</a>
@@ -119,9 +113,10 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="ui modal" id="signup_modal">
 		<%@ include file="../user/signup.jsp"%>
 	</div>
 </body>
+</html>
 </HTML>
+`

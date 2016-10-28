@@ -16,7 +16,6 @@
 <title>소환사 검색 결과</title>
 <style type="text/css">
 #contents {
-	margin-top: 3rem;
 	margin-bottom: 3rem;
 	padding-left: 5%;
 	padding-right: 5%;

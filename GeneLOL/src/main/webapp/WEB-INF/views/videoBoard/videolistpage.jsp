@@ -199,7 +199,8 @@
 		 document.getElementById("video_content_modify").style.visibility="visible"; 
 		 document.getElementById("btn_submit").style.visibility="visible"; 
 		 document.getElementById("btn_cancel").style.visibility="visible"; 
-		 
+		 document.getElementById("reply_div").style.visibility="hidden"; 
+		 document.getElementById("likeBtn").style.visibility="hidden"; 
 	};
 	function hide_modify(){
 	    document.getElementById("video_title_modify").style.visibility="hidden"; 
@@ -370,10 +371,10 @@ div #tab_column {
 								<input type="hidden" id="last_board_no" name="board_no"
 									value="${UserVideoBoardVO.board_no}">
 								<div class="content">
-									<!--board_count  -->
+									<!—board_count  —>
 									<div class="right floated meta">조회수 :
 										${UserVideoBoardVO.board_count}</div>
-									<!--board_no  -->
+									<!—board_no  —>
 									<label id="video_no"
 										data-board_no="${UserVideoBoardVO.board_no }">no.${UserVideoBoardVO.board_no }</label>
 									<br> <label id="video_title">
@@ -381,7 +382,7 @@ div #tab_column {
 
 									<div class="right floated meta">
 
-										<!-- 날짜가져오기 -->
+										<!— 날짜가져오기 —>
 										<fmt:formatDate pattern="yyyy-MM-dd"
 											value="${UserVideoBoardVO.board_date}" />
 
@@ -395,10 +396,10 @@ div #tab_column {
 								</div>
 								<div class="content">
 									<span class="right floated"> <i
-										class="heart outline like icon"></i> <!-- 좋아요수 -->likes
+										class="heart outline like icon"></i> <!— 좋아요수 —>likes
 										${UserVideoBoardVO.board_recomm}
 									</span> <i class="comment icon"></i>
-									<!-- 댓글수 -->
+									<!— 댓글수 —>
 									comments
 								</div>
 								<div class="extra content">
@@ -420,14 +421,10 @@ div #tab_column {
 
 
 
-
-		<!-- ===================================================== -->
-
-
-
 	</div>
 
-	<!-- 	<form id="tab_type" method="get">
+
+	<form id="tab_type" method="get">
 		<div class="ui bottom attached tab segment" data-tab="LOL"
 			id="btn_tab_LoL">
 			<input type="hidden" name="board_id" value="test" id="type_Tap">
@@ -440,7 +437,7 @@ div #tab_column {
 		id="btn_tab_Etc"></div>
 
 
- -->
+	—>
 </body>
 
 
