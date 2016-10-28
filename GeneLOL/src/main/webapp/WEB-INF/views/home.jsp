@@ -15,8 +15,7 @@
 	href="resources/semantic-ui/semantic.min.css">
 <script src="resources/semantic-ui/semantic.min.js"></script>
 
-<link rel="stylesheet" type="text/css"
-	href="resources/css/common.css">
+<link rel="stylesheet" type="text/css" href="resources/css/common.css">
 <link rel="stylesheet" type="text/css" href="resources/css/home.css">
 
 </head>
@@ -26,7 +25,7 @@
 	</header>
 	<div id="contents" class="ui text container">
 		<aside class="ui center aligned container">
-			<img alt="" src="/resources/images/testlogo.png" id="logo">
+			<img alt="" src="/resources/images/mainlogo.png" id="logo">
 		</aside>
 		<section class="ui center aligned container">
 			<form class="ui form" method="get" action="/summoner">
@@ -48,14 +47,27 @@
 					<div class="ui segment listitems">
 						<div class="ui middle aligned two column centered grid listitem">
 							<div class="four wide column thumbnail">
-								<a href="http://google.com"> <img class="ui small image"
-									src="/resources/images/empty_thumbnail.png">
-								</a>
+								<c:choose>
+									<c:when test="${board.board_id == 'info' }">
+										<c:set var="hrefVal"
+											value="http://localhost:8080/info/infoList"></c:set>
+										<a href="${hrefVal }"> <img class="ui small image"
+											src="/resources/images/empty_thumbnail.png">
+										</a>
+									</c:when>
+									<c:otherwise>
+										<c:set var="hrefVal"
+											value="http://localhost:8080/video/videoList"></c:set>
+										<a href="${hrefVal }"> <img class="ui small image"
+											src="http://img.youtube.com/vi/${board.board_content}/1.jpg">
+										</a>
+									</c:otherwise>
+								</c:choose>
+
 							</div>
 							<div class="twelve wide left aligned column">
-								<a href="http://google.com"><span>${board.board_title}</span>
-								</a>
-								<p>${board.userid}</p>
+								<a href="${hrefVal }"><span>${board.board_title}</span> </a>
+								<p>조회수 : ${board.board_count}</p>
 							</div>
 						</div>
 					</div>

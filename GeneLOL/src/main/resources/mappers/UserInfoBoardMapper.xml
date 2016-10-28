@@ -76,6 +76,7 @@
 	where  board_id = 'info'
 	and board_no <= #{board_no}
 	and board_no > #{board_no}-13
+	and board_id = 'info'
 	order by board_no desc, board_date desc
 	limit 0,12;
 	]]>

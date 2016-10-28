@@ -101,11 +101,12 @@ public class UserController {
 
 		return resultMap;
 	}
-
+	@RequestMapping(value = "/loginpage", method = RequestMethod.GET)
+	public String loginPage() throws Exception{
+		return "/user/login";
+	}
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public void login(UserVO userVO, Model model, HttpSession httpSession) throws Exception {
-
-		logger.info("/user/login");
 
 		UserVO vo = userService.login(userVO);
 		if (vo == null) {

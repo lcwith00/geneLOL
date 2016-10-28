@@ -12,7 +12,14 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		var formObj = $("form[role='form']");
-
+			
+		$('#btn_List').click(function() {
+			location.href = "http://localhost:8080/video/videoList"
+		});
+		$('#btn_cancel').click(function() {
+			location.href = "http://localhost:8080/video/videoList"
+		});
+		
 		$("#btn_submit").on("click", function() {
 			var board_no = $("#board_no_send_modal").html();
 			$('input[name=board_no]').attr('value', board_no);
@@ -30,7 +37,6 @@
 
 		$("#btn_Delete").on("click", function() {
 			var board_no = $("#board_no_send_modal").html();
-			alert(board_no);
 			$('input[name=board_no]').attr('value', board_no);
 			
 			if (confirm("정말 삭제하시겠습니까?") == true) {
@@ -46,7 +52,6 @@
 
 		$("#likeBtn").click(function() {
 
-			alert("test");
 
 			$.ajax({
 				type : "POST",

@@ -356,7 +356,7 @@ text-align: center;
 							<div class="image" id="btnimg"
 								onclick="read(${UserinfoBoardVO.board_no})">
 								<img class="view_up"
-									src="http://img.youtube.com/vi/${UserinfoBoardVO.board_content}/1.jpg">
+									src="../resources/images/infoimg.png">
 							</div>
 							<div class="content">
 								<span class="right floated"> <i

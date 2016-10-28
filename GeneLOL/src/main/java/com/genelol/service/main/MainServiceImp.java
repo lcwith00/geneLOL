@@ -24,7 +24,6 @@ public class MainServiceImp implements MainService {
 		int listNum = 0;
 
 		popularBoardVoList = popularBoardDao.todayPopularBoardList();
-
 		if (popularBoardVoList == null) {
 			listNum = 7;
 		} else {
