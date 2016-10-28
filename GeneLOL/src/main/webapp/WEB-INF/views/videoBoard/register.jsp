@@ -24,9 +24,7 @@
 		});
 		$('#registBtn').click(function() {
 			var board_contentA = $("input[name=board_contentA]").val();
-			alert(board_contentA);
 			var board_contentB = board_contentA.substr(board_contentA.length -11,11);
-			alert(board_contentB);
 			$('input[name=board_content]').attr('value',board_contentB); 
 			alert("등록완료");
 		});

@@ -23,15 +23,12 @@
 		$("#btn_submit").on("click", function() {
 
 			var board_no = $("#board_no_modal").html();
-			alert(board_no);
 			$('input[name=board_no]').attr('value', board_no);
 
 			var board_title = $("#title_modify").val();
-			alert(board_title);
 			$('input[name=board_title]').attr('value', board_title);
 
 			var board_content = $("#board_content_modify").val();
-			alert(board_content);
 			$('input[name=board_content]').attr('value', board_content);
 
 			$('#func').attr({
@@ -43,7 +40,6 @@
 		});
 		$("#likeBtn").click(function() {
 
-			alert("test");
 
 			$.ajax({
 				type : "POST",
