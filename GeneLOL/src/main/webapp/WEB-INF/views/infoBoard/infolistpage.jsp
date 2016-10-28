@@ -31,7 +31,7 @@ $(document)
 							$('#register_info').modal('show');
 						});
 						$('#listAll').click(function(){
-							location.href = "http://localhost:8080/info/infoList"
+							location.href = "/info/infoList"
 						});
 						$('#btn_Modify').click(function(){
 							modify_val();

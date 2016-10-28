@@ -253,7 +253,7 @@
 							%>
 						</c:if>
 					</c:forEach>
-					<%=winRate%>
+					<span>최근전적 : 10전 <%=winRate%>승 <%=10-winRate %>패</span>
 				</aside>
 				<section class="ui segment">
 					<c:forEach var="game" items="${recentGames}">

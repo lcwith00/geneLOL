@@ -14,10 +14,10 @@
 		var formObj = $("form[role='form']");
 			
 		$('#btn_List').click(function() {
-			location.href = "http://localhost:8080/video/videoList"
+			location.href = "/video/videoList"
 		});
 		$('#btn_cancel').click(function() {
-			location.href = "http://localhost:8080/video/videoList"
+			location.href = "/video/videoList"
 		});
 		
 		$("#btn_submit").on("click", function() {

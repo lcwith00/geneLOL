@@ -75,7 +75,8 @@
 			<form class="ui form" method="get" action="/summoner">
 				<div class="field">
 					<div class="ui icon input">
-						<input class="prompt" type="text" placeholder="소환사 명을 입력하세요."
+						<input class="prompt" type="text"
+							placeholder="소환사 명을 입력하세요."
 							name="summonerName">
 						<button class="ui inverted basic button" type="submit"
 							id="submit_btn">

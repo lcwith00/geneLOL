@@ -35,7 +35,7 @@
 								.on(
 										"click",
 										function() {
-											self.location = "http://localhost:8080/video/videoDetail?board_no=${UserVideoBoardVO.board_no}";
+											self.location = "/video/videoDetail?board_no=${UserVideoBoardVO.board_no}";
 										});
 						$("#modifyBtn").on("click", function() {
 							var formObj = $("form[role='form']");

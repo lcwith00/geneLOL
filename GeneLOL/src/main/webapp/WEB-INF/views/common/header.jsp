@@ -63,8 +63,8 @@
 <body>
 	<div class="ui top inverted menu">
 		<div class="ui container nav">
-			<a href="/" class="header item"> <img
-				class="logo" src="/resources/images/logo.png">GeneLoL
+			<a href="/" class="header item"> <img class="logo"
+				src="/resources/images/logo.png">GeneLoL
 			</a> <a href="#" class="item">랭킹</a>
 			<div class="ui simple dropdown item">
 				<span class="text">통계</span> <i class="dropdown icon"></i>
@@ -73,12 +73,11 @@
 					<div class="item">티어 별</div>
 				</div>
 			</div>
-			<a href="/video/videoList" class="item">동영상</a>
-			<a href="/info/infoList" class="item">정보</a>
+			<a href="/video/videoList" class="item">동영상</a> <a
+				href="/info/infoList" class="item">정보</a>
 			<div class="right menu">
-				<c:set value="http://localhost:8080/WEB-INF/views/home.jsp"
-					var="homeURL"></c:set>
-				<c:if test="${pageContext.request.requestURL != homeURL}">
+				<c:set value="/WEB-INF/views/home.jsp" var="homeURL"></c:set>
+				<c:if test="${pageContext.request.requestURI!= homeURL}">
 					<div class="item">
 						<div class="ui inverted icon input">
 							<form class="ui form" method="get" action="/summoner">
