@@ -28,7 +28,7 @@
 <title>header</title>
 <style type="text/css">
 .ui.top.inverted.menu {
-	min-width: 600px;
+	min-width: 1024px;
 	margin-top: 0 !important;
 }
 
@@ -47,6 +47,15 @@
 
 .nav {
 	min-width: 1024px;
+}
+#submit_btn_nav {
+	position: absolute;
+	top: 5%;
+	right: 1px;
+	margin-right: 0px;
+	height: 90%;
+	padding-right: 1em;
+	border: 0;
 }
 </style>
 </head>
@@ -71,8 +80,10 @@
 				<c:if test="${pageContext.request.requestURL != homeURL}">
 					<div class="item">
 						<div class="ui inverted icon input">
-							<i class="search icon"></i> <input type="text"
-								placeholder="Search">
+							<input type="text" placeholder="Search">
+							<button class="ui basic button" type="submit" id="submit_btn_nav">
+								<i class="search icon"></i>
+							</button>
 						</div>
 					</div>
 				</c:if>

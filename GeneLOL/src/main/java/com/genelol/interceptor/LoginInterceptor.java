@@ -33,7 +33,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		}
 
 		if (adminVO.getUserType().equals("member")) {
-			response.sendRedirect("/");
+			Object dest = session.getAttribute("dest");
+			response.sendRedirect(dest != null ? (String) dest : "/");
 		} else if (adminVO.getUserType().equals("operator")) {
 			response.sendRedirect("/adminpage");
 		}

@@ -117,7 +117,7 @@ public class RiotGamesServiceImp implements RiotGamesService {
 			String summonerStr = getEntity(uri, 0).substring(5 + summonerName.replace(" ", "").length());
 			summonerStr = "{" + summonerStr.substring(0, summonerStr.length() - 2) + "}";
 			summoner = mapper.readValue(summonerStr, Summoner.class);
-			
+
 			Summoner dbSummoner = riotGamesDao.getSummoner(summoner.getId());
 			if (dbSummoner == null) {
 				riotGamesDao.insertSummoner(summoner);
@@ -254,12 +254,25 @@ public class RiotGamesServiceImp implements RiotGamesService {
 				if (champion == null) {
 					champion = mapper.readValue(getEntity(uri, 0), Champion.class);
 					riotGamesDao.insertChampion(champion);
-
 				} else {
 					champions.put(game.getChampionId(), champion);
-					continue;
 				}
 				champions.put(game.getChampionId(), champion);
+
+				for (Player player : game.getFellowPlayers()) {
+					championURL = "https://global.api.pvp.net/api/lol/static-data/kr/v1.2/champion/"
+							+ player.getChampionId();
+					uri = new URI(championURL);
+					uri = new URIBuilder(uri).addParameter("champData", champData).build();
+					champion = riotGamesDao.getChampion(player.getChampionId());
+
+					if (champion == null) {
+						champion = mapper.readValue(getEntity(uri, 0), Champion.class);
+						riotGamesDao.insertChampion(champion);
+					} else {
+						champions.put(player.getChampionId(), champion);
+					}
+				}
 			}
 
 		} catch (URISyntaxException e) {
