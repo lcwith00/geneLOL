@@ -94,25 +94,18 @@
 							<div class="four wide column thumbnail">
 								<c:choose>
 									<c:when test="${board.board_id == 'info' }">
-										<img class="ui small image"
-											src="/resources/images/empty_thumbnail.png">
-									</c:when>
-									<c:otherwise>
-										<c:set var="hrefVal"
-											value="/info/infoList"></c:set>
+										<c:set var="hrefVal" value="/info/infoList"></c:set>
 										<a href="${hrefVal }"> <img class="ui small image"
 											src="/resources/images/infoimg.png">
 										</a>
 									</c:when>
 									<c:otherwise>
-										<c:set var="hrefVal"
-											value="/video/videoList"></c:set>
+										<c:set var="hrefVal" value="/video/videoList"></c:set>
 										<a href="${hrefVal }"> <img class="ui small image"
 											src="http://img.youtube.com/vi/${board.board_content}/1.jpg">
 										</a>
 									</c:otherwise>
 								</c:choose>
-
 							</div>
 							<div class="twelve wide left aligned column">
 								<span>${board.board_title}</span>
