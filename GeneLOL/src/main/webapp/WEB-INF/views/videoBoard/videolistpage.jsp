@@ -199,7 +199,8 @@
 		 document.getElementById("video_content_modify").style.visibility="visible"; 
 		 document.getElementById("btn_submit").style.visibility="visible"; 
 		 document.getElementById("btn_cancel").style.visibility="visible"; 
-		 
+		 document.getElementById("reply_div").style.visibility="hidden"; 
+		 document.getElementById("likeBtn").style.visibility="hidden"; 
 	};
 	function hide_modify(){
 	    document.getElementById("video_title_modify").style.visibility="hidden"; 

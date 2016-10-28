@@ -98,15 +98,6 @@
 											src="/resources/images/empty_thumbnail.png">
 									</c:when>
 									<c:otherwise>
-										<c:set var="hrefVal"
-											value="/info/infoList"></c:set>
-										<a href="${hrefVal }"> <img class="ui small image"
-											src="/resources/images/infoimg.png">
-										</a>
-									</c:when>
-									<c:otherwise>
-										<c:set var="hrefVal"
-											value="/video/videoList"></c:set>
 										<a href="${hrefVal }"> <img class="ui small image"
 											src="http://img.youtube.com/vi/${board.board_content}/1.jpg">
 										</a>

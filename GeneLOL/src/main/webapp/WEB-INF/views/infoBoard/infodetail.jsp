@@ -18,7 +18,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#btn_List').click(function() {
-			location.href = "http://localhost:8080/info/infoList"
+			location.href = "/info/infoList"
 		});
 		$("#btn_submit").on("click", function() {
 

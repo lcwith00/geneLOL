@@ -15,7 +15,7 @@
 		]]>
 		where board_id in('videoLOL','videoFun','videoEtc')
 		<if test="board_title != null">
-			and board_title like '%' || #{board_title} || '%'
+		 and board_title like '%' || #{board_title} || '%'
 		</if>
 
 		order by board_no desc, board_date desc
@@ -113,6 +113,9 @@
 		from
 		boardtable
 		where board_id in('videoLOL','videoFun','videoEtc')
+		<if test="board_title != null">
+		 and board_title like '%' || #{board_title} || '%'
+		</if>
 		order by
 		board_count desc,board_recomm desc
 		limit 0, 5;
