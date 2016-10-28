@@ -31,12 +31,16 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			session.setAttribute(LOGIN, userVO);
 			System.out.println(session.getAttribute("login").toString());
 		}
+
 		Object dest = session.getAttribute("dest");
+		if (((String)dest) == null) {
+			dest = "/";
+		}
 		if (adminVO.getUserType().equals("member") && !((String) dest).equals("/adminpage")) {
 			response.sendRedirect(dest != null ? (String) dest : "/");
-		} else if (adminVO.getUserType().equals("operator") && ((String) dest).equals("/adminpage")) {
+		} else if (adminVO.getUserType().equals("operator")) {
 			response.sendRedirect("/adminpage");
-		}else{
+		} else {
 			response.sendRedirect("/");
 		}
 	}

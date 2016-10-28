@@ -109,6 +109,7 @@ public class UserController {
 	public void login(UserVO userVO, Model model, HttpSession httpSession) throws Exception {
 
 		UserVO vo = userService.login(userVO);
+		
 		if (vo == null) {
 			return;
 		}
