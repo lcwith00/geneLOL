@@ -52,7 +52,7 @@ div #buttons {
 			</div>
 		</div>
 
-		<input type="hidden" name="userid" value="1"> file : <input
+		<input type="hidden" name="userid" value="${login.userID }"> file : <input
 			type="file" name="filename">
 
 		<button class="ui green button" type="submit" id="registBtn">Submit</button>

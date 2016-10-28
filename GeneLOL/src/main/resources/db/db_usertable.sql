@@ -1,5 +1,5 @@
 insert into usertable(userid, username, usermail, iscertificate, userpassword, usertype)
-values (userid_seq.nextval,'chdd','needgumo@gmail.com','true','1234','member');
+values (userid_seq.nextval,'csh','needgumo@gmail.com','true','123456','member');
 
 insert into usertable(userid, username, usermail, iscertificate, userpassword, usertype)
 values (userid_seq.nextval,'kys','kys@gmail.com','true','123456','member');

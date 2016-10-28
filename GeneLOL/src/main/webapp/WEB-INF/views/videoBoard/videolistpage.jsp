@@ -65,26 +65,24 @@
 														.val() - 1;
 												$
 														.ajax({
-															type : 'post', // 요청 method 방식 
-															url : "/video/infiniteScrollDown",// 요청할 서버의 url
+															type : 'post', 
+															url : "/video/infiniteScrollDown",
 															headers : {
 																"Content-Type" : "application/json",
 																"X-HTTP-Method-Override" : "POST"
 															},
-															dataType : 'json', // 서버로부터 되돌려받는 데이터의 타입을 명시하는 것이다.
+															dataType : 'json', 
 															data : JSON
-																	.stringify({ // 서버로 보낼 데이터 명시 
+																	.stringify({ 
 																		"board_no" : last_no
 																	}),
 															success : function(
-																	data) {// ajax 가 성공했을시에 수행될 function이다. 이 function의 파라미터는 서버로 부터 return받은 데이터이다.
+																	data) {
 																console
 																		.log("data");
 																var str = "";
 
-																// 5. 받아온 데이터가 ""이거나 null이 아닌 경우에 DOM handling을 해준다.
 																if (data != "") {
-																	//6. 서버로부터 받아온 data가 list이므로 이 각각의 원소에 접근하려면 each문을 사용한다.
 																	str += "<div class="+"'ui four column doubling stackable grid container'"+">";
 																	str += "<div class="+"'row'"+">";
 																	$(data)
