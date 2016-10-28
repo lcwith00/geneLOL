@@ -26,7 +26,7 @@
 	</header>
 	<div id="contents" class="ui text container">
 		<aside class="ui center aligned container">
-			<img alt="" src="/resources/images/testlogo.png" id="logo">
+			<img alt="" src="/resources/images/mainlogo.png" id="logo">
 		</aside>
 		<section class="ui center aligned container">
 			<form class="ui form" method="get" action="/summoner">
