@@ -373,7 +373,7 @@ strong {
 						<div class="three wide column" onclick="read(${UserVideoBoardVO.board_no})">
 						${UserVideoBoardVO.board_title}
 						
-							<%-- <a href="http://localhost:8080/videoBoard/videoDetail?board_no=${UserVideoBoardVO.board_no}">${UserVideoBoardVO.board_title}</a> --%>
+							<%-- <a href="/videoBoard/videoDetail?board_no=${UserVideoBoardVO.board_no}">${UserVideoBoardVO.board_title}</a> --%>
 						</div>
 						<div class="two wide column">${UserVideoBoardVO.board_recomm}</div>
 						<div class="two wide column">${UserVideoBoardVO.board_content}</div>
