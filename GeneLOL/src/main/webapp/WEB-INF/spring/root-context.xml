@@ -29,7 +29,7 @@
 			execution="INIT" />
 		<jdbc:script location="classpath:db/riot_champ.sql"
 			execution="INIT" />
-		<jdbc:script location="classpath:db/db_boardtable.sql"
+		<jdbc:script location="classpath:db/evaluation.sql"
 			execution="INIT" />
 	</jdbc:initialize-database>
 
