@@ -59,10 +59,10 @@ public class MainController {
 		RankedStats rankedStats = riotGamesService.getRankedStatsBySummonerID(summoner.getId(), "SEASON2016");
 
 		champions = riotGamesService.getRecentPlayedChampion(recentGames, "altimages");
-		champions.putAll(riotGamesService.getRankedPlayedChampion(rankedStats, "altimages"));
 
+		champions.putAll(riotGamesService.getRankedPlayedChampion(rankedStats, "altimages"));
 		SummonerSpellList summonerSpellList = riotGamesService.getAllSpell("all");
-	
+
 		model.addAttribute("spellList", summonerSpellList);
 		model.addAttribute("champions", champions);
 		model.addAttribute("rankedStats", rankedStats);

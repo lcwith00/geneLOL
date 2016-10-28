@@ -5,6 +5,8 @@
 	padding-left: 5%;
 	padding-right: 5%;
 	min-height: 1000px;
+	margin-right: auto !important;
+	margin-left: auto !important;
 }
 
 #logo {
